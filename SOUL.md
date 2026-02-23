@@ -35,9 +35,34 @@ openclaw skills list
 ## 記憶系統
 
 ### 搜尋方式
-- `qmd search "關鍵詞"` - 全文搜尋
+- `qmd search "關鍵詞"` - 全文搜尋（免費，本地）
 - `qmd get qmd://memory/檔案` - 讀取檔案
-- 分類在 memory/memory_topics/ (6個)
+- 分類在 memory/memory_topics/ (12個)
+
+### qmd 使用方式
+```bash
+# 全文搜尋
+qmd search "關鍵詞"
+
+# 讀取檔案
+qmd get qmd://memory/2026-02-23.md
+
+# 查看狀態
+qmd status
+
+# 更新索引
+qmd update
+```
+
+### Voyage AI（向量搜尋）
+- 雲端語意搜尋
+- 比全文更精準
+- API Key 在 models.providers.voyage.apiKey
+- 目前設定：pa-Sewb5EElV2UtKRqJnQnA3z06LbzyNy_ZYtwPq_69Tgl
+
+### 濃縮時自動分類
+- 每 10 句話濃縮到 memory/YYYY-MM-DD.md
+- 同時分到對應的 memory_topics/*.md
 
 ### 主題分類（提升記憶精度）
 為何分類：
