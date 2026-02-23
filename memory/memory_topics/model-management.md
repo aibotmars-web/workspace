@@ -14,8 +14,24 @@
   - baseUrl: https://api.minimaxi.com/anthropic
 
 - **Voyage AI** (向量搜尋)
-  - API Key: pa-NDBD8pBTke6OELLYvZPS2LmEYObgVseAGvNY9mM_AYU
+  - API Key: pa-Sewb5EElV2UtKRqJnQnA3z06LbzyNy_ZYtwPq_69Tgl
   - 用於記憶語意搜尋
+
+## qmd 使用方式（2026-02-24 新增）
+
+```bash
+# 全文搜尋
+qmd search "關鍵詞"
+
+# 讀取檔案
+qmd get qmd://memory/2026-02-23.md
+
+# 查看狀態
+qmd status
+
+# 更新索引
+qmd update
+```
 
 ## 模型選擇原則
 
@@ -37,4 +53,4 @@
 
 ---
 
-*更新：2026-02-23*
+*更新：2026-02-24*
