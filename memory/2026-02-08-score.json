@@ -1,0 +1,34 @@
+{
+  "date": "2026-02-08",
+  "rawScore": 60,
+  "normalizedScore": "60.0",
+  "factors": [
+    {
+      "name": "對話時段",
+      "value": 2,
+      "weight": 10
+    },
+    {
+      "name": "決策數",
+      "value": 6,
+      "weight": 5
+    },
+    {
+      "name": "代碼塊",
+      "value": 0,
+      "weight": 3
+    },
+    {
+      "name": "問題解決",
+      "value": 6,
+      "weight": 5
+    },
+    {
+      "name": "新知識",
+      "value": 0,
+      "weight": 3
+    }
+  ],
+  "quality": "medium",
+  "generatedAt": "2026-02-08T13:28:08.302Z"
+}

@@ -1,0 +1,14 @@
+{
+  "query": "Supabase",
+  "timestamp": "2026-02-08T12:37:01.952Z",
+  "supabase": [],
+  "local": [
+    {
+      "file": "2026-02-08.md",
+      "relevance": "medium",
+      "content": "# 2026-02-08 對話記錄\n\n## 時段：04:00 - 06:54\n\n### Polymarket 交易監控 (09:11)\n- 每 30 分鐘監控 BTC 價格\n- **最新數據**: $69,259 USD (-0.76%) / 2,187,892 TWD\n- 目前無持倉，風險等級 🟢 低\n- 待填入市場 ID 和資金規模\n- 程式碼完成度 60%\n- 無異常狀況\n\n### Goda Go AI 助理技術棧\n- Supabase 向量資料庫（長期記憶）\n- Twilio + 11 Labs 電話整合\n- MCP 工具整合\n- 監控儀表板\n- 已記憶到 MEMORY.md\n\n##"
+    }
+  ],
+  "anchors": [],
+  "summaries": []
+}

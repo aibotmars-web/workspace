@@ -1,0 +1,69 @@
+{
+  "supabase": {
+    "color": "blue",
+    "desc": "Supabase 雲端備份",
+    "related": [
+      "memory-hybrid",
+      "backup"
+    ]
+  },
+  "memory-hybrid": {
+    "color": "green",
+    "desc": "混合記憶系統",
+    "related": [
+      "supabase",
+      "recall"
+    ]
+  },
+  "backup": {
+    "color": "red",
+    "desc": "備份系統",
+    "related": [
+      "supabase"
+    ]
+  },
+  "trading": {
+    "color": "yellow",
+    "desc": "交易相關",
+    "related": [
+      "polymarket",
+      "strategy"
+    ]
+  },
+  "polymarket": {
+    "color": "orange",
+    "desc": "Polymarket 預測市場",
+    "related": [
+      "trading"
+    ]
+  },
+  "youtube": {
+    "color": "red",
+    "desc": "YouTube 知識庫",
+    "related": [
+      "channels"
+    ]
+  },
+  "channels": {
+    "color": "purple",
+    "desc": "YouTube 頻道",
+    "related": [
+      "youtube"
+    ]
+  },
+  "health": {
+    "color": "green",
+    "desc": "健康資訊",
+    "related": []
+  },
+  "coding": {
+    "color": "blue",
+    "desc": "程式開發",
+    "related": []
+  },
+  "workflow": {
+    "color": "cyan",
+    "desc": "工作流程",
+    "related": []
+  }
+}
