@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "fetch-official": {
+      "command": "mcp-server-fetch"
+    },
+    "supabase-mcp": {
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server-supabase"],
+      "env": {
+        "SUPABASE_URL": "https://xencsyitesqfftgqkkqb.supabase.co",
+        "SUPABASE_KEY": "sb_publishable_w3o9KpXmMwTdWEzfkRHefw_0VYAwuKc",
+        "SUPABASE_ACCESS_TOKEN": "sbp_5e08bd742bf8731d38df6293de77c680e39da27a",
+        "SUPABASE_PROJECT_ID": "xencsyitesqfftgqkkqb"
+      }
+    }
+  },
+  "imports": []
+}

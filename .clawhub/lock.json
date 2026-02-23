@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "openclaw-auto-updater": {
+      "version": "1.0.0",
+      "installedAt": 1771658502575
+    },
+    "rss-ai-reader": {
+      "version": "1.0.0",
+      "installedAt": 1771658506788
+    },
+    "content-watcher": {
+      "version": "1.0.0",
+      "installedAt": 1771658511531
+    },
+    "deep-research-pro": {
+      "version": "1.0.2",
+      "installedAt": 1771658515731
+    },
+    "trend-watcher": {
+      "version": "1.0.1",
+      "installedAt": 1771658590441
+    }
+  }
+}

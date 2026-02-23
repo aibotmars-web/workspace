@@ -1,0 +1,63 @@
+[2026-02-05 04:58:52] 處理: 柏格醫生
+[2026-02-05 04:58:52] 頻道: https://www.youtube.com/@drbergchinese
+[2026-02-05 04:58:52] 獲取影片清單...
+[youtube] Extracting URL: https://www.youtube.com/watch?v=mUlz3x_S_tM
+[youtube] mUlz3x_S_tM: Downloading webpage
+[youtube] mUlz3x_S_tM: Downloading android vr player API JSON
+[youtube] mUlz3x_S_tM: Downloading ios downgraded player API JSON
+[youtube] mUlz3x_S_tM: Downloading web safari player API JSON
+[youtube] mUlz3x_S_tM: Downloading m3u8 information
+[youtube] mUlz3x_S_tM: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] mUlz3x_S_tM: Downloading 1 format(s): 399+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:56:20] ✗ 柏格醫生: mUlz3x_S_tM (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=2Vn4f_-ny8E
+[youtube] 2Vn4f_-ny8E: Downloading webpage
+[youtube] 2Vn4f_-ny8E: Downloading android vr player API JSON
+[youtube] 2Vn4f_-ny8E: Downloading ios downgraded player API JSON
+[youtube] 2Vn4f_-ny8E: Downloading web safari player API JSON
+[youtube] 2Vn4f_-ny8E: Downloading m3u8 information
+[youtube] 2Vn4f_-ny8E: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] 2Vn4f_-ny8E: Downloading 1 format(s): 398+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:56:24] ✗ 柏格醫生: 2Vn4f_-ny8E (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=XjOo5Oth30E
+[youtube] XjOo5Oth30E: Downloading webpage
+[youtube] XjOo5Oth30E: Downloading android vr player API JSON
+[youtube] XjOo5Oth30E: Downloading ios downgraded player API JSON
+[youtube] XjOo5Oth30E: Downloading web safari player API JSON
+[youtube] XjOo5Oth30E: Downloading m3u8 information
+[youtube] XjOo5Oth30E: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] XjOo5Oth30E: Downloading 1 format(s): 399+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:56:27] ✗ 柏格醫生: XjOo5Oth30E (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=W9m31IKlbBI
+[youtube] W9m31IKlbBI: Downloading webpage
+[youtube] W9m31IKlbBI: Downloading android vr player API JSON
+[youtube] W9m31IKlbBI: Downloading ios downgraded player API JSON
+[youtube] W9m31IKlbBI: Downloading web safari player API JSON
+[youtube] W9m31IKlbBI: Downloading m3u8 information
+[youtube] W9m31IKlbBI: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] W9m31IKlbBI: Downloading 1 format(s): 399+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:56:29] ✗ 柏格醫生: W9m31IKlbBI (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=4E5qNtAC5wg
+[youtube] 4E5qNtAC5wg: Downloading webpage
+[youtube] 4E5qNtAC5wg: Downloading android vr player API JSON
+[youtube] 4E5qNtAC5wg: Downloading ios downgraded player API JSON
+[youtube] 4E5qNtAC5wg: Downloading web safari player API JSON
+[youtube] 4E5qNtAC5wg: Downloading m3u8 information
+[youtube] 4E5qNtAC5wg: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] 4E5qNtAC5wg: Downloading 1 format(s): 399+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:56:31] ✗ 柏格醫生: 4E5qNtAC5wg (無字幕)
+[2026-02-05 06:56:31] 完成: 柏格醫生 - 獲取 0 個字幕

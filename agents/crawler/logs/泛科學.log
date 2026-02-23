@@ -1,0 +1,63 @@
+[2026-02-05 04:58:52] 處理: 泛科學
+[2026-02-05 04:58:52] 頻道: https://www.youtube.com/@PanScitw
+[2026-02-05 04:58:52] 獲取影片清單...
+[youtube] Extracting URL: https://www.youtube.com/watch?v=ECn_dlgkR1g
+[youtube] ECn_dlgkR1g: Downloading webpage
+[youtube] ECn_dlgkR1g: Downloading android vr player API JSON
+[youtube] ECn_dlgkR1g: Downloading ios downgraded player API JSON
+[youtube] ECn_dlgkR1g: Downloading web safari player API JSON
+[youtube] ECn_dlgkR1g: Downloading m3u8 information
+[youtube] ECn_dlgkR1g: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] ECn_dlgkR1g: Downloading 1 format(s): 399+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:30:18] ✗ 泛科學: ECn_dlgkR1g (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=FylyA1Bqmo4
+[youtube] FylyA1Bqmo4: Downloading webpage
+[youtube] FylyA1Bqmo4: Downloading android vr player API JSON
+[youtube] FylyA1Bqmo4: Downloading ios downgraded player API JSON
+[youtube] FylyA1Bqmo4: Downloading web safari player API JSON
+[youtube] FylyA1Bqmo4: Downloading m3u8 information
+[youtube] FylyA1Bqmo4: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] FylyA1Bqmo4: Downloading 1 format(s): 401+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:30:22] ✗ 泛科學: FylyA1Bqmo4 (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=3nYpuDaDsho
+[youtube] 3nYpuDaDsho: Downloading webpage
+[youtube] 3nYpuDaDsho: Downloading android vr player API JSON
+[youtube] 3nYpuDaDsho: Downloading ios downgraded player API JSON
+[youtube] 3nYpuDaDsho: Downloading web safari player API JSON
+[youtube] 3nYpuDaDsho: Downloading m3u8 information
+[youtube] 3nYpuDaDsho: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] 3nYpuDaDsho: Downloading 1 format(s): 399+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:30:35] ✗ 泛科學: 3nYpuDaDsho (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=Mx-tqr42e2Q
+[youtube] Mx-tqr42e2Q: Downloading webpage
+[youtube] Mx-tqr42e2Q: Downloading android vr player API JSON
+[youtube] Mx-tqr42e2Q: Downloading ios downgraded player API JSON
+[youtube] Mx-tqr42e2Q: Downloading web safari player API JSON
+[youtube] Mx-tqr42e2Q: Downloading m3u8 information
+[youtube] Mx-tqr42e2Q: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] Mx-tqr42e2Q: Downloading 1 format(s): 399+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:30:43] ✗ 泛科學: Mx-tqr42e2Q (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=B63SrPWDgf8
+[youtube] B63SrPWDgf8: Downloading webpage
+[youtube] B63SrPWDgf8: Downloading android vr player API JSON
+[youtube] B63SrPWDgf8: Downloading ios downgraded player API JSON
+[youtube] B63SrPWDgf8: Downloading web safari player API JSON
+[youtube] B63SrPWDgf8: Downloading m3u8 information
+[youtube] B63SrPWDgf8: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] B63SrPWDgf8: Downloading 1 format(s): 399+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:30:49] ✗ 泛科學: B63SrPWDgf8 (無字幕)
+[2026-02-05 06:30:49] 完成: 泛科學 - 獲取 0 個字幕

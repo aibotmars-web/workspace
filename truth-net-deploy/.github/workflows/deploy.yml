@@ -1,0 +1,126 @@
+# GitHub Actions Workflow - Truth Network Deployment
+# 真相網 GitHub Actions 自動部署工作流
+
+name: Deploy Truth Network to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
+      - '**.yml'
+      - '**.yaml'
+      - 'config/**'
+      - 'content/**'
+      - 'src/**'
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Deployment message'
+        required: false
+        default: 'Update via GitHub Actions'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Site
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # 可選：Docusaurus 版本
+  docusaurus-build:
+    name: Build with Docusaurus
+    runs-on: ubuntu-latest
+    if: contains(github.event.repository.name, 'truth')
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Documentation
+        run: npm run build
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+
+  # Hugo 版本（如使用 Hugo）
+  hugo-build:
+    name: Build with Hugo
+    runs-on: ubuntu-latest
+    if: contains(github.event.repository.name, 'truth')
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'extended_0.120.4'
+          extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

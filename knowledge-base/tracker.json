@@ -1,0 +1,133 @@
+{
+  "metadata": {
+    "created": "2026-02-03",
+    "last_updated": "2026-02-03",
+    "source": "Google Sheets",
+    "sync_mode": "manual"
+  },
+  "channels": [
+    {
+      "id": 1,
+      "name": "阿銘師x針還傳",
+      "account": "@Dr.HuangAmin",
+      "category": "中醫食療",
+      "url": "https://www.youtube.com/@Dr.HuangAmin",
+      "total_videos": 0,
+      "processed_videos": 0,
+      "last_checked": null,
+      "videos": []
+    },
+    {
+      "id": 2,
+      "name": "胡乃文開講 - 名醫談養生",
+      "account": "@Dr.Hu_talk",
+      "category": "傳統中醫",
+      "url": "https://www.youtube.com/@Dr.Hu_talk",
+      "total_videos": 0,
+      "processed_videos": 0,
+      "last_checked": null,
+      "videos": []
+    },
+    {
+      "id": 3,
+      "name": "柏格醫生中文 健康知識",
+      "account": "@drbergchinese",
+      "category": "功能醫學",
+      "url": "https://www.youtube.com/@drbergchinese",
+      "total_videos": 0,
+      "processed_videos": 0,
+      "last_checked": null,
+      "videos": []
+    },
+    {
+      "id": 4,
+      "name": "周慕姿放心說",
+      "account": "@muerstalk",
+      "category": "心理諮商",
+      "url": "https://www.youtube.com/@muerstalk",
+      "total_videos": 0,
+      "processed_videos": 0,
+      "last_checked": null,
+      "videos": []
+    },
+    {
+      "id": 5,
+      "name": "松明講心理",
+      "account": "@SongMing",
+      "category": "行為心理",
+      "url": "https://www.youtube.com/@SongMing",
+      "total_videos": 0,
+      "processed_videos": 0,
+      "last_checked": null,
+      "videos": []
+    },
+    {
+      "id": 6,
+      "name": "Dr. Harvey不廢話",
+      "account": "@DrHarveyTalk",
+      "category": "商業顧問",
+      "url": "https://www.youtube.com/@DrHarveyTalk",
+      "total_videos": 0,
+      "processed_videos": 0,
+      "last_checked": null,
+      "videos": []
+    },
+    {
+      "id": 7,
+      "name": "初日醫學 - 宋晏仁醫師 x Cofit",
+      "account": "@Cofit211",
+      "category": "代謝減重",
+      "url": "https://www.youtube.com/@Cofit211",
+      "total_videos": 0,
+      "processed_videos": 0,
+      "last_checked": null,
+      "videos": []
+    },
+    {
+      "id": 8,
+      "name": "泛科學 PanSci",
+      "account": "@PanScitw",
+      "category": "科學科普",
+      "url": "https://www.youtube.com/@PanScitw",
+      "total_videos": 0,
+      "processed_videos": 0,
+      "last_checked": null,
+      "videos": []
+    },
+    {
+      "id": 9,
+      "name": "泛科學院",
+      "account": "@panscischool",
+      "category": "AI工具",
+      "url": "https://www.youtube.com/@panscischool",
+      "total_videos": 0,
+      "processed_videos": 0,
+      "last_checked": null,
+      "videos": []
+    }
+  ],
+  "update_log": [
+    {
+      "date": "2026-02-03",
+      "action": "初始化",
+      "channels_updated": 0,
+      "videos_added": 0,
+      "notes": "建立本地追蹤資料庫"
+    },
+    {
+      "date": "2026-02-04",
+      "time": "00:52:18",
+      "action": "sync_with_summaries",
+      "channels_updated": 9,
+      "videos_processed": 0
+    },
+    {
+      "date": "2026-02-04",
+      "time": "00:57:07",
+      "action": "sync_with_summaries",
+      "channels_updated": 9,
+      "videos_processed": 0
+    }
+  ],
+  "last_updated": "2026-02-04T00:57:07.043099"
+}

@@ -1,0 +1,96 @@
+{
+  "update_time": "2026-02-07 03:40:00",
+  "channels": {
+    "阿銘師x銭還傳": {
+      "status": "待處理",
+      "total_videos": 10,
+      "downloaded": 0,
+      "pending": 10,
+      "no_captions": 10,
+      "captions": []
+    },
+    "胡乃文開講": {
+      "status": "進行中",
+      "total_videos": 10,
+      "downloaded": 1,
+      "pending": 9,
+      "no_captions": 9,
+      "captions": [
+        {
+          "id": "SvEEh1X09Fs",
+          "title": "40歲之後 你是不是明顯的感覺到眼睛很容易累 血糖血壓也開始跟你鬧脾氣",
+          "outline": "番茄和玉米、視網膜保護、番茄洋蔥搭配抗老穩血糖",
+          "words": 2788
+        }
+      ]
+    },
+    "柏格醫生": {
+      "status": "待處理",
+      "total_videos": 10,
+      "downloaded": 0,
+      "pending": 10,
+      "no_captions": 10,
+      "captions": []
+    },
+    "周慕姿放心說": {
+      "status": "待處理",
+      "total_videos": 10,
+      "downloaded": 0,
+      "pending": 10,
+      "no_captions": 10,
+      "captions": []
+    },
+    "松明講心理": {
+      "status": "待處理",
+      "total_videos": 10,
+      "downloaded": 0,
+      "pending": 10,
+      "no_captions": 10,
+      "captions": []
+    },
+    "Dr.Harvey": {
+      "status": "頻道ID錯誤",
+      "total_videos": 0,
+      "downloaded": 0,
+      "pending": 0,
+      "no_captions": 0,
+      "captions": []
+    },
+    "初日醫學": {
+      "status": "待處理",
+      "total_videos": 10,
+      "downloaded": 0,
+      "pending": 10,
+      "no_captions": 10,
+      "captions": []
+    },
+    "泛科學": {
+      "status": "進行中",
+      "total_videos": 10,
+      "downloaded": 3,
+      "pending": 7,
+      "no_captions": 7,
+      "captions": [
+        {"id": "TOTaq_ITTIM", "title": "今天要來分享的主題", "outline": "科學知識分享"},
+        {"id": "HFTvH3lb_Uw", "title": "今天要講的科學議題", "outline": "科學新聞解析"},
+        {"id": "mYqEAohFa6M", "title": "今天要來談談", "outline": "科普內容"}
+      ]
+    },
+    "泛科學院": {
+      "status": "待處理",
+      "total_videos": 10,
+      "downloaded": 0,
+      "pending": 10,
+      "no_captions": 10,
+      "captions": []
+    }
+  },
+  "summary": {
+    "total_channels": 9,
+    "active_channels": 2,
+    "total_videos": 70,
+    "total_downloaded": 4,
+    "total_pending": 66,
+    "total_no_captions": 76
+  }
+}

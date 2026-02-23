@@ -1,0 +1,63 @@
+[2026-02-05 04:58:52] 處理: 初日醫學
+[2026-02-05 04:58:52] 頻道: https://www.youtube.com/@Cofit211
+[2026-02-05 04:58:52] 獲取影片清單...
+[youtube] Extracting URL: https://www.youtube.com/watch?v=otGGiNPA8ek
+[youtube] otGGiNPA8ek: Downloading webpage
+[youtube] otGGiNPA8ek: Downloading android vr player API JSON
+[youtube] otGGiNPA8ek: Downloading ios downgraded player API JSON
+[youtube] otGGiNPA8ek: Downloading web safari player API JSON
+[youtube] otGGiNPA8ek: Downloading m3u8 information
+[youtube] otGGiNPA8ek: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] otGGiNPA8ek: Downloading 1 format(s): 616+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:00:29] ✗ 初日醫學: otGGiNPA8ek (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=7KlDf5L8rgI
+[youtube] 7KlDf5L8rgI: Downloading webpage
+[youtube] 7KlDf5L8rgI: Downloading android vr player API JSON
+[youtube] 7KlDf5L8rgI: Downloading ios downgraded player API JSON
+[youtube] 7KlDf5L8rgI: Downloading web safari player API JSON
+[youtube] 7KlDf5L8rgI: Downloading m3u8 information
+[youtube] 7KlDf5L8rgI: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] 7KlDf5L8rgI: Downloading 1 format(s): 401+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:00:37] ✗ 初日醫學: 7KlDf5L8rgI (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=Tm9Kkmu6FWQ
+[youtube] Tm9Kkmu6FWQ: Downloading webpage
+[youtube] Tm9Kkmu6FWQ: Downloading android vr player API JSON
+[youtube] Tm9Kkmu6FWQ: Downloading ios downgraded player API JSON
+[youtube] Tm9Kkmu6FWQ: Downloading web safari player API JSON
+[youtube] Tm9Kkmu6FWQ: Downloading m3u8 information
+[youtube] Tm9Kkmu6FWQ: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] Tm9Kkmu6FWQ: Downloading 1 format(s): 616+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:00:44] ✗ 初日醫學: Tm9Kkmu6FWQ (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=5AHg3iMiP0g
+[youtube] 5AHg3iMiP0g: Downloading webpage
+[youtube] 5AHg3iMiP0g: Downloading android vr player API JSON
+[youtube] 5AHg3iMiP0g: Downloading ios downgraded player API JSON
+[youtube] 5AHg3iMiP0g: Downloading web safari player API JSON
+[youtube] 5AHg3iMiP0g: Downloading m3u8 information
+[youtube] 5AHg3iMiP0g: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] 5AHg3iMiP0g: Downloading 1 format(s): 616+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:00:51] ✗ 初日醫學: 5AHg3iMiP0g (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=muQbTjXdU4I
+[youtube] muQbTjXdU4I: Downloading webpage
+[youtube] muQbTjXdU4I: Downloading android vr player API JSON
+[youtube] muQbTjXdU4I: Downloading ios downgraded player API JSON
+[youtube] muQbTjXdU4I: Downloading web safari player API JSON
+[youtube] muQbTjXdU4I: Downloading m3u8 information
+[youtube] muQbTjXdU4I: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] Testing format 616
+[info] muQbTjXdU4I: Downloading 1 format(s): 616+251
+[info] There are no subtitles for the requested languages
+[2026-02-05 06:00:55] ✗ 初日醫學: muQbTjXdU4I (無字幕)
+[2026-02-05 06:00:55] 完成: 初日醫學 - 獲取 0 個字幕

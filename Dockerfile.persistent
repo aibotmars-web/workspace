@@ -1,0 +1,37 @@
+FROM openclaw/openclaw:latest
+
+# ===============================
+# 安裝 Python MCP 依賴
+# ===============================
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --no-cache-dir \
+    minimax-coding-plan-mcp \
+    requests \
+    && rm -rf /root/.cache/pip
+
+# ===============================
+# 安裝 uvx
+# ===============================
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# ===============================
+# 安裝 Node.js MCP
+# ===============================
+RUN npm install -g @ameno/pi-minimax-mcp
+
+# ===============================
+# 預設環境變數
+# ===============================
+ENV MINIMAX_API_KEY="sk-cp-zBE1lcRUibZCRRYCuwSJv_HIpvekBW0YsZTEL17h1giYy2KqDOwJ4QoaBtuExUmuE8NQWOHz-P1dtBAF3jKkBrKEs3336Gpr0e6L-wRlMROa4-3V-dwc5Ws" \
+    MINIMAX_API_HOST="https://api.minimaxi.com"
+
+# ===============================
+# 預啟動 MCP 伺服器
+# ===============================
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]

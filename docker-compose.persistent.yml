@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # ===============================
+  # OpenClaw Main Container
+  # ===============================
+  openclaw-main:
+    image: openclaw/openclaw:latest
+    container_name: openclaw-main
+    restart: unless-stopped
+    ports:
+      - "18789:18789"
+    volumes:
+      # 持久化所有安裝的套件
+      - openclaw-python-packages:/usr/local/lib/python3.11/dist-packages
+      - openclaw-uv-bin:/root/.local/bin
+      - openclaw-uv-cache:/root/.cache/uv
+      - openclaw-node-packages:/usr/local/lib/node_modules
+      # 工作區持久化
+      - ./workspace:/root/.openclaw/workspace
+      # 記憶持久化
+      - ./memory:/root/.openclaw/workspace/memory
+    environment:
+      - OPENCLAW_MODEL=minimax-cn/MiniMax-M2.5
+    networks:
+      - openclaw-network
+
+networks:
+  openclaw-network:
+    driver: bridge
+
+volumes:
+  openclaw-python-packages:
+    driver: local
+  openclaw-uv-bin:
+    driver: local
+  openclaw-uv-cache:
+    driver: local
+  openclaw-node-packages:
+    driver: local

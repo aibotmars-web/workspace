@@ -1,0 +1,94 @@
+[2026-02-05 04:58:52] 處理: 胡乃文開講
+[2026-02-05 04:58:52] 頻道: https://www.youtube.com/@Dr.Hu_talk
+[2026-02-05 04:58:52] 獲取影片清單...
+[youtube] Extracting URL: https://www.youtube.com/watch?v=akWTuJ0ZbtE
+[youtube] akWTuJ0ZbtE: Downloading webpage
+[youtube] akWTuJ0ZbtE: Downloading android vr player API JSON
+[youtube] akWTuJ0ZbtE: Downloading ios downgraded player API JSON
+[youtube] akWTuJ0ZbtE: Downloading web safari player API JSON
+[youtube] akWTuJ0ZbtE: Downloading m3u8 information
+[youtube] akWTuJ0ZbtE: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] akWTuJ0ZbtE: Downloading subtitles: zh-Hant, en
+[info] Testing format 616
+[info] akWTuJ0ZbtE: Downloading 1 format(s): 616+251
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/akWTuJ0ZbtE.txt.zh-Hant.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/akWTuJ0ZbtE.txt.zh-Hant.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at    1.87MiB/s (00:00:00)[download]    7.00KiB at    3.49MiB/s (00:00:00)[download]   15.00KiB at    6.23MiB/s (00:00:00)[download]   19.31KiB at    6.60MiB/s (00:00:00)[download] 100% of   19.31KiB in 00:00:00 at 325.71KiB/s
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/akWTuJ0ZbtE.txt.en.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/akWTuJ0ZbtE.txt.en.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at    2.02MiB/s (00:00:00)[download]    7.00KiB at    3.74MiB/s (00:00:00)[download]   15.00KiB at    6.27MiB/s (00:00:00)[download]   23.02KiB at    7.23MiB/s (00:00:00)[download] 100% of   23.02KiB in 00:00:00 at 779.58KiB/s
+[2026-02-05 05:50:40] ✗ 胡乃文開講: akWTuJ0ZbtE (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=SvEEh1X09Fs
+[youtube] SvEEh1X09Fs: Downloading webpage
+[youtube] SvEEh1X09Fs: Downloading android vr player API JSON
+[youtube] SvEEh1X09Fs: Downloading ios downgraded player API JSON
+[youtube] SvEEh1X09Fs: Downloading web safari player API JSON
+[youtube] SvEEh1X09Fs: Downloading m3u8 information
+[youtube] SvEEh1X09Fs: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] SvEEh1X09Fs: Downloading subtitles: zh-Hant, en
+[info] Testing format 616
+[info] SvEEh1X09Fs: Downloading 1 format(s): 616+251
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/SvEEh1X09Fs.txt.zh-Hant.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/SvEEh1X09Fs.txt.zh-Hant.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at    1.75MiB/s (00:00:00)[download]    7.00KiB at    2.17MiB/s (00:00:00)[download]   15.00KiB at    1.80MiB/s (00:00:00)[download]   18.11KiB at    1.99MiB/s (00:00:00)[download] 100% of   18.11KiB in 00:00:00 at 490.08KiB/s
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/SvEEh1X09Fs.txt.en.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/SvEEh1X09Fs.txt.en.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at    2.58MiB/s (00:00:00)[download]    7.00KiB at    4.56MiB/s (00:00:00)[download]   15.00KiB at    7.20MiB/s (00:00:00)[download]   20.48KiB at    4.26MiB/s (00:00:00)[download] 100% of   20.48KiB in 00:00:00 at 222.78KiB/s
+[2026-02-05 05:50:55] ✗ 胡乃文開講: SvEEh1X09Fs (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=TOTaq_ITTIM
+[youtube] TOTaq_ITTIM: Downloading webpage
+[youtube] TOTaq_ITTIM: Downloading android vr player API JSON
+[youtube] TOTaq_ITTIM: Downloading ios downgraded player API JSON
+[youtube] TOTaq_ITTIM: Downloading web safari player API JSON
+[youtube] TOTaq_ITTIM: Downloading m3u8 information
+[youtube] TOTaq_ITTIM: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] TOTaq_ITTIM: Downloading subtitles: zh-Hant, en
+[info] Testing format 616
+[info] TOTaq_ITTIM: Downloading 1 format(s): 616+251
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/TOTaq_ITTIM.txt.zh-Hant.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/TOTaq_ITTIM.txt.zh-Hant.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at    2.05MiB/s (00:00:00)[download]    7.00KiB at    3.82MiB/s (00:00:00)[download]   15.00KiB at    7.01MiB/s (00:00:00)[download]   18.83KiB at    7.10MiB/s (00:00:00)[download] 100% of   18.83KiB in 00:00:00 at 31.01KiB/s
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/TOTaq_ITTIM.txt.en.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/TOTaq_ITTIM.txt.en.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at  Unknown B/s (00:00:00)[download]    7.00KiB at  Unknown B/s (00:00:00)[download]   15.00KiB at  Unknown B/s (00:00:00)[download]   22.56KiB at    5.91MiB/s (00:00:00)[download] 100% of   22.56KiB in 00:00:00 at 721.09KiB/s
+[2026-02-05 05:51:05] ✗ 胡乃文開講: TOTaq_ITTIM (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=mYqEAohFa6M
+[youtube] mYqEAohFa6M: Downloading webpage
+[youtube] mYqEAohFa6M: Downloading android vr player API JSON
+[youtube] mYqEAohFa6M: Downloading ios downgraded player API JSON
+[youtube] mYqEAohFa6M: Downloading web safari player API JSON
+[youtube] mYqEAohFa6M: Downloading m3u8 information
+[youtube] mYqEAohFa6M: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] mYqEAohFa6M: Downloading subtitles: zh-Hant, en
+[info] Testing format 616
+[info] mYqEAohFa6M: Downloading 1 format(s): 616+251
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/mYqEAohFa6M.txt.zh-Hant.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/mYqEAohFa6M.txt.zh-Hant.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at    1.68MiB/s (00:00:00)[download]    7.00KiB at    2.30MiB/s (00:00:00)[download]   15.00KiB at    4.06MiB/s (00:00:00)[download]   21.20KiB at    4.61MiB/s (00:00:00)[download] 100% of   21.20KiB in 00:00:00 at 227.56KiB/s
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/mYqEAohFa6M.txt.en.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/mYqEAohFa6M.txt.en.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at    1.41MiB/s (00:00:00)[download]    7.00KiB at    2.25MiB/s (00:00:00)[download]   15.00KiB at    3.85MiB/s (00:00:00)[download]   24.14KiB at    4.71MiB/s (00:00:00)[download] 100% of   24.14KiB in 00:00:00 at 652.21KiB/s
+[2026-02-05 05:51:20] ✗ 胡乃文開講: mYqEAohFa6M (無字幕)
+[youtube] Extracting URL: https://www.youtube.com/watch?v=QE5M8Nn5PLY
+[youtube] QE5M8Nn5PLY: Downloading webpage
+[youtube] QE5M8Nn5PLY: Downloading android vr player API JSON
+[youtube] QE5M8Nn5PLY: Downloading ios downgraded player API JSON
+[youtube] QE5M8Nn5PLY: Downloading web safari player API JSON
+[youtube] QE5M8Nn5PLY: Downloading m3u8 information
+[youtube] QE5M8Nn5PLY: Downloading player 4e51e895-main
+[youtube] [jsc:node] Solving JS challenges using node
+[info] QE5M8Nn5PLY: Downloading subtitles: zh-Hant, en
+[info] Testing format 616
+[info] QE5M8Nn5PLY: Downloading 1 format(s): 616+251
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/QE5M8Nn5PLY.txt.zh-Hant.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/QE5M8Nn5PLY.txt.zh-Hant.vtt
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at    1.46MiB/s (00:00:00)[download]    7.00KiB at   67.09KiB/s (00:00:00)[download]   15.00KiB at  142.02KiB/s (00:00:00)[download]   19.45KiB at  182.54KiB/s (00:00:00)[download] 100% of   19.45KiB in 00:00:00 at 29.56KiB/s
+[info] Writing video subtitles to: subtitles/yt-experts/胡乃文開講/QE5M8Nn5PLY.txt.en.vtt
+[download] Destination: subtitles/yt-experts/胡乃文開講/QE5M8Nn5PLY.txt.en.vtt
+[download]    1.00KiB at  547.63KiB/s (00:00:00)[download]    3.00KiB at  184.54KiB/s (00:00:00)[download]    7.00KiB at  205.22KiB/s (00:00:00)[download]   15.00KiB at  161.51KiB/s (00:00:00)[download]   23.22KiB at   77.03KiB/s (00:00:00)[download] 100% of   23.22KiB in 00:00:00 at 68.92KiB/s
+[2026-02-05 05:51:33] ✗ 胡乃文開講: QE5M8Nn5PLY (無字幕)
+[2026-02-05 05:51:33] 完成: 胡乃文開講 - 獲取 0 個字幕

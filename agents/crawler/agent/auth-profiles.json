@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "providers": {
+    "google": {
+      "type": "google_oauth",
+      "client_id": "724332769098-92jceao00nume82fl9c1r5e5c1n1rh12.apps.googleusercontent.com",
+      "client_secret": "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",
+      "scopes": [
+        "https://www.googleapis.com/auth/youtube.readonly",
+        "https://www.googleapis.com/auth/youtube.force-ssl"
+      ],
+      "redirect_uri": "http://localhost:8080/callback"
+    }
+  },
+  "default_profile": "google"
+}
