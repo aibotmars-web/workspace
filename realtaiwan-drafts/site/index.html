@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>真相網 RealTaiwan — 追蹤真相，守護民主</title>
+<meta name="description" content="台灣政治真相追蹤，司法監督，選舉觀察。獨立、中立、不受政黨控制。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-hover: #1c2333;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --accent: #58a6ff;
+  --accent-hover: #79b8ff;
+  --red: #f85149;
+  --yellow: #d29922;
+  --green: #3fb950;
+  --orange: #db6d28;
+  --max-w: 960px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--accent-hover); }
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 2px;
+}
+.site-logo span { color: var(--red); }
+nav a {
+  color: var(--text-muted);
+  margin-left: 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+nav a:hover, nav a.active { color: var(--text); }
+
+/* Hero */
+.hero {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 48px 24px 32px;
+}
+.hero h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 600px;
+}
+
+/* Tags Filter */
+.tags-bar {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px 24px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tag-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+.tag-btn:hover, .tag-btn.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+/* Article Grid */
+.articles {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  display: grid;
+  gap: 20px;
+}
+.article-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px 28px;
+  transition: all .2s;
+  cursor: pointer;
+  display: block;
+  color: inherit;
+}
+.article-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  color: inherit;
+}
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+.card-category {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+.cat-judicial { background: rgba(248,81,73,.15); color: var(--red); }
+.cat-politics { background: rgba(210,153,34,.15); color: var(--yellow); }
+.cat-constitution { background: rgba(88,166,255,.15); color: var(--accent); }
+.cat-election { background: rgba(63,185,80,.15); color: var(--green); }
+.cat-cross-strait { background: rgba(219,109,40,.15); color: var(--orange); }
+
+.card-date { color: var(--text-muted); }
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.card-excerpt {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.card-tags {
+  margin-top: 12px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.card-tag {
+  background: rgba(88,166,255,.1);
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+}
+
+/* Featured card */
+.article-card.featured {
+  border-left: 3px solid var(--red);
+}
+.featured-badge {
+  background: var(--red);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+.site-footer a { color: var(--text-muted); }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .header-inner { flex-direction: column; gap: 12px; }
+  nav a { margin-left: 16px; }
+  .hero h1 { font-size: 1.5rem; }
+  .article-card { padding: 18px 20px; }
+  .card-title { font-size: 1.1rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">🔍 <span>真相</span>網</a>
+    <nav>
+      <a href="index.html" class="active">首頁</a>
+      <a href="network.html" style="color:#f85149;font-weight:700">🕸 關係圖</a>
+      <a href="about.html">關於</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>追蹤真相，守護民主</h1>
+  <p>獨立調查報導與深度分析。不分藍綠，只問是非。揭露台灣政治的真實面貌。</p>
+</section>
+
+<div class="tags-bar">
+  <button class="tag-btn active" onclick="filterArticles('all')">全部</button>
+  <button class="tag-btn" onclick="filterArticles('judicial')">司法追蹤</button>
+  <button class="tag-btn" onclick="filterArticles('constitution')">憲政分析</button>
+  <button class="tag-btn" onclick="filterArticles('politics')">政治追蹤</button>
+  <button class="tag-btn" onclick="filterArticles('election')">選舉觀察</button>
+  <button class="tag-btn" onclick="filterArticles('cross-strait')">兩岸關係</button>
+</div>
+
+<main class="articles">
+
+  <!-- 1. 柯文哲 -->
+  <a href="articles/ko-wenzhe-trial.html" class="article-card featured" data-cat="judicial">
+    <div class="card-meta">
+      <span class="featured-badge">置頂</span>
+      <span class="card-category cat-judicial">司法追蹤</span>
+      <span class="card-date">2026-03-01</span>
+    </div>
+    <h2 class="card-title">柯文哲京華城案：一審宣判倒數，求刑 28 年 6 月</h2>
+    <p class="card-excerpt">前台北市長柯文哲涉京華城容積率弊案，檢方求刑 28 年 6 月。台北地院排定 3 月 26 日宣判，案件牽動民眾黨及 2026 選情。</p>
+    <div class="card-tags">
+      <span class="card-tag">柯文哲</span>
+      <span class="card-tag">京華城案</span>
+      <span class="card-tag">貪污</span>
+    </div>
+  </a>
+
+  <!-- 2. 憲法法庭 -->
+  <a href="articles/constitutional-court-crisis.html" class="article-card" data-cat="constitution">
+    <div class="card-meta">
+      <span class="card-category cat-constitution">憲政分析</span>
+      <span class="card-date">2026-03-01</span>
+    </div>
+    <h2 class="card-title">憲法法庭僅 5 人判決引爆憲政危機：誰來守護憲法？</h2>
+    <p class="card-excerpt">停擺一年的憲法法庭以 5 名大法官作成判決，宣告《憲訴法》修正違憲。正當性爭議凸顯三權分立的根本危機。</p>
+    <div class="card-tags">
+      <span class="card-tag">憲法法庭</span>
+      <span class="card-tag">大法官</span>
+      <span class="card-tag">權力分立</span>
+    </div>
+  </a>
+
+  <!-- 3. 黃國昌 -->
+  <a href="articles/huang-kuochang-corruption-probe.html" class="article-card" data-cat="judicial">
+    <div class="card-meta">
+      <span class="card-category cat-judicial">司法追蹤</span>
+      <span class="card-date">2026-03-01</span>
+    </div>
+    <h2 class="card-title">黃國昌遭列貪污被告：揭弊英雄自身難保？</h2>
+    <p class="card-excerpt">「揭弊戰神」黃國昌遭北檢列為貪污他字案被告，跟蹤集團案持續延燒。從揭弊到被查，反映政治人物形象與行為的落差。</p>
+    <div class="card-tags">
+      <span class="card-tag">黃國昌</span>
+      <span class="card-tag">貪污調查</span>
+      <span class="card-tag">民眾黨</span>
+    </div>
+  </a>
+
+  <!-- 4. 劉世芳 -->
+  <a href="articles/liu-shihfang-donation.html" class="article-card" data-cat="politics cross-strait">
+    <div class="card-meta">
+      <span class="card-category cat-cross-strait">兩岸關係</span>
+      <span class="card-date">2026-03-01</span>
+    </div>
+    <h2 class="card-title">劉世芳外甥「賺紅錢」風波：政治獻金爭議與兩岸角力</h2>
+    <p class="card-excerpt">港媒點名內政部長劉世芳外甥在中國經商，引發政治獻金爭議。事件折射中共跨國鎮壓手法與兩岸經濟脫鉤壓力。</p>
+    <div class="card-tags">
+      <span class="card-tag">劉世芳</span>
+      <span class="card-tag">政治獻金</span>
+      <span class="card-tag">中共打壓</span>
+    </div>
+  </a>
+
+  <!-- 5. 2026 選舉前瞻 -->
+  <a href="articles/2026-election-preview.html" class="article-card" data-cat="election">
+    <div class="card-meta">
+      <span class="card-category cat-election">選舉觀察</span>
+      <span class="card-date">2026-03-01</span>
+    </div>
+    <h2 class="card-title">2026 九合一選舉前瞻：大罷免後的政治版圖重組</h2>
+    <p class="card-excerpt">2026 年 11 月 28 日九合一選舉被視為 2028 總統大選前哨戰。大罷免餘波、柯案宣判、憲政危機交織，選情空前複雜。</p>
+    <div class="card-tags">
+      <span class="card-tag">九合一選舉</span>
+      <span class="card-tag">2026</span>
+      <span class="card-tag">大罷免</span>
+    </div>
+  </a>
+
+</main>
+
+<footer class="site-footer">
+  <p>真相網 RealTaiwan &copy; 2026 — 獨立運作，不受任何政黨或政府資助</p>
+  <p style="margin-top:6px;">本站內容以 <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a> 授權</p>
+</footer>
+
+<script>
+function filterArticles(cat) {
+  document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.article-card').forEach(card => {
+    if (cat === 'all') { card.style.display = ''; return; }
+    const cats = card.dataset.cat || '';
+    card.style.display = cats.includes(cat) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1393 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:09.309 --> 00:00:10.010
+Believe it or not
+
+00:00:10.010 --> 00:00:12.140
+No matter how powerful an AI chip is,
+
+00:00:12.140 --> 00:00:14.136
+it can still be hampered by “traffic issues”
+
+00:00:14.141 --> 00:00:14.808
+Imagine that
+
+00:00:14.808 --> 00:00:17.611
+you have built
+the world's most powerful AI processor
+
+00:00:17.611 --> 00:00:18.712
+with incredible performance
+
+00:00:18.712 --> 00:00:20.481
+But when it tried to transmit data,
+
+00:00:20.481 --> 00:00:22.249
+the data was stuck at the output
+
+00:00:22.249 --> 00:00:23.957
+because its transmission speed
+was slower
+
+00:00:23.957 --> 00:00:25.396
+than its computation speed
+
+00:00:25.396 --> 00:00:26.154
+It ended up like
+
+00:00:26.154 --> 00:00:28.306
+putting a Mercedes engine on bicycle wheels—
+
+00:00:28.306 --> 00:00:30.094
+the engine's strength was wasted
+
+00:00:30.094 --> 00:00:33.030
+That's why everyone is going crazy
+about a new solution—
+
+00:00:33.030 --> 00:00:34.331
+silicon photonics
+
+00:00:34.331 --> 00:00:36.267
+TSMC, NVIDIA, Intel,
+
+00:00:36.267 --> 00:00:38.035
+Europe's PhotonDelta,
+
+00:00:38.035 --> 00:00:39.737
+and Taiwan's ASE, LuxNet
+
+00:00:39.737 --> 00:00:41.007
+are all racing to replace 
+
+00:00:41.007 --> 00:00:43.018
+electrical signals with optical ones
+
+00:00:43.020 --> 00:00:46.068
+They even co-founded
+the Silicon Photonics Industry Alliance
+
+00:00:46.068 --> 00:00:49.171
+and the Heterogeneously Integrated Silicon Photonics Alliance (HiSPA),
+
+00:00:49.171 --> 00:00:51.151
+committing to advancing transmission technology
+
+00:00:51.151 --> 00:00:52.841
+in AI computing and data centers
+
+00:00:52.841 --> 00:00:55.321
+But what exactly is silicon photonics?
+
+00:00:55.321 --> 00:00:57.272
+Can it transform
+the semiconductor industry?
+
+00:00:57.272 --> 00:00:59.610
+or even challenge
+Taiwan's advantage in this field?
+
+00:00:59.610 --> 00:01:02.851
+Let's explore this revolution of
+light-speed transmission in chips
+
+00:01:02.851 --> 00:01:05.131
+because only by
+understanding silicon photonics
+
+00:01:05.131 --> 00:01:05.832
+can you truly ride
+
+00:01:05.832 --> 00:01:07.434
+the wave of the AI era
+
+00:01:10.937 --> 00:01:13.195
+To gain the upper hand
+in the semiconductor market,
+
+00:01:13.195 --> 00:01:15.575
+all semiconductor companies
+are going all out
+
+00:01:15.575 --> 00:01:18.701
+to develop chips
+that are smaller and faster
+
+00:01:18.701 --> 00:01:20.259
+In previous episodes, we talked about
+
+00:01:20.259 --> 00:01:22.115
+how transistor sizes have shrunk over time
+
+00:01:22.115 --> 00:01:24.006
+and how they'll shrink in the future
+
+00:01:24.006 --> 00:01:25.708
+But besides transistors,
+
+00:01:25.708 --> 00:01:28.621
+another key factor affecting a chip's speed
+
+00:01:28.621 --> 00:01:31.571
+is the circuit for signal transmission
+
+00:01:31.571 --> 00:01:32.859
+In 1959
+
+00:01:32.859 --> 00:01:36.230
+the co-founder of both Fairchild Semiconductor and Intel,
+
+00:01:36.230 --> 00:01:37.702
+Dr Robert Noyce,
+
+00:01:37.702 --> 00:01:39.987
+proposed a new kind of integrated circuit
+
+00:01:39.987 --> 00:01:42.402
+known as the monolithic integrated circuit
+
+00:01:42.413 --> 00:01:44.800
+It integrated
+every component of a circuit board
+
+00:01:44.800 --> 00:01:47.708
+—including transistors, resistors, capacitors—
+
+00:01:47.708 --> 00:01:48.984
+onto a single chip
+
+00:01:48.984 --> 00:01:49.524
+There,
+
+00:01:49.524 --> 00:01:52.479
+they were connected by metal wiring
+through planar processing
+
+00:01:52.479 --> 00:01:55.805
+This is the integrated circuit, or IC,
+we often hear about
+
+00:01:55.805 --> 00:01:57.750
+Semiconductor manufacturing technologies
+
+00:01:57.750 --> 00:01:59.285
+and the IC concept
+
+00:01:59.285 --> 00:02:02.594
+allowed us to shrink all components
+along with transistors
+
+00:02:02.594 --> 00:02:04.757
+As transistors shrink,
+
+00:02:04.757 --> 00:02:06.826
+the interconnects between IC components
+
+00:02:06.826 --> 00:02:09.265
+must also shrink
+
+00:02:09.265 --> 00:02:11.564
+However, the thinner the circuits are,
+
+00:02:11.564 --> 00:02:13.288
+the higher their resistance will be
+
+00:02:13.288 --> 00:02:15.779
+This will lead to
+signal loss and heat issues
+
+00:02:15.779 --> 00:02:16.703
+In addition
+
+00:02:16.703 --> 00:02:20.607
+the capacitance of the circuits also slows down an IC's response
+
+00:02:20.607 --> 00:02:23.866
+Even if IC manufacturing technologies
+keep advancing,
+
+00:02:23.866 --> 00:02:26.869
+we'll eventually hit the speed limit
+for electrical signal transmission
+
+00:02:27.569 --> 00:02:28.236
+Moreover,
+
+00:02:28.236 --> 00:02:31.734
+the rise of AI and IoT has triggered
+exponential growth in
+
+00:02:31.734 --> 00:02:35.324
+the demand for fast and large-scale
+data transfers between chips
+
+00:02:35.324 --> 00:02:37.740
+Companies providing services
+based on data processing
+
+00:02:37.740 --> 00:02:38.847
+such as OpenAI and Google,
+
+00:02:38.847 --> 00:02:39.977
+need a data center,
+
+00:02:39.977 --> 00:02:40.476
+no
+
+00:02:40.476 --> 00:02:42.232
+multiple massive data centers
+
+00:02:42.232 --> 00:02:45.954
+to process and store
+data from all over the world
+
+00:02:45.954 --> 00:02:47.433
+Data traffic in a data center
+
+00:02:47.433 --> 00:02:51.526
+can be thousands to millions of times
+greater than that at the end-user side
+
+00:02:51.526 --> 00:02:53.506
+Accelerating the transmission of
+internal data
+
+00:02:53.506 --> 00:02:54.741
+is therefore a must
+
+00:02:54.741 --> 00:02:56.832
+for high-speed computing in data centers
+
+00:02:56.832 --> 00:02:58.150
+To boost transmission speed
+
+00:02:58.150 --> 00:03:01.736
+between chips, servers, storage units,
+and network equipment,
+
+00:03:01.736 --> 00:03:05.430
+electrical signals must
+be converted into optical signals
+
+00:03:05.430 --> 00:03:06.466
+For the same reason,
+
+00:03:06.466 --> 00:03:08.721
+we've already replaced
+electrical internet cables
+
+00:03:08.721 --> 00:03:11.185
+with fiber-optic ones
+
+00:03:11.185 --> 00:03:14.238
+Using light for signal transmission
+brings many advantages
+
+00:03:14.238 --> 00:03:15.743
+including greater bandwidth
+
+00:03:15.743 --> 00:03:17.812
+and longer transmission distances
+
+00:03:17.812 --> 00:03:19.446
+In short-range transmissions,
+
+00:03:19.446 --> 00:03:23.484
+optical fibers offer more than 10 times
+the bandwidth of copper cables
+
+00:03:23.484 --> 00:03:24.367
+Moreover,
+
+00:03:24.367 --> 00:03:27.203
+optical communication can span
+thousands of kilometers
+
+00:03:27.203 --> 00:03:29.475
+For example, undersea fiber-optic cables
+
+00:03:29.475 --> 00:03:31.711
+have very low signal loss per kilometer
+
+00:03:31.711 --> 00:03:32.793
+Given this,
+
+00:03:32.797 --> 00:03:36.231
+why not replace all circuits on chips
+with optical fibers?
+
+00:03:36.231 --> 00:03:37.984
+Why not supercharge transmission speed
+
+00:03:37.984 --> 00:03:39.934
+and bandwidth to the max?
+
+00:03:39.934 --> 00:03:42.093
+Because in reality, it's not that simple
+
+00:03:42.093 --> 00:03:43.948
+A common optical fiber consists of
+
+00:03:43.948 --> 00:03:45.692
+a core of transparent materials
+
+00:03:45.692 --> 00:03:47.126
+such as glass or plastic,
+
+00:03:47.126 --> 00:03:48.161
+and a cladding layer
+
+00:03:48.161 --> 00:03:49.678
+of lower refractive index
+
+00:03:49.678 --> 00:03:50.797
+This structure enables
+
+00:03:50.797 --> 00:03:52.544
+total internal reflection,
+
+00:03:52.544 --> 00:03:54.533
+allowing light to travel down the fiber
+
+00:03:54.533 --> 00:03:56.456
+even around bends and corners
+
+00:03:56.456 --> 00:04:00.305
+This works fine
+for long-distance internet cables
+
+00:04:00.305 --> 00:04:04.236
+but optical fibers are way too big
+to fit on a tiny chip
+
+00:04:04.236 --> 00:04:06.604
+So, how we can manipulate light on a silicon chip
+
+00:04:06.604 --> 00:04:09.429
+using micrometer-
+and sub-micrometer-scale components
+
+00:04:09.429 --> 00:04:11.800
+is the central topic
+of silicon photonics research
+
+00:04:11.800 --> 00:04:13.216
+The good news is
+
+00:04:13.216 --> 00:04:14.254
+while silicon absorbs light
+
+00:04:14.254 --> 00:04:17.049
+with wavelengths below 1100 nanometers,
+
+00:04:17.049 --> 00:04:19.826
+near-infrared light
+used in fiber-optic communication
+
+00:04:19.826 --> 00:04:22.629
+with wavelengths above 1100 nanometers
+
+00:04:22.629 --> 00:04:25.233
+can pass through silicon
+without being absorbed
+
+00:04:25.233 --> 00:04:25.698
+This means
+
+00:04:25.698 --> 00:04:28.383
+for light above 1100 nanometers,
+
+00:04:28.383 --> 00:04:31.052
+traveling through silicon
+causes no intensity loss
+
+00:04:31.085 --> 00:04:33.321
+because of the silicon’s optical properties
+
+00:04:33.321 --> 00:04:34.322
+So in principle,
+
+00:04:34.322 --> 00:04:36.624
+with existing semiconductor
+manufacturing processes
+
+00:04:36.624 --> 00:04:39.125
+silicon waveguides
+hundreds of nanometers wide
+
+00:04:39.125 --> 00:04:40.747
+can be made on a silicon substrate
+
+00:04:40.747 --> 00:04:42.482
+Similar to optical fibers,
+
+00:04:42.482 --> 00:04:44.762
+waveguides are structures
+for light to pass through
+
+00:04:44.762 --> 00:04:45.946
+If such optical circuits
+
+00:04:45.946 --> 00:04:48.837
+are integrated with electronic ICs
+on a chip,
+
+00:04:48.837 --> 00:04:50.757
+a smaller package will be required
+
+00:04:50.757 --> 00:04:53.256
+and more data can be transferred between chips
+
+00:04:53.256 --> 00:04:55.294
+What's currently used
+in short-distance optical links
+
+00:04:55.294 --> 00:04:57.379
+are the pluggable optical transceiver modules,
+
+00:04:57.379 --> 00:04:58.923
+which have been in use for over a decade
+
+00:04:58.923 --> 00:04:59.784
+In the module,
+
+00:04:59.784 --> 00:05:01.703
+electrical signals from the processor
+
+00:05:01.703 --> 00:05:03.743
+are converted into optical signals
+
+00:05:03.743 --> 00:05:06.754
+by the transmitter optical sub-assembly
+
+00:05:06.754 --> 00:05:08.717
+before going into optical fibers
+
+00:05:08.717 --> 00:05:09.616
+At the other end,
+
+00:05:09.616 --> 00:05:12.245
+the optical signals
+are converted back to electrical ones
+
+00:05:12.245 --> 00:05:14.080
+by the receiver optical sub-assembly
+
+00:05:14.080 --> 00:05:15.231
+Optical transceiver modules
+
+00:05:15.231 --> 00:05:17.483
+use traditional laser diodes
+as their light sources
+
+00:05:17.483 --> 00:05:18.323
+On the receiving end,
+
+00:05:18.323 --> 00:05:21.715
+light signals must be converted
+back into electrical ones
+
+00:05:21.721 --> 00:05:25.395
+before going into
+servers or networking devices
+
+00:05:25.395 --> 00:05:27.427
+The whole process is like a relay race,
+
+00:05:27.427 --> 00:05:30.261
+with the baton passed from runner to runner
+
+00:05:30.261 --> 00:05:31.752
+You can probably understand,
+
+00:05:31.752 --> 00:05:34.713
+this means there's still room to improve transmission efficiency
+
+00:05:34.713 --> 00:05:37.850
+It can't keep up with the explosive data demands of the AI era
+
+00:05:37.850 --> 00:05:40.021
+That’s why in terms of signal conversion
+
+00:05:40.021 --> 00:05:41.179
+even though silicon photonics
+
+00:05:41.179 --> 00:05:43.304
+doesn’t change the fact that electrical-to-optical
+
+00:05:43.304 --> 00:05:45.692
+and optical-to-electrical conversions are still needed
+
+00:05:45.692 --> 00:05:46.230
+its goal is to
+
+00:05:46.230 --> 00:05:49.673
+integrate optical communication components directly onto chips.
+
+00:05:49.673 --> 00:05:53.098
+This reduces the need for long-distance electrical interconnections
+
+00:05:53.098 --> 00:05:55.973
+dramatically lowering signal delay and power loss.
+
+00:05:55.973 --> 00:05:59.510
+It's like swapping congested city roadsfor high-speed bullet trains—
+
+00:05:59.510 --> 00:06:03.314
+Data transmission will be
+faster, farther, with less loss
+
+00:06:03.314 --> 00:06:04.712
+To make this happen,
+
+00:06:04.712 --> 00:06:05.998
+new photonic components
+
+00:06:05.998 --> 00:06:07.985
+and packaging technologies are needed
+
+00:06:07.985 --> 00:06:09.826
+With urgent demand on the rise,
+
+00:06:09.826 --> 00:06:12.572
+the development of silicon photonics
+is accelerating
+
+00:06:15.790 --> 00:06:17.559
+A complete photonic IC
+
+00:06:17.559 --> 00:06:19.985
+mainly consists of four components:
+
+00:06:19.985 --> 00:06:21.374
+a laser light source,
+
+00:06:21.374 --> 00:06:22.115
+a modulator that
+
+00:06:22.115 --> 00:06:24.998
+converts electrical signals into optical signals,
+
+00:06:24.998 --> 00:06:26.152
+waveguide components
+
+00:06:26.152 --> 00:06:28.443
+to transmit and manipulate light signals,
+
+00:06:28.443 --> 00:06:30.523
+and a photodetector that converts light signals
+
+00:06:30.523 --> 00:06:32.291
+back into electrical ones
+
+00:06:32.291 --> 00:06:32.725
+Right now
+
+00:06:32.725 --> 00:06:33.593
+researchers aim to use
+
+00:06:33.593 --> 00:06:35.675
+mature semiconductor manufacturing processes
+
+00:06:35.675 --> 00:06:38.551
+to fabricate and integrate photonic components
+
+00:06:38.551 --> 00:06:40.577
+on a single silicon substrate
+
+00:06:40.566 --> 00:06:43.383
+and package them with electronic ICs
+
+00:06:43.383 --> 00:06:44.070
+However
+
+00:06:44.070 --> 00:06:46.205
+they ran into a problem in the very beginning—
+
+00:06:46.205 --> 00:06:47.206
+the light source
+
+00:06:47.206 --> 00:06:49.155
+A property of monocrystalline silicon is that
+
+00:06:49.155 --> 00:06:51.411
+it possesses an indirect bandgap
+
+00:06:51.411 --> 00:06:53.846
+So its light-emission efficiency
+is extremely low
+
+00:06:53.846 --> 00:06:54.914
+Simply put,
+
+00:06:54.914 --> 00:06:56.727
+it cannot produce light
+
+00:06:56.727 --> 00:06:58.718
+compound and alloy semiconductors
+
+00:06:58.718 --> 00:07:02.488
+made from elements adjacent to silicon
+on the periodic table
+
+00:07:02.488 --> 00:07:04.772
+—groups III and V elements—
+
+00:07:04.772 --> 00:07:06.826
+such as gallium arsenide, indium phosphide
+
+00:07:06.826 --> 00:07:08.861
+and indium gallium arsenide phosphide
+
+00:07:08.861 --> 00:07:10.463
+are direct bandgap materials
+
+00:07:10.463 --> 00:07:13.341
+They are ideal
+for making semiconductor lasers
+
+00:07:13.341 --> 00:07:15.201
+So researchers have to incorporate
+
+00:07:15.201 --> 00:07:17.737
+III-V materials or pre-made laser diodes
+
+00:07:17.737 --> 00:07:20.273
+onto monocrystalline silicon substrates
+
+00:07:20.273 --> 00:07:23.376
+through bonding or flip-chip processes
+
+00:07:23.376 --> 00:07:25.945
+This is known as heterogeneous integration
+
+00:07:25.945 --> 00:07:27.897
+There are several methods to do it
+
+00:07:27.897 --> 00:07:30.149
+One is flip-chip bonding,
+
+00:07:30.149 --> 00:07:32.084
+a method in which electrodes are made first
+
+00:07:32.084 --> 00:07:33.621
+on a laser diode chip
+
+00:07:33.621 --> 00:07:35.788
+Then the chip is flipped and bonded
+
+00:07:35.788 --> 00:07:37.757
+By soldering or direct metal bonding,
+
+00:07:37.757 --> 00:07:39.425
+it is connected to the electrical contacts
+
+00:07:39.425 --> 00:07:40.693
+of a photonic chip
+
+00:07:40.693 --> 00:07:43.596
+This creates a structure called
+the "direct-attached laser,"
+
+00:07:43.963 --> 00:07:45.565
+and this method is called
+
+00:07:45.565 --> 00:07:47.099
+"hybrid integration"
+
+00:07:47.099 --> 00:07:48.324
+While cost-effective,
+
+00:07:48.324 --> 00:07:50.937
+it's harder to precisely align the laser diode
+
+00:07:50.937 --> 00:07:52.939
+with the center of the silicon waveguide
+
+00:07:52.939 --> 00:07:54.006
+Another common method
+
+00:07:54.006 --> 00:07:55.942
+begins with building waveguide components
+
+00:07:55.942 --> 00:07:57.577
+on a silicon wafer,
+
+00:07:57.577 --> 00:08:02.418
+then bond the III-V material
+directly to a photonic chip
+
+00:08:02.418 --> 00:08:03.449
+After that
+
+00:08:03.449 --> 00:08:06.819
+through etching, metallization, and passivation,
+
+00:08:06.819 --> 00:08:09.755
+the III-V materials are made into
+laser diodes
+
+00:08:09.789 --> 00:08:10.723
+This product is called
+
+00:08:10.723 --> 00:08:12.358
+the "heterogeneous integrated laser,"
+
+00:08:12.358 --> 00:08:14.958
+or the "heterogeneous Si photonic laser"
+
+00:08:14.958 --> 00:08:18.264
+The III-V materials
+are bonded with the chip first
+
+00:08:18.264 --> 00:08:20.800
+Then, the laser diodes
+are aligned with waveguides
+
+00:08:20.800 --> 00:08:23.391
+through semiconductor manufacturing processes
+
+00:08:23.391 --> 00:08:25.166
+Compared with flip-chip bonding,
+
+00:08:25.166 --> 00:08:26.839
+this avoids the trouble of picking
+
+00:08:26.839 --> 00:08:28.600
+placing, and aligning laser chips
+
+00:08:28.600 --> 00:08:31.205
+when integrating laser diodes and silicon chips
+
+00:08:31.205 --> 00:08:33.379
+In addition to these,
+one proposed method suggests
+
+00:08:33.379 --> 00:08:35.681
+by first growing a virtual germanium substrate
+
+00:08:35.681 --> 00:08:36.549
+on silicon
+
+00:08:36.549 --> 00:08:38.818
+then layering
+a germanium-tin alloy on top
+
+00:08:38.818 --> 00:08:41.329
+Allegedly, this can also make laser diodes
+
+00:08:41.329 --> 00:08:42.622
+Some researchers believe
+
+00:08:42.622 --> 00:08:45.078
+these integration processes
+are too troublesome
+
+00:08:45.078 --> 00:08:46.525
+Why not just place the laser diode
+
+00:08:46.525 --> 00:08:48.260
+outside the photonic chip
+
+00:08:48.260 --> 00:08:50.928
+This would also avoid
+chip overheating issues
+
+00:08:50.928 --> 00:08:53.199
+Although each method of integrating laser diodes
+
+00:08:53.199 --> 00:08:54.433
+with photonic chips
+
+00:08:54.433 --> 00:08:57.036
+offers different advantages
+for different applications,
+
+00:08:57.036 --> 00:08:59.438
+heterogeneous integration
+through wafer bonding
+
+00:08:59.438 --> 00:09:00.506
+is currently considered
+
+00:09:00.506 --> 00:09:02.942
+the most widely adopted and promising solution
+
+00:09:02.942 --> 00:09:05.526
+for large-scale integration
+
+00:09:05.526 --> 00:09:07.046
+Besides the light source,
+
+00:09:07.046 --> 00:09:09.874
+another major challenge
+in silicon photonics development
+
+00:09:09.874 --> 00:09:13.161
+is converting electrical signals
+into optical signals
+
+00:09:13.161 --> 00:09:14.153
+Simply put,
+
+00:09:14.153 --> 00:09:16.521
+to send information via light,
+
+00:09:16.521 --> 00:09:18.190
+one should be able to use the “on” 
+
+00:09:18.190 --> 00:09:22.036
+and “off” states of light to represent high and low voltages
+
+00:09:22.036 --> 00:09:24.096
+You might think this sounds easy
+
+00:09:24.096 --> 00:09:26.510
+Isn't it just turning on the laser
+at high voltage,
+
+00:09:26.510 --> 00:09:28.634
+and turning it off at low?
+
+00:09:28.634 --> 00:09:29.835
+Let's put it this way,
+
+00:09:29.835 --> 00:09:32.044
+a direct modulated laser like this
+
+00:09:32.044 --> 00:09:33.956
+has some inherent disadvantages
+
+00:09:33.956 --> 00:09:36.042
+For example,
+being directly modulated by current
+
+00:09:36.042 --> 00:09:37.944
+causes a stronger photothermal effect,
+
+00:09:37.944 --> 00:09:40.112
+wavelength shift, and other issues
+
+00:09:40.112 --> 00:09:42.715
+And while the bandwidth of directly modulated lasers
+
+00:09:42.715 --> 00:09:44.783
+can run over 10 GHz,
+
+00:09:44.783 --> 00:09:48.688
+it's still lower than
+that of external modulators
+
+00:09:48.688 --> 00:09:50.790
+So what's an external modulator?
+
+00:09:50.790 --> 00:09:52.733
+First, some context:
+
+00:09:52.733 --> 00:09:55.506
+A laser diode emits a continuous light wave
+
+00:09:55.506 --> 00:09:58.688
+when biased with a constant current
+above its threshold
+
+00:09:58.688 --> 00:10:01.334
+An external modulator is an optical modulator
+
+00:10:01.334 --> 00:10:04.842
+that comes after a laser diode and
+is controlled by an electrical signal
+
+00:10:04.842 --> 00:10:07.273
+It in turn controls
+the light intensity in a waveguide,
+
+00:10:07.273 --> 00:10:10.009
+which means it controls
+the “on” and “off” states of light
+
+00:10:10.009 --> 00:10:12.519
+This is the optical modulator
+currently used in photonic ICs
+
+00:10:12.519 --> 00:10:13.822
+and they basically work like this
+
+00:10:13.822 --> 00:10:15.980
+In intrinsic silicon semiconductors
+
+00:10:15.980 --> 00:10:16.983
+—pure silicon—
+
+00:10:16.983 --> 00:10:19.783
+a change in the concentrations of
+electrons and holes
+
+00:10:19.783 --> 00:10:22.661
+cause slight variations
+in the refractive index
+
+00:10:22.661 --> 00:10:24.690
+If a piece of pure silicon
+is sandwiched
+
+00:10:24.690 --> 00:10:27.665
+between a p-type and
+an n-type semiconductor,
+
+00:10:27.665 --> 00:10:29.428
+applying a voltage across the ends
+
+00:10:29.428 --> 00:10:32.071
+can alter
+the carrier concentration in the middle,
+
+00:10:33.389 --> 00:10:36.344
+thereby changing its refractive index
+
+00:10:36.344 --> 00:10:37.436
+But how does that help
+
+00:10:37.436 --> 00:10:41.240
+switch a laser beam “on” and “off”
+within a waveguide?
+
+00:10:42.628 --> 00:10:45.502
+That's where
+the microring resonator comes in
+
+00:10:45.502 --> 00:10:48.014
+—also known as the “ring resonator”
+
+00:10:48.014 --> 00:10:49.949
+Although such a ring-shaped waveguide
+
+00:10:49.949 --> 00:10:52.447
+isn't physically connected
+to a straight waveguide,
+
+00:10:52.447 --> 00:10:54.548
+its ability to resonate with the light
+
+00:10:54.548 --> 00:10:55.788
+determines whether the light
+
+00:10:55.788 --> 00:10:58.824
+can pass through the straight waveguide
+
+00:10:58.891 --> 00:10:59.845
+You see,
+
+00:10:59.845 --> 00:11:02.628
+A ring resonator
+has a certain resonance wavelength
+
+00:11:02.628 --> 00:11:03.963
+When it is tuned to match
+
+00:11:03.963 --> 00:11:06.701
+the wavelength of
+the light in a straight waveguide,
+
+00:11:08.271 --> 00:11:11.303
+a traveling wave resonance
+forms in the ring,
+
+00:11:11.303 --> 00:11:13.873
+thereby transferring energy from the straight waveguide
+
+00:11:13.873 --> 00:11:16.108
+to the ring through coupling
+
+00:11:16.108 --> 00:11:17.243
+As a result
+
+00:11:17.243 --> 00:11:19.278
+no light remains in the straight waveguide
+
+00:11:19.278 --> 00:11:21.714
+This corresponds to an “off” state
+
+00:11:21.714 --> 00:11:24.050
+When the ring's wavelength
+doesn't match the light's,
+
+00:11:24.050 --> 00:11:25.484
+no resonance occurs,
+
+00:11:25.484 --> 00:11:27.975
+and the energy remains in the straight waveguide
+
+00:11:27.975 --> 00:11:30.084
+This corresponds to an “on” state
+
+00:11:30.084 --> 00:11:31.387
+Now, remember that
+
+00:11:31.387 --> 00:11:33.900
+the carrier concentration in the ring waveguide
+
+00:11:33.900 --> 00:11:36.935
+changes its refractive index,
+
+00:11:36.935 --> 00:11:39.265
+thereby tuning its resonance wavelength
+
+00:11:39.615 --> 00:11:42.654
+So there's no need to change
+the laser's wavelength
+
+00:11:42.654 --> 00:11:46.105
+Instead, by putting
+a p-type and an n-type semiconductor
+
+00:11:46.105 --> 00:11:47.740
+on each side of a ring waveguide,
+
+00:11:47.740 --> 00:11:49.981
+we can tweak its resonance wavelength
+
+00:11:49.981 --> 00:11:52.393
+and modulate continuous light
+
+00:11:52.393 --> 00:11:53.245
+The ring resonator
+
+00:11:53.245 --> 00:11:57.136
+enables high-frequency modulation
+in a space of tens of microns
+
+00:11:57.871 --> 00:11:59.285
+In 2010
+
+00:11:59.285 --> 00:12:00.717
+Intel used this design
+
+00:12:00.717 --> 00:12:02.621
+along with the hybrid silicon laser
+
+00:12:02.621 --> 00:12:04.557
+to launch a transceiver module
+
+00:12:04.557 --> 00:12:06.992
+with a transmission speed of 50 gigabits
+
+00:12:06.992 --> 00:12:09.595
+—or 50 billion bits—per second
+
+00:12:09.595 --> 00:12:12.331
+It marked the commercial debut
+of silicon photonics,
+
+00:12:12.331 --> 00:12:13.929
+but that was more than a decade ago
+
+00:12:13.929 --> 00:12:14.366
+So
+
+00:12:14.366 --> 00:12:18.003
+how has silicon photonics developed
+since 2010?
+
+00:12:21.507 --> 00:12:23.743
+Many years ago,
+Intel set its sights on
+
+00:12:23.743 --> 00:12:26.112
+the massive data demands inside data centers
+
+00:12:26.112 --> 00:12:29.262
+So it started investing in
+silicon photonics R&amp;D and integration
+
+00:12:29.262 --> 00:12:31.617
+To this day,
+it remains a leader in the field
+
+00:12:31.617 --> 00:12:32.918
+In June 2024,
+
+00:12:32.918 --> 00:12:34.587
+Intel introduced its first
+
+00:12:34.587 --> 00:12:36.522
+based on the silicon photonics technology,
+
+00:12:36.522 --> 00:12:39.658
+fully integrated
+optical compute interconnect chiplet
+
+00:12:39.658 --> 00:12:41.961
+co-packaged with an Intel CPU
+
+00:12:41.961 --> 00:12:44.214
+It supports transmission using 8 wavelengths
+
+00:12:44.214 --> 00:12:45.965
+on a single waveguide or fiber
+
+00:12:45.965 --> 00:12:47.233
+Its bidirectional data transfer
+
+00:12:47.233 --> 00:12:50.127
+achieves an astonishing speed of 4 terabits
+
+00:12:50.127 --> 00:12:52.104
+—or 4 trillion bits—per second
+
+00:12:52.104 --> 00:12:54.774
+Other major US players such as
+Cisco, Broadcom, and IBM,
+
+00:12:54.774 --> 00:12:57.009
+are also racing to catch up,
+
+00:12:57.009 --> 00:12:57.676
+not to mention
+
+00:12:57.676 --> 00:12:59.411
+the numerous startups and design houses
+
+00:12:59.411 --> 00:13:01.247
+who all want a slice of the pie
+
+00:13:01.780 --> 00:13:03.249
+What about Taiwan?
+
+00:13:03.249 --> 00:13:04.316
+While Taiwan continues to lead
+
+00:13:04.316 --> 00:13:06.252
+in advanced electronic IC manufacturing,
+
+00:13:06.252 --> 00:13:07.787
+making photonic ICs doesn't require
+
+00:13:07.787 --> 00:13:10.422
+cutting-edge nodes
+such as 3nm or 5nm,
+
+00:13:10.422 --> 00:13:12.725
+because photonic components
+are significantly larger
+
+00:13:13.025 --> 00:13:15.261
+So Taiwan doesn't have a clear advantage here
+
+00:13:15.261 --> 00:13:17.771
+But companies like TSMC and ASE
+
+00:13:17.771 --> 00:13:20.432
+have recognized
+the rise of silicon photonics
+
+00:13:20.432 --> 00:13:21.934
+In recent years, they've introduced
+
+00:13:21.934 --> 00:13:24.103
+relevant integration and packaging solutions
+
+00:13:24.103 --> 00:13:25.254
+In March 2025,
+
+00:13:25.254 --> 00:13:25.938
+NVIDIA launched
+
+00:13:25.938 --> 00:13:27.740
+a set of silicon photonics networking switches
+
+00:13:27.740 --> 00:13:30.165
+that use
+TSMC's COUPE packaging technology
+
+00:13:30.165 --> 00:13:32.211
+—Compact Universal Photonic Engine
+
+00:13:32.211 --> 00:13:34.713
+Each port supports up to
+16 terabits per second
+
+00:13:34.713 --> 00:13:36.448
+Via different port configurations such as
+
+00:13:36.448 --> 00:13:39.351
+512 ports of 800 Gbps
+
+00:13:39.351 --> 00:13:42.587
+or 2048 ports of 200 Gbps,
+
+00:13:42.587 --> 00:13:45.424
+enabling an aggregate throughput of 400 Tbps
+
+00:13:45.424 --> 00:13:48.981
+This enables AI factories
+to connect millions of GPUs across sites
+
+00:13:48.981 --> 00:13:51.497
+Moreover, TSMC's COUPE uses its own
+
+00:13:51.497 --> 00:13:53.483
+SoIC-X packaging technology
+
+00:13:53.483 --> 00:13:55.968
+to stack electronic ICs on photonic ICs
+
+00:13:55.968 --> 00:13:58.879
+for maximum power efficiency
+through vertical integration
+
+00:13:58.879 --> 00:14:01.106
+In addition,
+packaging giant ASE has introduced
+
+00:14:01.106 --> 00:14:02.907
+the Fan-Out-Package-on-Package technology
+
+00:14:02.907 --> 00:14:05.753
+as a new solution for
+silicon photonics packaging
+
+00:14:05.753 --> 00:14:07.313
+Although “silicon photonics” is a term
+
+00:14:07.313 --> 00:14:09.393
+which has made headlines in tech news
+in recent years,
+
+00:14:09.393 --> 00:14:12.719
+the underlying technologies
+have taken decades to develop
+
+00:14:12.719 --> 00:14:13.552
+In the future
+
+00:14:13.552 --> 00:14:16.433
+it could become as pivotal to technological advancement
+
+00:14:16.433 --> 00:14:17.782
+as the transistor today
+
+00:14:17.782 --> 00:14:18.557
+As mentioned
+
+00:14:18.557 --> 00:14:20.392
+Taiwanese companies continue to push forward
+
+00:14:20.392 --> 00:14:22.062
+not only in silicon photonics,
+
+00:14:22.062 --> 00:14:24.463
+but in every field of
+the semiconductor industry
+
+00:14:24.463 --> 00:14:26.165
+From smaller process nodes
+
+00:14:26.165 --> 00:14:28.133
+to brand new memory structures,
+
+00:14:28.133 --> 00:14:29.501
+the semiconductor industry
+
+00:14:29.501 --> 00:14:31.837
+requires constant innovation
+
+00:14:32.491 --> 00:14:34.887
+As we enter the AI era
+and look back on history,
+
+00:14:34.887 --> 00:14:36.041
+it is clear that technology
+
+00:14:36.041 --> 00:14:37.096
+wouldn't be where it is today
+
+00:14:37.096 --> 00:14:38.755
+without the vision of Babbage,
+
+00:14:38.769 --> 00:14:39.970
+the persistence of Shockley,
+
+00:14:40.003 --> 00:14:41.989
+the boldness of the Traitorous Eight,
+
+00:14:41.989 --> 00:14:43.265
+the leadership of Noyce,
+
+00:14:43.265 --> 00:14:45.290
+the ambition of Morris Chang,
+
+00:14:45.290 --> 00:14:47.425
+and the relentless efforts of countless others
+
+00:14:47.425 --> 00:14:49.294
+Taiwan's silicon shield
+
+00:14:49.294 --> 00:14:52.330
+is the result of generations of efforts
+
+00:14:52.631 --> 00:14:53.632
+For Taiwan,
+
+00:14:53.632 --> 00:14:55.734
+the semiconductor industry
+isn't just a sector—
+
+00:14:55.734 --> 00:14:57.936
+it's the backbone of
+the nation’s strength
+
+00:14:57.936 --> 00:15:00.171
+That's why it took us 14 episodes
+
+00:15:00.205 --> 00:15:03.275
+to trace the roots and rise
+of the semiconductor industry
+
+00:15:03.708 --> 00:15:04.887
+In the future,
+
+00:15:04.887 --> 00:15:06.868
+what breakthroughs lie ahead?
+
+00:15:06.868 --> 00:15:08.947
+What technologies will emerge?
+
+00:15:08.951 --> 00:15:12.287
+Whose names will join
+the silicon hall of fame?
+
+00:15:12.755 --> 00:15:14.356
+Hey, it could be yours
+
+00:15:14.390 --> 00:15:16.425
+Don't sell yourself short
+
+00:15:16.425 --> 00:15:19.995
+If you're curious about
+the R&amp;D of semiconductors,
+
+00:15:19.995 --> 00:15:21.754
+please check out PanSci's channel
+
+00:15:21.754 --> 00:15:22.421
+and subscribe
+
+00:15:22.421 --> 00:15:24.682
+for more deep dives into the future of tech
+
+00:15:25.499 --> 00:15:27.550
+This video series will end here,
+
+00:15:27.550 --> 00:15:30.854
+but the race for semiconductors
+is only just beginning
+
+00:15:30.854 --> 00:15:31.821
+Thanks for watching
+
+00:15:31.821 --> 00:15:32.956
+See you next time
+

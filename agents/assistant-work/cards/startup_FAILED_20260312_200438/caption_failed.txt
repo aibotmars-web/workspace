@@ -1,0 +1,7 @@
+HOOK: 幣圈快訊
+WHAT: 最新訊息：While OpenAI Shattered Records, Robotics and Semiconductor Startups Quietly Added The Most New Unicorns In February
+POINT1: AI 不是唯一|大家都在追 AI，但機器人和半導體悶聲賺錢，證明「硬實力」還是很重要。臺灣本來就是半導體強國，這波趨勢對臺灣供應鏈是大利多。機器人應用越來越廣，從工廠到物流都在自動化，這些都是長期剛需。|📊 基礎 AI、雲端、航空、金融各 2 家
+POINT2: 臺灣機會|臺灣半導體供應鏈超級強，這波獨角獸熱潮，臺灣相關公司有望受惠。機器人產業雖然門檻高，但自動化需求起來後，代工和零元件廠商都能吃到訂單。可以關注相關族群。|📊 2026 年初全球已誕生近 40 家新獨角獸
+POINT3: 延伸分析|此新聞值得持續關注後續發展
+POINT4: 延伸分析|此新聞值得持續關注後續發展
+POINT5: 延伸分析|此新聞值得持續關注後續發展

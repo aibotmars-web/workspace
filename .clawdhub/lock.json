@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "skills": {
+    "ontology": {
+      "version": "0.1.2",
+      "installedAt": 1772043824843
+    },
+    "tiktok-growth": {
+      "version": "1.0.0",
+      "installedAt": 1773717911092
+    },
+    "ai-humanizer": {
+      "version": "2.1.0",
+      "installedAt": 1773717921601
+    },
+    "openclaw-mission-control": {
+      "version": "1.0.0",
+      "installedAt": 1773717929377
+    },
+    "brave-search": {
+      "version": "1.0.1",
+      "installedAt": 1773717982141
+    },
+    "x-twitter": {
+      "version": "2.3.1",
+      "installedAt": 1773718687759
+    },
+    "x-research-but-cheaper": {
+      "version": "1.0.1",
+      "installedAt": 1773718741283
+    }
+  }
+}

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>民進黨執政弊案網絡 (2016-2026)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root {
+            --bg:#1a1410; --s1:#231e18; --s2:#2d261e;
+            --accent:#d4a56a; --text:#e8dcc8; --muted:#a89968;
+            --c-root:#d4a56a; --c-case:#d4b040; --c-green:#5cb85c;
+            --c-media:#50b0b0; --c-spy:#d06090; --c-collusion:#e67e22;
+            --c-const:#9b59b6; --c-debt:#d94f4f; --c-team:#a07cc5;
+            --c-huang:#5b9bd5; --c-social:#e09040;
+        }
+        body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft JhengHei','Noto Sans CJK TC'; background:var(--bg); color:var(--text); overflow:hidden; height:100vh; }
+
+        /* ── toolbar ── */
+        .toolbar { position:fixed; top:0; left:0; right:0; height:48px; background:var(--s1); border-bottom:1px solid var(--s2); display:flex; align-items:center; gap:6px; padding:0 12px; z-index:900; overflow-x:auto; }
+        .toolbar .title { font-size:14px; font-weight:bold; color:var(--accent); white-space:nowrap; margin-right:8px; }
+        .tb { padding:4px 10px; border:1px solid var(--s2); background:var(--s1); color:var(--muted); border-radius:3px; cursor:pointer; font-size:11px; white-space:nowrap; transition:all .15s; }
+        .tb:hover { border-color:var(--accent); color:var(--accent); }
+        .tb.on { background:var(--accent); color:var(--bg); border-color:var(--accent); }
+        .sep { width:1px; height:24px; background:var(--s2); margin:0 4px; flex-shrink:0; }
+        .toolbar label { font-size:11px; color:var(--muted); white-space:nowrap; }
+        .toolbar input[type=range] { width:80px; height:3px; cursor:pointer; }
+        .yr-disp { font-size:11px; color:var(--muted); min-width:60px; }
+
+        /* ── canvas ── */
+        .canvas { position:fixed; top:48px; left:0; right:0; bottom:0; }
+        .canvas svg { width:100%; height:100%; }
+
+        /* ── detail panel ── */
+        .dp { position:fixed; right:0; top:48px; width:340px; bottom:0; background:var(--s1); border-left:1px solid var(--s2); overflow-y:auto; padding:16px; transform:translateX(100%); transition:transform .25s; z-index:800; }
+        .dp.open { transform:translateX(0); }
+        .dp-close { position:absolute; top:8px; right:8px; background:none; border:none; color:var(--muted); font-size:18px; cursor:pointer; }
+        .dp-title { font-size:16px; font-weight:bold; color:var(--accent); margin:24px 0 12px; }
+        .dp-sec { margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--s2); }
+        .dp-lbl { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:3px; }
+        .dp-val { font-size:13px; color:var(--text); line-height:1.5; word-break:break-word; }
+        .dp-val.amt { color:#e74c3c; font-weight:bold; }
+        .dp-val.dt { color:var(--accent); }
+        .cn { display:flex; flex-direction:column; gap:6px; }
+        .cn-item { padding:6px 8px; background:var(--s2); border-radius:3px; font-size:11px; cursor:pointer; color:var(--text); border-left:3px solid var(--accent); transition:all .15s; }
+        .cn-item:hover { background:var(--accent); color:var(--bg); }
+        .sl { display:flex; flex-direction:column; gap:6px; }
+        .sl a { display:block; padding:5px 8px; background:var(--s2); border-radius:3px; font-size:11px; color:var(--accent); text-decoration:none; word-break:break-all; transition:all .15s; }
+        .sl a:hover { background:var(--accent); color:var(--bg); }
+
+        /* ── scorecard overlay ── */
+        .sc-overlay { display:none; position:fixed; top:48px; left:0; right:0; bottom:0; background:var(--bg); z-index:700; overflow-y:auto; padding:30px 40px; }
+        .sc-overlay.open { display:block; }
+        .sc-h { font-size:16px; font-weight:bold; color:var(--accent); margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid var(--s2); }
+        .sc-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:12px; margin-bottom:30px; }
+        .sc-card { background:var(--s1); padding:14px; border-radius:4px; border-left:3px solid var(--accent); }
+        .sc-card h4 { font-size:13px; color:var(--text); margin-bottom:6px; }
+        .sc-card p { font-size:11px; color:var(--muted); line-height:1.5; }
+        .sc-card strong { color:var(--text); }
+        .h-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin-bottom:30px; }
+        .h-card { background:var(--s1); padding:12px; border-radius:4px; border-left:3px solid var(--c-huang); }
+        .h-card h4 { font-size:12px; color:var(--text); margin-bottom:4px; }
+        .h-card p { font-size:11px; color:var(--muted); line-height:1.4; }
+
+        /* ── legend ── */
+        .legend { position:fixed; bottom:12px; left:12px; background:var(--s1); border:1px solid var(--s2); padding:10px; border-radius:4px; font-size:10px; z-index:600; max-height:180px; overflow-y:auto; }
+        .lg-i { display:flex; align-items:center; gap:6px; margin-bottom:4px; }
+        .lg-c { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+        .lg-l { color:var(--muted); }
+
+        /* ── debt mini chart ── */
+        .debt-mini { position:fixed; bottom:12px; right:12px; background:var(--s1); border:1px solid var(--s2); padding:10px; border-radius:4px; z-index:600; width:160px; }
+        .debt-mini .dt-title { font-size:10px; color:var(--muted); margin-bottom:6px; }
+        .debt-mini .dt-bars { display:flex; align-items:flex-end; gap:1px; height:50px; }
+        .debt-mini .dt-bar { flex:1; background:var(--c-debt); border-radius:1px; opacity:.7; cursor:default; }
+        .debt-mini .dt-bar:hover { opacity:1; }
+
+        /* ── zoom hint ── */
+        .zoom-hint { position:fixed; bottom:12px; left:50%; transform:translateX(-50%); background:var(--s2); color:var(--muted); padding:6px 14px; border-radius:20px; font-size:11px; z-index:600; pointer-events:none; opacity:1; transition:opacity 1s; }
+    </style>
+</head>
+<body>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="title">真相網 — 民進黨執政弊案</div>
+        <div class="sep"></div>
+        <button class="tb on" data-tab="tree">關係網絡</button>
+        <button class="tb" data-tab="score">問政記錄</button>
+        <div class="sep"></div>
+        <button class="tb on" data-f="all">全部</button>
+        <button class="tb" data-f="mega">千億弊案</button>
+        <button class="tb" data-f="corruption">貪污</button>
+        <button class="tb" data-f="green-energy">綠能</button>
+        <button class="tb" data-f="media">媒體</button>
+        <button class="tb" data-f="spy">共諜</button>
+        <button class="tb" data-f="collusion">官商</button>
+        <button class="tb" data-f="constitutional">憲政</button>
+        <button class="tb" data-f="social">社會</button>
+        <button class="tb" data-f="debt">舉債</button>
+        <button class="tb" data-f="team">國家隊</button>
+        <button class="tb" data-f="huang">黃國昌</button>
+        <div class="sep"></div>
+        <label>年份：</label>
+        <input type="range" id="yrMin" min="2016" max="2026" value="2016">
+        <input type="range" id="yrMax" min="2016" max="2026" value="2026">
+        <span class="yr-disp" id="yrDisp">2016-2026</span>
+    </div>
+
+    <!-- SVG canvas -->
+    <div class="canvas" id="canvas"><svg id="svg"></svg></div>
+
+    <!-- Detail panel -->
+    <div class="dp" id="dp">
+        <button class="dp-close" onclick="closeDP()">✕</button>
+        <div id="dpContent"></div>
+    </div>
+
+    <!-- Scorecard overlay -->
+    <div class="sc-overlay" id="scOverlay">
+        <div class="sc-h">重大表決雙標紀錄</div>
+        <div class="sc-grid">
+            <div class="sc-card"><h4>萊豬進口</h4><p><strong>在野：</strong>強烈反對萊克多巴胺豬肉進口<br><strong>執政：</strong>2020年行政命令開放，2021公投DPP動員否決<br><strong>結果：</strong>最具代表性的雙標案例</p></div>
+            <div class="sc-card"><h4>藻礁與三接站</h4><p><strong>在野：</strong>承諾保護大潭藻礁生態<br><strong>執政：</strong>推動天然氣接收站興建<br><strong>結果：</strong>護藻礁公投未達門檻</p></div>
+            <div class="sc-card"><h4>核能政策</h4><p><strong>目標：</strong>2025年非核家園<br><strong>實際：</strong>再生能源僅10%，遠低於20%目標<br><strong>結果：</strong>缺電危機、大停電事故</p></div>
+            <div class="sc-card"><h4>房價政策與居住正義</h4><p><strong>承諾：</strong>實現居住正義、穩定房價<br><strong>結果：</strong>房價翻倍，青年80%薪資用於房貸<br><strong>影響：</strong>生育率全球最低</p></div>
+            <div class="sc-card"><h4>政府透明度</h4><p><strong>宣言：</strong>「最透明的政府」<br><strong>事實：</strong>SOGO弊案、高端疫苗、綠能掏空<br><strong>評估：</strong>承諾未兌現，貪腐案件頻發</p></div>
+            <div class="sc-card"><h4>外交成果</h4><p><strong>初期：</strong>22個邦交國<br><strong>末期：</strong>剩12個邦交國<br><strong>失落：</strong>WHA觀察員地位、多個外交孤立危機</p></div>
+            <div class="sc-card"><h4>國會改革與修法</h4><p><strong>在野：</strong>推動立法院職權正常化<br><strong>執政：</strong>反對在野黨提案、聲請釋憲<br><strong>評價：</strong>政黨立場大轉變</p></div>
+            <div class="sc-card"><h4>年金改革雙標</h4><p><strong>口號：</strong>「改革是為了下一代」<br><strong>事實：</strong>軍公教砍幅最大、勞工年金未改<br><strong>爭議：</strong>被批選擇性懲罰特定族群</p></div>
+            <div class="sc-card"><h4>台電中油虧損</h4><p><strong>政策：</strong>凍漲油電補貼民眾<br><strong>結果：</strong>台電+中油累計虧損逾5,000億<br><strong>本質：</strong>債務轉移，全民買單</p></div>
+            <div class="sc-card"><h4>防疫大轉彎</h4><p><strong>2021：</strong>「清零」嚴格管控政策<br><strong>2022：</strong>突然轉向「新台灣模式」共存<br><strong>後果：</strong>單日確診9萬例，醫療體系超載</p></div>
+            <div class="sc-card"><h4>漁電共生雙標</h4><p><strong>口號：</strong>「漁業與光電共存共榮」<br><strong>結果：</strong>農地棄耕、漁業停產<br><strong>本質：</strong>炒地皮圖利綠能業者</p></div>
+            <div class="sc-card"><h4>蔡英文論文爭議</h4><p><strong>聲稱：</strong>倫敦政經學院博士論文完整<br><strong>爭議：</strong>論文封存30年、校方聲明矛盾<br><strong>結果：</strong>至今未完全公開</p></div>
+            <div class="sc-card"><h4>生育率政策失敗</h4><p><strong>宣示：</strong>少子化辦公室解決問題<br><strong>投入：</strong>逾4,000億<br><strong>結果：</strong>2023年生育率0.87，全球最低</p></div>
+            <div class="sc-card"><h4>軍售弊端</h4><p><strong>金額：</strong>2016-2024逾1.5兆台幣<br><strong>問題：</strong>M1A2延遲交貨、F-16V超高單價<br><strong>爭議：</strong>部分案件採購效益受質疑</p></div>
+            <div class="sc-card"><h4>勞工七天假被砍</h4><p><strong>2016：</strong>修勞基法刪除7天國定假<br><strong>衝突：</strong>全國勞工大規模抗議<br><strong>影響：</strong>被批蔡英文最大背叛選民案例</p></div>
+        </div>
+        <div class="sc-h">黃國昌追蹤案件一覽</div>
+        <div class="h-grid">
+            <div class="h-card"><h4>📡 鏡電視執照</h4><p>提出NCC內部文件，揭露蘇貞昌施壓、裴偉錄音洩露「總統旨意」，補件超過30次。</p></div>
+            <div class="h-card"><h4>☀️ 綠能弊案</h4><p>質詢台鹽掏空11億、力暘圖利91億案件，揭露結構性貪腐。</p></div>
+            <div class="h-card"><h4>🥚 超思進口蛋</h4><p>質詢資本額僅50萬的超思公司如何取得63%進口蛋合約。</p></div>
+            <div class="h-card"><h4>📜 國會改革</h4><p>推動立法院職權修正案，2024/5通過、10/25遭違憲。</p></div>
+            <div class="h-card"><h4>🏫 教室整合器</h4><p>揭露新北教育局瑕疵採購，前瞻預算1.3億流向。</p></div>
+            <div class="h-card"><h4>📢 吹哨者保護</h4><p>共同創辦台灣公益揭弊暨吹哨者保護協會，推動改革制度。</p></div>
+        </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend" id="legend">
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-root)"></div><div class="lg-l">核心/總統</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-case)"></div><div class="lg-l">弊案</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-green)"></div><div class="lg-l">綠能</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-media)"></div><div class="lg-l">媒體</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-spy)"></div><div class="lg-l">共諜</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-collusion)"></div><div class="lg-l">官商勾結</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-const)"></div><div class="lg-l">憲政</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-debt)"></div><div class="lg-l">舉債</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-team)"></div><div class="lg-l">國家隊</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-huang)"></div><div class="lg-l">黃國昌追蹤</div></div>
+        <div class="lg-i"><div class="lg-c" style="background:var(--c-social)"></div><div class="lg-l">社會議題</div></div>
+    </div>
+
+    <!-- Debt mini chart -->
+    <div class="debt-mini">
+        <div class="dt-title">中央政府債務 (兆)</div>
+        <div class="dt-bars" id="debtBars"></div>
+    </div>
+
+    <!-- Zoom hint -->
+    <div class="zoom-hint" id="zoomHint">滾輪縮放 · 拖曳平移</div>
+
+<script>
+// ================================================================
+// DATA — unchanged
+// ================================================================
+const N=[
+{id:"root",l:"民進黨執政弊案",t:"root",g:"all",d:"2016-2026 完全執政期間\n涉及金額超過萬億\n涵蓋貪污、綠能、媒體、共諜、舉債等",icon:"🏛",date:"2016-01",src:[]},
+{id:"lai",l:"賴清德",t:"core",g:"all",d:"現任總統\n前行政院長（超思蛋期間）\n共諜發生在副總統任內\n兩度提名大法官遭拒",icon:"👤",date:"2024-05",src:[]},
+{id:"tsai",l:"蔡英文",t:"core",g:"all",d:"前總統（2016-2024）\n前瞻計畫 8800億主推者\n綠能政策主導者\n任內綠媒標案暴增\n高端疫苗 EUA 爭議",icon:"👤",date:"2016-05",src:[["維基百科","https://zh.wikipedia.org/wiki/蔡英文"]]},
+{id:"qianzhan",l:"前瞻計畫",t:"case",g:"mega",d:"2017年強行通過\n17天審議8800億 每天通過524億\nTVBS民調：46%不支持\n75%認為需重新檢討\n大量標案流向綠營企業",icon:"🏗",date:"2017-07",src:[["報導者","https://www.twreporter.org/a/foresight-infrastructure-plan-1"],["信傳媒","https://www.cmmedia.com.tw/home/articles/3955"]],amount:"8,800億"},
+{id:"vaccine",l:"高端疫苗爭議",t:"case",g:"mega",d:"免疫橋接取代三期試驗\n政府採購40.3億（500萬劑）\n160萬劑過期銷毀（32%）\n蔡英文親自站台\n股價暴漲暴跌 涉內線交易\n郭台銘買BNT遭阻擋",icon:"💉",date:"2021-07",src:[["維基百科","https://zh.wikipedia.org/wiki/高端新冠肺炎疫苗"],["聯合報","https://vip.udn.com/vip/story/122367/7693298"]],amount:"40.3億"},
+{id:"media-bid",l:"媒體標案",t:"case",g:"media",d:"執政9年（2016-2025）\n三立得標237件 39.9億\n民視得標331件 55.8億\n合計95億\n農業部3年給三立民視11.3億\n2023年民視得防詐標案94%",icon:"📺",date:"2016-05",src:[["聯合新聞網","https://udn.com/news/story/6656/8312130"],["立法院預算中心","https://www.ly.gov.tw"]],amount:"95億"},
+{id:"green-total",l:"綠能弊案總覽",t:"case",g:"green-energy",d:"蔡英文任內力推「2025非核家園」\n光電、風電、漁電共生\n結構性貪腐溫床\n郭正亮：南部一半民代恐被逮\n涉案金額：台鹽11億+力暘91億+聯合再生70億",icon:"☀️",date:"2018-01",src:[["聯合新聞網","https://udn.com/news/story/124674/9190637"]],amount:"數千億"},
+{id:"taiyen",l:"台鹽綠能案",t:"case",g:"green-energy",d:"陳啟昱涉浮報工程款\n台鹽損失3.96億 不法所得1.3億\n求刑12年 遭通緝逃亡25天\n2024/11/25投案\n2025/12追加洗錢罪起訴",icon:"🏭",date:"2024-10",src:[["中央社","https://www.cna.com.tw/news/asoc/202502270115.aspx"],["Taipei Times","https://www.taipeitimes.com/News/taiwan/archives/2024/11/25/2003827471"]],amount:"掏空11億+"},
+{id:"liyang",l:"力暘光電案",t:"case",g:"green-energy",d:"台南經發局長陳凱凌\n涉圖利力暘能源91億\n15人起訴",icon:"🔆",date:"2024-04",src:[["壹蘋新聞","https://tw.nextapple.com/local/20240426/20D3D0D3E93866D3B2F32FD30722BA01"]],amount:"圖利91億"},
+{id:"lianhe",l:"聯合再生案",t:"case",g:"collusion",d:"彰濱崙尾東50公頃地\n標到後違約轉賣 賺2.6億\n監察院報告國庫損失70億",icon:"💸",date:"2020-06",src:[["監察院","https://www.cy.gov.tw"]],amount:"損失70億"},
+{id:"zheng-case",l:"鄭文燦收賄案",t:"case",g:"corruption",d:"華亞科土地開發收賄\n暗櫃藏678萬現金\n廖姓父子行賄全認罪\n刪除LINE對話遭認定湮滅證據\n保釋金2800萬",icon:"🔨",date:"2024-07",src:[["中央社","https://www.cna.com.tw"],["Taipei Times","https://www.taipeitimes.com/News/taiwan/archives/2024/07/12/2003820685"]],amount:"收賄500萬"},
+{id:"sogo-case",l:"SOGO百貨弊案",t:"case",g:"corruption",d:"6名民進黨立委遭收押\n蘇震清（蘇嘉全外甥）收賄2000萬\n新潮流系重大貪腐案\n重創民進黨清廉形象",icon:"🏬",date:"2020-08",src:[["The China Project","https://thechinaproject.com/2020/08/25/in-taiwan-a-corruption-scandal-rocks-its-political-landscape/"]],amount:"收賄2,000萬+"},
+{id:"spy-case",l:"民進黨共諜案",t:"case",g:"spy",d:"4人遭起訴判刑\n黃取榮10年、何仁傑8年2月\n邱世元6年2月、吳尚雨4年\n洩漏總統出訪+外交機密\n何仁傑為吳釗燮幕僚\n吳尚雨為總統府諮議",icon:"🕵️",date:"2025-06",src:[["公視","https://news.pts.org.tw/article/755385"],["報導者","https://www.twreporter.org/a/espionage-and-the-cracks-of-democracy-1"]],amount:"收800萬+"},
+{id:"egg-case",l:"超思進口蛋",t:"case",g:"collusion",d:"超思公司資本額僅50萬\n取得63%進口蛋合約\n虛報成本（4.07報5.18元）\n5402萬顆蛋銷毀（37%）\n陳吉仲辭職\n官員全查無不法簽結",icon:"🥚",date:"2023-08",src:[["中央社","https://www.cna.com.tw/news/asoc/202508280206.aspx"],["Taiwan News","https://www.taiwannews.com.tw/news/5007777"]],amount:"詐6,085萬"},
+{id:"cigarette",l:"總統專機私菸案",t:"case",g:"corruption",d:"國安局人員利用蔡英文出訪\n夾帶走私免稅菸9800條\n吳宗憲等12人判刑\n高院減刑：吳從10年4月→6年\n華航罰600萬",icon:"🚬",date:"2019-07",src:[["Taipei Times","https://www.taipeitimes.com/News/taiwan/archives/2025/08/28/2003842834"],["Taiwan News","https://www.taiwannews.com.tw/en/news/3750072"]],amount:"菸品645萬"},
+{id:"lin-plagiarism",l:"林智堅論文抄襲",t:"case",g:"corruption",d:"台大、中華大學碩士學位遭撤銷\n2022年退出桃園市長選舉\n柯建銘辯護、國安局長陳明通稱冤\n重創民進黨選情",icon:"📝",date:"2022-07",src:[["Taipei Times","https://www.taipeitimes.com/News/taiwan/archives/2022/09/18/2003785520"]],amount:"影響2022桃園選情"},
+{id:"mirror-case",l:"鏡電視執照案",t:"case",g:"media",d:"蘇貞昌施壓NCC發照\n裴偉錄音：「總統的旨意」\n補件30+次（正常10次）\nNCC報告7成複製貼上\n執照2022年通過，同期壹電視申請被拒",icon:"📡",date:"2022-01",src:[["上報","https://www.upmedia.mg/news_info.php?Type=1&SerialNo=155098"]],amount:"頻道執照特許"},
+{id:"army1450",l:"1450網軍",t:"case",g:"media",d:"農委會編列1450萬「澄清」預算\n批評者稱為網軍\n長期操控社群輿論\n2022敗選後民進黨否認\n台辦警告影響兩岸敘事",icon:"🤖",date:"2019-03",src:[["維基百科","https://en.wikipedia.org/wiki/1450_Internet_army"],["Taiwan News","https://www.taiwannews.com.tw/en/news/3830985"]],amount:"1,450萬/年"},
+{id:"chen-case",l:"陳菊請假爭議",t:"case",g:"constitutional",d:"監察院長請假超過1年\n月薪36萬照領\n2026/2/1才請辭\n政府持續合理化",icon:"⚖️",date:"2025-01",src:[["監察院","https://www.cy.gov.tw"]],amount:"月薪36萬"},
+{id:"court-case",l:"憲法法庭危機",t:"case",g:"constitutional",d:"7名大法官屆滿卸任\n賴清德提名7人全遭否決\n修法要求10人法定人數\n法庭實質停擺無法運作",icon:"🏛",date:"2024-10",src:[["司法院","https://cons.judicial.gov.tw/docdata.aspx?fid=77&id=358011"],["Taipei Times","https://www.taipeitimes.com/News/front/archives/2024/12/24/2003829043"]]},
+{id:"transitional",l:"轉型正義爭議",t:"case",g:"constitutional",d:"黨產會凍結國民黨640M美元資產\n85處不動產遭凍結\n被批為政治追殺工具\n選舉期間凍結對手資產\n學者：主要出於政治競爭動機",icon:"⚖️",date:"2016-08",src:[["維基百科","https://en.wikipedia.org/wiki/Ill-gotten_Party_Assets_Settlement_Committee"]],amount:"凍結640M美元"},
+{id:"water-assoc",l:"農田水利會改制",t:"case",g:"constitutional",d:"廢除農民選舉代表制\n改為官派\n農民失去水資源管理話語權\n被批為集權控制\n強制接管農水署3000億以上資產",icon:"💧",date:"2020-10",src:[["農業部","https://www.moa.gov.tw"]],amount:"接管3,000億+資產"},
+{id:"housing",l:"房價飆漲危機",t:"case",g:"social",d:"蔡英文承諾居住正義\n執政後房價持續飆漲\n台北市均價逾1,500萬/戶\n青年80%薪資用於房貸\n社會住宅嚴重不足\n年輕選民轉向民眾黨",icon:"🏠",date:"2016-05",src:[["Brookings","https://www.brookings.org/articles/the-factors-and-implications-of-rising-housing-prices-in-taiwan/"]],amount:"房價漲幅逾100%"},
+{id:"energy-crisis",l:"缺電缺水五缺",t:"case",g:"social",d:"非核家園政策致能源缺口\n再生能源目標年年跳票\n2025目標20%→實際不到10%\n96%能源仰賴進口\n台積電用電量持續暴增\n五缺：缺電、缺水、缺工、缺地、缺才\n2021/5/13、5/17兩次大規模停電",icon:"⚡",date:"2017-08",src:[["Yale E360","https://e360.yale.edu/features/taiwan-energy-dilemma"]],amount:"差額補貼逾1,000億"},
+{id:"pork",l:"萊豬進口爭議",t:"case",g:"social",d:"在野時強烈反對萊克多巴胺\n2020年執政後行政命令開放\n2020/11大規模抗議\n2021/12公投DPP動員成功否決\n被批為最大雙標\n年進口量逾10萬噸",icon:"🐷",date:"2020-08",src:[["維基百科","https://zh.wikipedia.org/zh-tw/臺灣進口美國肉類問題"]],amount:"年進口逾10萬噸"},
+{id:"reef",l:"大潭藻礁三接站",t:"case",g:"social",d:"在野時承諾保護藻礁\n執政後推動天然氣接收站\n環團連署搶救藻礁\n公投未過門檻\n工程費453億預算",icon:"🪸",date:"2021-03",src:[["環境資訊中心","https://e-info.org.tw/node/239130"]],amount:"工程費453億"},
+{id:"taroko",l:"太魯閣號事故",t:"case",g:"social",d:"2021/4/2 工程車滑落軌道\n太魯閣號撞擊出軌\n49人罹難 213人受傷\n60年來最嚴重鐵路事故\n承包商判12年6月\n鐵路安全監管遭質疑",icon:"🚂",date:"2021-04",src:[["Taipei Times","https://www.taipeitimes.com/News/taiwan/archives/2025/01/17/2003830392"]],amount:"49死213傷"},
+{id:"wha",l:"WHA國際參與受阻",t:"case",g:"social",d:"2016年起失去WHA觀察員地位\n邦交國從22降至12\n外交處境持續惡化\n新冠期間無法參與WHO會議",icon:"🌐",date:"2017-05",src:[["CFR","https://www.cfr.org/articles/why-does-who-exclude-taiwan"]],amount:"失去觀察員地位"},
+{id:"debt-root",l:"政府舉債",t:"debt",g:"debt",d:"2016-2025 中央政府債務\n未償餘額從5.3兆增至5.9兆\n人均負債25.4萬\n特別預算舉債破兆",icon:"💳",date:"2016-01",src:[["財政部國庫署","https://www.nta.gov.tw/singlehtml/17?cntId=nta_7906_17"]],amount:"5.9兆"},
+{id:"debt-qz",l:"前瞻特別預算",t:"debt-item",g:"debt",d:"8年計畫以舉債方式編列\n人均增加38.4萬負擔",icon:"🏗",date:"2017-07",src:[["報導者","https://www.twreporter.org/a/foresight-infrastructure-plan-1"]],amount:"8,824億"},
+{id:"debt-covid",l:"防疫特別預算",t:"debt-item",g:"debt",d:"COVID-19疫情期間\n多次追加特別預算\n紓困+振興+疫苗採購",icon:"🦠",date:"2020-02",src:[],amount:"8,400億"},
+{id:"debt-defense",l:"國防特別預算",t:"debt-item",g:"debt",d:"8年期（2026-2033）\n精準砲兵、長程飛彈、無人機\nAI指揮系統、戰備物資",icon:"🛡",date:"2024-11",src:[["台灣事實查核中心","https://tfc-taiwan.org.tw/fact-check-reports/taiwan-1point25-trillion-defense-budget-us-arms-sales/"]],amount:"1.25兆"},
+{id:"team-root",l:"國家隊/辦公室",t:"team",g:"team",d:"民進黨執政期間成立多個\n「國家隊」與「辦公室」\n部分成效不彰或已廢止",icon:"🏁",date:"2017-01",src:[]},
+{id:"team-mask",l:"口罩國家隊",t:"team-item",g:"team",d:"2020年初成立 80+企業\n日產量：188萬→3000萬\n疫情初期被視為成功案例",icon:"😷",date:"2020-01",src:[["維基百科","https://zh.wikipedia.org/zh-tw/口罩國家隊"]],status:"✅"},
+{id:"team-birth",l:"少子化辦公室",t:"team-item",g:"team",d:"2018年成立 投入逾4000億\n台灣仍為全球最低生育率\n衛福部坦承「從未正式成立」\n2024年成立6個月即裁撤",icon:"👶",date:"2018-01",src:[["中央社","https://www.cna.com.tw/news/aipl/202512250133.aspx"],["風傳媒","https://www.storm.mg/article/11095008"]],amount:"4,000億+",status:"❌ 裁撤"},
+{id:"team-quantum",l:"量子國家隊",t:"team-item",g:"team",d:"2022年3月成立 17研發團隊\n預算80億（2022-2026）",icon:"⚛️",date:"2022-03",src:[["iThome","https://www.ithome.com.tw/news/150015"]],amount:"80億"},
+{id:"team-fraud",l:"打詐國家隊",t:"team-item",g:"team",d:"成立後詐騙案件仍上升\n2024年詐騙金額創新高\n口號大於實際",icon:"🚨",date:"2022-07",src:[],status:"⚠️ 成效不彰"},
+{id:"team-space",l:"太空國家隊",t:"team-item",g:"team",d:"推動太空產業發展\n預算規模偏低\n技術自主性待驗證",icon:"🚀",date:"2023-01",src:[]},
+{id:"team-cyber",l:"資安國家隊",t:"team-item",g:"team",d:"政府資安事件頻傳\n個資外洩不斷\n防護能力受質疑",icon:"🔒",date:"2021-08",src:[],status:"⚠️"},
+{id:"team-digital",l:"數位發展部",t:"team-item",g:"team",d:"2022年8月成立 年預算200億+\n唐鳳爭議不斷\n「部會最大績效最差」\n數位中介法引發言論自由爭議後撤回",icon:"💻",date:"2022-08",src:[["The Diplomat","https://thediplomat.com/2022/08/hopes-and-concerns-for-taiwans-new-ministry-of-digital-affairs/"]],amount:"年200億+",status:"⚠️ 爭議大"},
+{id:"su-zc",l:"蘇貞昌",t:"dpp",g:"media",d:"前行政院長\n施壓NCC發鏡電視執照\n任內推前瞻計畫、1450網軍",icon:"👤",date:"2019-01",src:[]},
+{id:"zheng-wc",l:"鄭文燦",t:"dpp",g:"corruption",d:"前桃園市長→前海基會董事長\n收賄500萬+暗櫃678萬\n保釋金2800萬\n蔡英文核心人馬",icon:"👤",date:"2024-07",src:[]},
+{id:"chen-jz",l:"陳吉仲",t:"dpp",g:"collusion",d:"前農業部長（蔡英文任命）\n超思蛋案引咎辭職\n查無不法簽結",icon:"👤",date:"2023-08",src:[]},
+{id:"chen-ju",l:"陳菊",t:"dpp",g:"constitutional",d:"前監察院長（蔡英文提名）\n請假超過1年 月薪36萬",icon:"👤",date:"2020-08",src:[]},
+{id:"chen-qy",l:"陳啟昱",t:"dpp",g:"green-energy",d:"前台鹽董事長「小英之友」\n掏空台鹽綠能 求刑12年\n逃亡25天後投案",icon:"👤",date:"2024-10",src:[]},
+{id:"chen-sc",l:"陳時中",t:"dpp",g:"mega",d:"前衛福部長/CECC指揮官\n高端疫苗EUA爭議\n防疫政策多次失誤\n阻擋郭台銘購BNT疫苗",icon:"👤",date:"2020-01",src:[]},
+{id:"su-jq",l:"蘇嘉全",t:"dpp",g:"corruption",d:"前總統府秘書長（蔡英文任命）\n外甥蘇震清收賄2000萬\n利用國營企業牟私利\n2020/8引咎辭職",icon:"👤",date:"2020-08",src:[]},
+// ===== 新增案件 =====
+{id:"taipower",l:"台電巨額虧損",t:"case",g:"debt",d:"2022年虧損2,257億\n2023年虧損1,399億\n累計虧損逾3,000億\n能源政策失當主因\n電費補貼掩蓋問題",icon:"⚡",date:"2022-01",src:[["台電年報","https://www.taipower.com.tw/tc/page.aspx?mid=206"]],amount:"虧損3,000億+"},
+{id:"electric-price",l:"電價四漲",t:"case",g:"social",d:"2022、2023、2024年連續調漲\n住宅用電漲幅逾40%\n工業用電漲幅逾60%\n通膨壓力加劇\n能源政策失當所致",icon:"🔌",date:"2022-04",src:[["中央社","https://www.cna.com.tw/news/afe/202403260219.aspx"]],amount:"漲幅40-60%"},
+{id:"ncc-case",l:"NCC人事爭議",t:"case",g:"constitutional",d:"NCC委員清一色綠營背景\n2022年換屆全由DPP提名\n媒體授權決策偏頗\n鏡電視、壹電視差別待遇\n被批黨控媒體管制機關",icon:"📻",date:"2022-08",src:[["上報","https://www.upmedia.mg/news_info.php?Type=1&SerialNo=155098"]]},
+{id:"food-safety",l:"食安連環爆",t:"case",g:"collusion",d:"2023超思問題蛋全台流通\n2024大統長基油品事件延燒\n農業部稽查形同虛設\n食安五環政見跳票\n官員護航廠商\n台南餿水油事件2014未解",icon:"🍱",date:"2023-06",src:[["公視","https://news.pts.org.tw/article/650000"]],amount:"問題食品流通全台"},
+{id:"pension-reform",l:"年金改革爭議",t:"case",g:"constitutional",d:"2017年強推軍公教年金改革\n退休軍人抗議（815事件）\n月退俸最高砍幅逾20%\n被批選擇性懲罰特定族群\n軍事人才流失問題\n年省財政支出約800億",icon:"👴",date:"2017-06",src:[["維基百科","https://zh.wikipedia.org/zh-tw/中華民國年金改革"]],amount:"年砍800億軍公教退俸"},
+{id:"covid-chaos",l:"防疫政策大轉彎",t:"case",g:"mega",d:"2021強推清零→2022突然共存\n確診單日最高9萬例\n「新台灣模式」被嘲諷\n快篩、口罩初期管制混亂\n諾富特群聚事件（機師隔離）",icon:"😷",date:"2022-04",src:[["維基百科","https://zh.wikipedia.org/zh-tw/2019冠狀病毒病台灣疫情"]],amount:""},
+{id:"chen-mt",l:"陳明通護航案",t:"case",g:"corruption",d:"國安局長陳明通\n為林智堅論文抄襲辯護\n稱「論文沒有問題」\n台大調查委員會認定抄襲\n政治介入學術審查",icon:"🎓",date:"2022-08",src:[["Taipei Times","https://www.taipeitimes.com/News/taiwan/archives/2022/09/18/2003785520"]],amount:""},
+{id:"cpc-loss",l:"中油虧損補貼",t:"case",g:"debt",d:"2022年中油虧損2,573億\n政府凍漲油價補貼\n累計虧損掏空國營企業\n影響全民退休基金\n台電+中油合計虧損逾5,000億",icon:"🛢",date:"2022-01",src:[["財政部","https://www.mof.gov.tw"]],amount:"2022年虧損2,573億"},
+// ===== 更多新增案件 =====
+{id:"tsai-thesis",l:"蔡英文論文爭議",t:"case",g:"corruption",d:"倫敦政經學院博士論文\n2019年遭質疑真實性\n論文封存30年不公開\n校方聲明語焉不詳\n學者連署要求公開\n2021年才部分解密",icon:"📖",date:"2019-09",src:[["報導者","https://www.twreporter.org/a/tsai-ing-wen-phd-thesis-lse"]],amount:""},
+{id:"fishery-green",l:"漁電共生弊案",t:"case",g:"green-energy",d:"以「漁電共生」名義占用農地\n漁業生產形同廢止\n業者低價租地高價售電\n農委會監管失靈\n涉嫌炒地皮圖利特定業者",icon:"🐟",date:"2021-06",src:[["報導者","https://www.twreporter.org/a/solar-energy-fishery-land-use"]],amount:"占用農地逾3,000公頃"},
+{id:"rail-reform",l:"台鐵改革爭議",t:"case",g:"constitutional",d:"2023年1月台鐵公司化\n資產移轉方式爭議\n員工福利保障問題\n票價凍漲多年虧損累積\n太魯閣事故後改革聲浪\n虧損由政府吸收",icon:"🚄",date:"2023-01",src:[["台鐵","https://www.railway.gov.tw"]],amount:"年虧損逾200億"},
+{id:"birth-low",l:"生育率0.87全球最低",t:"case",g:"social",d:"2023年生育率0.87創全球最低\n少子化辦公室成立6個月裁撤\n投入4000億仍無效\n人口負成長2020年開始\n2035年預估人口減200萬\n年輕人不婚不生主因：房價+薪資",icon:"👶",date:"2023-01",src:[["國發會","https://www.ndc.gov.tw/cp.aspx?n=C6D9A826B7A42228"]],amount:"生育率0.87（2023）"},
+{id:"recall-wars",l:"2025罷免攻防",t:"case",g:"constitutional",d:"2025年在野黨發起大規模罷免\nDPP動員反罷免\n被批利用行政資源護盤\n部分DPP縣市長拒配合\n罷免案通過率創新高\n民主機制遭政治化",icon:"🗳",date:"2025-01",src:[["自由時報","https://www.ltn.com.tw"]],amount:""},
+{id:"tsmc-power",l:"台積電用電特權",t:"case",g:"social",d:"台積電用電占全台10%+持續增長\n政府優先保障台積電用電\n一般民眾限電\n2025年台積電用電預估達15%\n電費補貼台積電排擠一般用戶",icon:"💡",date:"2021-01",src:[["天下雜誌","https://www.cw.com.tw/article/5120884"]],amount:"用電佔全台15%+"},
+{id:"health-ins",l:"健保財務危機",t:"case",g:"social",d:"2022年健保安全準備金降至1.5個月\n三度調漲保費\n2023保費率6.0%→上調\n藥費浮濫問題未解\n醫護人力短缺嚴重\n醫院評鑑造假問題",icon:"🏥",date:"2021-07",src:[["衛福部","https://www.mohw.gov.tw"]],amount:"安全準備金不足2個月"},
+{id:"tainan-bribery",l:"台南市議長賄選案",t:"case",g:"corruption",d:"2022年台南市議長選舉\n涉嫌賄選議員遭調查\n民進黨議員涉案\n檢察官起訴多名議員\n地方派系介入議長選舉",icon:"🏛",date:"2022-12",src:[["中央社","https://www.cna.com.tw"]],amount:"賄款逾百萬"},
+{id:"disinform-law",l:"數位中介服務法",t:"case",g:"media",d:"2022年數位部研擬草案\n被批言論管制惡法\n平台業者強烈反對\n民間連署超過10萬人反對\n唐鳳主導後撤回草案\n後以其他方式管制假訊息",icon:"🔇",date:"2022-06",src:[["The Diplomat","https://thediplomat.com/2022/08/hopes-and-concerns-for-taiwans-new-ministry-of-digital-affairs/"]],amount:""},
+{id:"military-train",l:"後備軍人訓練問題",t:"case",g:"social",d:"後備軍人訓練從2週延為14天\n武器裝備老舊問題\n訓練品質遭外界質疑\n海軍、空軍訓練嚴重不足\n官兵士氣低落問題\n中共威脅下備戰不足",icon:"🪖",date:"2022-01",src:[["美國之音","https://www.voanews.com/a/taiwan-military-reserve-training/6509999.html"]],amount:""},
+{id:"land-dev",l:"國有地炒作案",t:"case",g:"collusion",d:"多起DPP人士涉國有土地開發\n鄭文燦華亞科案典型\n新北、桃園、台南均有案例\n土地重劃圖利特定廠商\n接連爆發引發輿論",icon:"🏗",date:"2020-01",src:[["聯合新聞網","https://udn.com/news/story/7240/8213452"]],amount:"涉及土地逾百億"},
+{id:"lai-mayor",l:"賴清德台南市長爭議",t:"case",g:"corruption",d:"台南市長任內（2010-2017）\n推動多項重大工程爭議\n台南機場遷移計畫無下文\n議會衝突：自行宣布辭職又撤回\n被質疑忽視民意\n轉任行政院長後台南市政問題浮現",icon:"👤",date:"2017-09",src:[["維基百科","https://zh.wikipedia.org/wiki/賴清德"]],amount:""},
+{id:"huang",l:"黃國昌",t:"tracker",g:"huang",d:"前民眾黨主席、前立委\n2016-2020 時代力量\n2024 民眾黨不分區\n主要追蹤：綠能、鏡電視、前瞻\n推動國會改革法案",icon:"🔎",date:"2016-02",src:[["中央社","https://www.cna.com.tw/tag/16352/"]]},
+{id:"h-mirror",l:"追蹤：鏡電視",t:"huang-case",g:"huang",d:"提出NCC內部文件\n揭露「總統旨意」錄音",icon:"📡",date:"2022-06",src:[["上報","https://www.upmedia.mg/news_info.php?Type=1&SerialNo=155098"]]},
+{id:"h-green",l:"追蹤：綠能弊案",t:"huang-case",g:"huang",d:"質詢台鹽掏空、力暘圖利",icon:"☀️",date:"2024-01",src:[["中央社","https://www.cna.com.tw/news/aipl/202410230126.aspx"]]},
+{id:"h-reform",l:"推動：國會改革",t:"huang-case",g:"huang",d:"立法院職權修正案\n2024/5/28通過 10/25違憲",icon:"📜",date:"2024-05",src:[["維基百科","https://zh.wikipedia.org/zh-hant/2024年立法院職權修法爭議"]]},
+{id:"h-egg",l:"追蹤：超思蛋案",t:"huang-case",g:"huang",d:"質詢資本額50萬取得大合約",icon:"🥚",date:"2023-09",src:[["公視","https://news.pts.org.tw/article/712568"]]},
+{id:"h-classroom",l:"追蹤：教室整合器",t:"huang-case",g:"huang",d:"揭露新北教育局瑕疵採購\n前瞻預算1.3億流向",icon:"🏫",date:"2019-09",src:[["聯合報","https://udn.com/news/story/6898/4001078"]],amount:"1.3億"},
+{id:"h-whistle",l:"推動：吹哨者保護",t:"huang-case",g:"huang",d:"共同創辦台灣公益揭弊\n暨吹哨者保護協會",icon:"📢",date:"2016-03",src:[["TAWPA","https://www.tawpa.org/"]]},
+// ===== 更多補全弊案 =====
+{id:"labor-7days",l:"砍7天假爭議",t:"case",g:"social",d:"2016年修勞基法刪除7天國定假\n行政院強推 勞工大規模抗議\n2016/12/21萬人上街\n被批違背選前承諾\n勞工運動分裂\n後來部分假日以休息日補回",icon:"📅",date:"2016-12",src:[["聯合報","https://udn.com/news/story/7266/2175694"],["報導者","https://www.twreporter.org/a/labor-standard-law-amendment"]],amount:"砍7天假"},
+{id:"agri-subsidy",l:"農業補助浮濫案",t:"case",g:"collusion",d:"農業部每年補助超過1,500億\n補助審核標準不透明\n1450農委會標案圖利特定媒體\n農舍違建長期放任\n超思蛋案起點為農委會補助弊端\n多起農業補助詐領案件起訴",icon:"🌾",date:"2019-01",src:[["聯合新聞網","https://udn.com/news/story/7240/7613452"],["公視","https://news.pts.org.tw/article/610321"]],amount:"年補助1,500億+"},
+{id:"solar-farmland",l:"農地光電破壞農業",t:"case",g:"green-energy",d:"2020年起農地大規模設置太陽能板\n2025年農地轉光電逾5萬公頃\n台灣糧食自給率持續下降\n農業部默許農地棄耕\n業者套利後遺棄場地\n破壞農業生態系統",icon:"🌾",date:"2020-06",src:[["報導者","https://www.twreporter.org/a/solar-energy-farmland-2022"],["環境資訊中心","https://e-info.org.tw/node/237550"]],amount:"農地5萬公頃轉光電"},
+{id:"military-purchase",l:"美台軍購爭議",t:"case",g:"mega",d:"2016-2024軍購總額逾1.5兆台幣\nF-16V升級案：每架逾6億台幣\nM1A2戰車：延遲交貨、維修困難\n岸置魚叉飛彈：超出原估200%\n部分項目被批「買貴又等太久」\n軍方認為仍有戰略必要性",icon:"⚔️",date:"2019-07",src:[["Taipei Times","https://www.taipeitimes.com/News/front/archives/2022/11/17/2003789014"],["Defense News","https://www.defensenews.com/global/asia-pacific/2022/04/13/"]],amount:"軍購逾1.5兆"},
+{id:"chen-peize",l:"高端審查委員辭職",t:"case",g:"mega",d:"台大基因體醫學研究所教授陳培哲\n以「高端不符科學標準」辭職\n蔡英文政府EUA審查程序遭批\n免疫橋接取代三期試驗\n辭職後遭親綠媒體輿論攻擊\n2022年調查局約談審查委員\n海外台灣人批評政府壓制科學意見",icon:"🔬",date:"2021-06",src:[["報導者","https://www.twreporter.org/a/covid-19-vaccine-medigen-eka"],["Taipei Times","https://www.taipeitimes.com/News/taiwan/archives/2021/07/10/2003760862"]],amount:""},
+{id:"ke-jm-shield",l:"柯建銘護航爭議",t:"case",g:"corruption",d:"立院總召柯建銘\n護航林智堅論文抄襲案\n公開聲稱「論文沒有問題」\n多次對在野質詢採拖延戰術\n2013年曾遭馬政府司法關說\n現任總召任內多次引發程序爭議",icon:"🛡",date:"2022-07",src:[["Taipei Times","https://www.taipeitimes.com/News/taiwan/archives/2022/08/25/2003784051"]],amount:""},
+{id:"judiciary-ctrl",l:"司法獨立性爭議",t:"case",g:"constitutional",d:"大法官任命被批政治化\n7名大法官提名全遭否決\n憲法法庭形同停擺\n檢察官人事疑遭干預\n多起政治案件起訴時機被質疑\n2024年司改論壇後無具體推動",icon:"⚖️",date:"2024-10",src:[["司法院","https://cons.judicial.gov.tw"],["Taipei Times","https://www.taipeitimes.com/News/front/archives/2024/12/24/2003829043"]],amount:""},
+{id:"kaohsiung-debt",l:"高雄市長期債務",t:"case",g:"debt",d:"賴清德市長任內（2010-2018）\n高雄市負債達1,800億\n陳其邁繼任後債務未顯著改善\n亞洲新灣區開發成效受質疑\n高雄捷運虧損長期補貼\n前瞻計畫高雄預算分配不均爭議",icon:"🏙",date:"2018-01",src:[["財政部","https://www.mof.gov.tw"],["聯合報","https://udn.com/news/story/7266/8500000"]],amount:"市債1,800億+"},
+{id:"media-ctitv",l:"中天電視關台",t:"case",g:"media",d:"2020年11月中天新聞台不予換照\nNCC委員7票全數否決\n被批政治打壓媒體\n中天聲稱「執法標準不一」\nMirrorTV同期獲准\n國際媒體自由組織表達關切\n中天轉移網路平台繼續播出",icon:"📺",date:"2020-11",src:[["RSF","https://rsf.org/en/news/taiwan-press-freedom-questioned"],["Taipei Times","https://www.taipeitimes.com/News/front/archives/2020/12/01/2003748081"]],amount:""},
+{id:"chen-qimai",l:"陳其邁施政爭議",t:"case",g:"social",d:"高雄市長任內（2020-）\n高雄氣爆2014年後管線改善緩慢\n石化廊道相關工安事故\n2021大水淹城區排水問題\n輔英科大護理生死亡案延宕\n空氣污染問題長期未解\n亞洲新灣區進度落後",icon:"👤",date:"2020-08",src:[["公視","https://news.pts.org.tw/tag/陳其邁"]],amount:""},
+{id:"biogas-fraud",l:"沼氣補貼詐領案",t:"case",g:"green-energy",d:"農委會沼氣補助計畫\n多起業者詐領補助\n假農廢真倒廢液問題\n監察院調查失職\n農業部稽查不足\n涉案金額逾數億",icon:"💨",date:"2021-06",src:[["自由時報","https://news.ltn.com.tw/news/life/breakingnews/3701423"]],amount:"詐領逾數億"},
+{id:"welfare-fraud",l:"社福補助詐領案",t:"case",g:"collusion",d:"低收入補助資格審核鬆散\n多起地方派系圍標社福標案\n長照機構違規未罰\n托育補助浮報\n衛福部稽核人力嚴重不足\n2023年多起詐領補助起訴案",icon:"🏥",date:"2022-01",src:[["中央社","https://www.cna.com.tw/news/asoc/202211030222.aspx"]],amount:"詐領逾億"},
+{id:"indigenous-rights",l:"原住民土地政策停滯",t:"case",g:"social",d:"蔡英文2016年正式道歉\n承諾原住民族轉型正義\n傳統領域劃設爭議未解\n礦業法修法延宕8年\n花蓮太魯閣觀光開發強推\n原住民族基本法修正滯後\n土地返還進度遠低於承諾",icon:"🏔",date:"2017-08",src:[["原視新聞","https://www.ipcf.org.tw"],["報導者","https://www.twreporter.org/a/indigenous-transitional-justice"]],amount:""},
+{id:"sewage-flood",l:"治水前瞻效益爭議",t:"case",g:"social",d:"前瞻計畫治水預算2,500億\n2021年各地洪患未顯著改善\n台南、高雄大雨仍常積水\n台中水情特別嚴峻\n監察院：多縣市工程品質堪慮\n錢花了但防洪效益存疑",icon:"🌊",date:"2017-08",src:[["監察院","https://www.cy.gov.tw"],["報導者","https://www.twreporter.org/a/foresight-water-projects"]],amount:"治水預算2,500億"},
+];
+
+const LK=[
+// ── 核心人物
+{s:"root",t:"lai",l:"現任"},{s:"root",t:"tsai",l:"前任"},
+// ── 蔡英文 → 政策/案件
+{s:"tsai",t:"qianzhan",l:"8800億"},{s:"tsai",t:"vaccine",l:"力推EUA"},
+{s:"tsai",t:"green-total",l:"能源轉型"},{s:"tsai",t:"media-bid",l:"標案暴增"},
+{s:"tsai",t:"mirror-case",l:"總統旨意"},{s:"tsai",t:"pork",l:"開放萊豬"},
+{s:"tsai",t:"reef",l:"三接站"},{s:"tsai",t:"cigarette",l:"專機私菸"},
+{s:"tsai",t:"lin-plagiarism",l:"護航"},{s:"tsai",t:"transitional",l:"主導"},
+{s:"tsai",t:"pension-reform",l:"強推"},{s:"tsai",t:"energy-crisis",l:"非核政策"},
+{s:"tsai",t:"housing",l:"居住正義跳票"},{s:"tsai",t:"wha",l:"外交失利"},
+// ── 蔡英文 → 任命的人物（修復孤兒節點）
+{s:"tsai",t:"su-zc",l:"任命院長"},{s:"tsai",t:"zheng-wc",l:"核心人馬"},
+{s:"tsai",t:"chen-jz",l:"任命農業部長"},{s:"tsai",t:"chen-ju",l:"提名監察院長"},
+{s:"tsai",t:"chen-sc",l:"任命衛福部長"},{s:"tsai",t:"su-jq",l:"任命府秘書長"},
+{s:"tsai",t:"chen-mt",l:"護航"},
+// ── 賴清德 → 案件
+{s:"lai",t:"egg-case",l:"院長任內"},{s:"lai",t:"spy-case",l:"副總統任內"},
+{s:"lai",t:"court-case",l:"提名遭拒"},{s:"lai",t:"chen-ju",l:"任命"},
+{s:"lai",t:"covid-chaos",l:"共存轉彎"},{s:"lai",t:"cpc-loss",l:"補貼政策"},
+// ── 人物 → 案件
+{s:"zheng-wc",t:"zheng-case",l:"主犯"},{s:"su-jq",t:"sogo-case",l:"外甥涉案"},
+{s:"chen-jz",t:"egg-case",l:"主管"},{s:"chen-ju",t:"chen-case",l:"當事人"},
+{s:"chen-qy",t:"taiyen",l:"掏空"},{s:"chen-sc",t:"vaccine",l:"核發EUA"},
+// ── 案件子案
+{s:"qianzhan",t:"lianhe",l:"前瞻子案"},
+{s:"green-total",t:"taiyen",l:"台鹽"},{s:"green-total",t:"liyang",l:"力暘"},
+{s:"media-bid",t:"su-zc",l:"施壓"},{s:"media-bid",t:"mirror-case",l:"鏡電視"},
+{s:"media-bid",t:"army1450",l:"網軍配合"},{s:"media-bid",t:"ncc-case",l:"NCC人事"},
+{s:"lin-plagiarism",t:"chen-mt",l:"護航"},
+// ── 綠能 → 人物
+{s:"green-total",t:"chen-qy",l:"台鹽掏空"},
+// ── 台電/中油
+{s:"energy-crisis",t:"taipower",l:"台電虧損"},
+{s:"taipower",t:"electric-price",l:"電費轉嫁"},
+{s:"energy-crisis",t:"cpc-loss",l:"中油虧損"},
+// ── 社會/政策
+{s:"egg-case",t:"food-safety",l:"食安後遺"},
+// ── 舉債
+{s:"root",t:"debt-root",l:"舉債"},
+{s:"debt-root",t:"debt-qz",l:"前瞻"},{s:"debt-root",t:"debt-covid",l:"防疫"},{s:"debt-root",t:"debt-defense",l:"國防"},
+{s:"debt-root",t:"taipower",l:"台電窟窿"},{s:"debt-root",t:"cpc-loss",l:"中油窟窿"},
+// ── 國家隊
+{s:"root",t:"team-root",l:"國家隊"},
+{s:"team-root",t:"team-mask",l:""},{s:"team-root",t:"team-birth",l:""},{s:"team-root",t:"team-quantum",l:""},
+{s:"team-root",t:"team-fraud",l:""},{s:"team-root",t:"team-space",l:""},{s:"team-root",t:"team-cyber",l:""},{s:"team-root",t:"team-digital",l:""},
+// ── 社會議題
+{s:"root",t:"taroko",l:"鐵路安全"},{s:"root",t:"water-assoc",l:"水利會"},
+{s:"root",t:"pension-reform",l:"年金改革"},
+// ── 新增節點連結
+{s:"tsai",t:"tsai-thesis",l:"論文爭議"},{s:"tsai",t:"fishery-green",l:"漁電政策"},
+{s:"green-total",t:"fishery-green",l:"漁電共生"},
+{s:"tsai",t:"rail-reform",l:"台鐵改制"},{s:"taroko",t:"rail-reform",l:"改革契機"},
+{s:"tsai",t:"birth-low",l:"少子化政策"},{s:"team-birth",t:"birth-low",l:"政策失敗"},
+{s:"lai",t:"recall-wars",l:"罷免攻防"},{s:"lai",t:"lai-mayor",l:"市長任內"},
+{s:"energy-crisis",t:"tsmc-power",l:"用電排擠"},
+{s:"root",t:"health-ins",l:"健保危機"},{s:"root",t:"military-train",l:"備戰不足"},
+{s:"root",t:"land-dev",l:"土地炒作"},
+{s:"lai",t:"tainan-bribery",l:"台南派系"},
+{s:"tsai",t:"disinform-law",l:"言論管制"},
+{s:"team-digital",t:"disinform-law",l:"唐鳳主導"},
+// ── 黃國昌追蹤
+{s:"root",t:"huang",l:"追蹤者"},
+{s:"huang",t:"h-mirror",l:""},{s:"huang",t:"h-green",l:""},{s:"huang",t:"h-reform",l:""},
+{s:"huang",t:"h-egg",l:""},{s:"huang",t:"h-classroom",l:""},{s:"huang",t:"h-whistle",l:""},
+// ── 新增案件連結
+{s:"tsai",t:"labor-7days",l:"修勞基法"},{s:"root",t:"labor-7days",l:"勞工政策"},
+{s:"root",t:"agri-subsidy",l:"農業弊端"},
+{s:"green-total",t:"solar-farmland",l:"農地光電"},
+{s:"fishery-green",t:"solar-farmland",l:"農地掠奪"},
+{s:"tsai",t:"military-purchase",l:"軍購政策"},{s:"lai",t:"military-purchase",l:"延續採購"},
+{s:"vaccine",t:"chen-peize",l:"委員辭職"},
+{s:"tsai",t:"chen-peize",l:"EUA爭議"},
+{s:"lin-plagiarism",t:"ke-jm-shield",l:"護航"},
+{s:"tsai",t:"ke-jm-shield",l:"政黨護盤"},
+{s:"court-case",t:"judiciary-ctrl",l:"大法官危機"},
+{s:"lai",t:"judiciary-ctrl",l:"提名爭議"},
+{s:"lai",t:"kaohsiung-debt",l:"市長遺留"},
+{s:"debt-root",t:"kaohsiung-debt",l:"地方債務"},
+{s:"media-bid",t:"media-ctitv",l:"關台"},
+{s:"mirror-case",t:"media-ctitv",l:"差別對待"},
+{s:"ncc-case",t:"media-ctitv",l:"NCC決定"},
+{s:"lai",t:"chen-qimai",l:"黨內關係"},{s:"root",t:"chen-qimai",l:"高雄問題"},
+{s:"green-total",t:"biogas-fraud",l:"沼氣詐補"},
+{s:"agri-subsidy",t:"biogas-fraud",l:"補助詐領"},
+{s:"root",t:"welfare-fraud",l:"社福浮濫"},
+{s:"food-safety",t:"welfare-fraud",l:"監管失職"},
+{s:"tsai",t:"indigenous-rights",l:"道歉未兌現"},
+{s:"root",t:"indigenous-rights",l:"原民政策"},
+{s:"qianzhan",t:"sewage-flood",l:"治水子計畫"},
+{s:"root",t:"sewage-flood",l:"防洪問題"},
+{s:"agri-subsidy",t:"egg-case",l:"補助弊端"},
+];
+
+const debtData=[
+    {y:2016,a:5.3},{y:2017,a:5.35},{y:2018,a:5.42},{y:2019,a:5.50},{y:2020,a:5.65},
+    {y:2021,a:5.78},{y:2022,a:5.84},{y:2023,a:5.88},{y:2024,a:5.90},{y:2025,a:5.91}
+];
+
+// ================================================================
+// STATE
+// ================================================================
+const nMap = {};
+N.forEach(n => nMap[n.id] = n);
+let curFilter = 'all', yrMin = 2016, yrMax = 2026;
+
+// color map
+function nodeColor(n) {
+    if(n.t==='root'||n.t==='core') return '#d4a56a';
+    const m = {mega:'#d4b040',corruption:'#d94f4f','green-energy':'#5cb85c',media:'#50b0b0',spy:'#d06090',collusion:'#e67e22',constitutional:'#9b59b6',social:'#e09040',debt:'#d94f4f',team:'#a07cc5',huang:'#5b9bd5'};
+    return m[n.g] || '#888';
+}
+
+// ================================================================
+// BUILD D3 TREE HIERARCHY
+// ================================================================
+function buildHierarchy(nodes, links) {
+    const ids = new Set(nodes.map(n=>n.id));
+    // Build children map from links (only for filtered nodes)
+    const childMap = {};
+    const hasParent = new Set();
+    links.forEach(lk => {
+        if(!ids.has(lk.s)||!ids.has(lk.t)) return;
+        if(!childMap[lk.s]) childMap[lk.s] = [];
+        // avoid duplicates
+        if(!childMap[lk.s].includes(lk.t)) {
+            childMap[lk.s].push(lk.t);
+            hasParent.add(lk.t);
+        }
+    });
+
+    // Find root(s) — nodes with no parent
+    let roots = nodes.filter(n => !hasParent.has(n.id));
+    if(roots.length === 0) roots = [nMap['root']];
+
+    // Build tree object recursively (avoid cycles)
+    const visited = new Set();
+    function buildNode(id) {
+        if(visited.has(id)) return null;
+        visited.add(id);
+        const node = nMap[id];
+        if(!node) return null;
+        const children = (childMap[id]||[]).map(cid => buildNode(cid)).filter(Boolean);
+        return { id: id, data: node, children: children.length ? children : undefined };
+    }
+
+    // If root exists in filtered set, use it; otherwise create virtual root
+    let treeData;
+    if(ids.has('root')) {
+        treeData = buildNode('root');
+        // Add orphan nodes as children of root
+        nodes.forEach(n => {
+            if(!visited.has(n.id)) {
+                const orphan = buildNode(n.id);
+                if(orphan) {
+                    if(!treeData.children) treeData.children = [];
+                    treeData.children.push(orphan);
+                }
+            }
+        });
+    } else {
+        // virtual root
+        treeData = { id:'_vroot', data:{l:'',icon:''}, children: roots.map(r => buildNode(r.id)).filter(Boolean) };
+        nodes.forEach(n => {
+            if(!visited.has(n.id)) {
+                const orphan = buildNode(n.id);
+                if(orphan) treeData.children.push(orphan);
+            }
+        });
+    }
+
+    return treeData;
+}
+
+// ================================================================
+// RENDER
+// ================================================================
+let svgEl, mainG, zoom;
+
+function render() {
+    mainG.selectAll('*').remove();
+
+    // filter nodes
+    let fNodes = N.filter(n => {
+        if(curFilter!=='all' && n.g!==curFilter) return false;
+        const yr = parseInt(n.date.substring(0,4));
+        return yr >= yrMin && yr <= yrMax;
+    });
+    if(!fNodes.find(n=>n.id==='root')) fNodes.unshift(nMap['root']);
+
+    const fIds = new Set(fNodes.map(n=>n.id));
+    const fLinks = LK.filter(lk => fIds.has(lk.s) && fIds.has(lk.t));
+
+    // build hierarchy
+    const treeData = buildHierarchy(fNodes, fLinks);
+    if(!treeData) return;
+
+    const root = d3.hierarchy(treeData, d => d.children);
+
+    // compute tree size based on node count
+    const leafCount = root.leaves().length;
+    const treeH = Math.max(800, leafCount * 70);
+    const depth = root.height;
+    const treeW = Math.max(1200, (depth + 1) * 280);
+
+    const treeLayout = d3.tree().size([treeH, treeW]).separation((a,b) => a.parent === b.parent ? 1 : 1.2);
+    treeLayout(root);
+
+    // offset so root isn't at edge
+    const offsetX = 120, offsetY = 40;
+
+    // arrow marker
+    mainG.append('defs').append('marker')
+        .attr('id','arr').attr('markerWidth',8).attr('markerHeight',8)
+        .attr('refX',7).attr('refY',3).attr('orient','auto')
+        .append('path').attr('d','M0,0 L0,6 L8,3z').attr('fill','#666');
+
+    // draw links
+    const linkG = mainG.append('g');
+    root.links().forEach(lk => {
+        const sx = lk.source.y + offsetX;
+        const sy = lk.source.x + offsetY;
+        const tx = lk.target.y + offsetX;
+        const ty = lk.target.x + offsetY;
+        const mx = (sx + tx) / 2;
+
+        // curved horizontal link
+        linkG.append('path')
+            .attr('d', `M${sx+55},${sy} C${mx},${sy} ${mx},${ty} ${tx-55},${ty}`)
+            .attr('fill','none')
+            .attr('stroke', nodeColor(lk.target.data.data || {}))
+            .attr('stroke-width', 1.8)
+            .attr('stroke-opacity', 0.4)
+            .attr('marker-end','url(#arr)');
+
+        // find link label
+        const srcId = lk.source.data.id;
+        const tgtId = lk.target.data.id;
+        const linkData = fLinks.find(l => l.s===srcId && l.t===tgtId);
+        if(linkData && linkData.l) {
+            linkG.append('text')
+                .attr('x', mx).attr('y', (sy+ty)/2 - 6)
+                .attr('text-anchor','middle').attr('font-size',9)
+                .attr('fill','#a89968').attr('pointer-events','none')
+                .text(linkData.l);
+        }
+    });
+
+    // draw nodes
+    const nodeG = mainG.append('g');
+    root.descendants().forEach(d => {
+        if(d.data.id === '_vroot') return; // skip virtual root
+        const nd = d.data.data;
+        if(!nd) return;
+        const cx = d.y + offsetX;
+        const cy = d.x + offsetY;
+        const col = nodeColor(nd);
+
+        const g = nodeG.append('g')
+            .attr('transform', `translate(${cx},${cy})`)
+            .style('cursor','pointer');
+
+        // invisible hit area
+        g.append('rect').attr('x',-58).attr('y',-38).attr('width',116).attr('height',76)
+            .attr('fill','transparent').attr('rx',6);
+
+        // card bg
+        g.append('rect').attr('x',-52).attr('y',-32).attr('width',104).attr('height',64)
+            .attr('rx',5).attr('fill','#231e18').attr('stroke',col).attr('stroke-width',2);
+
+        // icon
+        g.append('text').attr('x',0).attr('y',-12).attr('text-anchor','middle')
+            .attr('font-size',18).text(nd.icon);
+
+        // name
+        const name = (nd.l||'').replace(/\n/g,' ');
+        g.append('text').attr('x',0).attr('y',6).attr('text-anchor','middle')
+            .attr('font-size',11).attr('fill','#e8dcc8').attr('font-weight','bold')
+            .text(name.length > 8 ? name.substring(0,8)+'…' : name);
+
+        // amount or status
+        if(nd.amount) {
+            g.append('text').attr('x',0).attr('y',20).attr('text-anchor','middle')
+                .attr('font-size',9).attr('fill','#e74c3c').attr('font-weight','bold')
+                .text(nd.amount.length > 10 ? nd.amount.substring(0,10) : nd.amount);
+        } else if(nd.status) {
+            g.append('text').attr('x',0).attr('y',20).attr('text-anchor','middle')
+                .attr('font-size',9).attr('fill','#d4a56a')
+                .text(nd.status.substring(0,8));
+        }
+
+        // date badge
+        g.append('text').attr('x',0).attr('y',-24).attr('text-anchor','middle')
+            .attr('font-size',8).attr('fill','#a89968')
+            .text(nd.date||'');
+
+        // hover glow
+        g.on('mouseenter', function() {
+            d3.select(this).select('rect:nth-child(2)')
+                .attr('filter','drop-shadow(0 0 8px '+col+')');
+        }).on('mouseleave', function() {
+            d3.select(this).select('rect:nth-child(2)')
+                .attr('filter',null);
+        });
+
+        g.on('click', () => openDP(nd));
+    });
+
+    // auto-fit view
+    const bbox = mainG.node().getBBox();
+    const sw = window.innerWidth, sh = window.innerHeight - 48;
+    const scale = Math.min(sw / (bbox.width + 100), sh / (bbox.height + 100), 1);
+    const tx = (sw - bbox.width * scale) / 2 - bbox.x * scale;
+    const ty = (sh - bbox.height * scale) / 2 - bbox.y * scale;
+    svgEl.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+}
+
+// ================================================================
+// DETAIL PANEL
+// ================================================================
+function openDP(nd) {
+    const el = document.getElementById('dpContent');
+    let h = `<div class="dp-title">${(nd.l||'').replace(/\n/g,' ')}</div>`;
+
+    const typeMap = {root:'核心',core:'核心人物',case:'案件',debt:'舉債','debt-item':'舉債子項',team:'國家隊','team-item':'國家隊子項',dpp:'民進黨人物',tracker:'追蹤者','huang-case':'黃國昌追蹤'};
+    h += `<div class="dp-sec"><div class="dp-lbl">類型</div><div class="dp-val">${typeMap[nd.t]||nd.t}</div></div>`;
+
+    if(nd.d) h += `<div class="dp-sec"><div class="dp-lbl">描述</div><div class="dp-val">${nd.d.replace(/\n/g,'<br>')}</div></div>`;
+    if(nd.amount) {
+        // 判斷是金額、數據還是其他統計數字
+        const isMonetary = /[億兆萬元美金USD$]/.test(nd.amount);
+        const isCasualty = /[死傷亡]/.test(nd.amount);
+        const amtLabel = isCasualty ? '傷亡統計' : isMonetary ? '涉案金額' : '關鍵數據';
+        const amtClass = isCasualty ? '' : isMonetary ? ' amt' : '';
+        h += `<div class="dp-sec"><div class="dp-lbl">${amtLabel}</div><div class="dp-val${amtClass}">${nd.amount}</div></div>`;
+    }
+    if(nd.date) h += `<div class="dp-sec"><div class="dp-lbl">時間</div><div class="dp-val dt">${nd.date}</div></div>`;
+
+    // connected
+    const conn = new Set();
+    LK.forEach(lk => { if(lk.s===nd.id) conn.add(lk.t); if(lk.t===nd.id) conn.add(lk.s); });
+    if(conn.size) {
+        h += `<div class="dp-sec"><div class="dp-lbl">關聯節點</div><div class="cn">`;
+        conn.forEach(id => { const c=nMap[id]; if(c) h += `<div class="cn-item" onclick="openDP(nMap['${id}'])">${(c.l||'').replace(/\n/g,' ')}</div>`; });
+        h += `</div></div>`;
+    }
+
+    // sources
+    if(nd.src && nd.src.length) {
+        h += `<div class="dp-sec"><div class="dp-lbl">資料來源</div><div class="sl">`;
+        nd.src.forEach(([t,u]) => { h += `<a href="${u}" target="_blank">${t}</a>`; });
+        h += `</div></div>`;
+    }
+
+    el.innerHTML = h;
+    document.getElementById('dp').classList.add('open');
+    window.nMap = nMap;
+}
+
+function closeDP() { document.getElementById('dp').classList.remove('open'); }
+
+// ================================================================
+// TOOLBAR EVENTS
+// ================================================================
+// tabs
+document.querySelectorAll('[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        const isScore = btn.dataset.tab === 'score';
+        document.getElementById('scOverlay').classList.toggle('open', isScore);
+        document.getElementById('canvas').style.display = isScore ? 'none' : '';
+        document.getElementById('legend').style.display = isScore ? 'none' : '';
+        document.querySelector('.debt-mini').style.display = isScore ? 'none' : '';
+    });
+});
+
+// filters
+document.querySelectorAll('[data-f]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-f]').forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        curFilter = btn.dataset.f;
+        render();
+    });
+});
+
+// year sliders
+document.getElementById('yrMin').addEventListener('input', e => {
+    yrMin = +e.target.value;
+    if(yrMin > yrMax) { yrMax = yrMin; document.getElementById('yrMax').value = yrMax; }
+    document.getElementById('yrDisp').textContent = yrMin+'-'+yrMax;
+    render();
+});
+document.getElementById('yrMax').addEventListener('input', e => {
+    yrMax = +e.target.value;
+    if(yrMax < yrMin) { yrMin = yrMax; document.getElementById('yrMin').value = yrMin; }
+    document.getElementById('yrDisp').textContent = yrMin+'-'+yrMax;
+    render();
+});
+
+// ================================================================
+// INIT
+// ================================================================
+function init() {
+    // init D3 svg + zoom (must be inside DOMContentLoaded so D3 is loaded)
+    svgEl = d3.select('#svg');
+    mainG = svgEl.append('g').attr('class','main');
+    zoom = d3.zoom().scaleExtent([0.15, 3]).on('zoom', e => mainG.attr('transform', e.transform));
+    svgEl.call(zoom);
+
+    // debt bars
+    const mx = Math.max(...debtData.map(d=>d.a));
+    const bars = document.getElementById('debtBars');
+    debtData.forEach(d => {
+        const b = document.createElement('div');
+        b.className = 'dt-bar';
+        b.style.height = (d.a/mx*100)+'%';
+        b.title = d.y+': '+d.a.toFixed(2)+'兆';
+        bars.appendChild(b);
+    });
+
+    render();
+
+    // hide zoom hint after 4s
+    setTimeout(() => { document.getElementById('zoomHint').style.opacity = '0'; }, 4000);
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

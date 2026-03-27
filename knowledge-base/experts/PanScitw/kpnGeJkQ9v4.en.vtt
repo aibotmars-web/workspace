@@ -1,0 +1,959 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:09.217 --> 00:00:10.218
+Transistors today
+
+00:00:10.218 --> 00:00:11.678
+can be made smaller and smaller
+
+00:00:11.678 --> 00:00:14.014
+Much of the credit goes to
+
+00:00:14.014 --> 00:00:15.348
+this man
+
+00:00:15.348 --> 00:00:16.516
+in the past two episodes, we mentioned
+
+00:00:16.516 --> 00:00:18.268
+how Intel and several Japanese companies
+
+00:00:18.268 --> 00:00:20.812
+popularized CPUs and DRAMs
+
+00:00:20.812 --> 00:00:22.480
+created the personal computer market
+
+00:00:22.480 --> 00:00:24.482
+and ushered in the era of chips
+
+00:00:24.482 --> 00:00:25.817
+As demand for
+
+00:00:25.817 --> 00:00:27.485
+more efficient IC grew 
+
+00:00:27.485 --> 00:00:30.196
+scientists were troubled by the question:
+
+00:00:30.196 --> 00:00:32.115
+how do we make ICs even smaller?
+
+00:00:32.115 --> 00:00:33.116
+It seemed they had suddenly hit
+
+00:00:33.116 --> 00:00:35.410
+the limits of transistor development
+
+00:00:36.077 --> 00:00:37.037
+At that moment
+
+00:00:37.037 --> 00:00:38.830
+an engineer of Texas Instruments 
+
+00:00:38.830 --> 00:00:40.290
+offered an innovative solution
+
+00:00:40.290 --> 00:00:42.709
+He pioneered photolithography
+
+00:00:42.751 --> 00:00:44.210
+in semiconductor industry
+
+00:00:44.252 --> 00:00:45.712
+Thus began the race
+
+00:00:45.712 --> 00:00:47.213
+to chase Moore’s Law
+
+00:00:47.213 --> 00:00:48.506
+by photolithography
+
+00:00:48.506 --> 00:00:49.215
+till now
+
+00:00:49.215 --> 00:00:50.800
+Extreme ultraviolet lithography
+
+00:00:50.800 --> 00:00:51.968
+EUVL
+
+00:00:51.968 --> 00:00:54.846
+has cemented ASML, the leading EUV machine manufacturer,
+
+00:00:54.846 --> 00:00:57.390
+as a key player in the semiconductor industry
+
+00:00:57.390 --> 00:00:59.642
+And a ban on EUV equipment sales
+
+00:00:59.642 --> 00:01:00.518
+is enough to shake
+
+00:01:00.518 --> 00:01:02.812
+China’s entire semiconductor industry
+
+00:01:02.812 --> 00:01:04.272
+What on earth is photolithography?
+
+00:01:04.272 --> 00:01:06.608
+Why is it crucial to the semiconductor industry?
+
+00:01:06.608 --> 00:01:07.734
+Let’s take a look at
+
+00:01:07.734 --> 00:01:09.319
+the story of this engineer
+
+00:01:09.319 --> 00:01:11.946
+His name is Jay Lathrop
+
+00:01:15.992 --> 00:01:17.327
+We mentioned in episode 6
+
+00:01:17.327 --> 00:01:18.787
+an TI engineer 
+
+00:01:18.787 --> 00:01:20.038
+After Jack Kilby
+
+00:01:20.038 --> 00:01:22.207
+Joined TI in 1958
+
+00:01:22.207 --> 00:01:25.126
+it took him only 4 months to create the IC
+
+00:01:25.126 --> 00:01:26.795
+He is regarded one of the inventors of the IC
+
+00:01:26.795 --> 00:01:29.380
+alongside Robert Noyce of Fairchild Semiconductor
+
+00:01:29.380 --> 00:01:30.924
+You could say that without them
+
+00:01:30.924 --> 00:01:32.926
+there would be no “chips” today
+
+00:01:32.926 --> 00:01:34.511
+There was more good news
+
+00:01:34.511 --> 00:01:36.054
+for Texas Instruments that year
+
+00:01:36.054 --> 00:01:38.556
+Another engineer joined the company 
+
+00:01:38.556 --> 00:01:40.975
+and introduced the crucial technology of photolithography
+
+00:01:40.975 --> 00:01:42.143
+which helped TI
+
+00:01:42.143 --> 00:01:44.145
+rapidly enhance its ability
+
+00:01:44.145 --> 00:01:45.480
+to mass-produce ICs
+
+00:01:45.480 --> 00:01:47.982
+Let’s take a step back to a year
+
+00:01:47.982 --> 00:01:50.193
+before this key figure
+
+00:01:50.235 --> 00:01:52.570
+joined TI 
+
+00:01:52.570 --> 00:01:54.239
+It was 1957
+
+00:01:54.239 --> 00:01:55.448
+and Jay Lathrop was still working
+
+00:01:55.448 --> 00:01:58.451
+atthe U.S. Army’s Diamond Ordnance Fuze Laboratory
+
+00:01:58.451 --> 00:01:59.994
+This lab was responsible for developing
+
+00:01:59.994 --> 00:02:01.412
+the proximity fuse
+
+00:02:01.412 --> 00:02:02.831
+which allowed mortar shells to detonate
+
+00:02:02.831 --> 00:02:05.708
+at  a specific altitude above theirtarget
+
+00:02:05.708 --> 00:02:07.293
+for increased destructive effect
+
+00:02:07.293 --> 00:02:09.879
+They attempted to design a device containing a capacitor 
+
+00:02:09.879 --> 00:02:12.215
+that would allow the falling shell
+
+00:02:12.215 --> 00:02:14.717
+to accumulate electric charge
+
+00:02:14.717 --> 00:02:15.969
+through electrostatic induction between the air and ground
+
+00:02:15.969 --> 00:02:18.555
+triggering the fuse for detonation
+
+00:02:18.555 --> 00:02:21.182
+Obviously, the bulky vacuum tubes still widely in use
+
+00:02:21.182 --> 00:02:23.768
+were not fit for artillery shells
+
+00:02:23.810 --> 00:02:24.769
+Naturally they turned to
+
+00:02:24.769 --> 00:02:27.730
+the rapidly developing transistors technology
+
+00:02:27.730 --> 00:02:30.233
+trying to replace vacuum tubes with transistors
+
+00:02:30.567 --> 00:02:31.484
+Do you remember
+
+00:02:31.484 --> 00:02:33.778
+when we talked about the planar transistor structure
+
+00:02:33.778 --> 00:02:35.280
+that Noyce introduced
+
+00:02:35.280 --> 00:02:37.407
+and patented in 1959
+
+00:02:37.407 --> 00:02:40.034
+which came later than Kirby’s invention?
+
+00:02:40.034 --> 00:02:41.619
+At that time, transistors were still
+
+00:02:41.619 --> 00:02:44.080
+primarily constructed using a mesa structure
+
+00:02:44.080 --> 00:02:46.791
+These transistors were usually made of germanium
+
+00:02:46.791 --> 00:02:48.126
+stacking semiconductors layers with impurities
+
+00:02:48.126 --> 00:02:51.212
+one on top of the other
+
+00:02:51.212 --> 00:02:51.671
+Of course, this wasn’t just 
+
+00:02:51.671 --> 00:02:54.132
+a simple process of stacking materials
+
+00:02:54.132 --> 00:02:55.216
+like kids building blocks
+
+00:02:55.216 --> 00:02:57.468
+Every piece got a specific shape
+
+00:02:57.510 --> 00:02:58.761
+and every layer of the transistor
+
+00:02:58.761 --> 00:03:00.513
+required additional processing
+
+00:03:00.513 --> 00:03:02.557
+to be precisely shaped.
+
+00:03:02.557 --> 00:03:05.101
+To achieve this, they used wax to protect the material
+
+00:03:05.101 --> 00:03:07.020
+exposing only the areas that needed to be etched away
+
+00:03:07.020 --> 00:03:08.688
+through chemical etching
+
+00:03:08.688 --> 00:03:09.522
+This semiconductor processing method
+
+00:03:09.522 --> 00:03:11.441
+was conceived by Harry Sello
+
+00:03:11.441 --> 00:03:13.484
+in Shockley’s laboratory
+
+00:03:13.484 --> 00:03:15.028
+The reason to use wax was
+
+00:03:15.028 --> 00:03:16.321
+that hydrofluoric acid which was used for etching
+
+00:03:16.321 --> 00:03:18.448
+corrodes both silicon and germanium
+
+00:03:18.448 --> 00:03:20.783
+but wax is resistant to it
+
+00:03:20.783 --> 00:03:22.368
+When hydrofluoric acid was applied,
+
+00:03:22.368 --> 00:03:24.162
+the areas not covered by wax
+
+00:03:24.162 --> 00:03:25.914
+were gradually etched
+
+00:03:25.914 --> 00:03:27.874
+into the desired shape
+
+00:03:27.874 --> 00:03:30.877
+while the wax-covered areas remained intact.
+
+00:03:30.919 --> 00:03:33.671
+It’s somewhat similar to how children make sand paintings.
+
+00:03:33.671 --> 00:03:36.382
+The entire drawing board is initially covered with stickers
+
+00:03:36.382 --> 00:03:37.425
+and only when the stickers are removed
+
+00:03:37.425 --> 00:03:38.718
+to expose the adhesive
+
+00:03:38.718 --> 00:03:40.803
+can it be coated with colorful sand
+
+00:03:40.803 --> 00:03:42.680
+Sello’s method 
+
+00:03:42.680 --> 00:03:44.098
+was called
+
+00:03:44.098 --> 00:03:46.142
+wax masking
+
+00:03:46.142 --> 00:03:49.145
+It was indeed a simple and effective method.
+
+00:03:49.145 --> 00:03:51.564
+However, as transistors became smaller in size
+
+00:03:51.564 --> 00:03:52.523
+and more intricate in design,
+
+00:03:52.523 --> 00:03:54.150
+problems began to emerge
+
+00:03:54.150 --> 00:03:54.984
+Researchers discovered that
+
+00:03:54.984 --> 00:03:57.820
+it’s hard to draw precise and intricate graphs with wax
+
+00:03:57.820 --> 00:03:59.239
+Moreover,the fluidity of wax
+
+00:03:59.239 --> 00:04:01.658
+caused distortions at the edge of the graphs
+
+00:04:01.658 --> 00:04:04.744
+The smaller the graph, the greater the margin of error
+
+00:04:04.786 --> 00:04:05.995
+Jay Lathrop and Jim Null
+
+00:04:05.995 --> 00:04:08.373
+of Diamond Labs
+
+00:04:08.373 --> 00:04:11.251
+were stuck in their efforts
+
+00:04:11.251 --> 00:04:13.211
+How could they solve this problem?
+
+00:04:13.211 --> 00:04:14.504
+Surprisingly,
+
+00:04:14.504 --> 00:04:16.589
+the answer they found at last
+
+00:04:16.589 --> 00:04:17.882
+came from a company
+
+00:04:17.882 --> 00:04:19.926
+that produced celluloid
+
+00:04:19.926 --> 00:04:22.178
+Eastman Kodak
+
+00:04:25.723 --> 00:04:28.309
+Before charge-coupled devices (CCDs) and digital cameras
+
+00:04:28.309 --> 00:04:29.769
+were invented
+
+00:04:29.769 --> 00:04:32.355
+film was the primary way to take photos
+
+00:04:32.355 --> 00:04:35.650
+Films will be coated with an emulsion of “silver halide” crystals
+
+00:04:35.650 --> 00:04:38.486
+silver halides include compounds like silver bromide,
+
+00:04:38.486 --> 00:04:40.029
+silver iodide and silver chloride--
+
+00:04:40.029 --> 00:04:42.615
+all of which are highly sensitive to light
+
+00:04:42.615 --> 00:04:45.660
+When a photo is taken, the shutter opens and closes rapidly,
+
+00:04:45.660 --> 00:04:48.454
+exposing the film for only a brief moment
+
+00:04:48.454 --> 00:04:49.747
+Lights passing through the lens
+
+00:04:49.747 --> 00:04:51.916
+induces a redox reaction in the silver ions
+
+00:04:51.916 --> 00:04:54.794
+causing them to transform from transparent ions into opaque silver atoms
+
+00:04:54.794 --> 00:04:57.422
+However, these silver atoms are extremely small and invisible to the naked eye
+
+00:04:57.422 --> 00:04:59.132
+which is why they are referred to as a “latent image.”
+
+00:04:59.132 --> 00:05:01.009
+During the film development process
+
+00:05:01.009 --> 00:05:03.094
+these silver atoms interact with a developer solution
+
+00:05:03.094 --> 00:05:04.929
+catalyzing the reduction of nearby silver ions
+
+00:05:04.929 --> 00:05:06.306
+back into metallic silver
+
+00:05:06.306 --> 00:05:08.933
+This process darkens the emulsion
+
+00:05:08.975 --> 00:05:11.269
+forming a visible black-and-white image
+
+00:05:11.269 --> 00:05:13.938
+The unexposed areas, which lack a latent image,
+
+00:05:13.938 --> 00:05:15.523
+remain transparent
+
+00:05:15.523 --> 00:05:17.317
+Lastly the fixer dissolves
+
+00:05:17.317 --> 00:05:18.109
+the unreacted transparent silver halide
+
+00:05:18.109 --> 00:05:20.111
+without redox reaction
+
+00:05:20.111 --> 00:05:22.655
+leaving behind a negative image on the film
+
+00:05:22.655 --> 00:05:23.573
+After that
+
+00:05:23.573 --> 00:05:25.491
+a negative-to-positive reversal process occurs
+
+00:05:25.491 --> 00:05:26.951
+but let’s skip that for now
+
+00:05:26.951 --> 00:05:28.077
+The point here is
+
+00:05:28.077 --> 00:05:29.662
+that to make better photographs
+
+00:05:29.662 --> 00:05:30.997
+such as those with higher resolution
+
+00:05:30.997 --> 00:05:32.081
+or full-color images
+
+00:05:32.081 --> 00:05:33.791
+that surpass black-and-white ones
+
+00:05:33.791 --> 00:05:36.210
+Kodak invested heavily in developing various photosensitive materials
+
+00:05:36.210 --> 00:05:37.920
+not just silver halides
+
+00:05:37.920 --> 00:05:39.339
+The material Lathrop chose
+
+00:05:39.339 --> 00:05:41.215
+for use in transistor fabrication
+
+00:05:41.215 --> 00:05:43.301
+was a product known as “photoresist”
+
+00:05:43.343 --> 00:05:46.679
+Photoresist also undergoes chemical changes
+
+00:05:46.679 --> 00:05:48.556
+when exposed to ultraviolet lights
+
+00:05:48.556 --> 00:05:50.099
+But the point isn’t to get black
+
+00:05:50.099 --> 00:05:52.477
+but to alter its dissolution rate
+
+00:05:52.477 --> 00:05:54.771
+The exposed areas harden
+
+00:05:54.771 --> 00:05:57.523
+while the unexposed parts remain unchanged
+
+00:05:57.523 --> 00:05:59.150
+and can be dissolved by a developer
+
+00:05:59.150 --> 00:06:00.818
+leaving behind the desired graphs
+
+00:06:00.818 --> 00:06:02.695
+So, how can light be controlled to selectively
+
+00:06:02.695 --> 00:06:05.365
+expose specific areas of the photoresist?
+
+00:06:05.365 --> 00:06:08.284
+They found inspiration in everyday microscopes
+
+00:06:08.284 --> 00:06:09.452
+The purpose of a microscope is
+
+00:06:09.452 --> 00:06:12.372
+to magnify light reflected from objects using lenses
+
+00:06:12.830 --> 00:06:15.291
+But what if we reversed the microscope?
+
+00:06:15.291 --> 00:06:16.751
+Could we then focus light
+
+00:06:16.793 --> 00:06:17.960
+into a tiny area 
+
+00:06:17.960 --> 00:06:20.213
+using lenses?
+
+00:06:20.213 --> 00:06:22.298
+By placing light-blocking masks
+
+00:06:22.298 --> 00:06:23.633
+on the microscope
+
+00:06:23.633 --> 00:06:24.842
+and then shining light through it
+
+00:06:24.842 --> 00:06:27.011
+we could project a miniature version of the same graphs 
+
+00:06:27.011 --> 00:06:29.347
+onto a tiny photoresist layer
+
+00:06:29.347 --> 00:06:30.848
+The mask that controls
+
+00:06:30.848 --> 00:06:32.892
+how light passes through
+
+00:06:32.892 --> 00:06:35.269
+is now commonly known as a “reticle.”
+
+00:06:35.269 --> 00:06:36.145
+Simply put
+
+00:06:36.145 --> 00:06:38.815
+this method replaces the material-protecting wax
+
+00:06:38.815 --> 00:06:39.982
+with photoresist
+
+00:06:39.982 --> 00:06:41.609
+And the way to etch photoresist
+
+00:06:41.609 --> 00:06:42.819
+is using reticles
+
+00:06:42.819 --> 00:06:44.862
+and a reversed microscope lens
+
+00:06:44.862 --> 00:06:46.781
+to ”expose” the photoresist
+
+00:06:46.781 --> 00:06:48.950
+Allowing the inherent properties of the photoresist
+
+00:06:48.991 --> 00:06:51.160
+to achieve the effect of etching
+
+00:06:51.160 --> 00:06:53.579
+Lathrop named this light-printing method
+
+00:06:53.579 --> 00:06:55.415
+photolithography
+
+00:06:55.415 --> 00:06:57.166
+a combination of the words
+:
+
+00:06:57.166 --> 00:06:59.210
+“photo”
+
+00:06:59.210 --> 00:07:00.420
+and “lithography”
+
+00:07:00.420 --> 00:07:01.546
+Photolithography technology
+
+00:07:01.546 --> 00:07:04.006
+quickly revolutionized the semiconductor industry
+
+00:07:04.006 --> 00:07:05.675
+This process not only improved the precision
+
+00:07:05.675 --> 00:07:07.677
+of transistor manufacturing
+
+00:07:07.677 --> 00:07:09.429
+but the introduction of reticles
+
+00:07:09.429 --> 00:07:10.847
+enabled the high-quality,,large-scale
+
+00:07:10.847 --> 00:07:12.473
+production of transistors
+
+00:07:12.473 --> 00:07:14.350
+Most importantly, photolithography
+
+00:07:14.350 --> 00:07:15.935
+paved the way for 
+
+00:07:15.935 --> 00:07:18.479
+future chip miniaturization
+
+00:07:18.479 --> 00:07:19.439
+In 1957
+
+00:07:19.439 --> 00:07:21.899
+Lathrop and Null applied for a patent
+
+00:07:21.899 --> 00:07:24.152
+They were publicly honored by the U.S. Army
+
+00:07:24.193 --> 00:07:26.779
+and awarded $25,000  bonus
+
+00:07:26.779 --> 00:07:28.156
+Looking back now
+
+00:07:28.156 --> 00:07:29.615
+we know that the true value
+
+00:07:29.615 --> 00:07:31.868
+of this invention far exceeds $25,000
+
+00:07:31.868 --> 00:07:33.286
+TI and Fairchild Semiconductor
+
+00:07:33.286 --> 00:07:34.370
+at that time
+
+00:07:34.370 --> 00:07:35.580
+like many other companies
+
+00:07:35.580 --> 00:07:37.039
+were both aware of this
+
+00:07:37.039 --> 00:07:39.417
+Thus, the race for photolithography began
+
+00:07:43.045 --> 00:07:45.465
+Lathrop and Noyce of Fairchild Semiconductors
+
+00:07:45.465 --> 00:07:47.258
+were classmates pursuing their doctorates in physics 
+
+00:07:47.258 --> 00:07:49.427
+at MIT
+
+00:07:49.427 --> 00:07:51.804
+They kept in touch after graduation
+
+00:07:51.804 --> 00:07:53.389
+When Noyce heard that
+
+00:07:53.389 --> 00:07:54.515
+Lathrop had joined TI
+
+00:07:54.515 --> 00:07:56.017
+He immediately decided to
+
+00:07:56.058 --> 00:07:57.768
+recruit Lathrop’s work partner
+
+00:07:57.768 --> 00:07:59.645
+Null
+
+00:07:59.645 --> 00:08:02.064
+Thus,both TI and Fairchild Semiconductor began
+
+00:08:02.064 --> 00:08:04.150
+developing photolithography technology
+
+00:08:04.150 --> 00:08:06.360
+Besides buying photoresist from Kodak
+
+00:08:06.360 --> 00:08:08.654
+each company worked hard to develop reticles
+
+00:08:08.654 --> 00:08:10.031
+Beyondphotolithography
+
+00:08:10.031 --> 00:08:12.033
+both companies led respectively by
+
+00:08:12.033 --> 00:08:13.993
+Kilby and Noyce
+
+00:08:13.993 --> 00:08:16.037
+succeeded in developing ICs
+
+00:08:16.037 --> 00:08:16.913
+We’ve already covered
+
+00:08:16.913 --> 00:08:18.915
+this part of story
+
+00:08:18.915 --> 00:08:20.249
+As time passed
+
+00:08:20.249 --> 00:08:22.835
+transistor size shrank
+
+00:08:22.835 --> 00:08:25.838
+from centimeters to millimeters, and eventually to microns
+
+00:08:25.838 --> 00:08:27.048
+The importance of photolithography
+
+00:08:27.048 --> 00:08:29.091
+grew without decline
+
+00:08:29.091 --> 00:08:31.135
+The best makers of photolithography equipment
+
+00:08:31.177 --> 00:08:32.637
+were no longer semiconductor R&amp;D companies
+
+00:08:32.637 --> 00:08:34.347
+like TI
+
+00:08:34.347 --> 00:08:37.183
+but rather those with expertise in precision optics
+
+00:08:37.183 --> 00:08:38.684
+For example in the 1970s
+
+00:08:38.684 --> 00:08:41.145
+the dominant photolithography equipment
+
+00:08:41.145 --> 00:08:42.855
+manufacturer that still exists today 
+
+00:08:42.855 --> 00:08:44.148
+was an American company
+
+00:08:44.148 --> 00:08:46.484
+called Perkin-Elmer
+
+00:08:46.484 --> 00:08:47.985
+Perkin-Eimer was skilled in producing
+
+00:08:47.985 --> 00:08:49.612
+military-grade sights
+
+00:08:49.612 --> 00:08:52.198
+and lenses for recon satellites
+
+00:08:52.198 --> 00:08:54.909
+Their ability to precisely align light to patterns  
+
+00:08:54.909 --> 00:08:57.078
+let them to quickly dominate the photolithography market
+
+00:08:57.078 --> 00:08:58.579
+But in 1980
+
+00:08:58.579 --> 00:09:00.831
+the industry leader changed
+
+00:09:00.831 --> 00:09:01.666
+Following a suggestion from Morris Chang
+
+00:09:01.666 --> 00:09:04.377
+who was still at TI
+
+00:09:04.418 --> 00:09:06.546
+A company called GCA
+
+00:09:06.546 --> 00:09:08.089
+introduced the world’s first
+
+00:09:08.089 --> 00:09:09.632
+stepper
+
+00:09:09.632 --> 00:09:11.801
+This stepper could move grid by grid
+
+00:09:11.801 --> 00:09:13.386
+across wafers
+
+00:09:13.386 --> 00:09:14.845
+printing out pieces of chips
+
+00:09:14.845 --> 00:09:16.681
+with identical graphs
+
+00:09:16.681 --> 00:09:18.766
+But soon after that, GCA nearly went bankrupt
+
+00:09:18.766 --> 00:09:20.309
+due to a strategic misstep:
+
+00:09:20.309 --> 00:09:22.603
+overexpansion
+
+00:09:22.603 --> 00:09:23.312
+Eventually
+
+00:09:23.312 --> 00:09:25.982
+Nikon who had been supplying lenses to GCA
+
+00:09:25.982 --> 00:09:27.650
+decided to go its own way
+
+00:09:27.650 --> 00:09:30.027
+They dismantled and studied GCA’s stepper
+
+00:09:30.027 --> 00:09:32.321
+then developed their own
+
+00:09:32.321 --> 00:09:33.739
+GCA’s downfall
+
+00:09:33.739 --> 00:09:35.408
+coupled with
+
+00:09:35.408 --> 00:09:36.951
+Nikon’s superior quality
+
+00:09:36.951 --> 00:09:38.619
+and low failure rate
+
+00:09:38.619 --> 00:09:41.706
+allowedNikon to surpass GCA in the market
+
+00:09:41.706 --> 00:09:43.874
+Japanese companies Nikon and Canon
+
+00:09:43.874 --> 00:09:45.751
+had become major competitors
+
+00:09:45.751 --> 00:09:47.545
+in photolithography equipment industry
+
+00:09:47.545 --> 00:09:49.630
+As the saying goes, ‘Every dog has his day’
+
+00:09:49.630 --> 00:09:52.758
+From TI, Perkin Elmer, GCA
+
+00:09:52.758 --> 00:09:55.344
+to Nikon and Canon in the 1980s
+
+00:09:55.386 --> 00:09:57.096
+the leader in photolithography equipment 
+
+00:09:57.096 --> 00:09:58.556
+changed frequently
+
+00:09:58.556 --> 00:10:00.516
+A decade later, in the 1990s
+
+00:10:00.516 --> 00:10:03.311
+another powerhouse emerged,
+
+00:10:03.311 --> 00:10:04.312
+ready to seize control of this critical market
+
+00:10:04.312 --> 00:10:06.230
+of photolithography
+
+00:10:06.230 --> 00:10:09.150
+The powerhouse was the Dutch manufacturer
+
+00:10:09.150 --> 00:10:10.318
+ASML
+
+00:10:10.359 --> 00:10:11.277
+The debut of ASML
+
+00:10:11.319 --> 00:10:12.945
+and its development of EUV machines
+
+00:10:12.945 --> 00:10:14.113
+would totally redefine
+
+00:10:14.113 --> 00:10:16.073
+the rules of the photolithography market
+
+00:10:16.073 --> 00:10:18.284
+something we now frequently see in the news
+
+00:10:18.284 --> 00:10:19.410
+But how did ASML
+
+00:10:19.452 --> 00:10:21.078
+rise to dominance?
+
+00:10:21.078 --> 00:10:22.246
+Why is it the only company
+
+00:10:22.246 --> 00:10:24.081
+capable of producing EUV machines?
+
+00:10:24.081 --> 00:10:26.042
+Stay tuned to our channel to find out!
+
+00:10:26.042 --> 00:10:27.501
+See you next time
+

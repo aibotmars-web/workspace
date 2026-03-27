@@ -12,7 +12,8 @@
 
 - **系統:** Mac mini (M4), 16GB RAM, 256GB SSD
 - **AI 系統:** OpenClaw，模型是 MiniMax M2.5 內地版（Coding Plan）
-- **通訊:** Telegram (@mlnl68), iMessage
+- **通訊:** Telegram (chat ID: 1073451144, username: @mlnl68), iMessage
+- **重要：發送 Telegram 訊息時必須使用數字 chat ID `1073451144`，不要用 @mlnl68**
 
 ### Google 帳號
 - **at6809@gmail.com** - 主要帳號（用於 Google Calendar）

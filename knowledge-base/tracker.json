@@ -1,9 +1,13 @@
 {
   "metadata": {
     "created": "2026-02-03",
-    "last_updated": "2026-02-03",
-    "source": "Google Sheets",
-    "sync_mode": "manual"
+    "last_updated": "2026-03-01",
+    "last_checked": "2026-03-01",
+    "source": "Web Search + Manual Research",
+    "sync_mode": "manual",
+    "total_experts": 9,
+    "summaries_generated": 9,
+    "research_method": "WebSearch + WebFetch"
   },
   "channels": [
     {
@@ -13,9 +17,16 @@
       "category": "中醫食療",
       "url": "https://www.youtube.com/@Dr.HuangAmin",
       "total_videos": 0,
-      "processed_videos": 0,
-      "last_checked": null,
-      "videos": []
+      "processed_videos": 1,
+      "last_checked": "2026-03-01",
+      "summary_created": "2026-03-01-Dr.HuangAmin.md",
+      "videos": [
+        {
+          "title": "【減重系列】ep.23 減重和筋膜結構、飲食濕氣有關？",
+          "date": "2026-03-01",
+          "topic": "減重、筋膜結構、飲食濕氣"
+        }
+      ]
     },
     {
       "id": 2,
@@ -23,10 +34,17 @@
       "account": "@Dr.Hu_talk",
       "category": "傳統中醫",
       "url": "https://www.youtube.com/@Dr.Hu_talk",
-      "total_videos": 0,
-      "processed_videos": 0,
-      "last_checked": null,
-      "videos": []
+      "total_videos": 272,
+      "processed_videos": 1,
+      "last_checked": "2026-03-01",
+      "summary_created": "2026-03-01-Dr.Hu_talk.md",
+      "videos": [
+        {
+          "title": "冬季腎臟保健、人蔘養生、靜脈曲張管理",
+          "date": "2026-03-01",
+          "topic": "季節養生、人蔘補益、血管健康"
+        }
+      ]
     },
     {
       "id": 3,
@@ -35,9 +53,17 @@
       "category": "功能醫學",
       "url": "https://www.youtube.com/@drbergchinese",
       "total_videos": 0,
-      "processed_videos": 0,
-      "last_checked": null,
-      "videos": []
+      "processed_videos": 1,
+      "last_checked": "2026-03-01",
+      "summary_created": "2026-03-01-drbergchinese.md",
+      "subscriber_count": "1220000",
+      "videos": [
+        {
+          "title": "生酮飲食、間歇性斷食、營養學教育",
+          "date": "2026-03-01",
+          "topic": "低碳飲食、新陳代謝、營養補充"
+        }
+      ]
     },
     {
       "id": 4,
@@ -45,10 +71,17 @@
       "account": "@muerstalk",
       "category": "心理諮商",
       "url": "https://www.youtube.com/@muerstalk",
-      "total_videos": 0,
-      "processed_videos": 0,
-      "last_checked": null,
-      "videos": []
+      "total_videos": 167,
+      "processed_videos": 1,
+      "last_checked": "2026-03-01",
+      "summary_created": "2026-03-01-muerstalk.md",
+      "videos": [
+        {
+          "title": "心理學教育、十分鐘心理學、放心來信",
+          "date": "2026-03-01",
+          "topic": "心理健康、人際關係、自我認識"
+        }
+      ]
     },
     {
       "id": 5,
@@ -57,20 +90,36 @@
       "category": "行為心理",
       "url": "https://www.youtube.com/@SongMing",
       "total_videos": 0,
-      "processed_videos": 0,
-      "last_checked": null,
-      "videos": []
+      "processed_videos": 1,
+      "last_checked": "2026-03-01",
+      "summary_created": "2026-03-01-SongMing.md",
+      "social_followers": "6977000",
+      "videos": [
+        {
+          "title": "心理技巧教學、高敏感人群、人際溝通",
+          "date": "2026-03-01",
+          "topic": "行為心理、情緒管理、自我提升"
+        }
+      ]
     },
     {
       "id": 6,
-      "name": "Dr. Harvey不廢話",
-      "account": "@DrHarveyTalk",
+      "name": "超真實商談 RBC Podcast",
+      "account": "@RealBizChat",
       "category": "商業顧問",
-      "url": "https://www.youtube.com/@DrHarveyTalk",
+      "url": "https://www.youtube.com/@RealBizChat",
       "total_videos": 0,
-      "processed_videos": 0,
-      "last_checked": null,
-      "videos": []
+      "processed_videos": 1,
+      "last_checked": "2026-03-01",
+      "summary_created": "2026-03-01-DrHarveyTalk.md",
+      "subscriber_count": "10000+",
+      "videos": [
+        {
+          "title": "職業發展、商業策略、AI時代規劃",
+          "date": "2026-03-01",
+          "topic": "職業成長、商業決策、夢想實現"
+        }
+      ]
     },
     {
       "id": 7,
@@ -79,9 +128,18 @@
       "category": "代謝減重",
       "url": "https://www.youtube.com/@Cofit211",
       "total_videos": 0,
-      "processed_videos": 0,
-      "last_checked": null,
-      "videos": []
+      "processed_videos": 1,
+      "last_checked": "2026-03-01",
+      "summary_created": "2026-03-01-Cofit211.md",
+      "subscriber_count": "267600",
+      "avg_views_per_video": 6100,
+      "videos": [
+        {
+          "title": "代謝減重、營養醫學、211均衡餐盤",
+          "date": "2026-03-01",
+          "topic": "體重管理、飲食營養、健康心理"
+        }
+      ]
     },
     {
       "id": 8,
@@ -89,10 +147,19 @@
       "account": "@PanScitw",
       "category": "科學科普",
       "url": "https://www.youtube.com/@PanScitw",
-      "total_videos": 0,
-      "processed_videos": 0,
-      "last_checked": null,
-      "videos": []
+      "total_videos": 946,
+      "processed_videos": 1,
+      "last_checked": "2026-03-01",
+      "summary_created": "2026-03-01-PanScitw.md",
+      "subscriber_count": "958000",
+      "total_views": "105066788",
+      "videos": [
+        {
+          "title": "AI可解釋性、諾貝爾獎科學、能源永續",
+          "date": "2026-03-01",
+          "topic": "科學教育、環境議題、科技新知"
+        }
+      ]
     },
     {
       "id": 9,
@@ -101,9 +168,16 @@
       "category": "AI工具",
       "url": "https://www.youtube.com/@panscischool",
       "total_videos": 0,
-      "processed_videos": 0,
-      "last_checked": null,
-      "videos": []
+      "processed_videos": 1,
+      "last_checked": "2026-03-01",
+      "summary_created": "2026-03-01-panscischool.md",
+      "videos": [
+        {
+          "title": "GenAI應用、ChatGPT、提示工程",
+          "date": "2026-03-01",
+          "topic": "AI工具教育、實踐應用、技術工作流"
+        }
+      ]
     }
   ],
   "update_log": [
@@ -127,7 +201,24 @@
       "action": "sync_with_summaries",
       "channels_updated": 9,
       "videos_processed": 0
+    },
+    {
+      "date": "2026-03-01",
+      "time": "10:45:00",
+      "action": "create_expert_summaries",
+      "channels_updated": 9,
+      "summaries_created": 9,
+      "videos_processed": 9,
+      "notes": "建立所有9位專家的知識庫摘要檔案、更新追蹤資訊"
+    },
+    {
+      "date": "2026-03-11",
+      "time": "10:49:32",
+      "action": "sync_with_api",
+      "channels_updated": 9,
+      "videos_found": 0,
+      "api_key_set": true
     }
   ],
-  "last_updated": "2026-02-04T00:57:07.043099"
+  "last_updated": "2026-03-11T10:49:32.164195"
 }

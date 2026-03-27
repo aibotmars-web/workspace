@@ -1,0 +1,2377 @@
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at  Unknown B/s (00:00:00)[download]    7.00KiB at  Unknown B/s (00:00:00)[download]   15.00KiB at    3.33MiB/s (00:00:00)[download]   31.00KiB at    6.16MiB/s (00:00:00)[download]   63.00KiB at    4.85MiB/s (00:00:00)[download]  115.71KiB at    7.26MiB/s (00:00:00)[download] 100% of  115.71KiB in 00:00:00 at 740.72KiB/s                                                        Welcome to the deep dive. Today we're
+
+Welcome to the deep dive. Today we're
+ 
+
+Welcome to the deep dive. Today we're
+looking at a really highstakes political
+
+looking at a really highstakes political
+ 
+
+looking at a really highstakes political
+moment in Japan. A truly dramatic power
+
+moment in Japan. A truly dramatic power
+ 
+
+moment in Japan. A truly dramatic power
+shift.
+
+shift.
+ 
+
+shift.
+&gt;&gt; Absolutely. We're focusing on Sonia
+
+&gt;&gt; Absolutely. We're focusing on Sonia
+ 
+
+&gt;&gt; Absolutely. We're focusing on Sonia
+Takichi, LDP's new president.
+
+Takichi, LDP's new president.
+ 
+
+Takichi, LDP's new president.
+&gt;&gt; And she's now set to become Japan's uh
+
+&gt;&gt; And she's now set to become Japan's uh
+ 
+
+&gt;&gt; And she's now set to become Japan's uh
+first ever female prime minister.
+
+first ever female prime minister.
+ 
+
+first ever female prime minister.
+Historic stuff.
+
+Historic stuff.
+ 
+
+Historic stuff.
+&gt;&gt; It's huge. But you know, this didn't
+
+&gt;&gt; It's huge. But you know, this didn't
+ 
+
+&gt;&gt; It's huge. But you know, this didn't
+come from nowhere or from a position of
+
+come from nowhere or from a position of
+ 
+
+come from nowhere or from a position of
+strength. It actually emerged from a
+
+strength. It actually emerged from a
+ 
+
+strength. It actually emerged from a
+pretty extraordinary crisis.
+
+pretty extraordinary crisis.
+ 
+
+pretty extraordinary crisis.
+&gt;&gt; Right. So our mission here is to give
+
+&gt;&gt; Right. So our mission here is to give
+ 
+
+&gt;&gt; Right. So our mission here is to give
+you the shortcut, unpack how this
+
+you the shortcut, unpack how this
+ 
+
+you the shortcut, unpack how this
+happened.
+
+happened.
+ 
+
+happened.
+&gt;&gt; Exactly. We'll look at the um the
+
+&gt;&gt; Exactly. We'll look at the um the
+ 
+
+&gt;&gt; Exactly. We'll look at the um the
+chaotic political collapse that made
+
+chaotic political collapse that made
+ 
+
+chaotic political collapse that made
+this election necessary. Takichi's very
+
+this election necessary. Takichi's very
+ 
+
+this election necessary. Takichi's very
+conservative platform, they call it the
+
+conservative platform, they call it the
+ 
+
+conservative platform, they call it the
+iron lady, you know, and then explore
+
+iron lady, you know, and then explore
+ 
+
+iron lady, you know, and then explore
+the immediate fallout, both uh domestic
+
+the immediate fallout, both uh domestic
+ 
+
+the immediate fallout, both uh domestic
+instability and what this means
+
+instability and what this means
+ 
+
+instability and what this means
+internationally.
+
+internationally.
+ 
+
+internationally.
+&gt;&gt; Okay, so let's start with the breakdown.
+
+&gt;&gt; Okay, so let's start with the breakdown.
+ 
+
+&gt;&gt; Okay, so let's start with the breakdown.
+You don't just get a snap LDP
+
+You don't just get a snap LDP
+ 
+
+You don't just get a snap LDP
+presidential election unless something's
+
+presidential election unless something's
+ 
+
+presidential election unless something's
+gone seriously wrong.
+
+gone seriously wrong.
+ 
+
+gone seriously wrong.
+&gt;&gt; And that something was definitely former
+
+&gt;&gt; And that something was definitely former
+ 
+
+&gt;&gt; And that something was definitely former
+Prime Minister Shagaru EA. He was in
+
+Prime Minister Shagaru EA. He was in
+ 
+
+Prime Minister Shagaru EA. He was in
+deep trouble. Crippled really by losing
+
+deep trouble. Crippled really by losing
+ 
+
+deep trouble. Crippled really by losing
+two major elections.
+
+two major elections.
+ 
+
+two major elections.
+&gt;&gt; Backto-back defeats.
+
+&gt;&gt; Backto-back defeats.
+ 
+
+&gt;&gt; Backto-back defeats.
+&gt;&gt; Yeah. Under siege. The LDP lost its
+
+&gt;&gt; Yeah. Under siege. The LDP lost its
+ 
+
+&gt;&gt; Yeah. Under siege. The LDP lost its
+majority. First in the 2024 general
+
+majority. First in the 2024 general
+ 
+
+majority. First in the 2024 general
+election, then again in the 2025 House
+
+election, then again in the 2025 House
+ 
+
+election, then again in the 2025 House
+of Counselors vote.
+
+of Counselors vote.
+ 
+
+of Counselors vote.
+&gt;&gt; Wow. Two huge national repudiations.
+
+&gt;&gt; Wow. Two huge national repudiations.
+ 
+
+&gt;&gt; Wow. Two huge national repudiations.
+That's got to hurt.
+
+That's got to hurt.
+ 
+
+That's got to hurt.
+&gt;&gt; It did. And you add internal party
+
+&gt;&gt; It did. And you add internal party
+ 
+
+&gt;&gt; It did. And you add internal party
+fighting to that, plus an ethics scandal
+
+fighting to that, plus an ethics scandal
+ 
+
+fighting to that, plus an ethics scandal
+investigation that Ichiba himself
+
+investigation that Ichiba himself
+ 
+
+investigation that Ichiba himself
+started. Yeah.
+
+started. Yeah.
+ 
+
+started. Yeah.
+&gt;&gt; Well, his position just wasn't tenable
+
+&gt;&gt; Well, his position just wasn't tenable
+ 
+
+&gt;&gt; Well, his position just wasn't tenable
+anymore.
+
+anymore.
+ 
+
+anymore.
+&gt;&gt; So, pressure just built and built until
+
+&gt;&gt; So, pressure just built and built until
+ 
+
+&gt;&gt; So, pressure just built and built until
+bang.
+
+bang.
+ 
+
+bang.
+&gt;&gt; Exactly. Ishiba resigned September 7th,
+
+&gt;&gt; Exactly. Ishiba resigned September 7th,
+ 
+
+&gt;&gt; Exactly. Ishiba resigned September 7th,
+2025.
+
+2025.
+ 
+
+2025.
+&gt;&gt; And that forced this extraordinary
+
+&gt;&gt; And that forced this extraordinary
+ 
+
+&gt;&gt; And that forced this extraordinary
+leadership contest.
+
+leadership contest.
+ 
+
+leadership contest.
+&gt;&gt; And the party's official message, the
+
+&gt;&gt; And the party's official message, the
+ 
+
+&gt;&gt; And the party's official message, the
+slogan, it was almost painfully honest.
+
+slogan, it was almost painfully honest.
+ 
+
+slogan, it was almost painfully honest.
+&gt;&gt; Oh yeah. Just # change the LDP.
+
+&gt;&gt; Oh yeah. Just # change the LDP.
+ 
+
+&gt;&gt; Oh yeah. Just # change the LDP.
+&gt;&gt; Talk about signaling panic, right? Not
+
+&gt;&gt; Talk about signaling panic, right? Not
+ 
+
+&gt;&gt; Talk about signaling panic, right? Not
+stability.
+
+stability.
+ 
+
+stability.
+&gt;&gt; Precisely. They weren't looking for a
+
+&gt;&gt; Precisely. They weren't looking for a
+ 
+
+&gt;&gt; Precisely. They weren't looking for a
+steady hand. They were uh they were
+
+steady hand. They were uh they were
+ 
+
+steady hand. They were uh they were
+desperate for someone anyone who could
+
+desperate for someone anyone who could
+ 
+
+desperate for someone anyone who could
+stop the bleeding, disrupt that losing
+
+stop the bleeding, disrupt that losing
+ 
+
+stop the bleeding, disrupt that losing
+streak.
+
+streak.
+ 
+
+streak.
+&gt;&gt; A life raft
+
+&gt;&gt; A life raft
+ 
+
+&gt;&gt; A life raft
+&gt;&gt; pretty much. Yeah. And that desperate
+
+&gt;&gt; pretty much. Yeah. And that desperate
+ 
+
+&gt;&gt; pretty much. Yeah. And that desperate
+search led to this really intense
+
+search led to this really intense
+ 
+
+search led to this really intense
+battle, a fight for the LDP's soul, you
+
+battle, a fight for the LDP's soul, you
+ 
+
+battle, a fight for the LDP's soul, you
+could say.
+
+could say.
+ 
+
+could say.
+&gt;&gt; So tell us about the vote itself, the
+
+&gt;&gt; So tell us about the vote itself, the
+ 
+
+&gt;&gt; So tell us about the vote itself, the
+procedure, because how they voted is key
+
+procedure, because how they voted is key
+ 
+
+procedure, because how they voted is key
+to understanding Taki's win, isn't it?
+
+to understanding Taki's win, isn't it?
+ 
+
+to understanding Taki's win, isn't it?
+&gt;&gt; Absolutely critical.
+
+&gt;&gt; Absolutely critical.
+ 
+
+&gt;&gt; Absolutely critical.
+&gt;&gt; It was what they call a full-scale vote
+
+&gt;&gt; It was what they call a full-scale vote
+ 
+
+&gt;&gt; It was what they call a full-scale vote
+meant to give the new leader real
+
+meant to give the new leader real
+ 
+
+meant to give the new leader real
+legitimacy.
+
+legitimacy.
+ 
+
+legitimacy.
+&gt;&gt; So who voted?
+
+&gt;&gt; So who voted?
+ 
+
+&gt;&gt; So who voted?
+&gt;&gt; It involved all the LDP diet members
+
+&gt;&gt; It involved all the LDP diet members
+ 
+
+&gt;&gt; It involved all the LDP diet members
+plus, and this is important, all the
+
+plus, and this is important, all the
+ 
+
+plus, and this is important, all the
+dues paying party members across Japan.
+
+dues paying party members across Japan.
+ 
+
+dues paying party members across Japan.
+&gt;&gt; That's um over 900,000 people eligible.
+
+&gt;&gt; That's um over 900,000 people eligible.
+ 
+
+&gt;&gt; That's um over 900,000 people eligible.
+&gt;&gt; Okay. But here's what really shows the
+
+&gt;&gt; Okay. But here's what really shows the
+ 
+
+&gt;&gt; Okay. But here's what really shows the
+state the LP was in.
+
+state the LP was in.
+ 
+
+state the LP was in.
+&gt;&gt; All five candidates. They'd all run
+
+&gt;&gt; All five candidates. They'd all run
+ 
+
+&gt;&gt; All five candidates. They'd all run
+before and lost.
+
+before and lost.
+ 
+
+before and lost.
+&gt;&gt; Really? No fresh faces?
+
+&gt;&gt; Really? No fresh faces?
+ 
+
+&gt;&gt; Really? No fresh faces?
+&gt;&gt; Nope. Veterans looking for another shot.
+
+&gt;&gt; Nope. Veterans looking for another shot.
+ 
+
+&gt;&gt; Nope. Veterans looking for another shot.
+Which tells you something about the
+
+Which tells you something about the
+ 
+
+Which tells you something about the
+talent pool or maybe the party's risk
+
+talent pool or maybe the party's risk
+ 
+
+talent pool or maybe the party's risk
+aversion.
+
+aversion.
+ 
+
+aversion.
+&gt;&gt; So this setup created a pretty dramatic
+
+&gt;&gt; So this setup created a pretty dramatic
+ 
+
+&gt;&gt; So this setup created a pretty dramatic
+clash, right? Generations ideologies.
+
+clash, right? Generations ideologies.
+ 
+
+clash, right? Generations ideologies.
+&gt;&gt; Definitely. You had Shinjir Kisumi,
+
+&gt;&gt; Definitely. You had Shinjir Kisumi,
+ 
+
+&gt;&gt; Definitely. You had Shinjir Kisumi,
+younger seen as more of a reformer
+
+younger seen as more of a reformer
+ 
+
+younger seen as more of a reformer
+sometimes, right?
+
+sometimes, right?
+ 
+
+sometimes, right?
+&gt;&gt; Against Sun Taki, deeply conservative
+
+&gt;&gt; Against Sun Taki, deeply conservative
+ 
+
+&gt;&gt; Against Sun Taki, deeply conservative
+and nationalist stalwart. And the early
+
+and nationalist stalwart. And the early
+ 
+
+and nationalist stalwart. And the early
+polls reflected a split within the
+
+polls reflected a split within the
+ 
+
+polls reflected a split within the
+party.
+
+party.
+ 
+
+party.
+&gt;&gt; A really stark division. Yeah. Kind of
+
+&gt;&gt; A really stark division. Yeah. Kind of
+ 
+
+&gt;&gt; A really stark division. Yeah. Kind of
+foreshadowed the drama to come. Quizumi
+
+foreshadowed the drama to come. Quizumi
+ 
+
+foreshadowed the drama to come. Quizumi
+was actually leading among general LDP
+
+was actually leading among general LDP
+ 
+
+was actually leading among general LDP
+supporters. You know, the broader base.
+
+supporters. You know, the broader base.
+ 
+
+supporters. You know, the broader base.
+&gt;&gt; Okay. So, the public mood maybe leaned
+
+&gt;&gt; Okay. So, the public mood maybe leaned
+ 
+
+&gt;&gt; Okay. So, the public mood maybe leaned
+towards change
+
+towards change
+ 
+
+towards change
+&gt;&gt; perhaps.
+
+&gt;&gt; perhaps.
+ 
+
+&gt;&gt; perhaps.
+&gt;&gt; Yeah.
+
+&gt;&gt; Yeah.
+ 
+
+&gt;&gt; Yeah.
+&gt;&gt; But Takichi, she was dominating among
+
+&gt;&gt; But Takichi, she was dominating among
+ 
+
+&gt;&gt; But Takichi, she was dominating among
+the core, the dues paying members, the
+
+the core, the dues paying members, the
+ 
+
+the core, the dues paying members, the
+party faithful.
+
+party faithful.
+ 
+
+party faithful.
+&gt;&gt; Ah, suggesting the party machine itself
+
+&gt;&gt; Ah, suggesting the party machine itself
+ 
+
+&gt;&gt; Ah, suggesting the party machine itself
+was still very conservative.
+
+was still very conservative.
+ 
+
+was still very conservative.
+&gt;&gt; Exactly. The establishment wasn't ready
+
+&gt;&gt; Exactly. The establishment wasn't ready
+ 
+
+&gt;&gt; Exactly. The establishment wasn't ready
+to give up.
+
+to give up.
+ 
+
+to give up.
+&gt;&gt; Yeah. And that split, it sent them
+
+&gt;&gt; Yeah. And that split, it sent them
+ 
+
+&gt;&gt; Yeah. And that split, it sent them
+straight to a runoff vote.
+
+straight to a runoff vote.
+ 
+
+straight to a runoff vote.
+&gt;&gt; So, the first round results,
+
+&gt;&gt; So, the first round results,
+ 
+
+&gt;&gt; So, the first round results,
+&gt;&gt; okay, first round, 590 total votes, up
+
+&gt;&gt; okay, first round, 590 total votes, up
+ 
+
+&gt;&gt; okay, first round, 590 total votes, up
+for grabs. Takichi came in first, but
+
+for grabs. Takichi came in first, but
+ 
+
+for grabs. Takichi came in first, but
+narrowly uh 31.07%.
+
+narrowly uh 31.07%.
+ 
+
+narrowly uh 31.07%.
+&gt;&gt; Close.
+
+&gt;&gt; Close.
+ 
+
+&gt;&gt; Close.
+&gt;&gt; Very Kuzumi right behind her at 27.84%.
+
+&gt;&gt; Very Kuzumi right behind her at 27.84%.
+ 
+
+&gt;&gt; Very Kuzumi right behind her at 27.84%.
+Yoshi Masahayashi, the chief cabinet
+
+Yoshi Masahayashi, the chief cabinet
+ 
+
+Yoshi Masahayashi, the chief cabinet
+secretary, he was knocked out in third.
+
+secretary, he was knocked out in third.
+ 
+
+secretary, he was knocked out in third.
+&gt;&gt; So, it goes to a second round. And this
+
+&gt;&gt; So, it goes to a second round. And this
+ 
+
+&gt;&gt; So, it goes to a second round. And this
+is where the dynamic shifts, right? The
+
+is where the dynamic shifts, right? The
+ 
+
+is where the dynamic shifts, right? The
+runoff mechanism.
+
+runoff mechanism.
+ 
+
+runoff mechanism.
+&gt;&gt; This is the crucial part for you to
+
+&gt;&gt; This is the crucial part for you to
+ 
+
+&gt;&gt; This is the crucial part for you to
+grasp. The runoff dramatically shrinks
+
+grasp. The runoff dramatically shrinks
+ 
+
+grasp. The runoff dramatically shrinks
+the electorate. Suddenly, it's less
+
+the electorate. Suddenly, it's less
+ 
+
+the electorate. Suddenly, it's less
+about those hundreds of thousands of
+
+about those hundreds of thousands of
+ 
+
+about those hundreds of thousands of
+party members
+
+party members
+ 
+
+party members
+&gt;&gt; who favored Quisumi more,
+
+&gt;&gt; who favored Quisumi more,
+ 
+
+&gt;&gt; who favored Quisumi more,
+&gt;&gt; right? And it becomes much more about
+
+&gt;&gt; right? And it becomes much more about
+ 
+
+&gt;&gt; right? And it becomes much more about
+the LDP diet members plus just one
+
+the LDP diet members plus just one
+ 
+
+the LDP diet members plus just one
+delegate from each prefixure. Power gets
+
+delegate from each prefixure. Power gets
+ 
+
+delegate from each prefixure. Power gets
+concentrated.
+
+concentrated.
+ 
+
+concentrated.
+&gt;&gt; So basically the diet members, the party
+
+&gt;&gt; So basically the diet members, the party
+ 
+
+&gt;&gt; So basically the diet members, the party
+establishment got the deciding vote,
+
+establishment got the deciding vote,
+ 
+
+establishment got the deciding vote,
+overriding the wider membership to some
+
+overriding the wider membership to some
+ 
+
+overriding the wider membership to some
+extent.
+
+extent.
+ 
+
+extent.
+&gt;&gt; That's essentially it. It concentrated
+
+&gt;&gt; That's essentially it. It concentrated
+ 
+
+&gt;&gt; That's essentially it. It concentrated
+power right where Taki's strength was
+
+power right where Taki's strength was
+ 
+
+power right where Taki's strength was
+among those traditional conservative
+
+among those traditional conservative
+ 
+
+among those traditional conservative
+factions in the diet. And the result,
+
+factions in the diet. And the result,
+ 
+
+factions in the diet. And the result,
+&gt;&gt; a clear dramatic win for her. October
+
+&gt;&gt; a clear dramatic win for her. October
+ 
+
+&gt;&gt; a clear dramatic win for her. October
+4th, she got 185 votes. That's 54.25%
+
+4th, she got 185 votes. That's 54.25%
+ 
+
+4th, she got 185 votes. That's 54.25%
+against Kisumi's
+
+against Kisumi's
+ 
+
+against Kisumi's
+156.
+
+156.
+ 
+
+156.
+&gt;&gt; And just like that, the LDP has its
+
+&gt;&gt; And just like that, the LDP has its
+ 
+
+&gt;&gt; And just like that, the LDP has its
+first woman president. Amazing.
+
+first woman president. Amazing.
+ 
+
+first woman president. Amazing.
+Confirmation SPM expected soon,
+
+Confirmation SPM expected soon,
+ 
+
+Confirmation SPM expected soon,
+&gt;&gt; mid-occtober. Yeah. So, she's basically
+
+&gt;&gt; mid-occtober. Yeah. So, she's basically
+ 
+
+&gt;&gt; mid-occtober. Yeah. So, she's basically
+there.
+
+there.
+ 
+
+there.
+&gt;&gt; Okay. This rise of Takayuchi Japan's
+
+&gt;&gt; Okay. This rise of Takayuchi Japan's
+ 
+
+&gt;&gt; Okay. This rise of Takayuchi Japan's
+iron lady.
+
+iron lady.
+ 
+
+iron lady.
+&gt;&gt; It's fascinating. Not just the win, but
+
+&gt;&gt; It's fascinating. Not just the win, but
+ 
+
+&gt;&gt; It's fascinating. Not just the win, but
+who she is. We need to dig into her
+
+who she is. We need to dig into her
+ 
+
+who she is. We need to dig into her
+background a bit.
+
+background a bit.
+ 
+
+background a bit.
+&gt;&gt; Yeah. Her path is really unconventional
+
+&gt;&gt; Yeah. Her path is really unconventional
+ 
+
+&gt;&gt; Yeah. Her path is really unconventional
+for, you know, a top LDP figure. She's
+
+for, you know, a top LDP figure. She's
+ 
+
+for, you know, a top LDP figure. She's
+64 from N, not from some big political
+
+64 from N, not from some big political
+ 
+
+64 from N, not from some big political
+dynasty,
+
+dynasty,
+ 
+
+dynasty,
+&gt;&gt; which is unusual in Japanese politics.
+
+&gt;&gt; which is unusual in Japanese politics.
+ 
+
+&gt;&gt; which is unusual in Japanese politics.
+&gt;&gt; Very. And her resume is well,
+
+&gt;&gt; Very. And her resume is well,
+ 
+
+&gt;&gt; Very. And her resume is well,
+surprising. Get this. University days.
+
+surprising. Get this. University days.
+ 
+
+surprising. Get this. University days.
+Heavy metal drummer.
+
+Heavy metal drummer.
+ 
+
+Heavy metal drummer.
+&gt;&gt; Wait, seriously. A heavy metal drummer.
+
+&gt;&gt; Wait, seriously. A heavy metal drummer.
+ 
+
+&gt;&gt; Wait, seriously. A heavy metal drummer.
+&gt;&gt; Yep. And then she used that sort of uh
+
+&gt;&gt; Yep. And then she used that sort of uh
+ 
+
+&gt;&gt; Yep. And then she used that sort of uh
+performance experience, I guess, to
+
+performance experience, I guess, to
+ 
+
+performance experience, I guess, to
+become a newscaster. Did political
+
+become a newscaster. Did political
+ 
+
+become a newscaster. Did political
+analysis on TV before she even ran for
+
+analysis on TV before she even ran for
+ 
+
+analysis on TV before she even ran for
+office.
+
+office.
+ 
+
+office.
+&gt;&gt; Okay, hold on. heavy metal drummer
+
+&gt;&gt; Okay, hold on. heavy metal drummer
+ 
+
+&gt;&gt; Okay, hold on. heavy metal drummer
+turned conservative LDP nationalist
+
+turned conservative LDP nationalist
+ 
+
+turned conservative LDP nationalist
+leader. That's quite the combination.
+
+leader. That's quite the combination.
+ 
+
+leader. That's quite the combination.
+Almost unheard of.
+
+Almost unheard of.
+ 
+
+Almost unheard of.
+&gt;&gt; It really is.
+
+&gt;&gt; It really is.
+ 
+
+&gt;&gt; It really is.
+&gt;&gt; Does that unusual background not being
+
+&gt;&gt; Does that unusual background not being
+ 
+
+&gt;&gt; Does that unusual background not being
+from the elite actually give her some
+
+from the elite actually give her some
+ 
+
+from the elite actually give her some
+credibility? Maybe with LDP members
+
+credibility? Maybe with LDP members
+ 
+
+credibility? Maybe with LDP members
+tired of the same old families, even if
+
+tired of the same old families, even if
+ 
+
+tired of the same old families, even if
+her policies are traditional.
+
+her policies are traditional.
+ 
+
+her policies are traditional.
+&gt;&gt; I think it absolutely helps her
+
+&gt;&gt; I think it absolutely helps her
+ 
+
+&gt;&gt; I think it absolutely helps her
+narrative that she's an outsider who
+
+narrative that she's an outsider who
+ 
+
+narrative that she's an outsider who
+made it on merit. But yeah, her policies
+
+made it on merit. But yeah, her policies
+ 
+
+made it on merit. But yeah, her policies
+are deeply traditional conservative.
+
+are deeply traditional conservative.
+ 
+
+are deeply traditional conservative.
+She's aligned with the eye faction, the
+
+She's aligned with the eye faction, the
+ 
+
+She's aligned with the eye faction, the
+legacy of Shinszo AB.
+
+legacy of Shinszo AB.
+ 
+
+legacy of Shinszo AB.
+&gt;&gt; Right. So, let's talk policy. her
+
+&gt;&gt; Right. So, let's talk policy. her
+ 
+
+&gt;&gt; Right. So, let's talk policy. her
+economic plan sanomics. What's the idea
+
+economic plan sanomics. What's the idea
+ 
+
+economic plan sanomics. What's the idea
+there?
+
+there?
+ 
+
+there?
+&gt;&gt; It's essentially abonomics, but maybe
+
+&gt;&gt; It's essentially abonomics, but maybe
+ 
+
+&gt;&gt; It's essentially abonomics, but maybe
+even more aggressive on the spending
+
+even more aggressive on the spending
+ 
+
+even more aggressive on the spending
+side. She's what economists call a
+
+side. She's what economists call a
+ 
+
+side. She's what economists call a
+fiscal dove.
+
+fiscal dove.
+ 
+
+fiscal dove.
+&gt;&gt; Meaning she favors government stimulus
+
+&gt;&gt; Meaning she favors government stimulus
+ 
+
+&gt;&gt; Meaning she favors government stimulus
+&gt;&gt; big time robust spending, prioritizing
+
+&gt;&gt; big time robust spending, prioritizing
+ 
+
+&gt;&gt; big time robust spending, prioritizing
+growth over, say, immediately balancing
+
+growth over, say, immediately balancing
+ 
+
+growth over, say, immediately balancing
+the budget.
+
+the budget.
+ 
+
+the budget.
+&gt;&gt; That's interesting. Using expansionary
+
+&gt;&gt; That's interesting. Using expansionary
+ 
+
+&gt;&gt; That's interesting. Using expansionary
+fiscal policy often seen as left-leaning
+
+fiscal policy often seen as left-leaning
+ 
+
+fiscal policy often seen as left-leaning
+to appeal to conservatives worried about
+
+to appeal to conservatives worried about
+ 
+
+to appeal to conservatives worried about
+the economy.
+
+the economy.
+ 
+
+the economy.
+&gt;&gt; Precisely. She's decoupling nationalism
+
+&gt;&gt; Precisely. She's decoupling nationalism
+ 
+
+&gt;&gt; Precisely. She's decoupling nationalism
+from austerity in a way, saying we can
+
+from austerity in a way, saying we can
+ 
+
+from austerity in a way, saying we can
+be strong and spend our way to growth.
+
+be strong and spend our way to growth.
+ 
+
+be strong and spend our way to growth.
+&gt;&gt; So spend first, worry about the debt
+
+&gt;&gt; So spend first, worry about the debt
+ 
+
+&gt;&gt; So spend first, worry about the debt
+later.
+
+later.
+ 
+
+later.
+&gt;&gt; That seems to be the message. She
+
+&gt;&gt; That seems to be the message. She
+ 
+
+&gt;&gt; That seems to be the message. She
+actually said Japan should freeze the
+
+actually said Japan should freeze the
+ 
+
+actually said Japan should freeze the
+balanced budget goal until the Bank of
+
+balanced budget goal until the Bank of
+ 
+
+balanced budget goal until the Bank of
+Japan hits its 2% inflation target. And
+
+Japan hits its 2% inflation target. And
+ 
+
+Japan hits its 2% inflation target. And
+she's ready to issue government bonds
+
+she's ready to issue government bonds
+ 
+
+she's ready to issue government bonds
+for crisis.
+
+for crisis.
+ 
+
+for crisis.
+&gt;&gt; It's a gamble though, given Japan's huge
+
+&gt;&gt; It's a gamble though, given Japan's huge
+ 
+
+&gt;&gt; It's a gamble though, given Japan's huge
+debt.
+
+debt.
+ 
+
+debt.
+&gt;&gt; A very high stakes gamble. Huge
+
+&gt;&gt; A very high stakes gamble. Huge
+ 
+
+&gt;&gt; A very high stakes gamble. Huge
+potential upside if it works, but
+
+potential upside if it works, but
+ 
+
+potential upside if it works, but
+significant risks.
+
+significant risks.
+ 
+
+significant risks.
+&gt;&gt; Okay, turning to foreign policy. also
+
+&gt;&gt; Okay, turning to foreign policy. also
+ 
+
+&gt;&gt; Okay, turning to foreign policy. also
+pretty hardline reflecting that
+
+pretty hardline reflecting that
+ 
+
+pretty hardline reflecting that
+nationalism.
+
+nationalism.
+ 
+
+nationalism.
+&gt;&gt; Oh yeah, very hawkish. Domestically, she
+
+&gt;&gt; Oh yeah, very hawkish. Domestically, she
+ 
+
+&gt;&gt; Oh yeah, very hawkish. Domestically, she
+wants to revise Japan's pacifist
+
+wants to revise Japan's pacifist
+ 
+
+wants to revise Japan's pacifist
+constitution, allow for a more uh
+
+constitution, allow for a more uh
+ 
+
+constitution, allow for a more uh
+proactive military
+
+proactive military
+ 
+
+proactive military
+&gt;&gt; and the Yasukuni shrine visits. That's
+
+&gt;&gt; and the Yasukuni shrine visits. That's
+ 
+
+&gt;&gt; and the Yasukuni shrine visits. That's
+always controversial.
+
+always controversial.
+ 
+
+always controversial.
+&gt;&gt; Historically, she's visited regularly.
+
+&gt;&gt; Historically, she's visited regularly.
+ 
+
+&gt;&gt; Historically, she's visited regularly.
+&gt;&gt; Yeah.
+
+&gt;&gt; Yeah.
+ 
+
+&gt;&gt; Yeah.
+&gt;&gt; Which always angers China and South
+
+&gt;&gt; Which always angers China and South
+ 
+
+&gt;&gt; Which always angers China and South
+Korea. During the campaign, she was a
+
+Korea. During the campaign, she was a
+ 
+
+Korea. During the campaign, she was a
+bit more vague about future visits, but
+
+bit more vague about future visits, but
+ 
+
+bit more vague about future visits, but
+it's definitely part of her political
+
+it's definitely part of her political
+ 
+
+it's definitely part of her political
+identity. And internationally, she
+
+identity. And internationally, she
+ 
+
+identity. And internationally, she
+floated a really provocative idea about
+
+floated a really provocative idea about
+ 
+
+floated a really provocative idea about
+Taiwan.
+
+Taiwan.
+ 
+
+Taiwan.
+&gt;&gt; Yeah. She talked about a quasi security
+
+&gt;&gt; Yeah. She talked about a quasi security
+ 
+
+&gt;&gt; Yeah. She talked about a quasi security
+alliance with Taiwan. That's a big
+
+alliance with Taiwan. That's a big
+ 
+
+alliance with Taiwan. That's a big
+shift.
+
+shift.
+ 
+
+shift.
+&gt;&gt; Moving away from strategic ambiguity.
+
+&gt;&gt; Moving away from strategic ambiguity.
+ 
+
+&gt;&gt; Moving away from strategic ambiguity.
+&gt;&gt; Exactly. It signals Tokyo wants to be a
+
+&gt;&gt; Exactly. It signals Tokyo wants to be a
+ 
+
+&gt;&gt; Exactly. It signals Tokyo wants to be a
+much more active player in regional
+
+much more active player in regional
+ 
+
+much more active player in regional
+security.
+
+security.
+ 
+
+security.
+&gt;&gt; Yeah.
+
+&gt;&gt; Yeah.
+ 
+
+&gt;&gt; Yeah.
+&gt;&gt; Washington probably likes the sound of
+
+&gt;&gt; Washington probably likes the sound of
+ 
+
+&gt;&gt; Washington probably likes the sound of
+that assertiveness. Beijing definitely
+
+that assertiveness. Beijing definitely
+ 
+
+that assertiveness. Beijing definitely
+not.
+
+not.
+ 
+
+not.
+&gt;&gt; This all feeds into that Margaret
+
+&gt;&gt; This all feeds into that Margaret
+ 
+
+&gt;&gt; This all feeds into that Margaret
+Thatcher comparison, doesn't it? She
+
+Thatcher comparison, doesn't it? She
+ 
+
+Thatcher comparison, doesn't it? She
+seems to embrace the Iron Lady label.
+
+seems to embrace the Iron Lady label.
+ 
+
+seems to embrace the Iron Lady label.
+&gt;&gt; She does. And she made this incredibly
+
+&gt;&gt; She does. And she made this incredibly
+ 
+
+&gt;&gt; She does. And she made this incredibly
+dramatic statement right after winning
+
+dramatic statement right after winning
+ 
+
+dramatic statement right after winning
+to the party.
+
+to the party.
+ 
+
+to the party.
+&gt;&gt; What was that?
+
+&gt;&gt; What was that?
+ 
+
+&gt;&gt; What was that?
+&gt;&gt; She said, "I am abandoning the phrase
+
+&gt;&gt; She said, "I am abandoning the phrase
+ 
+
+&gt;&gt; She said, "I am abandoning the phrase
+work life balance as of today."
+
+work life balance as of today."
+ 
+
+work life balance as of today."
+&gt;&gt; Wow, that's intense. Signaling total
+
+&gt;&gt; Wow, that's intense. Signaling total
+ 
+
+&gt;&gt; Wow, that's intense. Signaling total
+dedication.
+
+dedication.
+ 
+
+dedication.
+&gt;&gt; The intention. But you know, it also
+
+&gt;&gt; The intention. But you know, it also
+ 
+
+&gt;&gt; The intention. But you know, it also
+touches a really sensitive nerve in
+
+touches a really sensitive nerve in
+ 
+
+touches a really sensitive nerve in
+Japan. A dark one even.
+
+Japan. A dark one even.
+ 
+
+Japan. A dark one even.
+&gt;&gt; Yeah, let's talk about that because
+
+&gt;&gt; Yeah, let's talk about that because
+ 
+
+&gt;&gt; Yeah, let's talk about that because
+she's about to be the first female prime
+
+she's about to be the first female prime
+ 
+
+she's about to be the first female prime
+minister. A huge historical moment.
+
+minister. A huge historical moment.
+ 
+
+minister. A huge historical moment.
+&gt;&gt; Monumental,
+
+&gt;&gt; Monumental,
+ 
+
+&gt;&gt; Monumental,
+&gt;&gt; but it clashes so sharply with the
+
+&gt;&gt; but it clashes so sharply with the
+ 
+
+&gt;&gt; but it clashes so sharply with the
+reality for women in Japan, especially
+
+reality for women in Japan, especially
+ 
+
+reality for women in Japan, especially
+around that work culture. she just
+
+around that work culture. she just
+ 
+
+around that work culture. she just
+referenced.
+
+referenced.
+ 
+
+referenced.
+&gt;&gt; It's a massive paradox. Yeah, she breaks
+
+&gt;&gt; It's a massive paradox. Yeah, she breaks
+ 
+
+&gt;&gt; It's a massive paradox. Yeah, she breaks
+the ultimate glass ceiling, right?
+
+the ultimate glass ceiling, right?
+ 
+
+the ultimate glass ceiling, right?
+&gt;&gt; But female representation in the diet,
+
+&gt;&gt; But female representation in the diet,
+ 
+
+&gt;&gt; But female representation in the diet,
+it's dismal around 10%.
+
+it's dismal around 10%.
+ 
+
+it's dismal around 10%.
+&gt;&gt; Globally ranked very low for women's
+
+&gt;&gt; Globally ranked very low for women's
+ 
+
+&gt;&gt; Globally ranked very low for women's
+political empowerment,
+
+political empowerment,
+ 
+
+political empowerment,
+&gt;&gt; extremely low. And that quote about
+
+&gt;&gt; extremely low. And that quote about
+ 
+
+&gt;&gt; extremely low. And that quote about
+abandoning work life balance. It cuts
+
+abandoning work life balance. It cuts
+ 
+
+abandoning work life balance. It cuts
+right to the core of the systemic
+
+right to the core of the systemic
+ 
+
+right to the core of the systemic
+barriers women face there.
+
+barriers women face there.
+ 
+
+barriers women face there.
+&gt;&gt; Our sources really highlight those
+
+&gt;&gt; Our sources really highlight those
+ 
+
+&gt;&gt; Our sources really highlight those
+barriers. Things like not enough family
+
+barriers. Things like not enough family
+ 
+
+barriers. Things like not enough family
+support, child care issues,
+
+support, child care issues,
+ 
+
+support, child care issues,
+&gt;&gt; combined with Japan's notorious
+
+&gt;&gt; combined with Japan's notorious
+ 
+
+&gt;&gt; combined with Japan's notorious
+overworking culture. I mean they have a
+
+overworking culture. I mean they have a
+ 
+
+overworking culture. I mean they have a
+word for it a kershey death by overwork.
+
+word for it a kershey death by overwork.
+ 
+
+word for it a kershey death by overwork.
+&gt;&gt; It's unbelievable.
+
+&gt;&gt; It's unbelievable.
+ 
+
+&gt;&gt; It's unbelievable.
+&gt;&gt; And that pressure makes it almost
+
+&gt;&gt; And that pressure makes it almost
+ 
+
+&gt;&gt; And that pressure makes it almost
+impossible for women to juggle highle
+
+impossible for women to juggle highle
+ 
+
+impossible for women to juggle highle
+careers and family responsibilities.
+
+careers and family responsibilities.
+ 
+
+careers and family responsibilities.
+Even when women do get elected, the
+
+Even when women do get elected, the
+ 
+
+Even when women do get elected, the
+party structures are so male-dominated,
+
+party structures are so male-dominated,
+ 
+
+party structures are so male-dominated,
+they often end up as just symbolic
+
+they often end up as just symbolic
+ 
+
+they often end up as just symbolic
+figures.
+
+figures.
+ 
+
+figures.
+&gt;&gt; So Takichi is really the exception that
+
+&gt;&gt; So Takichi is really the exception that
+ 
+
+&gt;&gt; So Takichi is really the exception that
+proves the rule, having climbed that
+
+proves the rule, having climbed that
+ 
+
+proves the rule, having climbed that
+ladder within this very patriarchal
+
+ladder within this very patriarchal
+ 
+
+ladder within this very patriarchal
+system.
+
+system.
+ 
+
+system.
+&gt;&gt; Absolutely. And her victory isn't just
+
+&gt;&gt; Absolutely. And her victory isn't just
+ 
+
+&gt;&gt; Absolutely. And her victory isn't just
+causing ripples internationally. It's
+
+causing ripples internationally. It's
+ 
+
+causing ripples internationally. It's
+creating immediate instability right at
+
+creating immediate instability right at
+ 
+
+creating immediate instability right at
+home.
+
+home.
+ 
+
+home.
+&gt;&gt; Yeah.
+
+&gt;&gt; Yeah.
+ 
+
+&gt;&gt; Yeah.
+&gt;&gt; Within her own coalition.
+
+&gt;&gt; Within her own coalition.
+ 
+
+&gt;&gt; Within her own coalition.
+&gt;&gt; Ah, the coalition partner Comedo.
+
+&gt;&gt; Ah, the coalition partner Comedo.
+ 
+
+&gt;&gt; Ah, the coalition partner Comedo.
+They're crucial, aren't they?
+
+They're crucial, aren't they?
+ 
+
+They're crucial, aren't they?
+&gt;&gt; Totally reliant on them for a majority.
+
+&gt;&gt; Totally reliant on them for a majority.
+ 
+
+&gt;&gt; Totally reliant on them for a majority.
+Commo is kind of the LDP's more moderate
+
+Commo is kind of the LDP's more moderate
+ 
+
+Commo is kind of the LDP's more moderate
+center-left brake pedal,
+
+center-left brake pedal,
+ 
+
+center-left brake pedal,
+&gt;&gt; especially on things like pacifism,
+
+&gt;&gt; especially on things like pacifism,
+ 
+
+&gt;&gt; especially on things like pacifism,
+social issues.
+
+social issues.
+ 
+
+social issues.
+&gt;&gt; And they warned the LDP about shifting
+
+&gt;&gt; And they warned the LDP about shifting
+ 
+
+&gt;&gt; And they warned the LDP about shifting
+too far right
+
+too far right
+ 
+
+too far right
+&gt;&gt; explicitly. They talked about sticking
+
+&gt;&gt; explicitly. They talked about sticking
+ 
+
+&gt;&gt; explicitly. They talked about sticking
+to conservative centism. Yeah.
+
+to conservative centism. Yeah.
+ 
+
+to conservative centism. Yeah.
+&gt;&gt; They did not want a hardliner like
+
+&gt;&gt; They did not want a hardliner like
+ 
+
+&gt;&gt; They did not want a hardliner like
+Takahi.
+
+Takahi.
+ 
+
+Takahi.
+&gt;&gt; But they got one. They did and reports
+
+&gt;&gt; But they got one. They did and reports
+ 
+
+&gt;&gt; But they got one. They did and reports
+suggest some senior comm leaders
+
+suggest some senior comm leaders
+ 
+
+suggest some senior comm leaders
+actually threatened to bolt the
+
+actually threatened to bolt the
+ 
+
+actually threatened to bolt the
+coalition if taki won because of her
+
+coalition if taki won because of her
+ 
+
+coalition if taki won because of her
+stance on the constitution. Yasukuni.
+
+stance on the constitution. Yasukuni.
+ 
+
+stance on the constitution. Yasukuni.
+&gt;&gt; So if she pushes her conservative agenda
+
+&gt;&gt; So if she pushes her conservative agenda
+ 
+
+&gt;&gt; So if she pushes her conservative agenda
+too hard,
+
+too hard,
+ 
+
+too hard,
+&gt;&gt; she could blow up the coalition. Her
+
+&gt;&gt; she could blow up the coalition. Her
+ 
+
+&gt;&gt; she could blow up the coalition. Her
+government could collapse before it even
+
+government could collapse before it even
+ 
+
+government could collapse before it even
+gets going. Huge internal pressure from
+
+gets going. Huge internal pressure from
+ 
+
+gets going. Huge internal pressure from
+day one.
+
+day one.
+ 
+
+day one.
+&gt;&gt; And that internal fragility is matched
+
+&gt;&gt; And that internal fragility is matched
+ 
+
+&gt;&gt; And that internal fragility is matched
+by really strong polarized reactions
+
+by really strong polarized reactions
+ 
+
+by really strong polarized reactions
+from other countries.
+
+from other countries.
+ 
+
+from other countries.
+&gt;&gt; Look at Taiwan. President Lqing TE
+
+&gt;&gt; Look at Taiwan. President Lqing TE
+ 
+
+&gt;&gt; Look at Taiwan. President Lqing TE
+absolutely thrilled, sincere and warmest
+
+absolutely thrilled, sincere and warmest
+ 
+
+absolutely thrilled, sincere and warmest
+congratulations, called her a steadfast
+
+congratulations, called her a steadfast
+ 
+
+congratulations, called her a steadfast
+friend, a clear endorsement of her
+
+friend, a clear endorsement of her
+ 
+
+friend, a clear endorsement of her
+security ideas.
+
+security ideas.
+ 
+
+security ideas.
+&gt;&gt; Predictably, China's reaction was
+
+&gt;&gt; Predictably, China's reaction was
+ 
+
+&gt;&gt; Predictably, China's reaction was
+cooler,
+
+cooler,
+ 
+
+cooler,
+&gt;&gt; much more measured and pointed.
+
+&gt;&gt; much more measured and pointed.
+ 
+
+&gt;&gt; much more measured and pointed.
+&gt;&gt; Oh,
+
+&gt;&gt; Oh,
+ 
+
+&gt;&gt; Oh,
+&gt;&gt; their spokesperson said, you know, it's
+
+&gt;&gt; their spokesperson said, you know, it's
+ 
+
+&gt;&gt; their spokesperson said, you know, it's
+Japan's internal affair, but
+
+Japan's internal affair, but
+ 
+
+Japan's internal affair, but
+&gt;&gt; there's always a bow.
+
+&gt;&gt; there's always a bow.
+ 
+
+&gt;&gt; there's always a bow.
+&gt;&gt; Always. But they hope Japan will honor
+
+&gt;&gt; Always. But they hope Japan will honor
+ 
+
+&gt;&gt; Always. But they hope Japan will honor
+its political commitments on major
+
+its political commitments on major
+ 
+
+its political commitments on major
+issues such as history and Taiwan.
+
+issues such as history and Taiwan.
+ 
+
+issues such as history and Taiwan.
+&gt;&gt; That's not just diplomatic speak. That's
+
+&gt;&gt; That's not just diplomatic speak. That's
+ 
+
+&gt;&gt; That's not just diplomatic speak. That's
+a warning shot.
+
+a warning shot.
+ 
+
+a warning shot.
+&gt;&gt; Finley failed. Yeah, a warning about her
+
+&gt;&gt; Finley failed. Yeah, a warning about her
+ 
+
+&gt;&gt; Finley failed. Yeah, a warning about her
+views on history and that Taiwan
+
+views on history and that Taiwan
+ 
+
+views on history and that Taiwan
+alliance idea. Meanwhile, the US
+
+alliance idea. Meanwhile, the US
+ 
+
+alliance idea. Meanwhile, the US
+ambassador was quick with
+
+ambassador was quick with
+ 
+
+ambassador was quick with
+congratulations, reinforcing the
+
+congratulations, reinforcing the
+ 
+
+congratulations, reinforcing the
+alliance, but they know they're dealing
+
+alliance, but they know they're dealing
+ 
+
+alliance, but they know they're dealing
+with a more assertive Tokyo now.
+
+with a more assertive Tokyo now.
+ 
+
+with a more assertive Tokyo now.
+&gt;&gt; Okay, so wrapping up this deep dive,
+
+&gt;&gt; Okay, so wrapping up this deep dive,
+ 
+
+&gt;&gt; Okay, so wrapping up this deep dive,
+we've seen this dramatic context, right?
+
+we've seen this dramatic context, right?
+ 
+
+we've seen this dramatic context, right?
+Ishiba forced out.
+
+Ishiba forced out.
+ 
+
+Ishiba forced out.
+&gt;&gt; A really close, tense election battle
+
+&gt;&gt; A really close, tense election battle
+ 
+
+&gt;&gt; A really close, tense election battle
+decided by that runoff mechanism
+
+decided by that runoff mechanism
+ 
+
+decided by that runoff mechanism
+&gt;&gt; and the result is Sanai Taki, first
+
+&gt;&gt; and the result is Sanai Taki, first
+ 
+
+&gt;&gt; and the result is Sanai Taki, first
+woman LDP president. a conservative
+
+woman LDP president. a conservative
+ 
+
+woman LDP president. a conservative
+nationalist promising big government
+
+nationalist promising big government
+ 
+
+nationalist promising big government
+spending, a hawkish foreign policy,
+
+spending, a hawkish foreign policy,
+ 
+
+spending, a hawkish foreign policy,
+&gt;&gt; all while trying to hold together a
+
+&gt;&gt; all while trying to hold together a
+ 
+
+&gt;&gt; all while trying to hold together a
+potentially rebellious coalition. She's
+
+potentially rebellious coalition. She's
+ 
+
+potentially rebellious coalition. She's
+got the weight of history on her
+
+got the weight of history on her
+ 
+
+got the weight of history on her
+shoulders, but also immediate serious
+
+shoulders, but also immediate serious
+ 
+
+shoulders, but also immediate serious
+crisis.
+
+crisis.
+ 
+
+crisis.
+&gt;&gt; Her choices are going to be crucial
+
+&gt;&gt; Her choices are going to be crucial
+ 
+
+&gt;&gt; Her choices are going to be crucial
+redefining Japan's path potentially.
+
+redefining Japan's path potentially.
+ 
+
+redefining Japan's path potentially.
+&gt;&gt; Absolutely. Both strategically and
+
+&gt;&gt; Absolutely. Both strategically and
+ 
+
+&gt;&gt; Absolutely. Both strategically and
+socially.
+
+socially.
+ 
+
+socially.
+&gt;&gt; So, she carries a heavy burden indeed.
+
+&gt;&gt; So, she carries a heavy burden indeed.
+ 
+
+&gt;&gt; So, she carries a heavy burden indeed.
+And here's a final provocative thought
+
+And here's a final provocative thought
+ 
+
+And here's a final provocative thought
+for you to mull over. Takahichi has
+
+for you to mull over. Takahichi has
+ 
+
+for you to mull over. Takahichi has
+actually vowed to achieve Nordic levels
+
+actually vowed to achieve Nordic levels
+ 
+
+actually vowed to achieve Nordic levels
+of women in cabinet. You know, like
+
+of women in cabinet. You know, like
+ 
+
+of women in cabinet. You know, like
+Scandinavia's high representation rates.
+
+Scandinavia's high representation rates.
+ 
+
+Scandinavia's high representation rates.
+&gt;&gt; That's ambitious.
+
+&gt;&gt; That's ambitious.
+ 
+
+&gt;&gt; That's ambitious.
+&gt;&gt; Very. But given her own quite
+
+&gt;&gt; Very. But given her own quite
+ 
+
+&gt;&gt; Very. But given her own quite
+traditionalist social views like
+
+traditionalist social views like
+ 
+
+traditionalist social views like
+opposing selective surnames for married
+
+opposing selective surnames for married
+ 
+
+opposing selective surnames for married
+couples and the massive patriarchal
+
+couples and the massive patriarchal
+ 
+
+couples and the massive patriarchal
+barriers she herself had to overcome,
+
+barriers she herself had to overcome,
+ 
+
+barriers she herself had to overcome,
+the question is, can Japan's first
+
+the question is, can Japan's first
+ 
+
+the question is, can Japan's first
+female leader who came up through the
+
+female leader who came up through the
+ 
+
+female leader who came up through the
+political right genuinely use her power
+
+political right genuinely use her power
+ 
+
+political right genuinely use her power
+to shake up the very gender landscape
+
+to shake up the very gender landscape
+ 
+
+to shake up the very gender landscape
+that in many ways still holds women
+
+that in many ways still holds women
+ 
+
+that in many ways still holds women
+back?
+
+back?
+ 
+
+back?
+&gt;&gt; That's the million-dollar question,
+
+&gt;&gt; That's the million-dollar question,
+ 
+
+&gt;&gt; That's the million-dollar question,
+isn't it? Can she actually change the
+
+isn't it? Can she actually change the
+ 
+
+isn't it? Can she actually change the
+system that created her or will the
+
+system that created her or will the
+ 
+
+system that created her or will the
+system constrain her?
+
+system constrain her?
+ 
+
+system constrain her?
+&gt;&gt; Yeah. A fascinating test ahead. We'll be
+
+&gt;&gt; Yeah. A fascinating test ahead. We'll be
+ 
+
+&gt;&gt; Yeah. A fascinating test ahead. We'll be
+watching closely. Thanks for joining us
+
+watching closely. Thanks for joining us
+ 
+
+watching closely. Thanks for joining us
+for this deep dive.
+
+for this deep dive.
+ 
+
+for this deep dive.
+[Music]

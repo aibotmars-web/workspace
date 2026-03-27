@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>專家頻道爬蟲進度報告 2026-03-25</title>
+<style>
+body{font-family:sans-serif;margin:40px;background:#f5f5f5}
+h1{color:#333;text-align:center}
+p.meta{text-align:center;color:#888;font-size:14px}
+table{border-collapse:collapse;width:100%;max-width:900px;margin:20px auto;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+th{background:#2c3e50;color:#fff;padding:12px 16px;text-align:left}
+td{padding:10px 16px;border-bottom:1px solid #eee}
+tr:hover{background:#f8f9fa}
+td.num{text-align:right}
+td.done{color:#27ae60;font-weight:bold}
+td.skip{color:#e67e22}
+td.rate{color:#2980b9}
+tr.total{background:#ecf0f1;font-weight:bold}
+.status{padding:4px 8px;border-radius:4px;font-size:12px}
+.status-done{background:#d4edda;color:#155724}
+.status-running{background:#fff3cd;color:#856404}
+.status-pending{background:#f8f9fa;color:#6c757d}
+</style>
+</head>
+<body>
+<h1>📺 專家頻道知識庫爬蟲進度</h1>
+<p class="meta">更新時間：2026-03-25 16:00 | 爬蟲程式：kd CLI (本地 ASR) | 狀態：🔄 進行中</p>
+
+<table>
+<tr>
+  <th>#</th>
+  <th>頻道名稱</th>
+  <th>主題</th>
+  <th class="num">總影片</th>
+  <th class="num">已抓</th>
+  <th class="num">進度</th>
+  <th>狀態</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td>胡乃文開獎</td>
+  <td>中醫養生</td>
+  <td class="num">363</td>
+  <td class="num done">1</td>
+  <td class="num">0.3%</td>
+  <td><span class="status status-running">🔄 爬蟲中</span></td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>柏格醫生</td>
+  <td>健康知識</td>
+  <td class="num">2,905</td>
+  <td class="num">0</td>
+  <td class="num">0%</td>
+  <td><span class="status status-pending">⏳ 待處理</span></td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>周慕姿放心說</td>
+  <td>心理學</td>
+  <td class="num">174</td>
+  <td class="num">0</td>
+  <td class="num">0%</td>
+  <td><span class="status status-pending">⏳ 待處理</span></td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>松明講心理</td>
+  <td>心理學</td>
+  <td class="num">947</td>
+  <td class="num">0</td>
+  <td class="num">0%</td>
+  <td><span class="status status-pending">⏳ 待處理</span></td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>初日醫學</td>
+  <td>減重/營養</td>
+  <td class="num">344</td>
+  <td class="num">0</td>
+  <td class="num">0%</td>
+  <td><span class="status status-pending">⏳ 待處理</span></td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>泛科學</td>
+  <td>科普知識</td>
+  <td class="num">542</td>
+  <td class="num">0</td>
+  <td class="num">0%</td>
+  <td><span class="status status-pending">⏳ 待處理</span></td>
+</tr>
+<tr>
+  <td>7</td>
+  <td>泛科學院</td>
+  <td>AI/科技</td>
+  <td class="num">146</td>
+  <td class="num">0</td>
+  <td class="num">0%</td>
+  <td><span class="status status-pending">⏳ 待處理</span></td>
+</tr>
+<tr>
+  <td>8</td>
+  <td>健康旦 Dr Harvey</td>
+  <td>健康/抗老</td>
+  <td class="num">2,340</td>
+  <td class="num">0</td>
+  <td class="num">0%</td>
+  <td><span class="status status-pending">⏳ 待處理</span></td>
+</tr>
+<tr class="total">
+  <td colspan="3">合計</td>
+  <td class="num">7,761</td>
+  <td class="num done">1</td>
+  <td class="num">0.01%</td>
+  <td></td>
+</tr>
+</table>
+
+<h2 style="text-align:center">⚠️ 說明</h2>
+<ul style="max-width:700px;margin:0 auto;font-size:14px;color:#666">
+  <li>會員限定影片（subscriber_only）→ 自動跳過</li>
+  <li>無字幕影片 → 使用 MLX Whisper 本地轉錄（約 5-10 分鐘/部）</li>
+  <li>有字幕影片 → 直接抓取（約 30 秒/部）</li>
+  <li>⚠️ 柏格醫生(2905部) + Dr Harvey(2340部) 合計 5245 部，需要相當時間</li>
+  <li>阿銘師x銭還傳：頻道已停更（最後更新 2022-05-20），已移除</li>
+</ul>
+<br>
+</body>
+</html>

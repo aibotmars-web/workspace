@@ -113,11 +113,13 @@ def get_channel_videos_google(youtube, channel_id, max_results=15):
         return []
 
 def get_channel_videos_ydlp(channel_url, max_results=15):
-    """用 yt-dlp 取得影片列表"""
+    """用 yt-dlp 取得影片列表（只取公開影片）"""
     try:
         ydl_opts = {
             'quiet': True, 'no_warnings': True, 
-            'extract_flat': True, 'playlistend': max_results * 2
+            'extract_flat': 'in_playlist', 
+            'playlistend': max_results * 3,
+            'get': ['id', 'title', 'duration', 'availability']
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(channel_url, download=False)
@@ -127,9 +129,22 @@ def get_channel_videos_ydlp(channel_url, max_results=15):
                 for entry in info['entries']:
                     if not entry or not entry.get('id'):
                         continue
+                    
+                    # 跳過 Shorts
                     title = entry.get('title', '').lower()
                     if 'shorts' in title:
                         continue
+                    
+                    # 檢查是否為公開影片（availability 為空或 "NA" 表示公開）
+                    availability = entry.get('availability', '')
+                    is_subscriber_only = (
+                        availability == 'subscriber_only' or
+                        'subscriber_only' in str(availability).lower() or
+                        'private' in str(availability).lower()
+                    )
+                    if is_subscriber_only:
+                        continue  # 跳過會員限定影片
+                    
                     duration = entry.get('duration', 0) or 0
                     if duration and duration < 60:
                         continue
@@ -137,7 +152,8 @@ def get_channel_videos_ydlp(channel_url, max_results=15):
                         'id': entry['id'],
                         'title': entry['title'],
                         'url': f"https://www.youtube.com/watch?v={entry['id']}",
-                        'duration': duration
+                        'duration': duration,
+                        'availability': availability
                     })
             return videos[:max_results]
     except Exception:

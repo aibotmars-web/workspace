@@ -1,0 +1,1429 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:09.217 --> 00:00:11.928
+TSMC has made a major breakthrough in next-gen memory
+
+00:00:11.928 --> 00:00:14.305
+Does it mean Samsung is losing the throne to TSMC?
+
+00:00:14.347 --> 00:00:15.724
+Even in the memory sector?
+
+00:00:15.765 --> 00:00:17.017
+In early 2024
+
+00:00:17.017 --> 00:00:18.685
+ITRI and TSMC announced
+
+00:00:18.727 --> 00:00:21.688
+they will co-release the world’s fastest MRAM
+
+00:00:21.730 --> 00:00:23.314
+SOT-MRAM
+
+00:00:23.356 --> 00:00:25.859
+It could take the lead in the market of
+
+00:00:25.900 --> 00:00:27.360
+Next-Gen AI memory
+
+00:00:27.402 --> 00:00:29.779
+The new-type memory not only accesses data extremely fast
+
+00:00:29.779 --> 00:00:30.947
+with low power consumption
+
+00:00:30.947 --> 00:00:33.533
+It will surely be more and more crucial in the future
+
+00:00:33.533 --> 00:00:35.118
+with larger and larger servers
+
+00:00:35.118 --> 00:00:36.995
+What’s great with this memory is
+
+00:00:37.037 --> 00:00:38.288
+It’s not bothered by blackouts
+
+00:00:38.329 --> 00:00:39.914
+It doesn’t lose its data
+
+00:00:39.956 --> 00:00:41.624
+All great things in one
+
+00:00:41.708 --> 00:00:43.251
+How did they make it?
+
+00:00:43.251 --> 00:00:44.335
+Besides MRAM
+
+00:00:44.377 --> 00:00:46.046
+What other new-type memories
+
+00:00:46.046 --> 00:00:47.714
+will be the ace of manufacturers
+
+00:00:47.714 --> 00:00:49.799
+in the memory market?
+
+00:00:53.344 --> 00:00:54.679
+We mentioned in the last episode
+
+00:00:54.721 --> 00:00:56.931
+to swiftly load and save data
+
+00:00:56.973 --> 00:00:58.433
+it’s better to use capacitors
+
+00:00:58.433 --> 00:01:00.477
+rather than heavy magnets
+
+00:01:00.518 --> 00:01:02.353
+A transistor plus a capacitor
+
+00:01:02.395 --> 00:01:04.522
+is the simplest memory unit
+
+00:01:04.522 --> 00:01:06.191
+With or without electricity in the capacitor
+
+00:01:06.232 --> 00:01:08.818
+means 1 or 0 as a digital bit
+
+00:01:08.818 --> 00:01:10.195
+When you need to load data
+
+00:01:10.236 --> 00:01:11.696
+or rewrite it
+
+00:01:11.696 --> 00:01:13.656
+Just turn on the switch of transistors
+
+00:01:13.656 --> 00:01:16.242
+to load or write with capacitors
+
+00:01:16.242 --> 00:01:17.869
+But in reality, it’s not that easy
+
+00:01:17.911 --> 00:01:19.746
+Even if the transistor is off
+
+00:01:19.788 --> 00:01:22.582
+It still leaks electricity slowly
+
+00:01:22.582 --> 00:01:23.750
+So the design needs to
+
+00:01:23.750 --> 00:01:26.127
+recharge the capacitor constantly
+
+00:01:26.169 --> 00:01:27.337
+to refresh memory
+
+00:01:27.378 --> 00:01:29.714
+We can’t just call it leaking memory
+
+00:01:29.714 --> 00:01:32.383
+so it’s called “dynamic” random access memory
+
+00:01:32.425 --> 00:01:34.427
+written as Dynamic RAM
+
+00:01:34.469 --> 00:01:35.720
+or the acronym DRAM
+
+00:01:35.762 --> 00:01:36.930
+And if there’s
+
+00:01:36.971 --> 00:01:38.056
+a long blackout
+
+00:01:38.098 --> 00:01:40.558
+the electricity in the capacitors will drain out
+
+00:01:40.600 --> 00:01:42.060
+All the temporarily saved data
+
+00:01:42.060 --> 00:01:43.144
+will disappear
+
+00:01:43.144 --> 00:01:44.187
+So, this memory
+
+00:01:44.229 --> 00:01:46.481
+is also called volatile memory
+
+00:01:46.481 --> 00:01:48.650
+If the data needs to be preserved for a long time
+
+00:01:48.691 --> 00:01:50.026
+You can’t put it here
+
+00:01:50.026 --> 00:01:52.403
+It has to be saved in hard disc drive or USB flash drive
+
+00:01:52.445 --> 00:01:54.781
+In “non-volatile” flash memory
+
+00:01:54.823 --> 00:01:56.866
+volatile and non-volatile memories
+
+00:01:56.908 --> 00:01:57.867
+each has its own demerits
+
+00:01:57.909 --> 00:02:00.161
+For example, DRAM of volatile memories
+
+00:02:00.203 --> 00:02:01.538
+needs to be constantly recharged
+
+00:02:01.538 --> 00:02:04.791
+In reality, the frequency is about once every 64 milliseconds
+
+00:02:04.833 --> 00:02:06.709
+15.6 times per second
+
+00:02:06.751 --> 00:02:08.586
+When a computer has to add memory
+
+00:02:08.628 --> 00:02:09.963
+especially now with AI models
+
+00:02:10.004 --> 00:02:10.964
+AI PCs
+
+00:02:11.005 --> 00:02:11.548
+AI phones
+
+00:02:11.548 --> 00:02:12.966
+that evolve endlessly
+
+00:02:13.007 --> 00:02:14.134
+These computers
+
+00:02:14.175 --> 00:02:16.678
+will grow to be power-devouring monsters
+
+00:02:16.719 --> 00:02:18.263
+And non-volatile memories
+
+00:02:18.263 --> 00:02:19.514
+have their problems too
+
+00:02:19.514 --> 00:02:21.057
+Though flash memory among them
+
+00:02:21.057 --> 00:02:22.851
+doesn’t lose data during a blackout
+
+00:02:22.892 --> 00:02:26.062
+Yet in the process of frequent writing and erasing data
+
+00:02:26.104 --> 00:02:29.149
+High voltage will gradually damage the oxide layers in structure
+
+00:02:29.149 --> 00:02:31.484
+So the write-in times of a flash memory
+
+00:02:31.484 --> 00:02:32.652
+is limited
+
+00:02:32.652 --> 00:02:34.237
+Short life is the demerit
+
+00:02:34.279 --> 00:02:36.072
+Besides, the greatest defect is
+
+00:02:36.114 --> 00:02:38.533
+loading and writing speed much slower than DRAM
+
+00:02:38.533 --> 00:02:39.409
+namely
+
+00:02:39.450 --> 00:02:41.119
+in the next-gen memory market
+
+00:02:41.161 --> 00:02:42.829
+the goal is really clear
+
+00:02:42.871 --> 00:02:44.747
+Can we develop a memory
+
+00:02:44.747 --> 00:02:46.749
+with combined merits
+
+00:02:46.791 --> 00:02:47.625
+which is fast
+
+00:02:47.625 --> 00:02:48.418
+long-life
+
+00:02:48.418 --> 00:02:49.502
+energy-saving
+
+00:02:49.544 --> 00:02:50.712
+and not bothered by blackouts
+
+00:02:54.299 --> 00:02:56.384
+To develop a new-type memory
+
+00:02:56.384 --> 00:02:59.012
+Scientists began to research with different materials and structures
+
+00:02:59.012 --> 00:03:01.514
+One of them is magnetoresistive memory
+
+00:03:01.514 --> 00:03:02.390
+MRAM
+
+00:03:02.432 --> 00:03:03.308
+It means literally
+
+00:03:03.349 --> 00:03:05.685
+to store data with magnetic force
+
+00:03:05.685 --> 00:03:06.519
+Wait a minute
+
+00:03:06.519 --> 00:03:07.854
+Didn’t we say in the last episode that
+
+00:03:07.896 --> 00:03:09.439
+magnetism is an option
+
+00:03:09.439 --> 00:03:11.232
+eliminated in the 1970s?
+
+00:03:11.274 --> 00:03:12.358
+Well, it is
+
+00:03:12.400 --> 00:03:15.069
+But previous magnets were big and heavy
+
+00:03:15.069 --> 00:03:16.362
+The magnets used this time
+
+00:03:16.404 --> 00:03:18.948
+are much smaller than those in the 1970s
+
+00:03:18.990 --> 00:03:20.867
+We must look further into the origin
+
+00:03:20.909 --> 00:03:22.535
+How on earth did the magnets
+
+00:03:22.535 --> 00:03:24.412
+produce their magnetism?
+
+00:03:24.454 --> 00:03:26.539
+The principle behind it is quite complicated
+
+00:03:26.581 --> 00:03:27.332
+Let’s just take the
+
+00:03:27.332 --> 00:03:28.958
+most simplified version
+
+00:03:29.000 --> 00:03:29.751
+Try to imagine
+
+00:03:29.834 --> 00:03:30.585
+a magnet consists of many
+
+00:03:30.627 --> 00:03:33.922
+tiny weeny magnets
+
+00:03:33.922 --> 00:03:36.341
+The little magnets are electrons in the material
+
+00:03:36.382 --> 00:03:38.718
+Why are electrons magnetic?
+
+00:03:38.718 --> 00:03:39.677
+In quantum dynamics
+
+00:03:39.719 --> 00:03:42.847
+you can’t visually observe every electron rotating
+
+00:03:42.847 --> 00:03:45.725
+but there’s a quantum feature called spin
+
+00:03:45.725 --> 00:03:47.852
+This spin generates magnetism
+
+00:03:47.894 --> 00:03:51.022
+and the magnetic force points to a specific direction
+
+00:03:51.022 --> 00:03:53.316
+like a small compass
+
+00:03:53.358 --> 00:03:55.777
+OK, to understand how MRAM works
+
+00:03:55.818 --> 00:03:57.362
+this is all we need to know
+
+00:03:57.403 --> 00:04:00.323
+magnetism is related to electron spin
+
+00:04:00.323 --> 00:04:01.699
+And the direction of that spin
+
+00:04:01.741 --> 00:04:03.701
+is related to the magnetized direction
+
+00:04:03.785 --> 00:04:04.661
+Here comes the point
+
+00:04:04.702 --> 00:04:05.870
+When an electron tries to
+
+00:04:05.870 --> 00:04:08.039
+pass through some magnetized material
+
+00:04:08.039 --> 00:04:09.332
+if its spin is consistent
+
+00:04:09.374 --> 00:04:11.334
+with the material’s magnetized direction
+
+00:04:11.376 --> 00:04:14.045
+It can easily pass through
+
+00:04:14.087 --> 00:04:15.713
+like merging into its own kind
+
+00:04:15.713 --> 00:04:16.339
+Contrarily
+
+00:04:16.381 --> 00:04:17.966
+if an electron tries to pass through a bunch of
+
+00:04:18.007 --> 00:04:20.260
+peers with opposite spin direction
+
+00:04:20.301 --> 00:04:21.678
+It will be seriously obstructed
+
+00:04:21.719 --> 00:04:24.180
+namely confronting larger resistance
+
+00:04:24.180 --> 00:04:26.349
+It’s called the giant magnetoresistance effect
+
+00:04:26.349 --> 00:04:28.142
+Though there are records of humans
+
+00:04:28.142 --> 00:04:30.019
+using magnets before Christ
+
+00:04:30.061 --> 00:04:31.646
+the giant magnetoresistance
+
+00:04:31.646 --> 00:04:33.648
+wasn’t discovered until 1988
+
+00:04:33.690 --> 00:04:36.651
+and it won the Nobel Prize in physics in 2007
+
+00:04:36.734 --> 00:04:39.362
+How can we use the giant magnetoresistance
+
+00:04:39.404 --> 00:04:41.072
+to design memories?
+
+00:04:41.072 --> 00:04:43.449
+Just like a capacitor stores 1 and 0
+
+00:04:43.491 --> 00:04:45.868
+by the status of with or without electricity
+
+00:04:45.910 --> 00:04:47.078
+giant magnetoresistance
+
+00:04:47.078 --> 00:04:49.956
+can represent 1 and 0
+
+00:04:49.998 --> 00:04:51.624
+by the status of low and high resistance
+
+00:04:51.624 --> 00:04:52.500
+In MRAM
+
+00:04:52.542 --> 00:04:54.085
+There are two magnetic materials
+
+00:04:54.085 --> 00:04:56.212
+clamping a non-magnetic material
+
+00:04:56.212 --> 00:04:57.005
+The purpose is
+
+00:04:57.046 --> 00:04:58.214
+to control the magnetized direction of
+
+00:04:58.214 --> 00:05:00.550
+each magnetized material
+
+00:05:00.550 --> 00:05:02.719
+the spin direction of an electron is not fixed in a circuit
+
+00:05:02.719 --> 00:05:04.595
+There are up and down
+
+00:05:04.637 --> 00:05:05.805
+Yet when two materials
+
+00:05:05.847 --> 00:05:07.932
+both got magnetized direction upwards
+
+00:05:07.932 --> 00:05:09.183
+a spin upward electron
+
+00:05:09.225 --> 00:05:10.727
+can easily pass through the first
+
+00:05:10.768 --> 00:05:11.644
+and the second
+
+00:05:11.686 --> 00:05:13.062
+the whole resistance is smaller
+
+00:05:13.104 --> 00:05:15.148
+And if the magnetized directions of two materials
+
+00:05:15.189 --> 00:05:15.857
+are opposite
+
+00:05:15.857 --> 00:05:17.233
+Whether it’s upward
+
+00:05:17.233 --> 00:05:18.026
+or downward
+
+00:05:18.067 --> 00:05:20.653
+It’s hard for an electron to pass through both materials
+
+00:05:20.695 --> 00:05:23.448
+This is when the whole resistance value gets larger
+
+00:05:23.448 --> 00:05:25.950
+In real memory frameworks
+
+00:05:25.950 --> 00:05:28.828
+It’s usually made as a double ferromagnetic layer
+
+00:05:28.870 --> 00:05:30.830
+The magnetized direction of one layer is fixed
+
+00:05:30.830 --> 00:05:32.123
+to the right, for example
+
+00:05:32.165 --> 00:05:34.250
+then write the bit in the second layer
+
+00:05:34.292 --> 00:05:37.045
+make the magnetized direction to the right if you want to record 1
+
+00:05:37.086 --> 00:05:38.046
+The magnetized direction to the left
+
+00:05:38.046 --> 00:05:39.672
+If it’s a 0
+
+00:05:39.714 --> 00:05:41.966
+The direction will be kept
+
+00:05:42.008 --> 00:05:43.176
+When you load data later
+
+00:05:43.176 --> 00:05:45.011
+If the current goes from up to down
+
+00:05:45.011 --> 00:05:46.220
+measure the value of resistance
+
+00:05:46.262 --> 00:05:48.556
+You know the magnetized directions of the two layers
+
+00:05:48.598 --> 00:05:50.058
+are consistent or opposite
+
+00:05:50.099 --> 00:05:52.977
+get the 1 or 0 result by it
+
+00:05:52.977 --> 00:05:55.813
+That’s how magnetoresistive memory works
+
+00:05:55.855 --> 00:05:57.231
+The merit of magnetoresistive memory is
+
+00:05:57.231 --> 00:05:59.025
+magnetism can be stored for a long time
+
+00:05:59.067 --> 00:06:01.444
+hence a non-volatile memory
+
+00:06:01.486 --> 00:06:02.362
+Compared to the magnetic core memory used in the 1960s
+
+00:06:02.403 --> 00:06:04.947
+that we mentioned in the last episode
+
+00:06:04.947 --> 00:06:06.157
+The unit is small
+
+00:06:06.157 --> 00:06:08.034
+and convenient to access
+
+00:06:08.076 --> 00:06:09.494
+almost like a DRAM
+
+00:06:09.494 --> 00:06:11.788
+Surely MRAM has its bottleneck in development
+
+00:06:11.788 --> 00:06:13.623
+that’s how to control precisely
+
+00:06:13.623 --> 00:06:15.750
+the magnetized direction of a thin ferromagnetic layer
+
+00:06:15.792 --> 00:06:17.835
+without affecting other bits
+
+00:06:17.877 --> 00:06:20.671
+The earliest way is to put a wire
+
+00:06:20.713 --> 00:06:21.881
+around the ferromagnetic layer
+
+00:06:21.881 --> 00:06:24.384
+use the electromagnetic field generated by the current in the wire
+
+00:06:24.384 --> 00:06:26.177
+to change the polarized direction
+
+00:06:26.219 --> 00:06:28.054
+But to prevent the wire-generated magnetic field
+
+00:06:28.096 --> 00:06:29.764
+from affecting the bits around
+
+00:06:29.806 --> 00:06:31.766
+every memory unit has to keep a certain distance
+
+00:06:31.808 --> 00:06:33.351
+from each other
+
+00:06:33.351 --> 00:06:35.728
+It’s a huge limitation for downsizing
+
+00:06:35.770 --> 00:06:38.314
+so it’s hard for MRAM to be competitive
+
+00:06:38.314 --> 00:06:40.358
+until around the year 2000 AD
+
+00:06:40.400 --> 00:06:42.068
+Scientists made a major discovery
+
+00:06:42.068 --> 00:06:43.778
+making MRAM to come back
+
+00:06:44.362 --> 00:06:45.446
+If we let a current pass through
+
+00:06:45.488 --> 00:06:47.824
+some upward-polarized magnet layer first
+
+00:06:47.824 --> 00:06:49.283
+to screen the electrons
+
+00:06:49.325 --> 00:06:52.328
+most of the rest are upward rotating electrons
+
+00:06:52.370 --> 00:06:53.538
+then let the current pass through
+
+00:06:53.538 --> 00:06:56.874
+a second unpolarized ferromagnetic layer
+
+00:06:56.916 --> 00:06:58.960
+It would apply a moment of force
+
+00:06:58.960 --> 00:06:59.919
+to the electrons in the second layer of material
+
+00:06:59.919 --> 00:07:02.713
+forcing them to turn to the same rotating direction
+
+00:07:03.339 --> 00:07:05.425
+It’s like a group of dancers with specific steps
+
+00:07:05.466 --> 00:07:06.259
+entering the pool
+
+00:07:06.300 --> 00:07:08.678
+to change the step direction of the entire pool
+
+00:07:08.678 --> 00:07:09.929
+Rotating polarized electrons
+
+00:07:09.971 --> 00:07:12.348
+also change the magnetized direction of the magnetic material
+
+00:07:12.348 --> 00:07:13.808
+without an external magnetic field
+
+00:07:13.850 --> 00:07:15.017
+The phenomenon is called
+
+00:07:15.017 --> 00:07:16.352
+“Spin-transfer torque”
+
+00:07:16.394 --> 00:07:18.146
+In short, STT
+
+00:07:18.187 --> 00:07:20.648
+Compared to the way we just mentioned , using the external wire-generated
+
+00:07:20.648 --> 00:07:22.817
+magnetic field to change the magnetized direction
+
+00:07:22.900 --> 00:07:24.861
+STT doesn’t need an external magnetic field
+
+00:07:24.902 --> 00:07:26.863
+simply change the ferromagnetic layer’s polarized direction
+
+00:07:26.904 --> 00:07:29.073
+by a current
+
+00:07:29.115 --> 00:07:31.075
+to write the bit
+
+00:07:31.117 --> 00:07:33.244
+without affecting nearby bits
+
+00:07:33.286 --> 00:07:34.245
+So it solved the problem of
+
+00:07:34.287 --> 00:07:36.664
+bits cannot get too close
+
+00:07:36.664 --> 00:07:38.624
+The product using STT technology
+
+00:07:38.666 --> 00:07:40.918
+is called STT-MRAM
+
+00:07:40.960 --> 00:07:43.212
+It fulfills the demand for modern computing size
+
+00:07:43.212 --> 00:07:44.213
+hence in 2006
+
+00:07:44.255 --> 00:07:46.466
+became the first batch of commercially mass-produced MRAM
+
+00:07:50.261 --> 00:07:51.846
+To understand the latest progress in this realm
+
+00:07:51.888 --> 00:07:53.431
+we must ask the experts, of course
+
+00:07:53.431 --> 00:07:54.765
+Today we’re honored to have a special guest
+
+00:07:54.807 --> 00:07:57.059
+professor Hu Bi-he of the Department of Electrical Engineering, NTU
+
+00:07:57.101 --> 00:08:00.313
+to share with us the latest progress in next-gen memory
+
+00:08:00.313 --> 00:08:02.523
+Professor Hu, we’d like to know
+
+00:08:02.565 --> 00:08:04.734
+we saw the ITRI &amp; TSMC
+
+00:08:04.734 --> 00:08:06.652
+released in 2024
+
+00:08:06.694 --> 00:08:09.155
+a new product called SOT-MRAM
+
+00:08:09.197 --> 00:08:10.865
+What’s the difference with
+
+00:08:10.865 --> 00:08:13.534
+what we mentioned earlier as STT-MRAM
+
+00:08:13.576 --> 00:08:14.911
+that was popular several years ago?
+
+00:08:14.952 --> 00:08:18.039
+The so-called SOT means
+
+00:08:18.039 --> 00:08:19.207
+Spin Orbit Torque
+
+00:08:19.248 --> 00:08:22.543
+Its write-in operation mode is different from STT
+
+00:08:22.585 --> 00:08:24.545
+using the spin Hall effect
+
+00:08:24.587 --> 00:08:26.547
+The write-in mode of SOT-MRAM
+
+00:08:26.589 --> 00:08:28.841
+isn’t using the spinning polarized current
+
+00:08:28.883 --> 00:08:30.384
+through the magnetic material layers
+
+00:08:30.384 --> 00:08:31.761
+but to let the current
+
+00:08:31.761 --> 00:08:33.221
+flow by them
+
+00:08:33.221 --> 00:08:35.973
+Separating the current routes of
+
+00:08:36.015 --> 00:08:36.974
+write-in and loading
+
+00:08:36.974 --> 00:08:39.810
+make the memory significantly superior
+
+00:08:39.852 --> 00:08:42.021
+in terms of operation speed
+
+00:08:42.021 --> 00:08:44.941
+also reduce the power consumption
+
+00:08:44.982 --> 00:08:47.777
+Besides the SOT-MRAM released by TSMC
+
+00:08:47.777 --> 00:08:50.363
+we’ve actually heard of many different types of memories
+
+00:08:50.404 --> 00:08:52.156
+Can you elaborate on them for us
+
+00:08:52.198 --> 00:08:54.075
+what’s different about them?
+
+00:08:54.075 --> 00:08:55.826
+Besides SOT-MRAM
+
+00:08:55.826 --> 00:08:57.078
+There are actually at least three other types
+
+00:08:57.119 --> 00:09:00.081
+of mainstream emerging memory technologies
+
+00:09:00.122 --> 00:09:02.583
+Firstly, I’ll introduce a type called resistive random access memory
+
+00:09:02.625 --> 00:09:03.292
+RRAM in short
+
+00:09:03.334 --> 00:09:04.502
+The RRAM
+
+00:09:04.544 --> 00:09:07.004
+has two metal layers
+
+00:09:07.046 --> 00:09:09.298
+clamping a layer of transition metal oxide
+
+00:09:09.340 --> 00:09:11.300
+to form a sandwich structure
+
+00:09:11.342 --> 00:09:12.969
+changes the resistance value of the transition metal oxide
+
+00:09:13.010 --> 00:09:15.680
+by applying different voltages
+
+00:09:15.680 --> 00:09:17.223
+to the states of 0 and 1
+
+00:09:17.223 --> 00:09:19.517
+This is the first type of resistive memory
+
+00:09:19.559 --> 00:09:21.936
+The second type is called
+
+00:09:21.978 --> 00:09:23.062
+phase-change memory
+
+00:09:23.104 --> 00:09:25.565
+Its structure also looks like a sandwich
+
+00:09:25.565 --> 00:09:26.732
+but the middle layer material
+
+00:09:26.732 --> 00:09:28.693
+consists of vulcanized chalcogenide
+
+00:09:28.734 --> 00:09:32.029
+a glass-like material
+
+00:09:32.071 --> 00:09:33.656
+By heating it up
+
+00:09:33.698 --> 00:09:35.950
+you can change the chalcogenide layer
+
+00:09:35.992 --> 00:09:37.368
+Its crystal phase
+
+00:09:37.368 --> 00:09:39.745
+can make it a multi-crystal state
+
+00:09:39.745 --> 00:09:41.872
+or a non-crystal status
+
+00:09:41.914 --> 00:09:43.332
+getting various resistance values
+
+00:09:43.332 --> 00:09:45.501
+by changing the crystal phase
+
+00:09:45.543 --> 00:09:47.920
+to make a state of 0 or 1
+
+00:09:47.962 --> 00:09:49.380
+The third type of memory
+
+00:09:49.380 --> 00:09:50.756
+is ferroelectric RAM
+
+00:09:50.798 --> 00:09:53.759
+Ferroelectric RAM is actually quite an old memory
+
+00:09:53.759 --> 00:09:56.345
+Conventionally, we use Perovskite
+
+00:09:56.345 --> 00:09:57.847
+as the ferromagnetic layer material
+
+00:09:57.847 --> 00:09:59.515
+But in 2011
+
+00:09:59.557 --> 00:10:01.058
+Scientists found a kind of
+
+00:10:01.100 --> 00:10:02.643
+widely used
+
+00:10:02.643 --> 00:10:04.937
+high dielectric coefficient semiconductor material
+
+00:10:04.979 --> 00:10:06.355
+called hafnium oxide
+
+00:10:06.397 --> 00:10:09.984
+At the technology node of 4 to 5 nanometers
+
+00:10:10.026 --> 00:10:12.028
+it can be introduced to minimize
+
+00:10:12.069 --> 00:10:15.072
+transistors’ effective thickness of the Gate Oxide
+
+00:10:15.114 --> 00:10:16.782
+Scientists found in 2011
+
+00:10:16.782 --> 00:10:19.910
+it’s has a ferroelectric feature besides its high dielectric coefficient
+
+00:10:19.952 --> 00:10:22.538
+This drew interest because
+
+00:10:22.580 --> 00:10:24.540
+a widely used material
+
+00:10:24.540 --> 00:10:26.125
+means it does not pollute
+
+00:10:26.167 --> 00:10:27.335
+or disrupt the entire production line
+
+00:10:27.335 --> 00:10:28.419
+hence highly acceptable
+
+00:10:28.461 --> 00:10:30.546
+There have been many research projects in recent years
+
+00:10:30.546 --> 00:10:32.548
+progressing rapidly
+
+00:10:32.548 --> 00:10:34.133
+The operation of Ferroelectric RAM
+
+00:10:34.175 --> 00:10:35.635
+largely relies on a ferroelectric layer
+
+00:10:35.635 --> 00:10:37.345
+and the reversible electric dipole in it
+
+00:10:37.386 --> 00:10:39.680
+By reversing the positive and negative charge direction of electric dipole
+
+00:10:39.680 --> 00:10:42.642
+it allows the current of transistors beneath
+
+00:10:42.683 --> 00:10:44.018
+flow through more easily
+
+00:10:44.018 --> 00:10:45.144
+or with more resistance
+
+00:10:45.186 --> 00:10:47.730
+making a high or low current state
+
+00:10:47.772 --> 00:10:50.650
+to form 0 and 1 states
+
+00:10:50.650 --> 00:10:53.277
+Do you believe these next-gen memories
+
+00:10:53.319 --> 00:10:56.072
+will change the entire memory market?
+
+00:10:56.113 --> 00:10:58.866
+Can it change the entire memory market
+
+00:10:58.908 --> 00:11:01.869
+I think the idea might not exactly
+
+00:11:01.911 --> 00:11:03.454
+a concept widely accepted
+
+00:11:03.496 --> 00:11:06.374
+What we have to consider is whether these emerging memories
+
+00:11:06.374 --> 00:11:07.875
+be used to compensate for
+
+00:11:07.917 --> 00:11:10.920
+the gap in the existing memory hierarchy framework
+
+00:11:10.920 --> 00:11:12.963
+The memory hierarchy framework we have now
+
+00:11:13.005 --> 00:11:15.257
+we haven’t mention previously
+
+00:11:15.341 --> 00:11:16.300
+we haven’t mentioned previously
+
+00:11:16.342 --> 00:11:18.344
+The fastest would be S-RAM
+
+00:11:18.386 --> 00:11:20.012
+which is a cache memory
+
+00:11:20.012 --> 00:11:21.639
+then comes the main memory, DRAM
+
+00:11:21.681 --> 00:11:23.641
+Their operation speeds are both at the nanosecond level
+
+00:11:23.683 --> 00:11:24.934
+Very fast
+
+00:11:24.975 --> 00:11:28.729
+But SRAM requires the most basic memory unit
+
+00:11:28.729 --> 00:11:30.815
+of at least six transistors
+
+00:11:30.815 --> 00:11:32.316
+so it’s bulky
+
+00:11:32.316 --> 00:11:34.652
+bulky means high cost
+
+00:11:34.694 --> 00:11:37.446
+It can’t be of a very large capacity
+
+00:11:37.446 --> 00:11:39.407
+like other memories
+
+00:11:39.448 --> 00:11:40.658
+That’s right
+
+00:11:40.700 --> 00:11:43.577
+Besides SRAM &amp; DRAM with high operating speed
+
+00:11:43.619 --> 00:11:45.830
+USB drives or solid state drives
+
+00:11:45.830 --> 00:11:47.665
+people use frequently
+
+00:11:47.707 --> 00:11:48.874
+use a technology
+
+00:11:48.916 --> 00:11:50.334
+we call flash memory
+
+00:11:50.376 --> 00:11:51.669
+That’s right
+
+00:11:51.711 --> 00:11:54.171
+The merit of flash memory is its low cost
+
+00:11:54.213 --> 00:11:56.340
+also its high capacity
+
+00:11:56.340 --> 00:11:58.384
+People’s hard disc drives typically have at least
+
+00:11:58.426 --> 00:12:00.845
+1TB to over 2TB
+
+00:12:00.886 --> 00:12:02.221
+but their operation speed is much slower
+
+00:12:02.221 --> 00:12:03.931
+at the microsecond level
+
+00:12:03.973 --> 00:12:05.141
+So you can imagine
+
+00:12:05.141 --> 00:12:07.017
+nanosecond &amp; microsecond levels
+
+00:12:07.059 --> 00:12:08.519
+in the system
+
+00:12:08.561 --> 00:12:11.647
+with a significant speed gap in between
+
+00:12:11.689 --> 00:12:13.566
+The greatest potential of emerging memories is
+
+00:12:13.607 --> 00:12:16.277
+their ability to make up for this speed gap
+
+00:12:16.318 --> 00:12:19.447
+There’s a wonderful merit in the meantime
+
+00:12:19.447 --> 00:12:21.282
+It’s a non-volatile memory
+
+00:12:21.282 --> 00:12:22.533
+just like flash memory
+
+00:12:22.575 --> 00:12:25.035
+That’s right
+
+00:12:25.035 --> 00:12:26.579
+A so-called non-volatile memory means
+
+00:12:26.620 --> 00:12:28.372
+when you turn off the power
+
+00:12:28.414 --> 00:12:29.665
+the data remains
+
+00:12:29.665 --> 00:12:32.585
+the homework and photos students saved
+
+00:12:32.585 --> 00:12:35.212
+are in this type of non-volatile memory
+
+00:12:35.212 --> 00:12:36.672
+Volatile memory
+
+00:12:36.714 --> 00:12:38.174
+is what we mentioned of higher speed
+
+00:12:38.215 --> 00:12:39.175
+SRAM and DRAM
+
+00:12:39.216 --> 00:12:41.010
+Only when we boot the computer
+
+00:12:41.051 --> 00:12:42.011
+turn on the power
+
+00:12:42.011 --> 00:12:46.849
+can it load data saved somewhere else
+
+00:12:46.849 --> 00:12:49.351
+as temporary stored memory
+
+00:12:49.393 --> 00:12:50.978
+But they can’t store your homework
+
+00:12:50.978 --> 00:12:52.646
+or photos
+
+00:12:52.646 --> 00:12:53.939
+That’s a gap
+
+00:12:53.939 --> 00:12:56.650
+Emerging memories have got higher speed
+
+00:12:56.734 --> 00:12:58.569
+operating near the nanosecond level
+
+00:12:58.611 --> 00:13:00.446
+while remaining non-volatile
+
+00:13:00.446 --> 00:13:01.614
+Hopefully it can make up for
+
+00:13:01.614 --> 00:13:04.950
+the existing memory hierarchy gap
+
+00:13:04.950 --> 00:13:07.077
+To make the system achive
+
+00:13:07.119 --> 00:13:08.954
+better performance at a lower cost
+
+00:13:08.996 --> 00:13:10.956
+So I wouldn’t say that emerging memories
+
+00:13:10.998 --> 00:13:13.667
+will change the entire memory market
+
+00:13:13.709 --> 00:13:15.753
+What we should consider is whether these emerging memories
+
+00:13:15.795 --> 00:13:18.839
+make up for what can’t be done now
+
+00:13:18.839 --> 00:13:20.758
+make the whole system operate with
+
+00:13:20.800 --> 00:13:21.926
+better performance
+
+00:13:21.926 --> 00:13:25.179
+Emerging memories are still very promising
+
+00:13:25.179 --> 00:13:27.348
+even the MRAM we discussed the most in this episode
+
+00:13:27.389 --> 00:13:29.183
+People have long expected it to be
+
+00:13:29.225 --> 00:13:30.476
+an universal memory
+
+00:13:30.518 --> 00:13:34.772
+MRAM itself also operates at the nanosecond level
+
+00:13:34.814 --> 00:13:36.941
+It can probably replace
+
+00:13:36.941 --> 00:13:38.984
+the slowest rank of cache memory
+
+00:13:38.984 --> 00:13:41.445
+which is jokingly called the last cache memory
+
+00:13:41.445 --> 00:13:43.531
+with being non-volatile
+
+00:13:43.572 --> 00:13:45.616
+You can minimize power consumption
+
+00:13:45.616 --> 00:13:47.701
+because you don’t need to reload the data
+
+00:13:47.743 --> 00:13:48.702
+to recovery
+
+00:13:48.744 --> 00:13:51.956
+It’s a non-volatile feature
+
+00:13:51.997 --> 00:13:54.458
+With more read/write cycles
+
+00:13:54.458 --> 00:13:57.253
+With more load/write times
+
+00:13:57.294 --> 00:14:00.172
+there’s a potential to replace existing cache memory
+
+00:14:00.172 --> 00:14:02.842
+that we use as a storage device
+
+00:14:02.883 --> 00:14:04.468
+These emerging memories
+
+00:14:04.510 --> 00:14:06.262
+have great potential depending on
+
+00:14:06.262 --> 00:14:07.555
+different applications
+
+00:14:07.596 --> 00:14:09.515
+If we try to make a demand list
+
+00:14:09.515 --> 00:14:11.016
+for memory
+
+00:14:11.058 --> 00:14:13.644
+or predict which type will prevail
+
+00:14:13.644 --> 00:14:16.438
+in reality
+
+00:14:16.480 --> 00:14:17.481
+is like this:
+
+00:14:17.481 --> 00:14:20.276
+We can’t simply rely on just one type of memory
+
+00:14:20.276 --> 00:14:22.611
+We need to integrate the merits of various memories
+
+00:14:22.653 --> 00:14:25.030
+to cope with different applications
+
+00:14:25.072 --> 00:14:27.616
+Let’s take an example
+
+00:14:27.616 --> 00:14:28.993
+The cellphones we use
+
+00:14:29.034 --> 00:14:31.704
+or high power consuming, high-performance servers
+
+00:14:31.745 --> 00:14:34.164
+It’s actually a relative thing
+
+00:14:34.206 --> 00:14:36.876
+We know the power demand is very large
+
+00:14:36.917 --> 00:14:38.836
+then in memory applications
+
+00:14:38.836 --> 00:14:41.046
+we might need to develop higher speed memories
+
+00:14:41.046 --> 00:14:44.049
+But it may consume more power
+
+00:14:44.091 --> 00:14:45.885
+to meet the demand of existing servers now
+
+00:14:45.885 --> 00:14:48.178
+we still need high speed memory like that
+
+00:14:48.178 --> 00:14:51.056
+But with some common wearable devices
+
+00:14:51.098 --> 00:14:53.434
+they might need very low power consumption
+
+00:14:53.434 --> 00:14:55.311
+and the operating speed doesn’t have to be so fast
+
+00:14:55.352 --> 00:14:56.812
+there’s no need for high speed demand
+
+00:14:56.896 --> 00:14:57.855
+So the design of memory
+
+00:14:57.855 --> 00:15:00.024
+has to be optimized as
+
+00:15:00.065 --> 00:15:01.525
+a low power consuming one
+
+00:15:01.525 --> 00:15:03.485
+but more reliable
+
+00:15:04.403 --> 00:15:06.780
+without needing to recharge frequently
+
+00:15:06.780 --> 00:15:07.948
+This is our demand
+
+00:15:07.948 --> 00:15:09.450
+So to cope with different needs
+
+00:15:09.533 --> 00:15:11.410
+memories will have different specializations
+
+00:15:11.452 --> 00:15:12.870
+Thanks for your elaboration
+
+00:15:12.912 --> 00:15:15.247
+With AI and consumer electronics market growing vigorously
+
+00:15:15.289 --> 00:15:16.457
+Whether it’s the semiconductor market of
+
+00:15:16.457 --> 00:15:18.250
+logic chips or memory
+
+00:15:18.250 --> 00:15:20.085
+competition will only become more intense
+
+00:15:20.085 --> 00:15:21.629
+Whoever holds the new design
+
+00:15:21.629 --> 00:15:23.047
+will gain an early advantage
+
+00:15:23.088 --> 00:15:24.673
+and dominate the entire market
+
+00:15:24.715 --> 00:15:26.133
+In this competition
+
+00:15:26.133 --> 00:15:28.010
+there’s another realm that can’t be ignored
+
+00:15:28.052 --> 00:15:30.679
+besides chip architecture tech
+
+00:15:30.721 --> 00:15:32.806
+That’s the equipment for manufacturing chips
+
+00:15:32.848 --> 00:15:33.307
+For example
+
+00:15:33.307 --> 00:15:34.975
+when China is unable to obtain
+
+00:15:35.017 --> 00:15:37.227
+ASML’s EUV machine
+
+00:15:37.227 --> 00:15:40.522
+it‘ll impact the development of the whole country’s semiconductor industry
+
+00:15:40.564 --> 00:15:42.733
+What is EUV used for?
+
+00:15:42.816 --> 00:15:44.818
+What are the key factors in the semiconductor manufacturing process
+
+00:15:44.818 --> 00:15:46.278
+we have to pay attention to?
+
+00:15:46.278 --> 00:15:47.655
+The answers to these questions
+
+00:15:47.655 --> 00:15:49.323
+shall be uncovered in our next episode
+
+00:15:49.323 --> 00:15:51.033
+See you next time
+

@@ -20,6 +20,78 @@
     "trend-watcher": {
       "version": "1.0.1",
       "installedAt": 1771658590441
+    },
+    "evomap-tools": {
+      "version": "1.0.0",
+      "installedAt": 1772092045223
+    },
+    "capability-evolver": {
+      "version": "1.14.0",
+      "installedAt": 1772092146306
+    },
+    "confucius-debug": {
+      "version": "2.0.2",
+      "installedAt": 1772128238831
+    },
+    "polymarket-odds": {
+      "version": "1.0.0",
+      "installedAt": 1772558601216
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1773078178395
+    },
+    "find-skills": {
+      "version": "0.1.0",
+      "installedAt": 1773078178601
+    },
+    "tavily-search": {
+      "version": "1.0.0",
+      "installedAt": 1773078221524
+    },
+    "self-improving-agent": {
+      "version": "3.0.0",
+      "installedAt": 1773078230079
+    },
+    "proactive-agent": {
+      "version": "3.1.0",
+      "installedAt": 1773078238134
+    },
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1773078395522
+    },
+    "blogwatcher": {
+      "version": "1.0.0",
+      "installedAt": 1774007898446
+    },
+    "notion": {
+      "version": "1.0.0",
+      "installedAt": 1774007904623
+    },
+    "discord": {
+      "version": "1.0.1",
+      "installedAt": 1774007910530
+    },
+    "slack": {
+      "version": "1.0.0",
+      "installedAt": 1774007923110
+    },
+    "bluebubbles": {
+      "version": "1.0.0",
+      "installedAt": 1774007926386
+    },
+    "canvas": {
+      "version": "1.0.0",
+      "installedAt": 1774007936009
+    },
+    "goplaces": {
+      "version": "1.0.0",
+      "installedAt": 1774007939857
+    },
+    "trello": {
+      "version": "1.0.0",
+      "installedAt": 1774007943419
     }
   }
 }

@@ -1,0 +1,967 @@
+[download]    1.00KiB at  Unknown B/s (00:00:00)[download]    3.00KiB at  Unknown B/s (00:00:00)[download]    7.00KiB at    4.29MiB/s (00:00:00)[download]   15.00KiB at    3.22MiB/s (00:00:00)[download]   31.00KiB at    6.05MiB/s (00:00:00)[download]   49.84KiB at    8.86MiB/s (00:00:00)[download] 100% of   49.84KiB in 00:00:00 at 257.56KiB/s                                                        [Music]
+
+ 
+ 
+
+ 
+Welcome to the deep dive. Okay, let's
+
+Welcome to the deep dive. Okay, let's
+ 
+
+Welcome to the deep dive. Okay, let's
+talk about the future. Specifically,
+
+talk about the future. Specifically,
+ 
+
+talk about the future. Specifically,
+February 8th, 2026. That's Super Bowl LX
+
+February 8th, 2026. That's Super Bowl LX
+ 
+
+February 8th, 2026. That's Super Bowl LX
+happening at Levi Stadium out in Santa
+
+happening at Levi Stadium out in Santa
+ 
+
+happening at Levi Stadium out in Santa
+Clara. And the big reason we're looking
+
+Clara. And the big reason we're looking
+ 
+
+Clara. And the big reason we're looking
+so far ahead, this huge announcement,
+
+so far ahead, this huge announcement,
+ 
+
+so far ahead, this huge announcement,
+Bad Bunny is headlining the halftime
+
+Bad Bunny is headlining the halftime
+ 
+
+Bad Bunny is headlining the halftime
+show.
+
+show.
+ 
+
+show.
+&gt;&gt; Yeah. Bonito Antonio Martinez Okazio.
+
+&gt;&gt; Yeah. Bonito Antonio Martinez Okazio.
+ 
+
+&gt;&gt; Yeah. Bonito Antonio Martinez Okazio.
+It's uh it's genuinely historic. He's
+
+It's uh it's genuinely historic. He's
+ 
+
+It's uh it's genuinely historic. He's
+the first ever Latin male artist to
+
+the first ever Latin male artist to
+ 
+
+the first ever Latin male artist to
+headline solo. That's a massive signal
+
+headline solo. That's a massive signal
+ 
+
+headline solo. That's a massive signal
+really.
+
+really.
+ 
+
+really.
+&gt;&gt; Right. So today we're going to dig into
+
+&gt;&gt; Right. So today we're going to dig into
+ 
+
+&gt;&gt; Right. So today we're going to dig into
+the sources on this, understand the
+
+the sources on this, understand the
+ 
+
+the sources on this, understand the
+history, the um the strategy behind that
+
+history, the um the strategy behind that
+ 
+
+history, the um the strategy behind that
+super short set list and also touch on
+
+super short set list and also touch on
+ 
+
+super short set list and also touch on
+the debate it's already stirring up.
+
+the debate it's already stirring up.
+ 
+
+the debate it's already stirring up.
+&gt;&gt; Absolutely. Let's start with just how
+
+&gt;&gt; Absolutely. Let's start with just how
+ 
+
+&gt;&gt; Absolutely. Let's start with just how
+big a deal this gig is. The prestige
+
+big a deal this gig is. The prestige
+ 
+
+big a deal this gig is. The prestige
+artists famously don't get paid a
+
+artists famously don't get paid a
+ 
+
+artists famously don't get paid a
+performance fee, right? It's framed more
+
+performance fee, right? It's framed more
+ 
+
+performance fee, right? It's framed more
+as a a marketing partnership
+
+as a a marketing partnership
+ 
+
+as a a marketing partnership
+&gt;&gt; because the exposure is just off the
+
+&gt;&gt; because the exposure is just off the
+ 
+
+&gt;&gt; because the exposure is just off the
+charts. You almost can't put a number on
+
+charts. You almost can't put a number on
+ 
+
+charts. You almost can't put a number on
+it.
+
+it.
+ 
+
+it.
+&gt;&gt; Exactly. Think about this Tender Lamar
+
+&gt;&gt; Exactly. Think about this Tender Lamar
+ 
+
+&gt;&gt; Exactly. Think about this Tender Lamar
+show last year in 2025 pulled in 133.5
+
+show last year in 2025 pulled in 133.5
+ 
+
+show last year in 2025 pulled in 133.5
+million viewers. That's actually more
+
+million viewers. That's actually more
+ 
+
+million viewers. That's actually more
+people than watched the game itself.
+
+people than watched the game itself.
+ 
+
+people than watched the game itself.
+It's staggering.
+
+It's staggering.
+ 
+
+It's staggering.
+&gt;&gt; Wow. That's that's an insane platform.
+
+&gt;&gt; Wow. That's that's an insane platform.
+ 
+
+&gt;&gt; Wow. That's that's an insane platform.
+The pressure must be immense.
+
+The pressure must be immense.
+ 
+
+The pressure must be immense.
+&gt;&gt; Totally priceless exposure. But yeah,
+
+&gt;&gt; Totally priceless exposure. But yeah,
+ 
+
+&gt;&gt; Totally priceless exposure. But yeah,
+the pressure to deliver something
+
+the pressure to deliver something
+ 
+
+the pressure to deliver something
+spectacular is huge.
+
+spectacular is huge.
+ 
+
+spectacular is huge.
+&gt;&gt; And he's kind of been here before,
+
+&gt;&gt; And he's kind of been here before,
+ 
+
+&gt;&gt; And he's kind of been here before,
+right? Not headlining, but
+
+right? Not headlining, but
+ 
+
+right? Not headlining, but
+&gt;&gt; Mhm. He was a guest. Yeah. Back in 2020,
+
+&gt;&gt; Mhm. He was a guest. Yeah. Back in 2020,
+ 
+
+&gt;&gt; Mhm. He was a guest. Yeah. Back in 2020,
+Super Bowl Levie shared the stage with
+
+Super Bowl Levie shared the stage with
+ 
+
+Super Bowl Levie shared the stage with
+JLo and Shakira. Very memorable. but
+
+JLo and Shakira. Very memorable. but
+ 
+
+JLo and Shakira. Very memorable. but
+this is different. This time it's his
+
+this is different. This time it's his
+ 
+
+this is different. This time it's his
+show. All eyes on him.
+
+show. All eyes on him.
+ 
+
+show. All eyes on him.
+&gt;&gt; And he seems to get that. He put out a
+
+&gt;&gt; And he seems to get that. He put out a
+ 
+
+&gt;&gt; And he seems to get that. He put out a
+statement saying uh something like,
+
+statement saying uh something like,
+ 
+
+statement saying uh something like,
+"It's for those who came before me. This
+
+"It's for those who came before me. This
+ 
+
+"It's for those who came before me. This
+is for my people, my culture, and our
+
+is for my people, my culture, and our
+ 
+
+is for my people, my culture, and our
+history."
+
+history."
+ 
+
+history."
+&gt;&gt; That really underlines the significance.
+
+&gt;&gt; That really underlines the significance.
+ 
+
+&gt;&gt; That really underlines the significance.
+&gt;&gt; It does, and it lines up pretty clearly
+
+&gt;&gt; It does, and it lines up pretty clearly
+ 
+
+&gt;&gt; It does, and it lines up pretty clearly
+with what the NFL and Rock Nation seem
+
+with what the NFL and Rock Nation seem
+ 
+
+with what the NFL and Rock Nation seem
+to be doing, using this massive stage to
+
+to be doing, using this massive stage to
+ 
+
+to be doing, using this massive stage to
+spotlight diversity, cultural relevance.
+
+spotlight diversity, cultural relevance.
+ 
+
+spotlight diversity, cultural relevance.
+&gt;&gt; Okay, so that 13minute time slot, it's
+
+&gt;&gt; Okay, so that 13minute time slot, it's
+ 
+
+&gt;&gt; Okay, so that 13minute time slot, it's
+incredibly tight. What does the
+
+incredibly tight. What does the
+ 
+
+incredibly tight. What does the
+projected set list tell us about the
+
+projected set list tell us about the
+ 
+
+projected set list tell us about the
+strategy?
+
+strategy?
+ 
+
+strategy?
+&gt;&gt; Well, it's got to be high energy, global
+
+&gt;&gt; Well, it's got to be high energy, global
+ 
+
+&gt;&gt; Well, it's got to be high energy, global
+appeal, and somehow cover his whole
+
+appeal, and somehow cover his whole
+ 
+
+appeal, and somehow cover his whole
+career. Basically, sources are
+
+career. Basically, sources are
+ 
+
+career. Basically, sources are
+suggesting they'll probably kick off
+
+suggesting they'll probably kick off
+ 
+
+suggesting they'll probably kick off
+with something massive like Diti. Get
+
+with something massive like Diti. Get
+ 
+
+with something massive like Diti. Get
+everyone hooked immediately.
+
+everyone hooked immediately.
+ 
+
+everyone hooked immediately.
+&gt;&gt; Makes sense. Start big.
+
+&gt;&gt; Makes sense. Start big.
+ 
+
+&gt;&gt; Makes sense. Start big.
+&gt;&gt; Yeah. Then follow up with more huge
+
+&gt;&gt; Yeah. Then follow up with more huge
+ 
+
+&gt;&gt; Yeah. Then follow up with more huge
+anthems of like Tit Punto, uh, Porto
+
+anthems of like Tit Punto, uh, Porto
+ 
+
+anthems of like Tit Punto, uh, Porto
+Bonito. Just keep that energy way up.
+
+Bonito. Just keep that energy way up.
+ 
+
+Bonito. Just keep that energy way up.
+&gt;&gt; What about the crossover for the US
+
+&gt;&gt; What about the crossover for the US
+ 
+
+&gt;&gt; What about the crossover for the US
+audience who might only know a couple of
+
+audience who might only know a couple of
+ 
+
+audience who might only know a couple of
+his biggest hits?
+
+his biggest hits?
+ 
+
+his biggest hits?
+&gt;&gt; That's where I like it comes in. That
+
+&gt;&gt; That's where I like it comes in. That
+ 
+
+&gt;&gt; That's where I like it comes in. That
+track with Cardi B and Jay Balvin, it's
+
+track with Cardi B and Jay Balvin, it's
+ 
+
+track with Cardi B and Jay Balvin, it's
+predicted to be like the centerpiece for
+
+predicted to be like the centerpiece for
+ 
+
+predicted to be like the centerpiece for
+that crossover moment.
+
+that crossover moment.
+ 
+
+that crossover moment.
+&gt;&gt; Gotcha. A guaranteed crowd-pleaser.
+
+&gt;&gt; Gotcha. A guaranteed crowd-pleaser.
+ 
+
+&gt;&gt; Gotcha. A guaranteed crowd-pleaser.
+&gt;&gt; Exactly. And then the finale, it looks
+
+&gt;&gt; Exactly. And then the finale, it looks
+ 
+
+&gt;&gt; Exactly. And then the finale, it looks
+like they're aiming for DTMF. That
+
+like they're aiming for DTMF. That
+ 
+
+like they're aiming for DTMF. That
+connects it back to his latest album,
+
+connects it back to his latest album,
+ 
+
+connects it back to his latest album,
+Deita Armas Photos,
+
+Deita Armas Photos,
+ 
+
+Deita Armas Photos,
+&gt;&gt; which uh translates roughly to I should
+
+&gt;&gt; which uh translates roughly to I should
+ 
+
+&gt;&gt; which uh translates roughly to I should
+have taken more photos.
+
+have taken more photos.
+ 
+
+have taken more photos.
+&gt;&gt; Something like that. Yeah. So, it
+
+&gt;&gt; Something like that. Yeah. So, it
+ 
+
+&gt;&gt; Something like that. Yeah. So, it
+grounds the performance in his current
+
+grounds the performance in his current
+ 
+
+grounds the performance in his current
+work, too.
+
+work, too.
+ 
+
+work, too.
+&gt;&gt; Guess are always a huge part of
+
+&gt;&gt; Guess are always a huge part of
+ 
+
+&gt;&gt; Guess are always a huge part of
+halftime. Who are the odds pointing
+
+halftime. Who are the odds pointing
+ 
+
+halftime. Who are the odds pointing
+towards? Well, based on implied
+
+towards? Well, based on implied
+ 
+
+towards? Well, based on implied
+probability from the sources, Jay Balvin
+
+probability from the sources, Jay Balvin
+ 
+
+probability from the sources, Jay Balvin
+is looking pretty likely. Cardi B2
+
+is looking pretty likely. Cardi B2
+ 
+
+is looking pretty likely. Cardi B2
+obviously for I like it.
+
+obviously for I like it.
+ 
+
+obviously for I like it.
+&gt;&gt; Okay, that makes sense.
+
+&gt;&gt; Okay, that makes sense.
+ 
+
+&gt;&gt; Okay, that makes sense.
+&gt;&gt; But Jennifer Lopez is also high on that
+
+&gt;&gt; But Jennifer Lopez is also high on that
+ 
+
+&gt;&gt; But Jennifer Lopez is also high on that
+list. Her appearing could be a really
+
+list. Her appearing could be a really
+ 
+
+list. Her appearing could be a really
+powerful cultural statement, you know,
+
+powerful cultural statement, you know,
+ 
+
+powerful cultural statement, you know,
+bridging different eras of Latin
+
+bridging different eras of Latin
+ 
+
+bridging different eras of Latin
+superstardom.
+
+superstardom.
+ 
+
+superstardom.
+&gt;&gt; Interesting. And I saw something about
+
+&gt;&gt; Interesting. And I saw something about
+ 
+
+&gt;&gt; Interesting. And I saw something about
+the cassita stage setup, the little
+
+the cassita stage setup, the little
+ 
+
+the cassita stage setup, the little
+house.
+
+house.
+ 
+
+house.
+&gt;&gt; Uh-huh. Yeah. The symbolic little house
+
+&gt;&gt; Uh-huh. Yeah. The symbolic little house
+ 
+
+&gt;&gt; Uh-huh. Yeah. The symbolic little house
+stage he's used before. That's
+
+stage he's used before. That's
+ 
+
+stage he's used before. That's
+apparently a possibility. And the cool
+
+apparently a possibility. And the cool
+ 
+
+apparently a possibility. And the cool
+thing about that, if they use it, is it
+
+thing about that, if they use it, is it
+ 
+
+thing about that, if they use it, is it
+opens the door for maybe non-m music
+
+opens the door for maybe non-m music
+ 
+
+opens the door for maybe non-m music
+cameos.
+
+cameos.
+ 
+
+cameos.
+&gt;&gt; Oh, like who?
+
+&gt;&gt; Oh, like who?
+ 
+
+&gt;&gt; Oh, like who?
+&gt;&gt; Sources threw out names like uh maybe
+
+&gt;&gt; Sources threw out names like uh maybe
+ 
+
+&gt;&gt; Sources threw out names like uh maybe
+Pedro Pascal or his WWE buddy Damen
+
+Pedro Pascal or his WWE buddy Damen
+ 
+
+Pedro Pascal or his WWE buddy Damen
+Priest. Blending music, film, wrestling,
+
+Priest. Blending music, film, wrestling,
+ 
+
+Priest. Blending music, film, wrestling,
+making it a bigger cultural event,
+
+making it a bigger cultural event,
+ 
+
+making it a bigger cultural event,
+&gt;&gt; right? Turning it into more than just a
+
+&gt;&gt; right? Turning it into more than just a
+ 
+
+&gt;&gt; right? Turning it into more than just a
+concert, which kind of leads us to the
+
+concert, which kind of leads us to the
+ 
+
+concert, which kind of leads us to the
+next point.
+
+next point.
+ 
+
+next point.
+&gt;&gt; Yeah.
+
+&gt;&gt; Yeah.
+ 
+
+&gt;&gt; Yeah.
+&gt;&gt; This isn't just music. It's become a
+
+&gt;&gt; This isn't just music. It's become a
+ 
+
+&gt;&gt; This isn't just music. It's become a
+cultural flash point.
+
+cultural flash point.
+ 
+
+cultural flash point.
+&gt;&gt; Definitely. It's being celebrated hugely
+
+&gt;&gt; Definitely. It's being celebrated hugely
+ 
+
+&gt;&gt; Definitely. It's being celebrated hugely
+as a win for Latinx representation, but
+
+as a win for Latinx representation, but
+ 
+
+as a win for Latinx representation, but
+uh it also kicked up controversy almost
+
+uh it also kicked up controversy almost
+ 
+
+uh it also kicked up controversy almost
+immediately.
+
+immediately.
+ 
+
+immediately.
+&gt;&gt; Yeah. What are the sources saying about
+
+&gt;&gt; Yeah. What are the sources saying about
+ 
+
+&gt;&gt; Yeah. What are the sources saying about
+the backlash?
+
+the backlash?
+ 
+
+the backlash?
+&gt;&gt; Well, it seems to come from a couple of
+
+&gt;&gt; Well, it seems to come from a couple of
+ 
+
+&gt;&gt; Well, it seems to come from a couple of
+angles. Some critics are pointing to his
+
+angles. Some critics are pointing to his
+ 
+
+angles. Some critics are pointing to his
+past political activism, you know, being
+
+past political activism, you know, being
+ 
+
+past political activism, you know, being
+outspoken against Trump, advocating for
+
+outspoken against Trump, advocating for
+ 
+
+outspoken against Trump, advocating for
+Latinex rights. Okay. And they're also
+
+Latinex rights. Okay. And they're also
+ 
+
+Latinex rights. Okay. And they're also
+bringing up his decision a while back to
+
+bringing up his decision a while back to
+ 
+
+bringing up his decision a while back to
+skip some US tour dates because of
+
+skip some US tour dates because of
+ 
+
+skip some US tour dates because of
+concerns over ICE. So, real world
+
+concerns over ICE. So, real world
+ 
+
+concerns over ICE. So, real world
+politics are definitely part of the
+
+politics are definitely part of the
+ 
+
+politics are definitely part of the
+conversation around this.
+
+conversation around this.
+ 
+
+conversation around this.
+&gt;&gt; And there's also the language debate,
+
+&gt;&gt; And there's also the language debate,
+ 
+
+&gt;&gt; And there's also the language debate,
+isn't there? The fact he performs
+
+isn't there? The fact he performs
+ 
+
+isn't there? The fact he performs
+primarily in Spanish,
+
+primarily in Spanish,
+ 
+
+primarily in Spanish,
+&gt;&gt; right? The sources mention commentary
+
+&gt;&gt; right? The sources mention commentary
+ 
+
+&gt;&gt; right? The sources mention commentary
+questioning that choice. You know, why
+
+questioning that choice. You know, why
+ 
+
+questioning that choice. You know, why
+isn't it in English, which uh frankly
+
+isn't it in English, which uh frankly
+ 
+
+isn't it in English, which uh frankly
+highlights some of the xenophobic
+
+highlights some of the xenophobic
+ 
+
+highlights some of the xenophobic
+undercurrens you sometimes see online
+
+undercurrens you sometimes see online
+ 
+
+undercurrens you sometimes see online
+around these big events.
+
+around these big events.
+ 
+
+around these big events.
+&gt;&gt; So, it's complex. He's stepping onto
+
+&gt;&gt; So, it's complex. He's stepping onto
+ 
+
+&gt;&gt; So, it's complex. He's stepping onto
+this massively visible, highly
+
+this massively visible, highly
+ 
+
+this massively visible, highly
+politicized stage.
+
+politicized stage.
+ 
+
+politicized stage.
+&gt;&gt; Exactly. It feels like less of just a
+
+&gt;&gt; Exactly. It feels like less of just a
+ 
+
+&gt;&gt; Exactly. It feels like less of just a
+performance and more, I don't know,
+
+performance and more, I don't know,
+ 
+
+performance and more, I don't know,
+reflection of where global pop culture
+
+reflection of where global pop culture
+ 
+
+reflection of where global pop culture
+is right now. And he knows every choice
+
+is right now. And he knows every choice
+ 
+
+is right now. And he knows every choice
+is going to be intensely scrutinized.
+
+is going to be intensely scrutinized.
+ 
+
+is going to be intensely scrutinized.
+&gt;&gt; So, let's wrap this up. We know the
+
+&gt;&gt; So, let's wrap this up. We know the
+ 
+
+&gt;&gt; So, let's wrap this up. We know the
+exposure is priceless, way more valuable
+
+exposure is priceless, way more valuable
+ 
+
+exposure is priceless, way more valuable
+than any paycheck. But given all this
+
+than any paycheck. But given all this
+ 
+
+than any paycheck. But given all this
+scrutiny, the potential for controversy,
+
+scrutiny, the potential for controversy,
+ 
+
+scrutiny, the potential for controversy,
+you know, we all remember what happened
+
+you know, we all remember what happened
+ 
+
+you know, we all remember what happened
+with Janet Jackson years ago. Is that
+
+with Janet Jackson years ago. Is that
+ 
+
+with Janet Jackson years ago. Is that
+risk now maybe outweighing the reward?
+
+risk now maybe outweighing the reward?
+ 
+
+risk now maybe outweighing the reward?
+Or is this just the new reality for
+
+Or is this just the new reality for
+ 
+
+Or is this just the new reality for
+global superstars on the biggest stage?
+
+global superstars on the biggest stage?
+ 
+
+global superstars on the biggest stage?
+Yeah,
+
+Yeah,
+ 
+
+Yeah,
+&gt;&gt; it's definitely something to think
+
+&gt;&gt; it's definitely something to think
+ 
+
+&gt;&gt; it's definitely something to think
+about.

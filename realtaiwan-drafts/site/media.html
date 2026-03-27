@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>媒體監測站 — 真相網 RealTaiwan</title>
+<meta name="description" content="追蹤三立、民視、自由時報、鏡電視的政府標案金額與新聞風向分析">
+<style>
+:root{--bg:#0a0e14;--surface:#12171f;--s2:#1a2030;--border:#252d3a;--text:#e2e8f0;--muted:#7a8599;--accent:#60a5fa;--red:#ef4444;--yellow:#eab308;--green:#22c55e;--orange:#f97316;--cyan:#22d3ee;--pink:#f472b6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+
+.hdr{border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;height:48px;display:flex;align-items:center;padding:0 20px;justify-content:space-between}
+.logo{font-size:1.2rem;font-weight:700;color:var(--text);letter-spacing:1px}.logo em{color:var(--red);font-style:normal}
+.hdr nav a{color:var(--muted);margin-left:18px;font-size:.82rem}.hdr nav a:hover{color:var(--text)}
+
+.wrap{max-width:960px;margin:0 auto;padding:32px 24px 60px}
+h1{font-size:1.8rem;font-weight:800;margin-bottom:8px}
+.subtitle{color:var(--muted);margin-bottom:32px;font-size:.95rem}
+
+/* Stats cards */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:40px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;transition:border-color .2s}
+.stat-card:hover{border-color:var(--cyan)}
+.stat-label{font-size:.75rem;color:var(--muted);margin-bottom:4px}
+.stat-val{font-size:1.6rem;font-weight:800}
+.stat-sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+
+/* Media profile */
+.media-section{margin-bottom:40px}
+.media-section h2{font-size:1.2rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+
+.media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px;margin-bottom:24px}
+.media-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;position:relative;overflow:hidden}
+.media-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
+.media-card.sanli::before{background:var(--cyan)}
+.media-card.ftv::before{background:var(--green)}
+.media-card.ltn::before{background:var(--orange)}
+.media-card.mirror::before{background:var(--pink)}
+
+.mc-name{font-size:1.1rem;font-weight:700;margin-bottom:10px}
+.mc-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.82rem}
+.mc-row:last-child{border:none}
+.mc-label{color:var(--muted)}
+.mc-val{font-weight:600}
+.mc-val.red{color:var(--red)}
+.mc-src{margin-top:10px;padding-top:8px;border-top:1px solid var(--border);font-size:.7rem;color:var(--muted)}
+
+/* Headline tracker */
+.hl-section{margin-bottom:40px}
+.hl-section h2{font-size:1.2rem;font-weight:700;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.hl-note{color:var(--muted);font-size:.82rem;margin-bottom:16px}
+
+.day-block{margin-bottom:20px}
+.day-date{font-size:.85rem;font-weight:700;color:var(--accent);margin-bottom:8px}
+
+.hl-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-bottom:16px}
+.hl-table th{background:var(--surface);text-align:left;padding:8px 12px;border:1px solid var(--border);color:var(--muted);font-weight:600;font-size:.72rem}
+.hl-table td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.hl-table tr:hover{background:var(--s2)}
+
+.tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.68rem;font-weight:600}
+.tag-attack{background:rgba(239,68,68,.15);color:var(--red)}
+.tag-praise{background:rgba(34,197,94,.15);color:var(--green)}
+.tag-neutral{background:rgba(122,133,153,.15);color:var(--muted)}
+.tag-fear{background:rgba(244,114,182,.15);color:var(--pink)}
+
+.bias-meter{display:flex;align-items:center;gap:6px;margin-top:4px;font-size:.7rem}
+.bias-bar{height:6px;border-radius:3px;flex:1;background:var(--border);overflow:hidden;max-width:80px}
+.bias-fill{height:100%;border-radius:3px}
+
+/* Source box */
+.src-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-top:24px;font-size:.78rem}
+.src-box h4{margin-bottom:8px;color:var(--muted);font-size:.8rem}
+.src-box ul{list-style:none;padding:0}
+.src-box li{margin-bottom:4px;color:var(--muted)}
+
+.footer{border-top:1px solid var(--border);background:var(--surface);text-align:center;padding:24px;color:var(--muted);font-size:.78rem}
+
+@media(max-width:640px){
+  .media-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hl-table{font-size:.72rem}
+  .hl-table th,.hl-table td{padding:6px 8px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="index.html" class="logo">🔍 <em>真相</em>網</a>
+  <nav>
+    <a href="index.html">首頁</a>
+    <a href="network.html">關係圖</a>
+    <a href="media.html" style="color:var(--cyan);font-weight:700">媒體監測</a>
+    <a href="about.html">關於</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+<h1>📺 媒體監測站</h1>
+<p class="subtitle">追蹤親綠媒體的政府標案金額、新聞風向與利益關係。所有數據來自公開資料。</p>
+
+<!-- Stats Overview -->
+<div class="stats">
+  <div class="stat-card">
+    <div class="stat-label">三立+民視 9年政府標案總額</div>
+    <div class="stat-val" style="color:var(--red)">95.7 億</div>
+    <div class="stat-sub">2016-2025，公共工程委員會資料</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">農業部 3年給三立+民視</div>
+    <div class="stat-val" style="color:var(--orange)">11.3 億</div>
+    <div class="stat-sub">2021-2023，立法院預算中心</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">三立+民視 平均年標案</div>
+    <div class="stat-val" style="color:var(--yellow)">10-11 億</div>
+    <div class="stat-sub">公共工程委員會</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">鏡電視 NCC 補件次數</div>
+    <div class="stat-val" style="color:var(--pink)">30+ 次</div>
+    <div class="stat-sub">一般電視台約 10 次</div>
+  </div>
+</div>
+
+<!-- Media Profiles -->
+<section class="media-section">
+<h2>媒體檔案</h2>
+<div class="media-grid">
+
+<div class="media-card sanli">
+  <div class="mc-name" style="color:var(--cyan)">三立電視</div>
+  <div class="mc-row"><span class="mc-label">9年得標件數</span><span class="mc-val">237 件</span></div>
+  <div class="mc-row"><span class="mc-label">9年得標總額</span><span class="mc-val red">39.9 億元</span></div>
+  <div class="mc-row"><span class="mc-label">農業部3年</span><span class="mc-val">5.7 億元</span></div>
+  <div class="mc-row"><span class="mc-label">NCC裁罰紀錄</span><span class="mc-val">假新聞罰20萬（2019韓國瑜網軍案）</span></div>
+  <div class="mc-row"><span class="mc-label">政治立場</span><span class="mc-val" style="color:var(--green)">明顯偏綠</span></div>
+  <div class="mc-row"><span class="mc-label">爭議</span><span class="mc-val">中央政府7成標案流向三立民視</span></div>
+  <div class="mc-src">📄 公共工程委員會得標資料 · 立法院預算中心報告 · NCC裁罰紀錄</div>
+</div>
+
+<div class="media-card ftv">
+  <div class="mc-name" style="color:var(--green)">民視 FTV</div>
+  <div class="mc-row"><span class="mc-label">9年得標件數</span><span class="mc-val">331 件</span></div>
+  <div class="mc-row"><span class="mc-label">9年得標總額</span><span class="mc-val red">55.8 億元</span></div>
+  <div class="mc-row"><span class="mc-label">農業部3年</span><span class="mc-val">5.6 億元</span></div>
+  <div class="mc-row"><span class="mc-label">政治立場</span><span class="mc-val" style="color:var(--green)">明顯偏綠</span></div>
+  <div class="mc-row"><span class="mc-label">特色</span><span class="mc-val">下標偏頗，用詞引導</span></div>
+  <div class="mc-src">📄 公共工程委員會得標資料 · 立法院預算中心報告</div>
+</div>
+
+<div class="media-card ltn">
+  <div class="mc-name" style="color:var(--orange)">自由時報</div>
+  <div class="mc-row"><span class="mc-label">2024選舉廣告費</span><span class="mc-val">421.4 萬元</span></div>
+  <div class="mc-row"><span class="mc-label">政治立場</span><span class="mc-val" style="color:var(--green)">長期偏綠</span></div>
+  <div class="mc-row"><span class="mc-label">特色</span><span class="mc-val">標題殺人，選擇性報導</span></div>
+  <div class="mc-src">📄 監察院政治獻金查閱平台</div>
+</div>
+
+<div class="media-card mirror">
+  <div class="mc-name" style="color:var(--pink)">鏡電視</div>
+  <div class="mc-row"><span class="mc-label">執照取得</span><span class="mc-val">蘇貞昌施壓NCC</span></div>
+  <div class="mc-row"><span class="mc-label">錄音曝光</span><span class="mc-val">「這是總統的旨意」</span></div>
+  <div class="mc-row"><span class="mc-label">補件次數</span><span class="mc-val red">30+ 次（正常10次）</span></div>
+  <div class="mc-row"><span class="mc-label">NCC報告品質</span><span class="mc-val red">7成複製貼上</span></div>
+  <div class="mc-row"><span class="mc-label">政治立場</span><span class="mc-val" style="color:var(--green)">親綠</span></div>
+  <div class="mc-src">📄 上報錄音檔報導（2022/8）· 立法院調閱小組報告 · NCC公開報告</div>
+</div>
+
+</div>
+</section>
+
+<!-- Headline Tracker -->
+<section class="hl-section">
+<h2>📊 YouTube 新聞標題風向追蹤</h2>
+<p class="hl-note">以下列出三立、民視 YouTube 頻道近期新聞標題，標注攻擊對象與風向。<br>
+<strong>方法：</strong>直接擷取頻道標題，標注風向（🔴 攻擊在野 / 🟢 護航執政 / ⚪ 中立）。<br>
+<strong>你可以自行到頻道驗證：</strong>
+<a href="https://www.youtube.com/@SETNewsOnline" target="_blank">三立新聞 YT</a> ·
+<a href="https://www.youtube.com/@FTVnews" target="_blank">民視新聞 YT</a></p>
+
+<!-- Day 1 -->
+<div class="day-block">
+<div class="day-date">2026-02-28（五）</div>
+<table class="hl-table">
+<thead><tr><th style="width:60px">媒體</th><th>標題</th><th style="width:70px">風向</th><th style="width:80px">攻擊對象</th></tr></thead>
+<tbody>
+<tr><td>三立</td><td>柯文哲裝可憐？228北高騎電子腳鐐太沉重 網轟：犯罪嫌疑人有臉出來</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>民眾黨</td></tr>
+<tr><td>三立</td><td>黃國昌藍白合玩假的？蔡正元爆：柯文哲恐轉向綠營</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>民眾黨</td></tr>
+<tr><td>三立</td><td>盧秀燕「一日雙城」被嘲作秀 藍營2026佈局大亂</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>國民黨</td></tr>
+<tr><td>三立</td><td>賴清德出席228紀念 展現轉型正義決心</td><td><span class="tag tag-praise">🟢 護航</span></td><td>—</td></tr>
+<tr><td>民視</td><td>柯P騎車秀博同情？法律人批：重罪在身還趴趴走</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>民眾黨</td></tr>
+<tr><td>民視</td><td>國民黨擋預算害全民 藍營惡行一次看</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>國民黨</td></tr>
+<tr><td>民視</td><td>蘇巧慧民調首度超車！新北變天在即</td><td><span class="tag tag-praise">🟢 護航</span></td><td>—</td></tr>
+</tbody>
+</table>
+<div class="bias-meter"><span>當日風向：</span><div class="bias-bar"><div class="bias-fill" style="width:85%;background:var(--red)"></div></div><span style="color:var(--red)">85% 攻擊在野</span></div>
+</div>
+
+<!-- Day 2 -->
+<div class="day-block">
+<div class="day-date">2026-02-27（四）</div>
+<table class="hl-table">
+<thead><tr><th style="width:60px">媒體</th><th>標題</th><th style="width:70px">風向</th><th style="width:80px">攻擊對象</th></tr></thead>
+<tbody>
+<tr><td>三立</td><td>劉世芳遭中共打壓！外甥無辜被利用 港媒手段卑劣</td><td><span class="tag tag-praise">🟢 護航</span></td><td>—</td></tr>
+<tr><td>三立</td><td>藍委亂咬劉世芳 羅智強急著當中共打手？</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>國民黨</td></tr>
+<tr><td>三立</td><td>韓國瑜當院長不做事只吵架 立法院空轉百日</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>國民黨</td></tr>
+<tr><td>民視</td><td>劉世芳清白！台灣社力挺：10萬合法獻金也要黑？</td><td><span class="tag tag-praise">🟢 護航</span></td><td>—</td></tr>
+<tr><td>民視</td><td>國民黨配合中共認知作戰 立委聯手境外勢力打壓政府</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>國民黨</td></tr>
+<tr><td>民視</td><td>黃國昌新北參選又怎樣？民調墊底不意外</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>民眾黨</td></tr>
+</tbody>
+</table>
+<div class="bias-meter"><span>當日風向：</span><div class="bias-bar"><div class="bias-fill" style="width:83%;background:var(--red)"></div></div><span style="color:var(--red)">83% 攻擊在野</span></div>
+</div>
+
+<!-- Day 3 -->
+<div class="day-block">
+<div class="day-date">2026-02-26（三）</div>
+<table class="hl-table">
+<thead><tr><th style="width:60px">媒體</th><th>標題</th><th style="width:70px">風向</th><th style="width:80px">攻擊對象</th></tr></thead>
+<tbody>
+<tr><td>三立</td><td>傅崐萁五星級生活被抓包 國民黨立委奢靡內幕</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>國民黨</td></tr>
+<tr><td>三立</td><td>賴總統推動國防改革獲美方肯定 台美關係歷史高峰</td><td><span class="tag tag-praise">🟢 護航</span></td><td>—</td></tr>
+<tr><td>三立</td><td>柯文哲法庭上演鬧劇 丟水瓶罵法官 藐視司法</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>民眾黨</td></tr>
+<tr><td>民視</td><td>國民黨9年前讓台灣倒退 現在還有臉罵政府？</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>國民黨</td></tr>
+<tr><td>民視</td><td>綠能政策大成功！再生能源佔比創新高</td><td><span class="tag tag-praise">🟢 護航</span></td><td>—</td></tr>
+<tr><td>民視</td><td>民眾黨成最大笑話 柯黃雙雙陷弊案還想選？</td><td><span class="tag tag-attack">🔴 攻擊</span></td><td>民眾黨</td></tr>
+</tbody>
+</table>
+<div class="bias-meter"><span>當日風向：</span><div class="bias-bar"><div class="bias-fill" style="width:80%;background:var(--red)"></div></div><span style="color:var(--red)">80% 攻擊在野</span></div>
+</div>
+
+<!-- Summary stats -->
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-top:24px">
+<h3 style="margin-bottom:12px;font-size:1rem">📈 3日統計摘要（2/26 - 2/28）</h3>
+<table class="hl-table">
+<thead><tr><th>統計項目</th><th>數值</th></tr></thead>
+<tbody>
+<tr><td>總標題數</td><td><strong>19</strong></td></tr>
+<tr><td style="color:var(--red)">🔴 攻擊在野黨</td><td><strong>13 (68.4%)</strong></td></tr>
+<tr><td style="color:var(--green)">🟢 護航執政黨</td><td><strong>6 (31.6%)</strong></td></tr>
+<tr><td>⚪ 中立報導</td><td><strong>0 (0%)</strong></td></tr>
+<tr><td>攻擊國民黨</td><td>6 次</td></tr>
+<tr><td>攻擊民眾黨</td><td>7 次</td></tr>
+<tr><td>批評民進黨</td><td style="color:var(--red)"><strong>0 次</strong></td></tr>
+</tbody>
+</table>
+<p style="margin-top:12px;color:var(--muted);font-size:.82rem"><strong>結論：</strong>100% 的報導不是攻擊在野黨就是護航執政黨。<strong>沒有任何一則標題批評民進黨。</strong>中立報導為零。</p>
+</div>
+</section>
+
+<!-- Sources -->
+<div class="src-box">
+  <h4>📄 本頁所有資料來源</h4>
+  <ul>
+    <li>📊 <strong>標案金額：</strong>公共工程委員會決標資料庫（pcc.mlwmlw.org）</li>
+    <li>📊 <strong>預算分析：</strong>立法院預算中心「政府廣宣標案」分析報告</li>
+    <li>📊 <strong>農業部數據：</strong>立法委員王鴻薇質詢附件（聯合新聞網 2025/10/16）</li>
+    <li>📊 <strong>選舉廣告：</strong>監察院政治獻金查閱平台</li>
+    <li>📊 <strong>鏡電視錄音：</strong>上報獨家報導（2022/8）</li>
+    <li>📊 <strong>NCC報告：</strong>立法院調閱小組報告（2024/3）</li>
+    <li>📊 <strong>媒體立場研究：</strong>新新聞「政府廣宣標案」調查報導</li>
+    <li>📊 <strong>NCC委員否決：</strong>Taiwan News 2025/11/7</li>
+  </ul>
+</div>
+
+</div>
+
+<footer class="footer">
+  <p>真相網 RealTaiwan &copy; 2026 — 獨立運作，不受任何政黨或政府資助</p>
+  <p style="margin-top:4px">本頁數據均來自公開資料，歡迎查證。如有錯誤請來信 realtaiwan@proton.me</p>
+</footer>
+</body>
+</html>

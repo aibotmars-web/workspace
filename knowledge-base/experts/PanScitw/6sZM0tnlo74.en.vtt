@@ -1,0 +1,1308 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:09.509 --> 00:00:10.510
+Without EUV,
+
+00:00:10.510 --> 00:00:12.262
+will the semiconductor industry
+be over?
+
+00:00:12.262 --> 00:00:15.390
+This EUV machine costs 181 million USD.
+
+00:00:15.390 --> 00:00:16.474
+Not only is it expensive,
+
+00:00:16.474 --> 00:00:17.892
+it also occupies a pivotal position
+
+00:00:17.892 --> 00:00:19.561
+in the chip industry chain.
+
+00:00:19.602 --> 00:00:21.688
+Under the restrictions of
+the U.S. CHIPS Act,
+
+00:00:21.688 --> 00:00:24.649
+ASML is prohibited from
+exporting EUV machines to China.
+
+00:00:24.649 --> 00:00:26.985
+Even its EUV machines in Taiwan
+
+00:00:26.985 --> 00:00:29.195
+have kill switches installed.
+
+00:00:29.195 --> 00:00:30.572
+ASML has prepared for the worst,
+
+00:00:30.572 --> 00:00:32.198
+making sure that
+this technology cannot be stolen
+
+00:00:32.198 --> 00:00:34.034
+even China invades Taiwan.
+
+00:00:34.075 --> 00:00:37.328
+But why exactly is this machine
+sought after by the whole world?
+
+00:00:37.328 --> 00:00:40.331
+Can't we just build
+another company like ASML?
+
+00:00:44.044 --> 00:00:45.420
+The key technology of making chips
+
+00:00:45.420 --> 00:00:47.422
+has been around since 1957.
+
+00:00:47.422 --> 00:00:50.633
+It is essentially
+stacking materials on silicon wafers.
+
+00:00:50.633 --> 00:00:52.844
+Only that each layer of material
+
+00:00:52.844 --> 00:00:55.013
+needs to be etched with patterns
+through photolithography
+
+00:00:55.013 --> 00:00:56.723
+before the next layer stacks on.
+
+00:00:56.723 --> 00:00:58.099
+So does the next layer.
+
+00:00:58.099 --> 00:01:00.226
+To ensure patterns on chips are correct,
+
+00:01:00.226 --> 00:01:01.061
+in 1957,
+
+00:01:01.061 --> 00:01:04.064
+Lathrop developed
+the photolithography process.
+
+00:01:04.064 --> 00:01:05.982
+Let's do a quick review of this.
+
+00:01:05.982 --> 00:01:08.610
+First,
+grow the desired material on a wafer.
+
+00:01:08.651 --> 00:01:10.570
+Then coat it with photoresist.
+
+00:01:10.570 --> 00:01:12.530
+The next step—exposure—is the key.
+
+00:01:12.530 --> 00:01:16.326
+Place a photomask
+between the UV light source and the wafer.
+
+00:01:16.326 --> 00:01:17.994
+The mask is with a carved-out pattern.
+
+00:01:17.994 --> 00:01:19.579
+The mask itself blocks UV light.
+
+00:01:19.579 --> 00:01:21.498
+The UV light passing through the hollow part
+
+00:01:21.498 --> 00:01:24.167
+will change the chemical properties
+of the photoresist.
+
+00:01:24.167 --> 00:01:25.335
+Take negative photoresist for example.
+
+00:01:25.335 --> 00:01:29.297
+The photoresist exposed to UV light
+becomes insoluble.
+
+00:01:29.297 --> 00:01:32.842
+When rinsed with a solvent,
+these parts remain.
+
+00:01:32.842 --> 00:01:35.804
+The parts that were not exposed to the UV
+due to the mask's blocking
+
+00:01:35.804 --> 00:01:37.263
+will be rinsed away.
+
+00:01:37.764 --> 00:01:40.558
+Finally, add hydrofluoric acid or other solvents.
+
+00:01:40.600 --> 00:01:42.727
+The area on the wafer
+not protected by photoresist
+
+00:01:42.727 --> 00:01:45.980
+will be etched by the solvent
+with desired patterns.
+
+00:01:45.980 --> 00:01:48.900
+Now, congratulations,
+one lithography process is completed.
+
+00:01:48.900 --> 00:01:51.194
+You have printed
+the first layer of a chip.
+
+00:01:51.236 --> 00:01:53.655
+Next, just repeat the process
+again and again.
+
+00:01:53.655 --> 00:01:56.199
+Finally, you should build
+3D chips on the wafer.
+
+00:01:56.199 --> 00:01:58.243
+When we want to make smaller chips,
+
+00:01:58.243 --> 00:02:02.997
+we should try to leave finer patterns
+on the photoresist.
+
+00:02:02.997 --> 00:02:03.623
+In the past,
+
+00:02:03.623 --> 00:02:05.333
+simply shrinking the size of the mask
+
+00:02:05.333 --> 00:02:07.460
+allows patterns to be smaller and smaller.
+
+00:02:07.460 --> 00:02:10.130
+But when a mask
+shrinks to a certain degree,
+
+00:02:10.130 --> 00:02:12.298
+diffraction occurs.
+
+00:02:12.298 --> 00:02:13.508
+To be precise,
+
+00:02:13.550 --> 00:02:16.719
+when the slits of a mask are thinner
+than half the light's wavelength,
+
+00:02:16.719 --> 00:02:19.347
+the light diffracts.
+
+00:02:19.347 --> 00:02:20.849
+When passing through such slits,
+
+00:02:20.849 --> 00:02:22.392
+the light will not only go straight,
+
+00:02:22.392 --> 00:02:24.018
+but also make a turn
+at the edge of the slits,
+
+00:02:24.018 --> 00:02:25.436
+casting the wrong pattern.
+
+00:02:25.436 --> 00:02:26.521
+In other words,
+
+00:02:26.521 --> 00:02:28.314
+although we can keep shrinking the mask,
+
+00:02:28.314 --> 00:02:30.483
+but to ensure the accuracy of a pattern,
+
+00:02:30.483 --> 00:02:31.818
+the size of each feature within
+
+00:02:31.818 --> 00:02:34.946
+cannot be smaller than
+half the wavelength of the light.
+
+00:02:34.946 --> 00:02:36.990
+For example, in the early 2000s,
+
+00:02:36.990 --> 00:02:39.200
+the light source used at that time
+was laser.
+
+00:02:39.200 --> 00:02:40.702
+Its wavelength had been reduced
+
+00:02:40.702 --> 00:02:42.579
+from krypton fluoride's (KrF2)
+248 nanometers
+
+00:02:42.579 --> 00:02:45.415
+to argon fluoride's (ArF) 193 nanometers.
+
+00:02:45.415 --> 00:02:46.916
+This 193-nanometer laser
+
+00:02:46.958 --> 00:02:51.421
+is of course inadequate
+to the task for current sub-7nm processes.
+
+00:02:51.421 --> 00:02:53.339
+To get around this physical limit,
+
+00:02:53.381 --> 00:02:55.717
+scientists tried various methods
+
+00:02:55.717 --> 00:02:59.179
+such as immersion lithography
+and multiple patterning.
+
+00:02:59.179 --> 00:03:02.265
+Immersion lithography is to spread
+a layer of water or other liquid
+
+00:03:02.265 --> 00:03:04.100
+between the light source and the wafer
+
+00:03:04.100 --> 00:03:05.727
+to improve the path of light.
+
+00:03:05.727 --> 00:03:06.352
+This is a bit like,
+
+00:03:06.352 --> 00:03:08.438
+when using a high-magnification microscope,
+
+00:03:08.438 --> 00:03:10.356
+we would put a drop of immersion oil
+
+00:03:10.356 --> 00:03:12.108
+between the lens and the sample.
+
+00:03:12.108 --> 00:03:15.695
+Multiple patterning is to divide
+a pattern into multiple exposures.
+
+00:03:16.112 --> 00:03:16.487
+For example,
+
+00:03:16.487 --> 00:03:19.866
+if there are 6 lines—1, 2, 3, 4, 5, 6,—
+to be exposed,
+
+00:03:19.908 --> 00:03:21.701
+the lines can be divided into two passes.
+
+00:03:21.701 --> 00:03:23.661
+The first pass exposes line 1, 3, and 5.
+
+00:03:23.661 --> 00:03:25.330
+The second 2, 4, and 6.
+
+00:03:25.330 --> 00:03:27.832
+This act of
+adding the spacing between lines
+
+00:03:27.832 --> 00:03:31.002
+can reduce diffraction as much as possible.
+
+00:03:31.002 --> 00:03:32.503
+These methods are collectively called
+
+00:03:32.503 --> 00:03:34.881
+resolution enhancement techniques—RET.
+
+00:03:34.881 --> 00:03:38.343
+They are meant to achieve higher resolution
+at a given wavelength
+
+00:03:38.343 --> 00:03:40.386
+by redesigning
+lithography processes.
+
+00:03:40.386 --> 00:03:42.597
+In addition, upon diffraction,
+
+00:03:42.597 --> 00:03:45.516
+the UV light deviates more and more
+
+00:03:45.516 --> 00:03:47.227
+as the distance between the mask
+and the wafer increases.
+
+00:03:47.727 --> 00:03:48.853
+In the 1970s,
+
+00:03:48.853 --> 00:03:51.231
+some researchers
+placed the mask right on the wafer,
+
+00:03:51.231 --> 00:03:53.066
+making the mask touch the photoresist
+
+00:03:53.107 --> 00:03:55.693
+to minimize the distance between the two.
+
+00:03:55.735 --> 00:03:57.612
+But with this method,
+
+00:03:57.612 --> 00:03:59.280
+when the mask was lifted after exposure,
+
+00:03:59.280 --> 00:04:02.325
+it was usually glued with photoresist
+and damaged the wafer.
+
+00:04:02.325 --> 00:04:04.202
+Eventually, this approach was abandoned.
+
+00:04:04.202 --> 00:04:06.579
+Researchers turned to
+developing the mask aligner instead.
+
+00:04:06.579 --> 00:04:08.456
+Using precision equipment,
+they can finely adjust
+
+00:04:08.456 --> 00:04:12.335
+the distance between the mask and the wafer
+and other parameters
+
+00:04:12.335 --> 00:04:13.962
+to reduce diffraction.
+
+00:04:13.962 --> 00:04:15.630
+With these improvements,
+
+00:04:15.630 --> 00:04:18.549
+although the light source at that time
+was the deep ultraviolet laser—DUV—
+
+00:04:18.549 --> 00:04:21.094
+with a 193-nanometer wavelength,
+
+00:04:21.135 --> 00:04:21.803
+amazingly,
+
+00:04:21.803 --> 00:04:24.597
+we still advanced all the way
+to the 7nm process node.
+
+00:04:24.597 --> 00:04:26.683
+This deserves a round of applause.
+
+00:04:26.724 --> 00:04:28.393
+But below 7 nanometers,
+
+00:04:28.393 --> 00:04:30.603
+DUV lithography ultimately met
+its bottleneck.
+
+00:04:30.603 --> 00:04:33.898
+Scientists still had to
+resort to light with shorter wavelengths.
+
+00:04:33.898 --> 00:04:35.358
+You might think that
+
+00:04:35.358 --> 00:04:37.986
+what's so difficult about that?
+
+00:04:37.986 --> 00:04:39.529
+It is incredibly difficult.
+
+00:04:39.529 --> 00:04:42.156
+For example,
+light must be focused through lenses,
+
+00:04:42.156 --> 00:04:43.700
+but ordinary glass lenses
+
+00:04:43.700 --> 00:04:45.660
+absorb short-wavelength UV light.
+
+00:04:45.660 --> 00:04:48.204
+Ultraviolet light with wavelengths
+below 185 nanometers
+
+00:04:48.204 --> 00:04:50.039
+can even be absorbed by air.
+
+00:04:50.039 --> 00:04:51.582
+Therefore, the entire lithography process
+
+00:04:51.582 --> 00:04:53.376
+must be conducted in a vacuum.
+
+00:04:53.376 --> 00:04:54.460
+If you dig into these issues,
+
+00:04:54.460 --> 00:04:56.629
+you'll find more difficulties.
+
+00:04:56.629 --> 00:04:57.338
+Anyway,
+
+00:04:57.338 --> 00:04:59.132
+some researchers were finally determined
+
+00:04:59.132 --> 00:05:03.011
+to develop a light
+with less than one-tenth the wavelength,
+
+00:05:03.052 --> 00:05:07.098
+the 13.5-nanometer
+extreme ultraviolet light—EUV.
+
+00:05:07.098 --> 00:05:08.933
+Thus began a great project
+
+00:05:08.933 --> 00:05:10.727
+that would take 30 years,
+cost billions of dollars,
+
+00:05:10.727 --> 00:05:15.315
+and turned out to be achieved by
+only one company in the world.
+
+00:05:18.735 --> 00:05:21.029
+In previous episodes, we mentioned that
+
+00:05:21.029 --> 00:05:24.615
+the leader of the photolithography
+equipment market kept changing.
+
+00:05:24.615 --> 00:05:26.868
+Since Lathrop invented this technology,
+
+00:05:26.868 --> 00:05:29.704
+From Texas Instruments, PerkinElmer, GCA,
+
+00:05:29.704 --> 00:05:32.373
+to Nikon and Canon in the 1980s...
+
+00:05:32.373 --> 00:05:35.335
+Successively, they have been
+the key manufacturers at different times.
+
+00:05:35.335 --> 00:05:37.712
+Eventually, in the 1990s, a crucial period,
+
+00:05:37.712 --> 00:05:40.173
+a new challenger, ASML, emerged.
+
+00:05:40.173 --> 00:05:42.133
+Nikon, Canon, and ASML
+
+00:05:42.133 --> 00:05:45.094
+became the three giants competing
+in the lithography equipment market.
+
+00:05:45.511 --> 00:05:46.929
+However, a decision made by Intel
+
+00:05:46.929 --> 00:05:49.223
+altered the competitive landscape.
+
+00:05:49.223 --> 00:05:52.352
+At that time, the lab led by Intel
+and the US government believed that
+
+00:05:52.352 --> 00:05:55.146
+Japan's semiconductor industry
+was developing rapidly
+
+00:05:55.146 --> 00:05:57.398
+and that many businesses
+once belonging to the U.S.
+
+00:05:57.398 --> 00:05:58.733
+were snatched away by Japan.
+
+00:05:58.733 --> 00:06:00.526
+If they wanted to invest in
+an equipment manufacturer,
+
+00:06:00.526 --> 00:06:03.529
+they should choose the Dutch one,
+which was more neutral.
+
+00:06:03.529 --> 00:06:06.157
+Therefore,
+Intel decided to partner with ASML,
+
+00:06:06.157 --> 00:06:08.910
+starting a 30-year-long R&amp;D collaboration.
+
+00:06:08.951 --> 00:06:12.830
+Although this project required
+a huge amount of time, money, and energy,
+
+00:06:12.830 --> 00:06:16.334
+the massive investment
+would put ASML in an unshakable position
+
+00:06:16.334 --> 00:06:19.420
+as a leader in photolithography
+30 years later.
+
+00:06:19.420 --> 00:06:21.631
+Intel hoped ASML could develop
+
+00:06:21.631 --> 00:06:24.425
+an EUV equipment
+featuring 13.5 nanometer light
+
+00:06:24.425 --> 00:06:27.011
+to address smaller process nodes
+in the future.
+
+00:06:27.011 --> 00:06:30.306
+But just figuring out how to generate
+a steady 13.5 nm light source
+
+00:06:30.306 --> 00:06:32.350
+was an enormous challenge
+
+00:06:32.350 --> 00:06:34.811
+because not a laser source or light bulb
+
+00:06:34.811 --> 00:06:37.814
+can directly emit 13.5-nanometer light.
+
+00:06:37.814 --> 00:06:38.898
+To emit EUV,
+
+00:06:38.898 --> 00:06:40.983
+there must be high-energy plasma.
+
+00:06:41.025 --> 00:06:44.195
+The way to produce it is using high-intensity lasers
+to hit the target,
+
+00:06:44.195 --> 00:06:48.116
+making the target instantly generate the plasma
+that emits EUV.
+
+00:06:48.116 --> 00:06:50.368
+For the mission of
+producing EUV with plasma,
+
+00:06:50.368 --> 00:06:52.495
+ASML chose another laser-making company,
+
+00:06:52.495 --> 00:06:54.038
+Cymer, to do the job.
+
+00:06:54.038 --> 00:06:57.458
+Cymer's task was not simple at all.
+
+00:06:57.458 --> 00:06:59.043
+They had to design a process
+
+00:06:59.043 --> 00:07:00.586
+that uses carbon dioxide lasers
+
+00:07:00.586 --> 00:07:02.964
+to bombard tin metal to generate EUV.
+
+00:07:02.964 --> 00:07:03.756
+All in all,
+
+00:07:03.756 --> 00:07:04.549
+this process
+
+00:07:04.549 --> 00:07:07.593
+is certainly much more difficult
+than just lighting a bulb.
+
+00:07:07.635 --> 00:07:12.432
+First, the tin metal must be turned into
+Sn droplet of 30 micrometers in diameter.
+
+00:07:12.432 --> 00:07:15.977
+and be shot out by an emitter
+at a speed of 300 kilometers per hour
+
+00:07:16.018 --> 00:07:17.687
+through a vacuum chamber.
+
+00:07:17.687 --> 00:07:18.771
+There's more.
+
+00:07:18.771 --> 00:07:24.068
+Each Sn droplet will be hit
+by a high-power carbon dioxide laser twice.
+
+00:07:24.068 --> 00:07:26.237
+The first hit is for
+heating the Sn droplet
+
+00:07:26.237 --> 00:07:27.155
+and making it expand.
+
+00:07:27.155 --> 00:07:30.491
+The second one
+heats it up to 220,000 degrees Celsius,
+
+00:07:30.491 --> 00:07:32.326
+turning it into a scorching plasma
+
+00:07:32.326 --> 00:07:35.246
+whose temperature is fourty times
+then that of the sun’s surface.
+
+00:07:35.246 --> 00:07:36.831
+As such, this high-temperature plasma
+
+00:07:36.831 --> 00:07:39.000
+will radiate short-wavelength ultraviolet light,
+
+00:07:39.000 --> 00:07:41.335
+which is EUV.
+
+00:07:41.335 --> 00:07:44.672
+However, this is just a short EUV pulse.
+
+00:07:44.672 --> 00:07:47.300
+To generate a steady streak of EUV,
+
+00:07:47.300 --> 00:07:50.678
+this process needs to be repeated
+50,000 times per second.
+
+00:07:50.678 --> 00:07:52.263
+In building this bombardment equipment,
+
+00:07:52.263 --> 00:07:55.641
+what was just described
+was just about 1% of the difficulty.
+
+00:07:55.641 --> 00:07:56.267
+For example,
+
+00:07:56.267 --> 00:07:57.935
+just to create this laser,
+
+00:07:57.935 --> 00:08:00.438
+Cymer went to another laser-making company
+
+00:08:00.438 --> 00:08:01.355
+—TRUMPF.
+
+00:08:01.355 --> 00:08:03.733
+TRUMPF took 10 years to build this laser.
+
+00:08:03.733 --> 00:08:05.568
+Eventually, the laser emitter
+
+00:08:05.568 --> 00:08:09.071
+consists of
+more than 450,000 parts.
+
+00:08:09.071 --> 00:08:10.781
+Why make it so complicated?
+
+00:08:10.781 --> 00:08:13.159
+It turns out that
+after the laser hits the Sn droplet
+
+00:08:13.159 --> 00:08:15.453
+the tin will be blasted into debris
+
+00:08:15.453 --> 00:08:17.246
+which affects EUV generation.
+
+00:08:17.246 --> 00:08:19.707
+Therefore,
+the Sn droplet must move fast
+
+00:08:19.707 --> 00:08:22.627
+and the laser must be precisely controlled
+for perfect timing
+
+00:08:22.668 --> 00:08:25.630
+so that the Sn droplet
+can keep entering the reaction chamber
+
+00:08:25.630 --> 00:08:27.757
+to generate steady EUV light.
+
+00:08:27.757 --> 00:08:28.591
+As an aside,
+
+00:08:28.591 --> 00:08:29.675
+in addition to tin,
+
+00:08:29.675 --> 00:08:31.677
+they have also considered other elements—
+
+00:08:31.677 --> 00:08:34.013
+for example, xenon plasma that can emit
+
+00:08:34.013 --> 00:08:37.016
+a shorter EUV wavelength
+of only 11 nanometers.
+
+00:08:37.016 --> 00:08:39.560
+But the EUV intensity emitted by xenon
+was insufficient.
+
+00:08:39.602 --> 00:08:41.562
+Tin was still the best choice.
+
+00:08:41.562 --> 00:08:42.230
+Up to this point,
+
+00:08:42.230 --> 00:08:44.607
+only half the problems are solved.
+
+00:08:44.607 --> 00:08:46.734
+The other half lies in
+the lithography process.
+
+00:08:46.734 --> 00:08:47.401
+The light
+
+00:08:47.401 --> 00:08:49.946
+still needs to pass through
+a series of lens sets
+
+00:08:49.946 --> 00:08:51.906
+to be cast on chips.
+
+00:08:51.906 --> 00:08:53.366
+The biggest challenge here is that
+
+00:08:53.407 --> 00:08:56.369
+EUV is easily absorbed by substances.
+
+00:08:56.369 --> 00:08:58.829
+To avoid the EUV reacting with air,
+
+00:08:58.829 --> 00:09:00.498
+the chamber is pumped into a vacuum.
+
+00:09:00.498 --> 00:09:02.667
+This is probably the simplest step of all.
+
+00:09:02.667 --> 00:09:05.628
+The real challenge is that
+even lenses themselves absorb EUV.
+
+00:09:05.670 --> 00:09:06.879
+This top-level challenge
+
+00:09:06.879 --> 00:09:09.131
+should be dealt with by a top-notch company.
+
+00:09:09.131 --> 00:09:11.467
+The leading company in optics from Germany,
+
+00:09:11.467 --> 00:09:14.053
+Zeiss, undertook this task.
+
+00:09:14.053 --> 00:09:14.595
+First,
+
+00:09:14.595 --> 00:09:17.890
+they had to rule out using lens' refraction
+as a way to focus the light
+
+00:09:17.890 --> 00:09:19.850
+because as long as EUV
+passes through lenses,
+
+00:09:19.850 --> 00:09:22.353
+it will be greatly attenuated
+by absorption.
+
+00:09:22.353 --> 00:09:26.440
+Therefore, optical columns in EUV machines
+are an all-reflective system
+
+00:09:26.440 --> 00:09:28.234
+which is entirely composed of mirrors.
+
+00:09:28.234 --> 00:09:29.860
+Although being reflective,
+
+00:09:29.902 --> 00:09:33.030
+mirrors can still absorb EUV.
+
+00:09:33.322 --> 00:09:34.865
+Eventually, Zeiss coated the mirrors
+with two types of layers
+
+00:09:34.865 --> 00:09:37.618
+—silicon and molybdenum—
+
+00:09:37.868 --> 00:09:41.080
+overlapping each other
+dozens to a hundred times,
+
+00:09:41.080 --> 00:09:42.331
+forming a device called
+
+00:09:42.331 --> 00:09:43.666
+the Bragg mirror.
+
+00:09:43.666 --> 00:09:46.627
+When light goes through these layers
+with alternating refractive indices,
+
+00:09:46.627 --> 00:09:48.004
+the Bragg mirror can raise its reflectivity
+
+00:09:48.045 --> 00:09:51.757
+by creating more reflection
+and constructive interference.
+
+00:09:51.757 --> 00:09:53.009
+Now this may sound feasible,
+
+00:09:53.009 --> 00:09:57.096
+but it is still
+a very very very difficult task.
+
+00:09:57.096 --> 00:09:59.223
+This episode is sponsored by
+Micro-Epsilon Taiwan.
+
+00:09:59.223 --> 00:10:01.434
+Thanks to them, we are able to realize
+the pinnacle of human technology.
+
+00:10:01.434 --> 00:10:04.145
+To accurately cast the EVU at the target,
+
+00:10:04.145 --> 00:10:06.564
+these mirrors must be incredibly smooth.
+
+00:10:06.564 --> 00:10:07.857
+How smooth?
+
+00:10:07.857 --> 00:10:09.609
+If the mirrors were scaled up to
+
+00:10:09.609 --> 00:10:10.568
+let’s say the size of the entire Taiwan island,
+
+00:10:10.568 --> 00:10:15.197
+the height deviation on the mirrors
+can only be less than 0.01 millimeter.
+
+00:10:15.197 --> 00:10:17.658
+That's about the width of a hair.
+
+00:10:17.658 --> 00:10:20.995
+The optical precision of this system
+is like standing on Earth
+
+00:10:20.995 --> 00:10:23.998
+and trying to aim a laser pointer
+at a ping pong ball on the Moon.
+
+00:10:23.998 --> 00:10:26.167
+Only through this,
+the hard-earned EUV light
+
+00:10:26.167 --> 00:10:28.169
+can be reflected and focused multiple times
+
+00:10:28.169 --> 00:10:30.296
+to pass right through
+the nanometer-scale photomask
+
+00:10:30.296 --> 00:10:31.797
+and land on the photoresist.
+
+00:10:31.797 --> 00:10:36.052
+Intel's Director of Lithography,
+Mark Phillips, once said
+
+00:10:36.093 --> 00:10:38.429
+EUV is the most precise instrument
+ever made by humans.
+
+00:10:38.429 --> 00:10:40.931
+It is the ultimate manifestation
+of human technology.
+
+00:10:40.931 --> 00:10:41.932
+For real-time control and correction
+
+00:10:41.932 --> 00:10:46.520
+of these mirror sets, masks,
+and the movement of the wafer stages
+
+00:10:46.520 --> 00:10:48.814
+ultra-high precision sensors are required.
+
+00:10:48.814 --> 00:10:50.816
+Devices such as capacitive sensors,
+
+00:10:50.816 --> 00:10:52.401
+eddy current inductive sensors,
+
+00:10:52.401 --> 00:10:53.861
+or optical ones
+
+00:10:53.903 --> 00:10:55.613
+such as confocal chromatic sensors
+
+00:10:55.613 --> 00:10:57.365
+and white light interferometer
+
+00:10:57.365 --> 00:10:59.492
+—sensors of different measurement mechanisms—
+
+00:10:59.492 --> 00:11:01.744
+can cater to different circumstances
+and materials,
+
+00:11:01.744 --> 00:11:03.496
+achieving sub-nanometer precision.
+
+00:11:03.496 --> 00:11:06.499
+They are the core measurement tools
+in many precision industries
+
+00:11:06.499 --> 00:11:07.500
+such as the semiconductor industry.
+
+00:11:07.500 --> 00:11:09.502
+The manufacture of
+many sensors in EUV machines
+
+00:11:09.502 --> 00:11:12.880
+is entrusted to Micro-Epsilon
+for customized development.
+
+00:11:12.880 --> 00:11:16.258
+In addition to
+the well-known chromatic confocal technology,
+
+00:11:16.258 --> 00:11:18.844
+there are other optical
+and non-optical methods
+
+00:11:18.844 --> 00:11:21.430
+to monitor such a high-tech beast
+like the EUV machine.
+
+00:11:21.430 --> 00:11:23.474
+For example,
+if a mirror set moves slightly,
+
+00:11:23.474 --> 00:11:26.102
+the capacitive sensors
+will sense the displacement
+
+00:11:26.102 --> 00:11:27.228
+through changes in the dielectric.
+
+00:11:27.269 --> 00:11:28.062
+In fact,
+
+00:11:28.062 --> 00:11:31.232
+there are nearly
+a thousand sensors from Micro-Epsilon
+
+00:11:31.232 --> 00:11:32.191
+in an EUV machine.
+
+00:11:32.191 --> 00:11:33.067
+Inside it,
+
+00:11:33.067 --> 00:11:35.319
+not only the mirror set need correction
+
+00:11:35.319 --> 00:11:36.821
+but also the photomask.
+
+00:11:36.821 --> 00:11:38.906
+If its position is slightly off,
+defects will occur
+
+00:11:38.906 --> 00:11:41.867
+when the pattern is being down-sized
+and printed on wafers.
+
+00:11:41.909 --> 00:11:43.703
+This will subsequently affect yield.
+
+00:11:43.703 --> 00:11:46.163
+After all,
+current semiconductors are so small
+
+00:11:46.163 --> 00:11:48.958
+that even a few layers of atoms
+will make a big difference.
+
+00:11:48.958 --> 00:11:50.000
+In addition,
+
+00:11:50.000 --> 00:11:52.586
+the position of the wafer
+in relation to the mask also matters.
+
+00:11:52.586 --> 00:11:53.963
+Since we can't move
+
+00:11:53.963 --> 00:11:56.132
+the laser and optical parts
+that have been painstakingly aligned,
+
+00:11:56.132 --> 00:11:59.301
+the wafer becomes the one part
+that can be moved during exposure.
+
+00:11:59.301 --> 00:12:00.928
+The dual-stage system of the EUV machine
+
+00:12:00.970 --> 00:12:02.972
+can move two wafers simultaneously.
+
+00:12:02.972 --> 00:12:04.473
+One undergoes exposure
+
+00:12:04.473 --> 00:12:07.727
+while the other is measured for precision
+at the same time.
+
+00:12:07.727 --> 00:12:10.146
+The stages move at high speed
+with six degrees of freedom.
+
+00:12:10.146 --> 00:12:11.564
+The sensors used here
+
+00:12:11.564 --> 00:12:14.567
+are eddy current sensors
+with nanometer-level precision.
+
+00:12:14.567 --> 00:12:16.861
+Because Micro-Epsilon Group
+values the Taiwan market,
+
+00:12:16.902 --> 00:12:19.113
+in 2022,
+it established a subsidiary in Taiwan
+
+00:12:19.113 --> 00:12:20.030
+—Micro-Epsilon Taiwan—
+
+00:12:20.030 --> 00:12:22.992
+to provide more localized service
+for manufacturers in Taiwan.
+
+00:12:22.992 --> 00:12:24.535
+From standard catalog items
+
+00:12:24.535 --> 00:12:26.787
+to customized products
+matching clients' needs,
+
+00:12:26.787 --> 00:12:30.249
+it provides Taiwan customers with
+sensor solutions of ultra-high precision.
+
+00:12:30.249 --> 00:12:32.334
+Through experience in collaborating
+with top manufacturers
+
+00:12:32.334 --> 00:12:33.919
+such as ASML and Zeiss,
+
+00:12:33.919 --> 00:12:36.297
+it can offer assistance in upgrading
+Taiwan's semiconductor equipment.
+
+00:12:36.297 --> 00:12:38.007
+In measuring displacement
+and positioning components
+
+00:12:38.007 --> 00:12:40.009
+of equipment in every supply chain,
+
+00:12:40.009 --> 00:12:42.136
+Micro-Epsilon sensors
+can be seen everywhere
+
+00:12:42.136 --> 00:12:43.554
+such as in Lapping machine
+
+00:12:43.554 --> 00:12:44.847
+temporary bonding equipment,
+
+00:12:44.847 --> 00:12:45.806
+Dispensing machine,
+
+00:12:45.806 --> 00:12:47.224
+high-precision die bonders,
+
+00:12:47.224 --> 00:12:49.268
+wafer metrology machine and so on.
+
+00:12:49.310 --> 00:12:50.144
+As of now,
+
+00:12:50.144 --> 00:12:51.353
+I believe everyone understands that,
+
+00:12:51.353 --> 00:12:52.772
+in the rise of the semiconductor industry,
+
+00:12:52.772 --> 00:12:55.900
+why chip design, chip manufacturing,
+and equipment manufacturing
+
+00:12:55.900 --> 00:12:59.278
+are so closely related and highly symbiotic.
+
+00:12:59.278 --> 00:13:00.988
+Let's go back to the birth of
+the EUV machine.
+
+00:13:00.988 --> 00:13:02.031
+History tells us
+
+00:13:02.031 --> 00:13:03.491
+Zeiss and Cymer
+
+00:13:03.491 --> 00:13:05.659
+both fulfilled their missions.
+
+00:13:05.659 --> 00:13:07.286
+ASML has been dominating the market
+
+00:13:07.286 --> 00:13:12.333
+ever since it built the first prototype of
+an EUV machine in 2006.
+
+00:13:12.333 --> 00:13:15.795
+Can there be another company
+matching ASML?
+
+00:13:16.462 --> 00:13:17.755
+Probably not.
+
+00:13:17.755 --> 00:13:19.006
+A company of this scale
+
+00:13:19.006 --> 00:13:21.258
+with countless innovations
+and integrations of technology
+
+00:13:21.300 --> 00:13:22.968
+requires decades of development
+
+00:13:22.968 --> 00:13:26.096
+and a billion-dollar investment to build.
+
+00:13:26.096 --> 00:13:26.931
+On the flip side,
+
+00:13:26.931 --> 00:13:29.725
+should we worry about
+ASML monopolizing the market?
+
+00:13:30.434 --> 00:13:32.436
+Well, its monopoly is already a fact,
+
+00:13:32.436 --> 00:13:35.397
+but ASML is not alone.
+
+00:13:35.606 --> 00:13:37.608
+As you can see
+in the previous introduction,
+
+00:13:37.608 --> 00:13:38.984
+the birth of EUV machines
+
+00:13:38.984 --> 00:13:42.655
+was based on the joint efforts of
+many companies and suppliers,
+
+00:13:42.655 --> 00:13:44.949
+especially the U.S. company Cymer,
+
+00:13:44.949 --> 00:13:46.367
+who built the tin droplet
+bombardment equipment
+
+00:13:46.367 --> 00:13:49.787
+and the German company Zeiss,
+who made the reflective mirrors.
+
+00:13:49.787 --> 00:13:52.873
+Only 15% of the components
+are produced by ASML itself.
+
+00:13:53.332 --> 00:13:56.126
+Its key technology lies in
+assembling these parts
+
+00:13:56.168 --> 00:13:59.129
+into a working EUV machine.
+
+00:13:59.630 --> 00:14:01.882
+Although ASML later acquired Cymer
+
+00:14:01.882 --> 00:14:03.509
+and invested in Zeiss,
+
+00:14:03.509 --> 00:14:06.262
+the EUV machine cannot be developed by
+
+00:14:06.262 --> 00:14:08.013
+a single company or country alone.
+
+00:14:08.013 --> 00:14:09.598
+It represents cutting-edge technology
+
+00:14:09.598 --> 00:14:12.268
+created through collaboration
+among many countries and companies.
+
+00:14:12.268 --> 00:14:14.019
+Right now,
+
+00:14:14.019 --> 00:14:16.897
+ASML has already aimed at
+sub-2nm processes.
+
+00:14:16.897 --> 00:14:18.649
+Last year, it launched the latest
+
+00:14:18.649 --> 00:14:20.734
+high numerical aperture EUV machine
+
+00:14:20.734 --> 00:14:23.028
+and sold the first one to Intel.
+
+00:14:23.028 --> 00:14:25.990
+Rumor has it that TSMC has already acquired an EUV machine.
+
+00:14:25.990 --> 00:14:27.408
+But it's still considered classified information.
+
+00:14:27.408 --> 00:14:29.827
+We'll just have to wait and see on this one.
+
+00:14:29.869 --> 00:14:31.537
+This is the end of this episode.
+
+00:14:31.537 --> 00:14:33.873
+Next time when you see an ASML truck,
+
+00:14:33.873 --> 00:14:35.082
+remember to drive carefully.
+
+00:14:35.082 --> 00:14:36.917
+You don't want to pay for a car accident like this.
+
+00:14:36.917 --> 00:14:37.877
+See you next time.
+

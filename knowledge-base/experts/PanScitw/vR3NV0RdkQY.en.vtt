@@ -1,0 +1,847 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:09.217 --> 00:00:10.552
+Why has TSMC
+
+00:00:10.552 --> 00:00:12.512
+become one of the most important companies in the world?
+
+00:00:12.512 --> 00:00:14.097
+This tiny chip brought TSMC
+
+00:00:14.097 --> 00:00:17.350
+2.16 trillion NT dollars in annual revenue
+
+00:00:17.350 --> 00:00:18.893
+accounted for nearly 10%
+
+00:00:18.893 --> 00:00:21.438
+of Taiwan’s GDP in 2023
+
+00:00:21.438 --> 00:00:24.899
+In July 2024, TSMC’s market capitalization of surpassed 1 trillion NT dollars
+
+00:00:24.899 --> 00:00:26.317
+making it the world’s second-largest semiconductor company
+
+00:00:26.317 --> 00:00:28.611
+just behind Nvidia
+
+00:00:28.611 --> 00:00:31.156
+The semiconductor industry isn’t just competition between companies
+
+00:00:31.156 --> 00:00:33.908
+but can impact economy and national defense of a country
+
+00:00:33.908 --> 00:00:34.993
+The most intensive game in modern tech
+
+00:00:34.993 --> 00:00:37.495
+and even in politics &amp; economics
+
+00:00:37.495 --> 00:00:39.414
+is called the “chip war”
+
+00:00:39.414 --> 00:00:41.332
+Why is TSMC so important
+
+00:00:41.332 --> 00:00:44.377
+and why is it founded in Taiwan?
+
+00:00:44.419 --> 00:00:45.712
+We have to shift our perspective
+
+00:00:45.712 --> 00:00:48.048
+let this tiny chip answer the question
+
+00:00:48.048 --> 00:00:49.924
+Why the third industrial revolution
+
+00:00:49.924 --> 00:00:52.093
+begin with this nanometer-sizes technology
+
+00:00:56.014 --> 00:00:58.516
+Remember how the semiconductor industry rose?
+
+00:00:58.516 --> 00:01:01.561
+In 1959, Robert Noyce invented the mesa-structure IC
+
+00:01:01.561 --> 00:01:03.313
+and two years earlier, in 1957
+
+00:01:03.313 --> 00:01:05.648
+Jay Lathrop developed photolithography tech
+
+00:01:05.648 --> 00:01:06.816
+The two inventions
+
+00:01:06.816 --> 00:01:09.152
+meant the birth of “Chips”
+
+00:01:09.152 --> 00:01:12.113
+and established the foundation for mass production
+
+00:01:12.113 --> 00:01:14.157
+hence started the chip era
+
+00:01:14.157 --> 00:01:15.825
+10 years later, in 1968
+
+00:01:15.867 --> 00:01:18.453
+Noyce and Gordon Moore left Fairchild Semiconductor
+
+00:01:18.453 --> 00:01:21.081
+to establish Intel, focusing on memory chips
+
+00:01:21.081 --> 00:01:22.165
+logic chips
+
+00:01:22.165 --> 00:01:23.750
+and personal computers
+
+00:01:23.750 --> 00:01:26.336
+This fueled the rapid growth of the semiconductor industry
+
+00:01:26.336 --> 00:01:27.796
+But in 1968
+
+00:01:27.796 --> 00:01:31.007
+something very important to Taiwan happened
+
+00:01:31.007 --> 00:01:33.009
+To assess whether Taiwan
+
+00:01:33.009 --> 00:01:34.719
+was ready for setting up factories
+
+00:01:34.719 --> 00:01:37.597
+Texas Instruments (TI) sent two heavyweight figures
+
+00:01:37.597 --> 00:01:40.683
+to meet with Taiwan’s Minister of Economic Affairs, Li Kwoh-ting
+
+00:01:40.683 --> 00:01:41.643
+These gentlemen were
+
+00:01:41.643 --> 00:01:45.605
+Mark Shepherd Jr., who would become TI’s CEO the following year
+
+00:01:45.605 --> 00:01:47.774
+and Morris Chang
+
+00:01:47.774 --> 00:01:49.150
+After this meeting
+
+00:01:49.192 --> 00:01:52.320
+Li Kwoh-ting spent the next 17 years
+
+00:01:52.320 --> 00:01:54.280
+persuading Morris Chang to move to Taiwan
+
+00:01:54.280 --> 00:01:57.117
+Looking back, this long-term recruitment mission
+
+00:01:57.117 --> 00:01:58.326
+proved to be invaluable
+
+00:01:58.326 --> 00:02:00.912
+You could say Li Kwoh-ting had remarkable foresight
+
+00:02:00.912 --> 00:02:02.831
+he recognized that transistors and semiconductors
+
+00:02:02.831 --> 00:02:04.749
+were industries Taiwan had to invest in
+
+00:02:04.749 --> 00:02:07.544
+But why on earth are transistors so important
+
+00:02:07.544 --> 00:02:09.212
+and why does demand for semiconductor production capacity
+
+00:02:09.212 --> 00:02:10.839
+get larger year by year?
+
+00:02:10.839 --> 00:02:11.840
+In the AI era
+
+00:02:11.840 --> 00:02:14.134
+we all know only by aiming for more powerful computers
+
+00:02:14.134 --> 00:02:15.635
+models with greater processing power
+
+00:02:15.635 --> 00:02:16.678
+lower time costs
+
+00:02:16.719 --> 00:02:18.721
+and the ability to identify, compute and generate
+
+00:02:18.721 --> 00:02:20.890
+can we beat competitors in the market
+
+00:02:20.890 --> 00:02:22.016
+It sounds complicated
+
+00:02:22.016 --> 00:02:23.726
+yet it can be simply put
+
+00:02:23.768 --> 00:02:26.479
+For we need only two numbers 0 and 1
+
+00:02:26.479 --> 00:02:27.522
+to store and precess all data
+
+00:02:27.522 --> 00:02:30.608
+with digital information
+
+00:02:30.608 --> 00:02:32.610
+If we only need to represent 0 and 1
+
+00:02:32.652 --> 00:02:34.279
+then even electric lights can do that
+
+00:02:34.279 --> 00:02:37.949
+Let a lit lightbulb represent 1
+
+00:02:37.949 --> 00:02:40.076
+and an unlit one represent 0
+
+00:02:40.076 --> 00:02:42.912
+then a series of lit or unlit lightbulbs
+
+00:02:42.912 --> 00:02:44.873
+can form a sequence of data
+
+00:02:44.873 --> 00:02:46.166
+such as Morse code
+
+00:02:46.166 --> 00:02:48.835
+Of course, computers are not just on/off lights
+
+00:02:48.835 --> 00:02:50.545
+They can run AI models
+
+00:02:50.545 --> 00:02:52.463
+to do all kinds of computing
+
+00:02:52.463 --> 00:02:53.923
+because they know how to “think”
+
+00:02:54.048 --> 00:02:56.259
+which means “logical operations”
+
+00:02:56.259 --> 00:02:57.343
+To make a computer think
+
+00:02:57.343 --> 00:02:59.304
+doesn’t mean giving it a biological brain
+
+00:02:59.345 --> 00:03:01.472
+like a human or any other intelligent lifeform
+
+00:03:01.514 --> 00:03:03.141
+In fact even the large generative language models
+
+00:03:03.141 --> 00:03:05.310
+like GPT
+
+00:03:05.351 --> 00:03:06.144
+when you break them down
+
+00:03:06.186 --> 00:03:08.938
+there’s a supercomputer powering them
+
+00:03:08.938 --> 00:03:10.732
+What consist of this supercomputer
+
+00:03:10.773 --> 00:03:12.942
+are countless tiny processors
+
+00:03:12.942 --> 00:03:15.111
+At their core, the smallest units
+
+00:03:15.111 --> 00:03:17.822
+are vast numbers of tiny logic gates
+
+00:03:18.615 --> 00:03:19.824
+But what is a logic gate?
+
+00:03:19.866 --> 00:03:22.785
+It’s like a tiny switch that operates based on rules
+
+00:03:22.785 --> 00:03:24.662
+If we increase the number of switches controlling the lightbulb
+
+00:03:24.704 --> 00:03:26.623
+from a single switch to two
+
+00:03:26.623 --> 00:03:28.833
+and insert a “logit gate” in the middle
+
+00:03:28.917 --> 00:03:30.835
+you can play lots of tricks
+
+00:03:30.835 --> 00:03:32.962
+For example, we can design an “AND” gate
+
+00:03:33.004 --> 00:03:34.964
+to apply limit to the device
+
+00:03:34.964 --> 00:03:37.884
+Only if both gates are open will the lightbulb shine
+
+00:03:37.884 --> 00:03:39.135
+If we replace it with an “OR” gate
+
+00:03:39.135 --> 00:03:41.930
+then either switched on will let lightbulb shine
+
+00:03:42.347 --> 00:03:43.848
+If you like something special
+
+00:03:43.848 --> 00:03:45.433
+then you can use a “XOR” gate
+
+00:03:45.475 --> 00:03:48.645
+It lights up only when one switch is on and the other is off
+
+00:03:48.686 --> 00:03:49.729
+Let’s do a quick recap
+
+00:03:49.729 --> 00:03:52.774
+Logic gates aren’t exclusive to transistors
+
+00:03:52.815 --> 00:03:55.944
+We talked about how in 1937, before transistors existed
+
+00:03:55.944 --> 00:03:57.820
+Math genius Claude Shannon
+
+00:03:57.862 --> 00:03:59.113
+built a switching circuit with relays
+
+00:03:59.113 --> 00:04:01.783
+that could do complex logic computing
+
+00:04:01.824 --> 00:04:04.869
+At first glance, logic gates seem to only handle simple sorting tasks
+
+00:04:04.911 --> 00:04:07.956
+but these tiny units have evolved from simple switches
+
+00:04:07.997 --> 00:04:10.875
+to cores that can do basic logic operations
+
+00:04:10.875 --> 00:04:13.628
+If I rearrange these components
+
+00:04:13.628 --> 00:04:15.797
+to combine an AND gate with an XOR gate
+
+00:04:15.838 --> 00:04:18.841
+I create the simplest half adder
+
+00:04:18.883 --> 00:04:20.843
+that can calculate 0 + 0 = 0
+
+00:04:20.885 --> 00:04:22.512
+1 + 0 = 1
+
+00:04:22.553 --> 00:04:24.681
+0 + 1 = 1
+
+00:04:25.139 --> 00:04:26.140
+You might think, “Anyone can do this in their head!”
+
+00:04:26.182 --> 00:04:27.350
+Why do we need a computer for this?
+
+00:04:27.642 --> 00:04:29.560
+Hold on, take a step further
+
+00:04:29.602 --> 00:04:31.854
+If we combine two half-adders,
+
+00:04:31.896 --> 00:04:34.148
+and add four AND gates for permutation
+
+00:04:34.190 --> 00:04:36.276
+we get a simple binary multiplier
+
+00:04:36.317 --> 00:04:41.114
+that can multiply numbers from 0×0 to 3×3
+
+00:04:41.114 --> 00:04:44.450
+From simple logical operations, we progressed to addition
+
+00:04:44.450 --> 00:04:45.952
+and then multiplication
+
+00:04:45.994 --> 00:04:46.828
+and so on
+
+00:04:46.828 --> 00:04:49.789
+By combining enough logic gates in different arrangements
+
+00:04:49.831 --> 00:04:53.084
+we can perform division, square roots, and even calculus
+
+00:04:53.084 --> 00:04:55.044
+and various mathematical calculations
+
+00:04:55.086 --> 00:04:56.254
+Furthermore
+
+00:04:56.296 --> 00:04:58.548
+Computers consists of these math operation units
+
+00:04:58.589 --> 00:05:01.426
+can execute virtually any task you can imagine
+
+00:05:01.426 --> 00:05:04.387
+Of course, we’re skipping a lot of details here
+
+00:05:04.429 --> 00:05:05.513
+But one major issue is:
+
+00:05:05.555 --> 00:05:08.224
+we can’t possibly design a new circuit
+
+00:05:08.266 --> 00:05:10.143
+for every single mathematical operation
+
+00:05:10.184 --> 00:05:12.061
+For example, a dedicated circuit for squaring numbers
+
+00:05:12.103 --> 00:05:13.855
+or cubing numbers
+
+00:05:13.855 --> 00:05:15.732
+So, how to design a computer
+
+00:05:15.773 --> 00:05:17.650
+that can handle any kind of task?
+
+00:05:17.692 --> 00:05:20.111
+This ties back to what we discussed earlier
+
+00:05:20.111 --> 00:05:21.863
+about the Von Neumann model and Harvard architecture
+
+00:05:21.904 --> 00:05:23.281
+No time to elaborate now
+
+00:05:23.281 --> 00:05:25.074
+If you’d like to dive deeper
+
+00:05:25.116 --> 00:05:27.327
+leave a comment on the PanSci website
+
+00:05:27.327 --> 00:05:28.328
+Now, back to our question
+
+00:05:28.369 --> 00:05:31.539
+We know anything can be done with logic gates
+
+00:05:31.581 --> 00:05:32.749
+but why can these gadgets
+
+00:05:32.749 --> 00:05:34.667
+perform logical decision-making?
+
+00:05:34.709 --> 00:05:37.337
+Could there be a tiny alien operator
+
+00:05:37.337 --> 00:05:39.589
+hiding inside?
+
+00:05:40.882 --> 00:05:44.177
+Well, inside every logic gate is a transistor
+
+00:05:44.218 --> 00:05:46.846
+We’ve covered the principle of transistors earlier
+
+00:05:46.888 --> 00:05:50.183
+It’s called ”triode”,the predecessor of vacuum tube
+
+00:05:50.183 --> 00:05:52.352
+It works like a tiny water valve
+
+00:05:52.393 --> 00:05:55.938
+Using minor current to control whether a larger current can pass through
+
+00:05:56.397 --> 00:05:57.857
+If you forgot, that’s all right
+
+00:05:57.899 --> 00:06:00.485
+review it after watching this episode
+
+00:06:00.485 --> 00:06:03.529
+To sum up, a transistor is like a tiny water valve
+
+00:06:03.529 --> 00:06:05.615
+It stays closed when there’s no input voltage
+
+00:06:05.615 --> 00:06:07.992
+and opens when voltage is applied
+
+00:06:08.034 --> 00:06:10.036
+What happens if we connect two transistors together?
+
+00:06:10.078 --> 00:06:10.912
+you’ll find out
+
+00:06:10.953 --> 00:06:13.539
+only when both water valves are open at the same time
+
+00:06:13.581 --> 00:06:15.625
+can the water flow through
+
+00:06:15.625 --> 00:06:17.710
+This forms an AND gate
+
+00:06:17.752 --> 00:06:21.130
+Of course, other logic gates can be more complex
+
+00:06:21.214 --> 00:06:23.674
+For example, a XOR gate looks like this
+
+00:06:23.716 --> 00:06:24.467
+and so forth
+
+00:06:24.467 --> 00:06:27.053
+Transistors can build up all the logic gates
+
+00:06:27.095 --> 00:06:29.722
+and logic gates can accomplish all calculations
+
+00:06:29.722 --> 00:06:33.684
+So transistors are the core of a CPU’s logic circuits
+
+00:06:33.726 --> 00:06:34.727
+Nowadays
+
+00:06:34.769 --> 00:06:37.146
+whether it’s building faster CPUs
+
+00:06:37.146 --> 00:06:38.564
+or designing multi-core processors
+
+00:06:38.606 --> 00:06:40.858
+for parallel multitasking
+
+00:06:40.900 --> 00:06:43.528
+we rely on increasing the number of transistors
+
+00:06:43.528 --> 00:06:46.489
+or developing newer, smaller chip structure
+
+00:06:46.531 --> 00:06:48.533
+In fact, since the founding of Intel
+
+00:06:48.574 --> 00:06:52.245
+the world’s demand for computing power has only continued to grow
+
+00:06:52.286 --> 00:06:54.664
+till now, the race for more computing power
+
+00:06:54.705 --> 00:06:56.249
+shows no signs of slowing down
+
+00:06:56.290 --> 00:06:59.419
+As the third industrial revolution swept across the globe
+
+00:06:59.419 --> 00:07:01.629
+TSMC became one of its biggest beneficiaries
+
+00:07:01.671 --> 00:07:03.423
+bringing Taiwan onto the global stage
+
+00:07:07.260 --> 00:07:09.512
+Why was TSMC founded in Taiwan
+
+00:07:09.554 --> 00:07:11.431
+instead of somewhere else?
+
+00:07:11.431 --> 00:07:12.807
+From TSMC, Taiwan’s "Guardian Tech Giant,"
+
+00:07:12.849 --> 00:07:14.600
+to the entire Taiwanese semiconductor industry
+
+00:07:14.642 --> 00:07:16.060
+which forms the so-called “sillicon shield”
+
+00:07:16.102 --> 00:07:19.355
+there are three key figures you must know
+
+00:07:19.355 --> 00:07:21.232
+They are Sun Yun-suan
+
+00:07:21.274 --> 00:07:23.818
+Li Kwoh-ting and Morris Chang
+
+00:07:23.818 --> 00:07:25.278
+Sun Yun-suan and Li Kwoh-ting
+
+00:07:25.319 --> 00:07:28.239
+both served as Taiwan’s Minister of Economic Affairs in the 1960s
+
+00:07:28.281 --> 00:07:31.617
+and were instrumental in shaping Taiwan’s economic and technological development
+
+00:07:31.659 --> 00:07:35.830
+Sun Yun-suan was the first director of TaiPower company in 1946
+
+00:07:35.830 --> 00:07:38.040
+where he spearheaded efforts to rebuild Taiwan’s power grid
+
+00:07:38.082 --> 00:07:39.876
+This laid the foundation for Taiwan’s economic  development
+
+00:07:39.917 --> 00:07:43.629
+He also founded the Industrial Technology Research Institute (ITRI) in 1973
+
+00:07:43.629 --> 00:07:45.339
+Moreover, in the 1970s,
+
+00:07:45.381 --> 00:07:47.633
+while Taiwan was promoting its Ten Major Construction Projects,
+
+00:07:47.675 --> 00:07:51.137
+he, along with Li Kwoh-ting and former National Tsing Hua University President Shu Shien-Siu,
+
+00:07:51.179 --> 00:07:54.765
+pushed for the establishment of Hsinchu Science Park.
+
+00:07:54.807 --> 00:07:58.144
+Every one of these initiatives had a far-reaching impact on Taiwan’s economy
+
+00:07:58.186 --> 00:08:00.229
+When it comes to the establishment of ITRI and HSP
+
+00:08:00.271 --> 00:08:02.148
+Li Kwoh-ting also deserves a share of credit
+
+00:08:02.148 --> 00:08:04.650
+Yet Li’s another important credit
+
+00:08:04.692 --> 00:08:07.069
+was persuading Morris Chang to come to Taiwan
+
+00:08:07.069 --> 00:08:08.738
+The 17-year-long recruitment effort
+
+00:08:08.779 --> 00:08:10.781
+left a lasting impression on Morris Chang
+
+00:08:10.781 --> 00:08:13.367
+In November 2023, the Li Kwoh-ting Foundation
+
+00:08:13.367 --> 00:08:15.328
+presented the first LKT Award to
+
+00:08:15.328 --> 00:08:17.330
+none other than Morris Chang
+
+00:08:17.371 --> 00:08:19.248
+In his speech, Morris Chang stated
+
+00:08:19.290 --> 00:08:21.542
+Without LKT, there would be no TSMC
+
+00:08:21.542 --> 00:08:23.002
+According to Morris Chang’s memoir
+
+00:08:23.044 --> 00:08:25.713
+he had three key encounters with LKT
+
+00:08:25.713 --> 00:08:28.591
+Firstly, after the initial meeting in 1968
+
+00:08:28.633 --> 00:08:30.259
+From then until 1980
+
+00:08:30.301 --> 00:08:32.178
+LKT made almost yearly trips to
+
+00:08:32.178 --> 00:08:34.680
+Texas Instruments (TI), where Morris Chang was working
+
+00:08:34.680 --> 00:08:36.015
+tirelessly urging him to come to Taiwan
+
+00:08:36.057 --> 00:08:38.267
+He even took him to see the construction of Hsinchu Science Park
+
+00:08:38.309 --> 00:08:40.478
+hoping to convince him to relocate
+
+00:08:40.478 --> 00:08:43.272
+The second encounter was in 1980, after the passing 
+
+00:08:43.314 --> 00:08:45.024
+of TI chairman Patrick Haggerty
+
+00:08:45.024 --> 00:08:47.527
+LKT reached out  again in 1982
+
+00:08:47.568 --> 00:08:49.654
+inviting Chang to become the director of ITRI in Taiwan
+
+00:08:49.695 --> 00:08:52.782
+After careful consideration, Chang declined
+
+00:08:52.782 --> 00:08:55.618
+He recalled LKT’s frustration in his reply letter
+
+00:08:55.618 --> 00:08:56.410
+which read
+
+00:08:56.452 --> 00:08:58.538
+Why would you turn down such a great opportunity?
+
+00:08:58.579 --> 00:09:00.957
+The third and final time, Chang was finally persuaded
+
+00:09:00.998 --> 00:09:04.252
+and moved to Tawan to take up the position of ITRI director in 1985
+
+00:09:04.252 --> 00:09:06.546
+Just three weeks into the role
+
+00:09:06.587 --> 00:09:09.549
+LKT approached him with the idea of establishing a semiconductor company—TSMC
+
+00:09:09.549 --> 00:09:11.968
+He also convinced the government to invest in TSMC
+
+00:09:12.009 --> 00:09:12.969
+Morris Chang later elaborated
+
+00:09:13.010 --> 00:09:15.346
+“The idea of founding TSMC and its business model
+
+00:09:15.346 --> 00:09:17.014
+was mine
+
+00:09:17.014 --> 00:09:17.848
+but executing the plan and
+
+00:09:17.890 --> 00:09:19.725
+convincing the government to fund 50% of it
+
+00:09:19.725 --> 00:09:21.227
+was entirely LKT’s doing
+
+00:09:21.269 --> 00:09:23.646
+The business model Chang referred to
+
+00:09:23.688 --> 00:09:25.731
+was the pure-play foundry model
+
+00:09:25.731 --> 00:09:26.691
+He foresaw that
+
+00:09:26.732 --> 00:09:29.318
+fabless semiconductor companies would rise
+
+00:09:29.318 --> 00:09:32.280
+leading to a more specialized semiconductor industry
+
+00:09:32.321 --> 00:09:34.949
+Companies focused solely on chip design would appear
+
+00:09:34.991 --> 00:09:38.661
+while semiconductor foundries would grow into a massive market
+
+00:09:38.703 --> 00:09:41.622
+Morris Chang structured TSMC to focus solely on production, without designing chips
+
+00:09:41.622 --> 00:09:43.416
+maintaining a “collaborative” rather than a “competitive” relationship
+
+00:09:43.416 --> 00:09:45.251
+with other companies
+
+00:09:45.251 --> 00:09:46.544
+This strategy set the stage
+
+00:09:46.544 --> 00:09:47.878
+for what we’ll discuss in the next episode—
+
+00:09:47.878 --> 00:09:49.964
+the ongoing battle between TSMC and Samsung
+
+00:09:50.006 --> 00:09:52.550
+The impact of this strategy will become clear
+
+00:09:52.550 --> 00:09:55.094
+Fast forward to the 2000s
+
+00:09:55.136 --> 00:09:56.721
+the landscape of semiconductor manufacturing in Asia
+
+00:09:56.762 --> 00:09:57.847
+are largely
+
+00:09:57.888 --> 00:10:00.975
+a competition between TSMC and Samsung
+
+00:10:01.017 --> 00:10:03.269
+Samsung was no easy competitor
+
+00:10:03.311 --> 00:10:05.479
+Since Apple’s first-generation iPhone chips
+
+00:10:05.479 --> 00:10:08.566
+the choice was Samsung instead of TSMC
+
+00:10:08.608 --> 00:10:11.569
+As transistors continued to shrink
+
+00:10:11.611 --> 00:10:13.779
+approaching the 20-nanometer node
+
+00:10:13.821 --> 00:10:16.407
+We found that further miniaturization became increasingly difficult
+
+00:10:16.449 --> 00:10:18.784
+Any smaller transistor brings leakage  
+
+00:10:18.784 --> 00:10:19.744
+and higher power consumption
+
+00:10:19.744 --> 00:10:21.454
+Logic gates become invalid too
+
+00:10:21.495 --> 00:10:22.580
+Faced with this challenge
+
+00:10:22.580 --> 00:10:24.540
+how did TSMC respond?
+
+00:10:24.582 --> 00:10:26.959
+And who will carry forward Moore’s Law?
+
+00:10:27.001 --> 00:10:27.627
+In the next episode
+
+00:10:27.627 --> 00:10:30.338
+We’re entering the world of 3D transistors
+
+00:10:30.379 --> 00:10:32.548
+and witness the Taiwan-Korea semiconductor battle
+
+00:10:32.548 --> 00:10:35.843
+explore the true reason behind Taiwan’s dominance in the semiconductor industry
+
+00:10:35.885 --> 00:10:37.428
+Stay tuned to our channel
+
+00:10:37.470 --> 00:10:39.680
+See you next time
+

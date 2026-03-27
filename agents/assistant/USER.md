@@ -4,7 +4,8 @@
 ## 使用者資訊
 
 - **Name**：老闆 (Mars/L)
-- **溝通方式**：Telegram (@mlnl68)
+- **溝通方式**：Telegram (chat ID: 1073451144, username: @mlnl68)
+- **重要：發送 Telegram 訊息時必須使用數字 chat ID `1073451144`，不要用 @mlnl68**
 - **時區**：Asia/Taipei (GMT+8)
 
 ## 偏好

@@ -1,0 +1,691 @@
+# 10分鐘教你如何申請Google API？OpenClaw 與 n8n都用的到的必學技能！｜泛科學院
+
+&lt;b&gt;OpenClaw&lt;/b&gt;
+
+&lt;b&gt;在短短時間內&lt;/b&gt;
+
+&lt;b&gt;竟然瞬間超越了自動化神級工具n8n&lt;/b&gt;
+
+&lt;b&gt;現在&lt;/b&gt;
+
+&lt;b&gt;既然有了OpenClaw這種超強的AI工具&lt;/b&gt;
+
+&lt;b&gt;我們還需要學n8n嗎&lt;/b&gt;
+
+&lt;b&gt;嗨大家好我是國威&lt;/b&gt;
+
+&lt;b&gt;是泛科學院的代班主持人&lt;/b&gt;
+
+&lt;b&gt;最近OpenClaw在科技圈掀起一波話題&lt;/b&gt;
+
+&lt;b&gt;有了OpenClaw這種超強的AI工具&lt;/b&gt;
+
+&lt;b&gt;我們還需要學n8n嗎&lt;/b&gt;
+
+&lt;b&gt;我先給各位一個答案&lt;/b&gt;
+
+&lt;b&gt;但短期來看&lt;/b&gt;
+
+&lt;b&gt;學n8n&lt;/b&gt;
+
+&lt;b&gt;會非常有利於你上手OpenClaw&lt;/b&gt;
+
+&lt;b&gt;為什麼我這樣說&lt;/b&gt;
+
+&lt;b&gt;我們來拆解一下這兩個東西的本質&lt;/b&gt;
+
+&lt;b&gt;n8n的運作邏輯是&lt;/b&gt;
+
+&lt;b&gt;你需要先想清楚任務的每一個步驟&lt;/b&gt;
+
+&lt;b&gt;然後用它模組化的程式碼&lt;/b&gt;
+
+&lt;b&gt;手動拼出一個固定能用的Workflow&lt;/b&gt;
+
+&lt;b&gt;然後讓它重複執行&lt;/b&gt;
+
+&lt;b&gt;但OpenClaw不一樣&lt;/b&gt;
+
+&lt;b&gt;它是接到命令後&lt;/b&gt;
+
+&lt;b&gt;直接寫出完整的Workflow&lt;/b&gt;
+
+&lt;b&gt;程式碼來完成任務&lt;/b&gt;
+
+&lt;b&gt;如果執行的結果不好&lt;/b&gt;
+
+&lt;b&gt;沒關係你可以叫它修改&lt;/b&gt;
+
+&lt;b&gt;你們發現了嗎&lt;/b&gt;
+
+&lt;b&gt;這兩者的本質其實都是Workflow&lt;/b&gt;
+
+&lt;b&gt;只是n8n是寫死的&lt;/b&gt;
+
+&lt;b&gt;而OpenClaw會不斷修正&lt;/b&gt;
+
+&lt;b&gt;如果你對Workflow的運作邏輯不熟悉的話&lt;/b&gt;
+
+&lt;b&gt;那在操作OpenClaw的時候&lt;/b&gt;
+
+&lt;b&gt;你可能會覺得它笨笨的&lt;/b&gt;
+
+&lt;b&gt;有些工作甚至越做越糟&lt;/b&gt;
+
+&lt;b&gt;所以現階段碰一下n8n&lt;/b&gt;
+
+&lt;b&gt;建立概念是滿不錯的&lt;/b&gt;
+
+&lt;b&gt;另外 還有一個隱藏的好處&lt;/b&gt;
+
+&lt;b&gt;就是&lt;/b&gt;
+
+&lt;b&gt;如果你使用的不是官方雲端版本的n8n&lt;/b&gt;
+
+&lt;b&gt;而是選擇本地部署或是VPS&lt;/b&gt;
+
+&lt;b&gt;那你就會被迫學到怎麼去開通各種API&lt;/b&gt;
+
+&lt;b&gt;這對於你未來部署OpenClaw&lt;/b&gt;
+
+&lt;b&gt;或是各種服務來說是非常有利的&lt;/b&gt;
+
+&lt;b&gt;而且 n8n還很好心的&lt;/b&gt;
+
+&lt;b&gt;把這些教學&lt;/b&gt;
+
+&lt;b&gt;比如說Google：OAuth2的設定&lt;/b&gt;
+
+&lt;b&gt;都詳細寫在官方說明書裡面了&lt;/b&gt;
+
+&lt;b&gt;那麼&lt;/b&gt;
+
+&lt;b&gt;我該自己架n8n嗎&lt;/b&gt;
+
+&lt;b&gt;千萬不要&lt;/b&gt;
+
+&lt;b&gt;設定環境就會搞死你&lt;/b&gt;
+
+&lt;b&gt;我們不是想當工程師&lt;/b&gt;
+
+&lt;b&gt;只是想更熟悉n8n的邏輯與設定&lt;/b&gt;
+
+&lt;b&gt;因此&lt;/b&gt;
+
+&lt;b&gt;VPS就是一個不錯的選擇&lt;/b&gt;
+
+&lt;b&gt;而這就要感謝我們今天的乾爹&lt;/b&gt;
+
+&lt;b&gt;Hostinger&lt;/b&gt;
+
+&lt;b&gt;他可以一鍵部署n8n&lt;/b&gt;
+
+&lt;b&gt;點開就能用&lt;/b&gt;
+
+&lt;b&gt;沒有任何執行限制&lt;/b&gt;
+
+&lt;b&gt;想怎麼測就怎麼測&lt;/b&gt;
+
+&lt;b&gt;而且月租費比n8n官網的最低價還要便宜&lt;/b&gt;
+
+&lt;b&gt;在n8n官網&lt;/b&gt;
+
+&lt;b&gt;相當於台幣738元&lt;/b&gt;
+
+&lt;b&gt;而在Hostinger&lt;/b&gt;
+
+&lt;b&gt;每個月只要158.35台幣&lt;/b&gt;
+
+&lt;b&gt;超級划算&lt;/b&gt;
+
+&lt;b&gt;而且使用說明欄的連結&lt;/b&gt;
+
+&lt;b&gt;hostinger.com/panschool&lt;/b&gt;
+
+&lt;b&gt;或是輸入優惠碼&lt;/b&gt;
+
+&lt;b&gt;PANSCHOOL&lt;/b&gt;
+
+&lt;b&gt;還享有9折優惠&lt;/b&gt;
+
+&lt;b&gt;現在就手把手&lt;/b&gt;
+
+&lt;b&gt;教你如何註冊Hostinger&lt;/b&gt;
+
+&lt;b&gt;好 首先點擊專屬折扣連結&lt;/b&gt;
+
+&lt;b&gt;進入Hostinger的頁面&lt;/b&gt;
+
+&lt;b&gt;往下滑找到付款的地方&lt;/b&gt;
+
+&lt;b&gt;這裡 推薦使用「KVM2 套餐」&lt;/b&gt;
+
+&lt;b&gt;比基礎款多2.5美元&lt;/b&gt;
+
+&lt;b&gt;但服務內容是KVM1的兩倍&lt;/b&gt;
+
+&lt;b&gt;點擊「選擇套餐」&lt;/b&gt;
+
+&lt;b&gt;就進入到購買頁面了&lt;/b&gt;
+
+&lt;b&gt;右手邊付款的地方找到&lt;/b&gt;
+
+&lt;b&gt;「Have a coupon code?」&lt;/b&gt;
+
+&lt;b&gt;輸入優惠碼PANSCHOOL&lt;/b&gt;
+
+&lt;b&gt;可以看到金額已經變成194.18元了&lt;/b&gt;
+
+&lt;b&gt;好 確定打折之後&lt;/b&gt;
+
+&lt;b&gt;我們回頭來看訂單的細節&lt;/b&gt;
+
+&lt;b&gt;如果你未來啊&lt;/b&gt;
+
+&lt;b&gt;想要長期的練習n8n的話&lt;/b&gt;
+
+&lt;b&gt;那這裡的下拉選單&lt;/b&gt;
+
+&lt;b&gt;就設為24個月&lt;/b&gt;
+
+&lt;b&gt;來確保你可以獲得最划算的價格&lt;/b&gt;
+
+&lt;b&gt;另外也要注意一下&lt;/b&gt;
+
+&lt;b&gt;如果你需要&lt;/b&gt;
+
+&lt;b&gt;「每日自動備份」這個功能&lt;/b&gt;
+
+&lt;b&gt;那建議現在就加入購物車&lt;/b&gt;
+
+&lt;b&gt;來享有最優的價格&lt;/b&gt;
+
+&lt;b&gt;因為專屬優惠券&lt;/b&gt;
+
+&lt;b&gt;只能用一次&lt;/b&gt;
+
+&lt;b&gt;那事後再加購是無法打折的&lt;/b&gt;
+
+&lt;b&gt;接著&lt;/b&gt;
+
+&lt;b&gt;再選擇伺服器的位置&lt;/b&gt;
+
+&lt;b&gt;選擇一個離你&lt;/b&gt;
+
+&lt;b&gt;或是你的主要受眾最近的地區&lt;/b&gt;
+
+&lt;b&gt;因為這樣連線延遲&lt;/b&gt;
+
+&lt;b&gt;才會最低&lt;/b&gt;
+
+&lt;b&gt;這個作業系統的部分&lt;/b&gt;
+
+&lt;b&gt;就不需要煩惱&lt;/b&gt;
+
+&lt;b&gt;因為系統&lt;/b&gt;
+
+&lt;b&gt;已經自動選好n8n的安裝模板了&lt;/b&gt;
+
+&lt;b&gt;最後確認好你的訂單細節&lt;/b&gt;
+
+&lt;b&gt;以及伺服器的位置之後&lt;/b&gt;
+
+&lt;b&gt;在訂單摘要頁面&lt;/b&gt;
+
+&lt;b&gt;點擊繼續&lt;/b&gt;
+
+&lt;b&gt;接著註冊你的帳戶&lt;/b&gt;
+
+&lt;b&gt;填寫你的帳單跟付款資訊&lt;/b&gt;
+
+&lt;b&gt;完成結帳手續&lt;/b&gt;
+
+&lt;b&gt;付款成功後&lt;/b&gt;
+
+&lt;b&gt;系統會要求建立一組root密碼&lt;/b&gt;
+
+&lt;b&gt;請注意哦&lt;/b&gt;
+
+&lt;b&gt;這是未來管理伺服器最高權限的密碼&lt;/b&gt;
+
+&lt;b&gt;這個跟Hostinger網站的登錄密碼&lt;/b&gt;
+
+&lt;b&gt;不同&lt;/b&gt;
+
+&lt;b&gt;請務必把它存在密碼管理器等安全的地方&lt;/b&gt;
+
+&lt;b&gt;如果畫面上出現免費的惡意軟體掃描程式&lt;/b&gt;
+
+&lt;b&gt;那建議將它勾選起來&lt;/b&gt;
+
+&lt;b&gt;來增加伺服器的安全保護&lt;/b&gt;
+
+&lt;b&gt;好點擊完成設定&lt;/b&gt;
+
+&lt;b&gt;Hostinger就會在背景自動幫你把&lt;/b&gt;
+
+&lt;b&gt;VPS跟n8n架設起來&lt;/b&gt;
+
+&lt;b&gt;這個過程大約需要幾分鐘的時間&lt;/b&gt;
+
+&lt;b&gt;最後到電子信箱&lt;/b&gt;
+
+&lt;b&gt;找一封來自Hostinger的驗證信&lt;/b&gt;
+
+&lt;b&gt;點擊裡面的按鈕&lt;/b&gt;
+
+&lt;b&gt;完成電子郵件帳戶的驗證&lt;/b&gt;
+
+&lt;b&gt;完成以上這些步驟之後&lt;/b&gt;
+
+&lt;b&gt;就成功買好VPS&lt;/b&gt;
+
+&lt;b&gt;並且自動裝好軟體了&lt;/b&gt;
+
+&lt;b&gt;接下來只要進入Hostinger的控制面板&lt;/b&gt;
+
+&lt;b&gt;就可以開始啟動&lt;/b&gt;
+
+&lt;b&gt;並設定你的n8n自動化服務了&lt;/b&gt;
+
+&lt;b&gt;你還是覺得從零開始自己拉節點太麻煩&lt;/b&gt;
+
+&lt;b&gt;太燒腦了嗎&lt;/b&gt;
+
+&lt;b&gt;其實我們根本不用那麼累&lt;/b&gt;
+
+&lt;b&gt;因為GitHub上面早就有一大堆&lt;/b&gt;
+
+&lt;b&gt;&lt;font color='#ffd479'&gt;大神寫好的現成工作流了&lt;/font&gt;&lt;/b&gt;
+
+&lt;b&gt;像是「人機協作郵件回覆系統」&lt;/b&gt;
+
+&lt;b&gt;或是「Notion AI 小助理」小助理之類的&lt;/b&gt;
+
+&lt;b&gt;我們只要借來用就對了&lt;/b&gt;
+
+&lt;b&gt;那具體要怎麼做&lt;/b&gt;
+
+&lt;b&gt;來跟著我一起點&lt;/b&gt;
+
+&lt;b&gt;好首先 我們先到GitHub&lt;/b&gt;
+
+&lt;b&gt;找到你喜歡的工作流&lt;/b&gt;
+
+&lt;b&gt;今天 我們示範的是&lt;/b&gt;
+
+&lt;b&gt;「人機協作郵件回覆系統」&lt;/b&gt;
+
+&lt;b&gt;好&lt;/b&gt;
+
+&lt;b&gt;在程式碼的上面 找一下&lt;/b&gt;
+
+&lt;b&gt;有一個叫做「Download raw file」的按鈕&lt;/b&gt;
+
+&lt;b&gt;好 我們按下去&lt;/b&gt;
+
+&lt;b&gt;這時候 你會下載到一個&lt;/b&gt;
+
+&lt;b&gt;副檔名是.json的檔案&lt;/b&gt;
+
+&lt;b&gt;這個 就是我們的精華模板了&lt;/b&gt;
+
+&lt;b&gt;接著 打開你自己的n8n&lt;/b&gt;
+
+&lt;b&gt;來建立一個全新的Workflow&lt;/b&gt;
+
+&lt;b&gt;看到畫面這個右上角&lt;/b&gt;
+
+&lt;b&gt;有三個點的圖示嗎&lt;/b&gt;
+
+&lt;b&gt;點下去&lt;/b&gt;
+
+&lt;b&gt;然後選「Import from a file」&lt;/b&gt;
+
+&lt;b&gt;從檔案匯入的意思&lt;/b&gt;
+
+&lt;b&gt;接著 你再把剛才抓下來的那個.json檔&lt;/b&gt;
+
+&lt;b&gt;把它選進去&lt;/b&gt;
+
+&lt;b&gt;搭啦&lt;/b&gt;
+
+&lt;b&gt;整套超級複雜的工作流&lt;/b&gt;
+
+&lt;b&gt;就會一秒長在了 你的畫面上&lt;/b&gt;
+
+&lt;b&gt;是不是滿有成就感的&lt;/b&gt;
+
+&lt;b&gt;好雖然這個流程都排好了&lt;/b&gt;
+
+&lt;b&gt;但它現在還是不會動的&lt;/b&gt;
+
+&lt;b&gt;因為系統還不認識你&lt;/b&gt;
+
+&lt;b&gt;我們要把API加進這個n8n的流程裡&lt;/b&gt;
+
+&lt;b&gt;但到底要怎麼取得API&lt;/b&gt;
+
+&lt;b&gt;接下來就是本次的教學重點&lt;/b&gt;
+
+&lt;b&gt;如果我們要在n8n裡面串接Google的服務&lt;/b&gt;
+
+&lt;b&gt;我們就必須透過一個叫做&lt;/b&gt;
+
+&lt;b&gt;「OAuth 2.0」來取得授權&lt;/b&gt;
+
+&lt;b&gt;聽起來有點複雜對不對&lt;/b&gt;
+
+&lt;b&gt;但其實說穿了&lt;/b&gt;
+
+&lt;b&gt;就是讓n8n跟Google互相認識&lt;/b&gt;
+
+&lt;b&gt;打個招呼而已&lt;/b&gt;
+
+&lt;b&gt;那畢竟不認識的話&lt;/b&gt;
+
+&lt;b&gt;Google怎麼可能讓n8n&lt;/b&gt;
+
+&lt;b&gt;隨意拿取你家的東西&lt;/b&gt;
+
+&lt;b&gt;那麼&lt;/b&gt;
+
+&lt;b&gt;如果你是第一次使用Google Cloud&lt;/b&gt;
+
+&lt;b&gt;可以先簡單有個概念&lt;/b&gt;
+
+&lt;b&gt;就是Google規定&lt;/b&gt;
+
+&lt;b&gt;任何人在申請API之前&lt;/b&gt;
+
+&lt;b&gt;都必須先建立一個專案&lt;/b&gt;
+
+&lt;b&gt;這樣子Google才能把你申請的這個&lt;/b&gt;
+
+&lt;b&gt;API 金鑰&lt;/b&gt;
+
+&lt;b&gt;權限設定&lt;/b&gt;
+
+&lt;b&gt;以及未來可能產生的&lt;/b&gt;
+
+&lt;b&gt;免費額度計算&lt;/b&gt;
+
+&lt;b&gt;全部歸檔在這個專案裡面&lt;/b&gt;
+
+&lt;b&gt;那不會跟你個人的Gmail信箱&lt;/b&gt;
+
+&lt;b&gt;或是其他網站搞混&lt;/b&gt;
+
+&lt;b&gt;好&lt;/b&gt;
+
+&lt;b&gt;我們打開Google Cloud的Console&lt;/b&gt;
+
+&lt;b&gt;來開啟一個專案&lt;/b&gt;
+
+&lt;b&gt;那專案名稱&lt;/b&gt;
+
+&lt;b&gt;你隨便打喜歡就好&lt;/b&gt;
+
+&lt;b&gt;好 點建立&lt;/b&gt;
+
+&lt;b&gt;接下來&lt;/b&gt;
+
+&lt;b&gt;我們在左邊的選單&lt;/b&gt;
+
+&lt;b&gt;你會找到「API 與服務」&lt;/b&gt;
+
+&lt;b&gt;那我們點進「OAuth 同意畫面」&lt;/b&gt;
+
+&lt;b&gt;對 然後來按開始&lt;/b&gt;
+
+&lt;b&gt;那應用程式資訊的地方啊&lt;/b&gt;
+
+&lt;b&gt;就填寫你想要的名稱就好了&lt;/b&gt;
+
+&lt;b&gt;好 那接下來填寫你的信箱&lt;/b&gt;
+
+&lt;b&gt;目標對象設定&lt;/b&gt;
+
+&lt;b&gt;設定成外部權證&lt;/b&gt;
+
+&lt;b&gt;那畢竟你是要n8n拿你家的東西嘛&lt;/b&gt;
+
+&lt;b&gt;那所以這個憑證&lt;/b&gt;
+
+&lt;b&gt;是外部的&lt;/b&gt;
+
+&lt;b&gt;聯絡資訊&lt;/b&gt;
+
+&lt;b&gt;也填寫自己的信箱&lt;/b&gt;
+
+&lt;b&gt;好 最後按建立&lt;/b&gt;
+
+&lt;b&gt;好 接下來點選左邊的品牌&lt;/b&gt;
+
+&lt;b&gt;這個有點像是設定你這把鑰匙的「名片」&lt;/b&gt;
+
+&lt;b&gt;我們點擊左邊的「品牌」&lt;/b&gt;
+
+&lt;b&gt;裡面應該會有必填的欄位&lt;/b&gt;
+
+&lt;b&gt;像是 「應用程式名稱」&lt;/b&gt;
+
+&lt;b&gt;跟「使用者支援電子郵件」&lt;/b&gt;
+
+&lt;b&gt;還有「開發人員聯絡資訊」&lt;/b&gt;
+
+&lt;b&gt;把這三個填完就可以了&lt;/b&gt;
+
+&lt;b&gt;好 那接下來&lt;/b&gt;
+
+&lt;b&gt;這個區塊就會決定了&lt;/b&gt;
+
+&lt;b&gt;「誰」可以使用這個API&lt;/b&gt;
+
+&lt;b&gt;我們點擊左邊的目標對象&lt;/b&gt;
+
+&lt;b&gt;由於我們剛才選的是「外部 (External)」&lt;/b&gt;
+
+&lt;b&gt;那系統為了安全&lt;/b&gt;
+
+&lt;b&gt;預設會是在「測試中 (Testing)」的狀態&lt;/b&gt;
+
+&lt;b&gt;所以 請你在畫面上&lt;/b&gt;
+
+&lt;b&gt;找到「測試使用者 (Test users)」的區塊&lt;/b&gt;
+
+&lt;b&gt;然後點擊新增&lt;/b&gt;
+
+&lt;b&gt;然後 把你想要來串接n8n的那個Google信箱&lt;/b&gt;
+
+&lt;b&gt;填進去並儲存&lt;/b&gt;
+
+&lt;b&gt;如果你現在沒有加的話&lt;/b&gt;
+
+&lt;b&gt;等一下n8n就會跳出「未授權」的錯誤哦&lt;/b&gt;
+
+&lt;b&gt;要注意&lt;/b&gt;
+
+&lt;b&gt;然後 這中間呢還有一個關卡&lt;/b&gt;
+
+&lt;b&gt;就是啟用API的權限&lt;/b&gt;
+
+&lt;b&gt;那現在 你還沒有告訴Google這個憑證&lt;/b&gt;
+
+&lt;b&gt;能夠做什麼事情&lt;/b&gt;
+
+&lt;b&gt;那上方 搜尋你要用到的服務&lt;/b&gt;
+
+&lt;b&gt;再點icon進入服務頁面&lt;/b&gt;
+
+&lt;b&gt;點啟用就可以了&lt;/b&gt;
+
+&lt;b&gt;好 那要注意哦&lt;/b&gt;
+
+&lt;b&gt;因為每個功能 都是獨立開啟的&lt;/b&gt;
+
+&lt;b&gt;如果你要用Google Sheet或是Google Doc&lt;/b&gt;
+
+&lt;b&gt;要兩個都重複前面的動作才可以哦&lt;/b&gt;
+
+&lt;b&gt;接著這裡是我們產生n8n專屬密碼的地方&lt;/b&gt;
+
+&lt;b&gt;我們點擊左邊的「用戶端」&lt;/b&gt;
+
+&lt;b&gt;然後點擊上方&lt;/b&gt;
+
+&lt;b&gt;畫面中的建立「用戶端」&lt;/b&gt;
+
+&lt;b&gt;(Create Client)&lt;/b&gt;
+
+&lt;b&gt;那應用程式類型的部分&lt;/b&gt;
+
+&lt;b&gt;就選擇「網頁應用程式 (Web application)」&lt;/b&gt;
+
+&lt;b&gt;名稱 可以隨便打&lt;/b&gt;
+
+&lt;b&gt;例如這邊打 n8n-client&lt;/b&gt;
+
+&lt;b&gt;那往下捲&lt;/b&gt;
+
+&lt;b&gt;你就找到「已授權的重新導向 URI」&lt;/b&gt;
+
+&lt;b&gt;接下來 我們就要回到n8n裡面&lt;/b&gt;
+
+&lt;b&gt;去取得Redirect URL&lt;/b&gt;
+
+&lt;b&gt;那現在在畫面左邊&lt;/b&gt;
+
+&lt;b&gt;最左邊的選單&lt;/b&gt;
+
+&lt;b&gt;我們要找到並且點擊「Credentials (憑證)」&lt;/b&gt;
+
+&lt;b&gt;然後在搜尋框輸入你想用的Google服務&lt;/b&gt;
+
+&lt;b&gt;點進去之後&lt;/b&gt;
+
+&lt;b&gt;在跳出來的設定視窗最上方&lt;/b&gt;
+
+&lt;b&gt;就會有一個標題寫著&lt;/b&gt;
+
+&lt;b&gt;OAuth Redirect URL&lt;/b&gt;
+
+&lt;b&gt;那它旁邊通常會有一個&lt;/b&gt;
+
+&lt;b&gt;複製 一個Copy的小圖示&lt;/b&gt;
+
+&lt;b&gt;我們點下去把它整串複製起來&lt;/b&gt;
+
+&lt;b&gt;注意這個視窗先不要關掉&lt;/b&gt;
+
+&lt;b&gt;等等我們還會回來&lt;/b&gt;
+
+&lt;b&gt;接下來 我們回到Google Cloud&lt;/b&gt;
+
+&lt;b&gt;把n8n提供給你的那一串&lt;/b&gt;
+
+&lt;b&gt;OAuth Redirect URL&lt;/b&gt;
+
+&lt;b&gt;我們貼進去&lt;/b&gt;
+
+&lt;b&gt;按下建立&lt;/b&gt;
+
+&lt;b&gt;建立好之後&lt;/b&gt;
+
+&lt;b&gt;Google會給你兩組亂碼&lt;/b&gt;
+
+&lt;b&gt;那分別是Client ID&lt;/b&gt;
+
+&lt;b&gt;這個叫 (用戶端 ID)&lt;/b&gt;
+
+&lt;b&gt;還有Client Secrett (用戶端密碼)&lt;/b&gt;
+
+&lt;b&gt;那這個就是通行證&lt;/b&gt;
+
+&lt;b&gt;我們把剛才這兩組資料 複製起來&lt;/b&gt;
+
+&lt;b&gt;再回到剛才n8n的頁面&lt;/b&gt;
+
+&lt;b&gt;把剛剛獲得的這個通行證 填進去&lt;/b&gt;
+
+&lt;b&gt;勇敢的點下Sign in with Google&lt;/b&gt;
+
+&lt;b&gt;那接著 只要看到畫面顯示綠色的Connected&lt;/b&gt;
+
+&lt;b&gt;恭喜你 你的Google服務&lt;/b&gt;
+
+&lt;b&gt;就已經成功跟n8n連線了&lt;/b&gt;
+
+&lt;b&gt;那這邊有個常見的坑要提醒大家&lt;/b&gt;
+
+&lt;b&gt;因為這個是你自己建的應用程式&lt;/b&gt;
+
+&lt;b&gt;所以Google 會跳出一個紅色的&lt;/b&gt;
+
+&lt;b&gt;「未經驗證的應用程式」警告&lt;/b&gt;
+
+&lt;b&gt;來嚇你&lt;/b&gt;
+
+&lt;b&gt;不要怕&lt;/b&gt;
+
+&lt;b&gt;點擊左下角的「進階」&gt; &lt;/b&gt;
+
+&lt;b&gt;&gt; 選擇「前往（不安全）」&lt;/b&gt;
+
+&lt;b&gt;&gt; 勾選同意存取權限&lt;/b&gt;
+
+&lt;b&gt;最後按下「繼續」&lt;/b&gt;
+
+&lt;b&gt;好了現在憑證都申請好了&lt;/b&gt;
+
+&lt;b&gt;那我們回到你剛剛&lt;/b&gt;
+
+&lt;b&gt;匯入的這個模板流程圖上面&lt;/b&gt;
+
+&lt;b&gt;你現在要做的事情很簡單&lt;/b&gt;
+
+&lt;b&gt;就是掃視一下畫面&lt;/b&gt;
+
+&lt;b&gt;然後看看哪些節點旁邊亮著「紅色驚嘆號」&lt;/b&gt;
+
+&lt;b&gt;直接點進去&lt;/b&gt;
+
+&lt;b&gt;把裡面的 Credential（憑證）欄位&lt;/b&gt;
+
+&lt;b&gt;換成你自己剛剛申請好的帳號金鑰&lt;/b&gt;
+
+&lt;b&gt;那這一步 就是&lt;/b&gt;
+
+&lt;b&gt;幫別人的模板&lt;/b&gt;
+
+&lt;b&gt;換上你專屬的鑰匙&lt;/b&gt;
+
+&lt;b&gt;這個Gmail信箱 就串接好了&lt;/b&gt;
+
+&lt;b&gt;那由於今天我們的重點&lt;/b&gt;
+
+&lt;b&gt;是在初步的API串接&lt;/b&gt;
+
+&lt;b&gt;所以我們就先示範到這邊&lt;/b&gt;
+
+&lt;b&gt;題外話&lt;/b&gt;
+
+&lt;b&gt;如果你想要快速打造自己的專屬工作流程&lt;/b&gt;
+
+&lt;b&gt;也可以直接把json的程式碼&lt;/b&gt;
+
+&lt;b&gt;全部餵給AI&lt;/b&gt;
+
+&lt;b&gt;請它依照你的需求&lt;/b&gt;
+
+&lt;b&gt;改寫新的程式碼&lt;/b&gt;
+
+&lt;b&gt;再複製到n8n就成功了&lt;/b&gt;
+
+&lt;b&gt;好的以上就是本集的教學內容&lt;/b&gt;
+
+&lt;b&gt;有任何問題歡迎在留言區告訴我們哦&lt;/b&gt;
+
+&lt;b&gt;歡迎訂閱 按讚 開啟小鈴鐺&lt;/b&gt;
+
+&lt;b&gt;我們下次再見拜拜&lt;/b&gt;

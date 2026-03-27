@@ -1,73 +1,93 @@
 # 統一工具清單 - 全體 Agents 共享
 
-## ⚡ 使用說明
+## 可直接使用的工具
 
-所有 Sub-Agents 都能使用以下工具，**需要時直接調用**：
+| 工具 | 用法 | 何時用 |
+|------|------|--------|
+| `web_search` | `web_search("關鍵字")` | 搜尋資料、查詢資訊 |
+| `web_fetch` | `web_fetch("https://...")` | 抓取特定網頁內容 |
+| `understand_image` | `understand_image("圖片路徑", "描述")` | 分析圖片 |
+| `memory_recall` | `memory_recall("關鍵字")` | 搜尋過去記憶（支援 scope、category 篩選） |
+| `memory_store` | `memory_store("要記住的內容", category, importance)` | 存入長期記憶（category: preference/fact/decision/entity） |
+| `memory_stats` | `memory_stats()` | 查看記憶統計（數量、分類、scope） |
+| `exec` | `exec("bash命令")` | 執行系統指令 |
+| `read` | `read("檔案路徑")` | 讀取檔案 |
+| `write` | `write("路徑", "內容")` | 寫入檔案 |
 
----
+## Agent 協作工具
 
-## 🔧 可用工具清單
+| 工具 | 功能 |
+|------|------|
+| `sessions_send` | 發訊息給其他 Agent |
+| `sessions_list` | 查看活躍 sessions |
+| `sessions_spawn` | 啟動新的 Agent session |
 
-### 1. 內建工具（無需設定）
+## 已安裝 Skills
 
-| 工具 | 功能 | 使用時機 |
-|------|------|---------|
-| `web_search` | 網頁搜尋 | 找資料、查詢資訊時 |
-| `understand_image` | 圖片理解 | 看到截圖、圖片、需要分析視覺內容時 |
-| `memory_search` | 搜尋記憶 | 需要回想過去討論過的內容時 |
-| `memory_get` | 讀取記憶 | 需要讀取特定記憶檔案時 |
+| Skill | 功能 | 主要使用者 |
+|-------|------|-----------|
+| `youtube-full` | YouTube 搜尋、字幕、頻道、播放清單（需 TRANSCRIPT_API_KEY） | crawler |
+| `coding-agent` | 程式開發（Claude Code / Codex） | coder |
+| `github` | Git 版本控制（gh CLI） | coder |
+| `gog` | Google 行事曆、Gmail、Drive | assistant |
+| `xurl` | X (Twitter) 發文、搜尋、回覆 | assistant-work |
+| `x-research` | X/Twitter 深度研究、監控帳號 | assistant-work |
+| `peekaboo` | macOS 原生 App UI 自動化 | assistant-work |
+| `agent-browser` | 網頁瀏覽、填表、爬蟲（Chromium） | all |
+| `wacli` | WhatsApp 操作 | assistant-work |
+| `sag` | ElevenLabs 語音合成 | image |
+| `apple-reminders` | Apple 提醒事項 | assistant |
+| `things-mac` | Things 3 待辦 | assistant |
+| `weather` | 天氣查詢（wttr.in / Open-Meteo，免 API key） | assistant |
+| `healthcheck` | 系統安全檢查、硬體狀態 | system-admin |
+| `session-logs` | 搜尋自己的歷史對話記錄 | all |
+| `self-improvement` | 錯誤學習、自我改進記錄 | all |
+| `humanizer` | 去除 AI 味文字 | all |
+| `deep-research-pro` | 多來源深度研究（免 API key） | all |
+| `summarize` | 摘要網頁、影片、檔案 | all |
+| `watermark-remover` | 去除圖片/影片浮水印 | image |
+| `nano-pdf` | PDF 編輯 | all |
 
-### 2. 已安裝 Skills
+## YouTube 字幕抓取方法（crawler 專用）
 
-| 工具 | 功能 | 使用時機 |
-|------|------|---------|
-| `youtube-skills` | YouTube 搜尋、字幕抓取 | 需要 YouTube 相關功能時 |
-| `transcriptapi` | YouTube 字幕 | 需要抓取影片字幕時 |
-| `coding-agent` | 程式開發 | 需要寫程式、開發專案時 |
-| `github` | Git 操作 | 需要 Git 版本控制時 |
-| `gog` | Google Workspace | 需要操作 Google 行事曆、郵件時 |
-| `bird` | X (Twitter) | 需要發推文、操作 X 時 |
-| `peekaboo` | 瀏覽器自動化 | 需要自動化網頁操作時 |
-| `wacli` | WhatsApp | 需要操作 WhatsApp 時 |
-| `sag` | ElevenLabs TTS | 需要文字轉語音時 |
-| `weather` | 天氣查詢 | 需要查詢天氣時 |
-| `things-mac` | Things 3 | 需要管理待辦事項時 |
-| `apple-reminders` | Apple 提醒事項 | 需要設定提醒時 |
+**唯一方法：用 kd CLI（本地 ASR，不需 API key，不會被 IP 封鎖）**
 
-### 3. 系統工具
+```bash
+# 方法 1: 抓現有字幕（快，幾秒完成）
+kd subtitles "https://www.youtube.com/watch?v=VIDEO_ID" -o output.txt
 
-| 工具 | 功能 | 使用時機 |
-|------|------|---------|
-| `exec` | 執行命令 | 需要在系統上執行指令時 |
-| `read` | 讀取檔案 | 需要讀取檔案內容時 |
-| `write` | 寫入檔案 | 需要儲存資料到檔案時 |
-| `Browser` | 瀏覽器控制 | 需要自動化瀏覽器操作時 |
+# 方法 2: 本地 ASR 轉錄（慢但保證成功，3-10 分鐘/影片）
+kd transcribe "https://www.youtube.com/watch?v=VIDEO_ID" --no-subtitles --backend mlx-whisper -o output.txt
 
----
-
-## ✅ 使用原則
-
-### 什麼時候該用什麼工具？
-
+# 方法 3: 完整處理（轉錄 + AI 摘要）
+kd process "https://www.youtube.com/watch?v=VIDEO_ID" --no-summary -o output.md
 ```
-需要找資料 → web_search
-看到圖片 → understand_image  
-需要回想過去 → memory_search
-需要寫程式 → coding-agent
-需要 Git 操作 → github
-需要自動化網頁 → peekaboo / Browser
-需要發社群 → bird / wacli
-需要語音 → sag
-```
 
-### 重要提醒
+**重要規則：**
+- 不要用 `youtube-transcript-api` Python 庫（IP 被 YouTube 封鎖）
+- 不要用 `yt-dlp` 抓字幕（會 429 限流）
+- 用 `yt-dlp --flat-playlist --print "%(id)s|%(title)s"` 只列出影片 ID 是安全的
+- `kd` 已安裝在 `/opt/homebrew/bin/kd`
 
-1. **直接使用** - 不需要問老闆，根據需求直接調用
-2. **選對工具** - 用錯工具會浪費時間
-3. **查詢清單** - 不確定時回來看這份清單
+## ⚠️ 常見錯誤（避免幻覺）
 
----
+| 錯誤用法 | 正確做法 |
+|----------|---------|
+| `youtube-skills` | 不存在！用 `youtube-full` 或 `kd` CLI |
+| `bird` | 不存在！用 `xurl` |
+| `memory_search` | 已改名為 `memory_recall` |
+| `memory_get` | 已不存在，用 `memory_recall` 替代 |
+| `apply_patch` | 不存在！用 `write` 或 `edit` |
+| `weather "台中"` | `exec("curl -s 'wttr.in/Taichung?format=3&lang=zh-tw'")` |
+| `polymarket` CLI | 不存在！用 `web_search` 查 Polymarket |
+| OpenAI API | 不要用（沒有 key） |
+| `youtube-transcript-api` | 不要用（IP 被封鎖），用 `kd` CLI |
+| 編造工具名 | 查此清單確認 |
+| 猜測 API URL | 先 `web_search` 確認 |
 
-## 📝 更新紀錄
+## 使用原則
 
-2026-02-20: 優化為通用工具系統，所有 Agents 都能使用全部工具
+1. **直接使用** — 不需問老闆，根據需求直接調用
+2. **查清單** — 不確定工具是否存在時回來看
+3. **用 `sessions_send` 協作** — 需要其他 Agent 幫忙時
+4. **遇到錯誤** — 用 `self-improvement` skill 記錄，避免重複犯錯

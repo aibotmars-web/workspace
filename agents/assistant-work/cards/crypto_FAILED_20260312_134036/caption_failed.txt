@@ -1,0 +1,7 @@
+HOOK: dorsey 槓上 Coinbase
+WHAT: Jack Dorsey 直接在 X 上點名 Coinbase CEO Brian Armstrong，要他說清楚支不支援比特幣小額免稅！比特幣播客 Marty Bent 爆料，Coinbase 跑去跟國會說「比特幣根本沒人在當錢花」，免稅根本沒必要。但 Coinbase CPO 直接在 X 開嗆，說這完全是謊話，他們從沒反對過比特幣。Armstrong 也跳出來否認。不過國會確實有人在討論要把免稅限制在穩定幣，Bitcoin Policy Institute 警告這會是美國的策略失誤。Lightning Network 資料顯示比特幣支付越來越熱，每月交易量破 11.7 億美元。
+POINT1: dorsey 施壓|Jack Dorsey 的 Block 一直大力推動比特幣當日常貨幣，還推出閃電網路零手續費優惠。這次直接在 X 點名 Armstrong 要他表態，明顯在施壓要 Coinbase 選邊站。|📊 Dorsey 喊話：「希望 de minimis 也是真的 @brian_armstrong」
+POINT2: 免稅門檻|de minimis 免稅是指比特幣交易低於 300 美元就免資本利得稅。現在法律把比特幣當財產，連買咖啡都要報稅，麻煩死。參議員 Lummis 提案設 300 美元門檻和年上限 5000 美元。|📊 Lightning 單月交易量 11.7 億美元，平均 223 美元
+POINT3: 散戶影響|如果免稅只限定穩定幣，散戶用比特幣消費要被課稅，每次買東西都要記錄成本，申報到手軟。大家就不想用比特幣付錢，只能把它當「數位黃金」囤著。|📊 Lummis 提案：每筆 300 美元門檻，年上限 5000 美元
+POINT4: coinbase 否認|Coinbase CPO Faryar Shirzad 直接在 X 開嗆，說這完全是謊話，他們「從沒、以後也絕對不會反對比特幣」。CEO Armstrong 也親自否認，說這訊息「完全錯誤」。但有趣的是，國會確實有聲音想把 de minimis 限縮在穩定幣，Bitcoin Policy Institute 也確認這趨勢。到底是誰在說謊？現在氣氛超級緊張。|📊 Shirzad：「這完全是謊話。我們從沒、以後也絕對不會反對比特幣。」
+POINT5: 國會攻防|這場戰爭才剛開始！國會正在數位資產稅改框架內討論這個提案，雙方都有龐大遊說勢力。支援者說免稅才能讓比特幣真的成為日常貨幣，反對者說這是免費大禮包。Lightning Network 資料已經證明比特幣支付正在起飛，國會怎麼判斷將是關鍵。|📊 BPI：三個月來國會風向轉向限制 de minimis 僅限穩定幣
