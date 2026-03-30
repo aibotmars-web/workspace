@@ -1,0 +1,1508 @@
+#!/usr/bin/env python3
+"""
+內容自動化 Pipeline v3
+功能：RSS + Twitter 抓文章 → 評分挑最熱 → AI 改寫 → 生成 5 張 Carousel → 發 IG
+
+用法：
+  python3 content_pipeline.py --channel crypto
+  python3 content_pipeline.py --channel finance
+  python3 content_pipeline.py --channel startup
+  python3 content_pipeline.py --channel crypto --dry-run   # 只生成，不發文
+"""
+
+import os
+import sys
+import json
+import argparse
+import subprocess
+import re
+import html
+import xml.etree.ElementTree as ET
+from datetime import datetime
+from pathlib import Path
+from urllib.request import urlopen, Request
+
+SCRIPT_DIR = Path(__file__).parent
+sys.path.insert(0, str(SCRIPT_DIR))
+
+
+# ── 簡體字→繁體字自動轉換 ────────────────────────────────────
+def to_traditional(text: str) -> str:
+    """將 AI 生成文字中的簡體字轉為台灣正體（繁體）。
+    優先使用 opencc（精確），fallback 到內建常見字對照表。"""
+    if not text:
+        return text
+    try:
+        from opencc import OpenCC
+        cc = OpenCC('s2twp')  # 簡體→台灣正體（含慣用語轉換）
+        return cc.convert(text)
+    except ImportError:
+        pass
+    # fallback：高頻簡體字對照表
+    _S2T = {
+        '关': '關', '个': '個', '们': '們', '与': '與', '为': '為',
+        '么': '麼', '义': '義', '乐': '樂', '书': '書', '买': '買',
+        '产': '產', '亿': '億', '从': '從', '仅': '僅', '会': '會',
+        '传': '傳', '价': '價', '众': '眾', '优': '優', '华': '華',
+        '发': '發', '变': '變', '号': '號', '团': '團', '国': '國',
+        '图': '圖', '场': '場', '块': '塊', '处': '處', '备': '備',
+        '头': '頭', '实': '實', '对': '對', '导': '導', '将': '將',
+        '尔': '爾', '层': '層', '币': '幣', '师': '師', '带': '帶',
+        '开': '開', '张': '張', '当': '當', '录': '錄', '总': '總',
+        '战': '戰', '护': '護', '报': '報', '据': '據', '择': '擇',
+        '损': '損', '换': '換', '数': '數', '时': '時', '显': '顯',
+        '机': '機', '权': '權', '条': '條', '来': '來', '构': '構',
+        '标': '標', '样': '樣', '检': '檢', '业': '業', '极': '極',
+        '欢': '歡', '汇': '匯', '没': '沒', '济': '濟', '涨': '漲',
+        '减': '減', '满': '滿', '点': '點', '热': '熱', '环': '環',
+        '现': '現', '电': '電', '确': '確', '离': '離', '积': '積',
+        '称': '稱', '稳': '穩', '笔': '筆', '签': '簽', '类': '類',
+        '经': '經', '结': '結', '给': '給', '统': '統', '续': '續',
+        '网': '網', '联': '聯', '获': '獲', '虑': '慮', '规': '規',
+        '观': '觀', '计': '計', '认': '認', '议': '議', '设': '設',
+        '证': '證', '评': '評', '话': '話', '该': '該', '说': '說',
+        '请': '請', '调': '調', '谁': '誰', '资': '資', '质': '質',
+        '购': '購', '赢': '贏', '转': '轉', '达': '達', '进': '進',
+        '运': '運', '过': '過', '还': '還', '这': '這', '选': '選',
+        '链': '鏈', '间': '間', '阶': '階', '险': '險', '难': '難',
+        '须': '須', '额': '額', '风': '風', '验': '驗', '龙': '龍',
+        '厉': '厲', '历': '歷', '压': '壓', '参': '參', '双': '雙',
+        '听': '聽', '响': '響', '园': '園', '坚': '堅', '壮': '壯',
+        '夺': '奪', '奖': '獎', '学': '學', '宝': '寶', '审': '審',
+        '属': '屬', '岁': '歲', '巨': '巨', '币': '幣', '广': '廣',
+        '庆': '慶', '异': '異', '弹': '彈', '强': '強', '归': '歸',
+        '态': '態', '怀': '懷', '惊': '驚', '战': '戰', '挡': '擋',
+        '挤': '擠', '击': '擊', '拥': '擁', '担': '擔', '拦': '攔',
+        '拨': '撥', '挣': '掙', '据': '據', '损': '損', '摆': '擺',
+        '触': '觸', '词': '詞', '试': '試', '详': '詳', '误': '誤',
+        '读': '讀', '谢': '謝', '谱': '譜', '负': '負', '贡': '貢',
+        '货': '貨', '贵': '貴', '赞': '贊', '赶': '趕', '趋': '趨',
+        '软': '軟', '轮': '輪', '辑': '輯', '辩': '辯', '迁': '遷',
+        '适': '適', '逻': '邏', '遗': '遺', '邮': '郵', '释': '釋',
+        '钱': '錢', '钻': '鑽', '铁': '鐵', '银': '銀', '锁': '鎖',
+        '错': '錯', '镇': '鎮', '门': '門', '闪': '閃', '阅': '閱',
+        '阵': '陣', '际': '際', '隐': '隱', '雇': '僱', '靠': '靠',
+        '顿': '頓', '颁': '頒', '飞': '飛', '饰': '飾', '驱': '驅',
+    }
+    for s, t in _S2T.items():
+        if s in text:
+            text = text.replace(s, t)
+    return text
+
+
+# ── 已發文歷史（防重複發文）────────────────────────────────────
+POSTED_HISTORY = SCRIPT_DIR / "posted_history.json"
+
+# ── IG 帳號 Config 對應 ──────────────────────────────────────
+IG_CONFIG_MAP = {
+    "crypto":  SCRIPT_DIR / "ig_config.json",          # @money.showtime
+    "finance": SCRIPT_DIR / "ig_config.json",          # @money.showtime
+    "startup": SCRIPT_DIR / "startup_ig_config.json",  # @bossmaker.lab
+}
+
+# ── RSS 來源（大幅升級，改抓知名主流話題）────────────────────────
+RSS_SOURCES = {
+    "crypto": [
+        # 中文優先（台灣讀者直接看懂）
+        {"name": "動區動趨",       "url": "https://www.blocktempo.com/feed/",           "lang": "zh"},
+        {"name": "金色財經",       "url": "https://www.jinse.cn/rss",                  "lang": "zh"},
+        {"name": "幣學",           "url": "https://blockcast.it/feed/",                "lang": "zh"},
+        # 英文主流（BTC/ETH/政策/名人新聞多）
+        {"name": "Bitcoin Magazine","url": "https://bitcoinmagazine.com/.rss/full/",   "lang": "en"},
+        {"name": "Decrypt",        "url": "https://decrypt.co/feed",                   "lang": "en"},
+        {"name": "The Block",      "url": "https://www.theblock.co/rss.xml",           "lang": "en"},
+        {"name": "CoinTelegraph",  "url": "https://cointelegraph.com/rss",             "lang": "en"},
+        {"name": "CoinDesk",       "url": "https://feeds.feedburner.com/CoinDesk",     "lang": "en"},
+    ],
+    "finance": [
+        # 中文財經（台灣讀者直接看懂）
+        {"name": "經濟日報",       "url": "https://money.udn.com/rssfeed/news/1001/5588", "lang": "zh"},
+        {"name": "TechNews財經",   "url": "https://finance.technews.tw/feed/",            "lang": "zh"},
+        {"name": "Yahoo財經",      "url": "https://tw.stock.yahoo.com/rss?category=intl-market", "lang": "zh"},
+        {"name": "Google財經",     "url": "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FucG9HZ0pVVnlnQVAB?hl=zh-TW&gl=TW&ceid=TW:zh-Hant", "lang": "zh"},
+        # 英文主流財經（涵蓋地緣政治、商品、全球趨勢）
+        {"name": "MarketWatch",    "url": "https://feeds.content.dowjones.io/public/rss/mw_topstories", "lang": "en"},
+        {"name": "CNBC Top News",  "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114", "lang": "en"},
+        {"name": "Bloomberg Markets","url": "https://feeds.bloomberg.com/markets/news.rss", "lang": "en"},
+    ],
+    "startup": [
+        {"name": "Inside",         "url": "https://www.inside.com.tw/feed",             "lang": "zh"},
+        {"name": "TechNews台灣",   "url": "https://technews.tw/feed/",                 "lang": "zh"},
+        {"name": "TechCrunch",     "url": "https://techcrunch.com/feed/",               "lang": "en"},
+        {"name": "Crunchbase News","url": "https://news.crunchbase.com/feed/",          "lang": "en"},
+    ],
+}
+
+# ── 熱門關鍵字（文章評分用）──────────────────────────────────────
+# 分數越高 = 越熱門，優先選這篇發文
+HOT_KEYWORDS = {
+    "crypto": [
+        # 主流幣種（高分）
+        "BTC", "比特幣", "bitcoin", "ETH", "以太坊", "ethereum",
+        "SOL", "solana", "XRP", "ripple", "BNB",
+        # 重磅話題
+        "ETF", "川普", "Trump", "馬斯克", "Musk", "Elon",
+        "SEC", "CFTC", "穩定幣", "stablecoin", "USDT", "USDC",
+        "儲備", "reserve", "國家", "政府", "美國", "政策",
+        "牛市", "bull", "新高", "all-time high", "ATH",
+        "coinbase", "binance", "幣安", "交易所",
+        "AI", "人工智慧", "區塊鏈", "blockchain",
+        # 知名人物
+        "michael saylor", "saylor", "blackrock", "貝萊德",
+        "apple", "tesla", "蘋果", "特斯拉",
+        # DeFi / L2 / 新領域（增加多樣性）
+        "DeFi", "Aave", "Uniswap", "Layer 2", "L2", "Base", "Arbitrum", "Optimism",
+        "Sui", "Aptos", "Solana", "迷因幣", "memecoin",
+        "Web3", "DAO", "NFT", "RWA",
+        "礦工", "miner", "算力", "比特幣網路",
+    ],
+    "finance": [
+        # 股市
+        "美股", "台股", "納斯達克", "道瓊", "S&P500", "恒生", "日經",
+        # 央行與貨幣政策
+        "聯準會", "Fed", "升息", "降息", "通膨", "inflation", "CPI", "利率",
+        # 地緣政治與國際
+        "川普", "Trump", "關稅", "tariff", "戰爭", "war", "制裁", "sanctions",
+        "中美", "台海", "烏克蘭", "Ukraine", "以色列", "Israel", "中東",
+        # 商品與貴金屬
+        "黃金", "gold", "白銀", "silver", "原油", "oil", "WTI", "布蘭特",
+        "大宗商品", "commodity", "銅", "copper",
+        # 科技巨頭
+        "AI", "科技股", "輝達", "NVIDIA", "蘋果", "Apple", "特斯拉", "Tesla",
+        # 經濟指標與名人
+        "GDP", "就業", "失業率", "PMI", "消費者信心",
+        "巴菲特", "Buffett", "馬斯克", "Musk", "IPO", "裁員",
+        # 多元新主題
+        "半導體", "晶片", "台積電", "AI股", "製藥", "生技",
+        "中國經濟", "恒大", "房市", "陸股", "A股",
+        "比特幣", "BTC", "以太幣", "ETH",  # 金融人也關注幣
+    ],
+    "startup": [
+        "AI", "人工智慧", "OpenAI", "ChatGPT", "Gemini",
+        "融資", "億", "估值", "unicorn", "獨角獸",
+        "IPO", "上市", "裁員", "併購",
+        "創辦人", "CEO", "創業", "新創",
+        "台灣", "矽谷", "Silicon Valley",
+        "Anthropic", "Google", "Apple", "Meta", "Microsoft",
+    ],
+}
+
+# ── 完整文案 Hashtag ──────────────────────────────────────────
+HASHTAGS = {
+    "crypto":  "#幣圈 #加密貨幣 #BTC #比特幣 #ETH #Web3 #區塊鏈 #crypto #bitcoin #投資理財",
+    "finance": "#金融 #投資 #理財 #股市 #經濟 #台股 #美股 #黃金 #國際局勢 #財經",
+    "startup": "#創業 #新創 #商業 #AI #人工智慧 #成功 #創業故事 #entrepreneur #startup #台灣創業",
+}
+
+CHANNEL_ZH = {
+    "crypto": "幣圈",
+    "finance": "金融",
+    "startup": "創業",
+}
+
+# ── Twitter 搜尋關鍵字 ────────────────────────────────────────
+TWITTER_QUERIES = {
+    "crypto":  "BTC OR ETH OR 比特幣 OR 加密貨幣 OR 穩定幣 -filter:retweets lang:zh",
+    "finance": "美股 OR 台股 OR 黃金 OR 川普 OR 戰爭 OR 聯準會 OR 原油 -filter:retweets lang:zh",
+    "startup": "AI 創業 OR 新創 OR 融資 -filter:retweets lang:zh",
+}
+
+
+# ── RSS 抓取 ──────────────────────────────────────────────────
+
+def fetch_rss(url: str, timeout: int = 10) -> list[dict]:
+    try:
+        req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urlopen(req, timeout=timeout) as resp:
+            content = resp.read()
+        root = ET.fromstring(content)
+
+        articles = []
+        items = root.findall(".//item") or root.findall(".//{http://www.w3.org/2005/Atom}entry")
+
+        for item in items[:8]:
+            def get(tag, ns=""):
+                el = item.find(f"{ns}{tag}")
+                return el.text.strip() if el is not None and el.text else ""
+
+            title    = get("title") or get("title", "{http://www.w3.org/2005/Atom}")
+            desc     = get("description") or get("summary", "{http://www.w3.org/2005/Atom}")
+            link     = get("link") or get("link", "{http://www.w3.org/2005/Atom}")
+            pub_date = get("pubDate") or get("published", "{http://www.w3.org/2005/Atom}")
+
+            if title:
+                desc_clean = html.unescape(re.sub(r'<[^>]+>', '', desc))[:600]
+                title = html.unescape(title)
+                articles.append({
+                    "title":       title,
+                    "description": desc_clean,
+                    "link":        link,
+                    "pub_date":    pub_date,
+                })
+        return articles
+    except Exception as e:
+        print(f"   ⚠️ RSS 抓取失敗 {url}: {e}")
+        return []
+
+
+# ── Twitter 抓取（bird）────────────────────────────────────────
+
+def fetch_article_text(url: str, max_chars: int = 1500) -> str:
+    """抓取文章頁面，提取主要文字內容（用於補充截斷的 RSS 描述）"""
+    if not url:
+        return ""
+    try:
+        req = Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        })
+        with urlopen(req, timeout=10) as resp:
+            raw = resp.read().decode("utf-8", errors="ignore")
+
+        # 移除 script/style/nav/header/footer 區塊
+        for tag in ("script", "style", "nav", "header", "footer", "aside"):
+            raw = re.sub(rf'<{tag}[^>]*>.*?</{tag}>', '', raw, flags=re.DOTALL|re.IGNORECASE)
+        # 移除 HTML 註解
+        raw = re.sub(r'<!--.*?-->', '', raw, flags=re.DOTALL)
+
+        # 優先從 <article> 容器提取（大多數新聞網站用 article 標籤包內文）
+        article_match = re.search(r'<article[^>]*>(.*?)</article>', raw, re.DOTALL|re.IGNORECASE)
+        search_area = article_match.group(1) if article_match else raw
+
+        # 提取 <p> 標籤內文字
+        paragraphs = re.findall(r'<p[^>]*>(.*?)</p>', search_area, re.DOTALL|re.IGNORECASE)
+
+        # 過濾噪音的關鍵字（社群分享、導航、廣告等）
+        noise_patterns = re.compile(
+            r'分享至|share to|twitter|facebook|telegram|line\.me|複製連結|'
+            r'廣告|贊助|sponsor|subscribe|訂閱|newsletter|'
+            r'相關報導|延伸閱讀|read more|see also|'
+            r'留言|comment|登入|sign in|cookie|前情提要|背景補充',
+            re.IGNORECASE
+        )
+
+        texts = []
+        for p in paragraphs:
+            clean = html.unescape(re.sub(r'<[^>]+>', '', p)).strip()
+            # 壓縮連續空白/換行為單一空格
+            clean = re.sub(r'\s+', ' ', clean).strip()
+            # 跳過條件：太短、包含噪音關鍵字、純連結/數字
+            if len(clean) < 30:
+                continue
+            if noise_patterns.search(clean) and len(clean) < 150:
+                continue  # 短段落含噪音就跳過；長段落（150+）可能是正文提到這些詞
+            # 跳過看起來像列表項目（全是連結文字）
+            if clean.count('http') > 2:
+                continue
+            texts.append(clean)
+
+        result = "\n".join(texts)
+        # 最終清理：移除開頭可能殘留的分享按鈕文字
+        result = re.sub(r'^(分享至\S+\s*)+', '', result).strip()
+        return result[:max_chars]
+    except Exception as e:
+        print(f"   ⚠️ 文章抓取失敗 {url[:50]}: {e}")
+        return ""
+
+
+def _is_desc_sufficient(desc: str) -> bool:
+    """判斷 RSS 描述是否足夠讓 AI 生成深度內容"""
+    if not desc:
+        return False
+    # 截斷標記
+    if "[…]" in desc or "[...]" in desc or "…]" in desc:
+        return False
+    # 太短（去除空白後不到 80 字）
+    clean = desc.strip()
+    if len(clean) < 80:
+        return False
+    return True
+
+
+def fetch_bird_trending(channel: str) -> list[dict]:
+    """用 bird 搜尋 Twitter/X 熱門推文，作為補充新聞來源"""
+    query = TWITTER_QUERIES.get(channel, "")
+    if not query:
+        return []
+    try:
+        print(f"   🐦 bird 搜尋推特：{query[:50]}...")
+        result = subprocess.run(
+            ["bird", "search", query, "--count", "8"],
+            capture_output=True, text=True, timeout=30
+        )
+        if result.returncode != 0 or not result.stdout.strip():
+            return []
+
+        articles = []
+        for line in result.stdout.strip().splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            # 嘗試 JSON 格式
+            try:
+                tweet = json.loads(line)
+                text = (tweet.get("text") or tweet.get("full_text") or
+                        tweet.get("content") or "")
+                if len(text) > 25:
+                    articles.append({
+                        "title":       text[:80],
+                        "description": text,
+                        "link":        tweet.get("url", ""),
+                        "pub_date":    tweet.get("created_at", ""),
+                    })
+            except json.JSONDecodeError:
+                # 純文字格式
+                if len(line) > 25 and not line.startswith("#"):
+                    articles.append({
+                        "title":       line[:80],
+                        "description": line,
+                        "link":        "",
+                        "pub_date":    "",
+                    })
+
+        if articles:
+            print(f"   ✅ Twitter：取得 {len(articles)} 則推文")
+        return articles
+
+    except FileNotFoundError:
+        print("   ⚠️ bird 未安裝，跳過 Twitter 搜尋")
+    except subprocess.TimeoutExpired:
+        print("   ⚠️ bird 搜尋逾時")
+    except Exception as e:
+        print(f"   ⚠️ bird 失敗：{e}")
+    return []
+
+
+# ── 文章評分（熱門程度）─────────────────────────────────────────
+
+def _load_posted_history() -> list[dict]:
+    """讀取已發文歷史"""
+    if POSTED_HISTORY.exists():
+        try:
+            return json.loads(POSTED_HISTORY.read_text())
+        except (json.JSONDecodeError, OSError):
+            return []
+    return []
+
+
+def _save_posted_history(history: list[dict]):
+    """儲存已發文歷史（只保留最近 200 筆）"""
+    POSTED_HISTORY.write_text(json.dumps(history[-200:], ensure_ascii=False, indent=2))
+
+
+def _is_already_posted(article: dict, channel: str) -> bool:
+    """檢查文章是否已經發過（比對 URL 和標題相似度）"""
+    history = _load_posted_history()
+    url = article.get("link", "")
+    title = article.get("title", "").lower().strip()
+
+    for entry in history:
+        # 1. URL 完全相同 → 一定重複
+        if url and entry.get("url") == url:
+            return True
+        # 2. 同頻道 + 標題高度相似（>80% 字元重疊）→ 很可能重複
+        if entry.get("channel") != channel:
+            continue
+        h_title = entry.get("title", "").lower().strip()
+        if title and h_title:
+            overlap = sum(1 for c in title if c in h_title)
+            similarity = overlap / max(len(title), 1)
+            if similarity > 0.8:
+                return True
+    return False
+
+
+# 主題分類關鍵字（用於多樣性懲罰）
+TOPIC_KEYWORDS = {
+    "crypto": {
+        "BTC/ETF":     ["BTC", "比特幣", "bitcoin", "ETF", "現貨 ETF", "比特幣 ETF", "比特幣現貨"],
+        "ETH":         ["ETH", "以太坊", "ethereum"],
+        "宏觀/政策":   ["川普", "Trump", "Fed", "聯準會", "SEC", "CFTC", "政策", "監管", "利率"],
+        "穩定幣":      ["USDT", "USDC", "穩定幣", "stablecoin", "Tether", "Circle"],
+        "交易所":      ["幣安", "binance", "Coinbase", "OKX", "交易所"],
+        "DeFi/新幣":   ["DeFi", "MEME", "meme", "迷因", "Aave", "Uniswap", "dApp"],
+        "礦工/技術":   ["礦工", "miner", "hash", "算力", "Layer 2", "L2", "比特幣網路"],
+        "機構":        ["貝萊德", "BlackRock", "灰度", "microstrategy", "Michael Saylor"],
+    },
+    "finance": {
+        "美股/科技":   ["納斯達克", "道瓊", "S&P500", "科技股", "輝達", "NVIDIA", "蘋果", "特斯拉"],
+        "央行/利率":   ["Fed", "聯準會", "升息", "降息", "利率", "通膨", "CPI"],
+        "黃金/大宗":   ["黃金", "gold", "白銀", "原油", "oil", "WTI", "銅", "大宗商品"],
+        "地緣政治":    ["川普", "Trump", "關稅", "制裁", "中美", "台海", "戰爭"],
+        "台股":        ["台股", "加權", "櫃買", "上市櫃"],
+    },
+}
+
+# 主題冷卻懲罰表：多久（天）內同主題算重複
+TOPIC_COOLDOWN_DAYS = 3      # 3 天內同主題 penalize
+TOPIC_COOLDOWN_PENALTY = -5  # 被 penalize 扣幾分
+
+
+def _extract_topics(article: dict, channel: str) -> set[str]:
+    """從文章中抽出涵蓋的主題"""
+    text = (article.get("title", "") + " " + article.get("description", "")).lower()
+    topics = set()
+    for topic, kws in TOPIC_KEYWORDS.get(channel, {}).items():
+        for kw in kws:
+            if kw.lower() in text:
+                topics.add(topic)
+                break
+    return topics
+
+
+def _get_recent_topics(channel: str, days: int = TOPIC_COOLDOWN_DAYS) -> dict[str, str]:
+    """取得近 N 天各文章的主题（topic -> date），用於冷卻計算"""
+    import datetime
+    history = _load_posted_history()
+    cutoff = datetime.datetime.now() - datetime.timedelta(days=days)
+    recent = {}
+    for entry in reversed(history[-30:]):  # 只看最近 30 篇
+        if entry.get("channel") != channel:
+            continue
+        try:
+            d = datetime.datetime.fromisoformat(entry.get("posted_at", "2020-01-01"))
+        except Exception:
+            continue
+        if d < cutoff:
+            continue
+        entry_date = entry.get("posted_at", "")[:10]
+        for t in (entry.get("_topics") or []):
+            recent[t] = entry_date
+    return recent
+
+
+def score_article(article: dict, channel: str) -> int:
+    """計算文章熱門分數：包含越多熱門關鍵字 = 分數越高"""
+    keywords = HOT_KEYWORDS.get(channel, [])
+    text = (article.get("title", "") + " " + article.get("description", "")).lower()
+    score = sum(1 for kw in keywords if kw.lower() in text)
+    # 描述品質加權：描述不足的扣 2 分，降低被選中機率
+    if not _is_desc_sufficient(article.get("description", "")):
+        score = max(0, score - 2)
+    return score
+
+
+def _apply_topic_diversity(scored: list[tuple[int, dict]], channel: str) -> list[tuple[int, dict]]:
+    """根據主題多樣性調整分數：冷門主題 bonus，熱門主題 penalty"""
+    recent_topics = _get_recent_topics(channel, days=TOPIC_COOLDOWN_DAYS)
+
+    adjusted = []
+    for base_score, art in scored:
+        topics = _extract_topics(art, channel)
+        penalty = 0
+        hit_topics = []
+
+        for t in topics:
+            if t in recent_topics:
+                penalty += TOPIC_COOLDOWN_PENALTY
+                hit_topics.append(t)
+
+        # 標記文章攜帶的主題，供日後記錄用
+        art["_topics"] = list(topics)
+        art["_diversity_bonus"] = -penalty  # 儲存讓你知道降了幾分
+
+        final_score = base_score + penalty
+        if penalty != 0:
+            print(f"   🔄 主題冷卻 {hit_topics}：{base_score} → {final_score}")
+        adjusted.append((final_score, art))
+
+    # 分數重新排序
+    adjusted.sort(key=lambda x: x[0], reverse=True)
+    return adjusted
+
+
+def find_related_articles(best: dict, all_articles: list[dict],
+                          max_results: int = 4) -> list[dict]:
+    """從文章池中找出與選定文章同主題但不同來源的報導，用於交叉引用"""
+    best_title = best.get("title", "").lower()
+    best_source = best.get("_source", "")
+    best_link = best.get("link", "")
+
+    # 提取關鍵詞（取標題中 2 字以上的詞）
+    import re as _re
+    # 中文：每 2-4 個字一組；英文：完整單字
+    zh_words = _re.findall(r'[\u4e00-\u9fff]{2,4}', best_title)
+    en_words = [w for w in _re.findall(r'[a-zA-Z]{3,}', best_title)]
+    keywords = zh_words + en_words
+
+    related = []
+    seen_sources = {best_source}
+    for art in all_articles:
+        if art.get("link") == best_link:
+            continue
+        src = art.get("_source", "")
+        if src in seen_sources:
+            continue
+        art_text = (art.get("title", "") + " " + art.get("description", "")).lower()
+        # 計算關鍵詞匹配數
+        match_count = sum(1 for kw in keywords if kw.lower() in art_text)
+        if match_count >= 2:
+            related.append(art)
+            seen_sources.add(src)
+            if len(related) >= max_results:
+                break
+
+    return related
+
+
+def _is_topic_duplicate(article: dict, channel: str, last_n: int = 2) -> bool:
+    """True if the article's topics ALL appeared in the last N posts of this channel.
+    Prevents back-to-back posts on the same topic cluster."""
+    history = _load_posted_history()
+    channel_history = [e for e in history if e.get("channel") == channel]
+    recent = channel_history[-last_n:]
+
+    recent_topic_set: set[str] = set()
+    for entry in recent:
+        for t in (entry.get("_topics") or []):
+            recent_topic_set.add(t)
+
+    article_topics = set(article.get("_topics") or [])
+    if not article_topics:
+        return False  # 無法識別主題 → 不強制跳過
+    return article_topics.issubset(recent_topic_set)
+
+
+def pick_best_article(articles: list[dict], channel: str = "crypto") -> dict | None:
+    """從文章池選出熱門分數最高、且尚未發過的那篇（經主題多樣性調整）"""
+    if not articles:
+        return None
+
+    # Step 1: 基礎熱門分數
+    scored = [(score_article(a, channel), a) for a in articles]
+    scored.sort(key=lambda x: x[0], reverse=True)
+
+    # Step 2: 主題多樣性調整（冷卻懲罰）
+    # 先預先計算每篇文章的主題
+    for _, art in scored:
+        art["_topics"] = _extract_topics(art, channel)
+
+    scored = _apply_topic_diversity(scored, channel)
+
+    # 印出多樣性調整後的排名（debug）
+    print("   📊 主題多樣性調整後排名：")
+    for i, (s, a) in enumerate(scored[:5]):
+        topics_str = ",".join(a.get("_topics", [])[:3]) or "一般"
+        bonus = a.get("_diversity_bonus", 0)
+        bonus_str = f"(冷卻{bonus})" if bonus else ""
+        print(f"      {i+1}. [{s}{bonus_str}] {a['title'][:40]}... [{topics_str}]")
+
+    # 跳過已發過的文章，或主題與最近 2 篇完全重疊的文章
+    for best_score, best in scored:
+        if _is_already_posted(best, channel):
+            print(f"   ⏭️ 跳過已發文：{best['title'][:45]}...")
+            continue
+        if _is_topic_duplicate(best, channel, last_n=2):
+            topics_str = ",".join(best.get("_topics", []))
+            print(f"   ⏭️ 跳過重複主題 [{topics_str}]：{best['title'][:40]}...")
+            continue
+
+        source = best.get("_source", "")
+        topics_str = ",".join(best.get("_topics", []))
+        print(f"   🎯 當選：{best['title'][:55]}")
+        if source:
+            print(f"   📰 來源：{source}  |  主題：{topics_str}")
+
+        return best
+
+    print("   ⚠️ 所有候選文章都已發過或主題重複！")
+    return None
+
+
+# ── Claude API 直接呼叫（快速穩定）────────────────────────────
+
+_CLAUDE_SYSTEM = {
+    "crypto": "你是「幣圈大小事」IG 帳號的資深社群編輯，服務台灣 20-35 歲加密貨幣投資者。寫作風格：繁體中文、台灣口語、有深度、數字精確（如「高達 2.3 億美元」）、CTA 要有具體可回答的問題。寫作禁忌：嚴禁使用簡體字（必須用台灣正體繁體中文）、不可有翻譯腔、語句要口語通順像人說話，不要用「進行」「予以」「針對」等公文用語。",
+    "finance": "你是「金融大小事」IG 帳號的資深社群編輯，服務台灣股市與金融投資人。寫作風格：繁體中文、台灣口語、有深度、數字精確、CTA 要有具體可回答的問題。寫作禁忌：嚴禁使用簡體字（必須用台灣正體繁體中文）、不可有翻譯腔、語句要口語通順像人說話，不要用「進行」「予以」「針對」等公文用語。",
+    "startup": "你是「創業大小事」IG 帳號的資深社群編輯，服務台灣創業者與科技愛好者。寫作風格：繁體中文、台灣口語、有深度、數字精確、CTA 要有具體可回答的問題。寫作禁忌：嚴禁使用簡體字（必須用台灣正體繁體中文）、不可有翻譯腔、語句要口語通順像人說話，不要用「進行」「予以」「針對」等公文用語。",
+}
+
+def _get_anthropic_key() -> str:
+    """從多個來源嘗試取得 Anthropic API key"""
+    # 1. 環境變數
+    key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
+    if key:
+        return key
+    # 2. ig_config.json 中的 anthropic_api_key 欄位
+    for cfg_path in IG_CONFIG_MAP.values():
+        try:
+            if cfg_path.exists():
+                cfg = json.loads(cfg_path.read_text())
+                key = cfg.get("anthropic_api_key", "").strip()
+                if key:
+                    return key
+        except Exception:
+            pass
+    # 3. 專用設定檔
+    key_file = SCRIPT_DIR / "anthropic_key.txt"
+    if key_file.exists():
+        key = key_file.read_text().strip()
+        if key:
+            return key
+    return ""
+
+
+def call_ai_claude(prompt: str, channel: str = "crypto") -> str | None:
+    """Claude Haiku 直接生成文案（<8秒，品質高）"""
+    try:
+        import anthropic
+        api_key = _get_anthropic_key()
+        if not api_key:
+            return None
+        client = anthropic.Anthropic(api_key=api_key)
+        msg = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=4096,
+            system=_CLAUDE_SYSTEM.get(channel, _CLAUDE_SYSTEM["crypto"]),
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return msg.content[0].text
+    except Exception as e:
+        print(f"   ⚠️ Claude API 失敗：{e}")
+        return None
+
+
+# ── AI 改寫（結構化 5 張 Carousel 文案）────────────────────────
+
+def call_ai(prompt: str, timeout: int = 120, max_retries: int = 3) -> str | None:
+    """透過 openclaw agent 呼叫 MiniMax AI（含自動重試）"""
+    import time as _time
+    for attempt in range(1, max_retries + 1):
+        try:
+            result = subprocess.run(
+                ["openclaw", "agent", "--agent", "main", "--json", "--message", prompt],
+                capture_output=True, text=True, timeout=timeout
+            )
+            raw = result.stdout or ""
+            # ★ 跳過 plugin/log 前綴行（如 [plugins] ...），定位 JSON 起始
+            json_start = raw.find('{')
+            if json_start < 0:
+                if result.stderr:
+                    print(f"   ⚠️ openclaw stderr: {result.stderr[:200]}")
+                if attempt < max_retries:
+                    print(f"   ⚠️ MiniMax 回應無 JSON，{3}秒後重試 ({attempt}/{max_retries})...")
+                    _time.sleep(3)
+                continue
+            data = json.loads(raw[json_start:])
+            payloads = data.get("result", {}).get("payloads", [])
+            if payloads and payloads[0].get("text"):
+                return payloads[0]["text"]
+            status = data.get("status", "unknown")
+            if attempt < max_retries:
+                print(f"   ⚠️ MiniMax 回應無 payload (status={status})，{3}秒後重試 ({attempt}/{max_retries})...")
+                _time.sleep(3)
+        except subprocess.TimeoutExpired:
+            print(f"   ⚠️ AI 呼叫逾時 ({attempt}/{max_retries})")
+            if attempt < max_retries:
+                _time.sleep(2)
+        except json.JSONDecodeError as e:
+            print(f"   ⚠️ MiniMax JSON 解析錯誤：{e}，前100字：{raw[:100]}")
+            if attempt < max_retries:
+                _time.sleep(3)
+        except Exception as e:
+            print(f"   ⚠️ AI 呼叫失敗：{e}")
+            break
+    return None
+
+
+def _claude_fallback(title: str, desc: str, ref_block: str,
+                     ch_zh: str, source_name: str, channel: str) -> dict | None:
+    """當 MiniMax 失敗時，用 Claude API 一次性生成全部文案"""
+    prompt = f"""把以下新聞改寫成繁體中文 IG Carousel 文案。台灣口語風格，嚴禁簡體字。
+
+新聞（{source_name}）：{title}
+摘要：{desc}{ref_block}
+
+輸出格式（每行一個欄位，冒號後直接接內容，不要多餘說明）：
+
+HOOK: 抓眼球標題（15字以內）
+WHAT: 完整說明（350-500字！背景、經過、數據、各方反應，要有深度分析）
+EVIDENCE: 佐證畫面描述（30字以內）
+PERSON: 新聞中最主要人物英文全名（沒有填 null）
+POINT1: 短標題（8字以內）|深度分析（200-300字！要有數據佐證、原因分析、影響評估）|📊 數據佐證
+POINT1_PHOTO: 英文圖片搜尋詞（2-3個詞）
+POINT2: 短標題（8字以內）|深度分析（200-300字！從不同角度切入）|📊 數據佐證
+POINT2_PHOTO: 英文圖片搜尋詞
+POINT3: 短標題（8字以內）|深度分析（200-300字！聚焦實際影響）|📊 數據佐證
+POINT3_PHOTO: 英文圖片搜尋詞
+POINT4: 短標題（8字以內）|深度分析（200-300字！提出反方觀點或不同立場）|📊 數據佐證
+POINT4_PHOTO: 英文圖片搜尋詞
+POINT5: 短標題（8字以內）|深度分析（200-300字！展望未來走向和風險）|📊 數據佐證
+POINT5_PHOTO: 英文圖片搜尋詞
+IMPACT: 為什麼重要（350-500字！全面深度分析，對產業影響+投資建議+歷史對比）
+CONTEXT: 歷史脈絡（250-350字！列出 2-3 個歷史事件做對比）
+CHART_NOTE: 用一句話解釋近期走勢（30字以內）
+CTA: 互動問題（20字以內）"""
+
+    print("   🧠 Claude API 生成中...")
+    output = call_ai_claude(prompt, channel)
+    if not output:
+        print("   ⚠️ Claude API 無回應")
+        return None
+
+    data = {}
+    for line in output.splitlines():
+        if ":" not in line:
+            continue
+        key, _, val = line.partition(":")
+        key = key.strip().upper()
+        val = val.strip()
+        if not val:
+            continue
+        if key == "HOOK":       data["hook"] = val
+        elif key == "WHAT":     data["what"] = val
+        elif key == "EVIDENCE": data["evidence"] = val
+        elif key == "PERSON":   data["person"] = val
+        elif key in ("POINT1", "POINT2", "POINT3", "POINT4", "POINT5"):
+            data.setdefault("points", []).append(val)
+        elif key in ("POINT1_PHOTO", "POINT2_PHOTO", "POINT3_PHOTO",
+                     "POINT4_PHOTO", "POINT5_PHOTO"):
+            data.setdefault("point_photos", []).append(val)
+        elif key == "IMPACT":   data["impact"] = val
+        elif key == "CONTEXT":  data["context"] = val
+        elif key == "CTA":      data["cta"] = val
+    return data if data else None
+
+
+def _enrich_with_claude(data: dict, title: str, desc: str,
+                        ch_zh: str, source_name: str) -> None:
+    """用 Claude 補充 PERSON 和 POINT_PHOTO（MiniMax 成功但缺少這些欄位時）"""
+    if data.get("person") and data.get("point_photos"):
+        return  # 已有，不用補
+    try:
+        prompt = f"""根據以下新聞，回答兩個問題：
+
+新聞：{title}
+摘要：{desc[:300]}
+
+1. PERSON: 新聞中最主要人物的英文全名（沒有填 null）
+2. 針對以下每個重點，給出最適合的英文圖片搜尋詞（2-3個詞）："""
+        points = data.get("points", [])
+        for i, pt in enumerate(points[:5], 1):
+            pt_title = pt.split("|")[0][:20] if "|" in pt else pt[:20]
+            prompt += f"\nPOINT{i}_PHOTO: （重點：{pt_title}）"
+
+        output = call_ai_claude(prompt, "crypto")
+        if output:
+            for line in output.splitlines():
+                if ":" not in line:
+                    continue
+                key, _, val = line.partition(":")
+                key = key.strip().upper()
+                val = val.strip()
+                if key == "PERSON" and val:
+                    data["person"] = val
+                elif "PHOTO" in key and val:
+                    data.setdefault("point_photos", []).append(val)
+            if data.get("point_photos"):
+                print(f"   📸 Claude 補充了 {len(data['point_photos'])} 張圖片關鍵字")
+    except Exception as e:
+        pass  # 非必要，靜默失敗
+
+
+def ai_rewrite(article: dict, channel: str,
+               related_articles: list[dict] | None = None) -> dict:
+    """
+    用 AI 改寫為 10 張 Carousel 文案。
+    回傳 {hook, what, points, impact, context, evidence, cta}
+    related_articles：同主題但不同來源的文章，供交叉引用
+    """
+    title = article["title"]
+    desc  = article.get("description", "")[:500]
+    source_name = article.get("_source", "")
+    ch_zh = CHANNEL_ZH.get(channel, channel)
+
+    # ── 描述不足時，抓取文章全文補充 ──
+    if not _is_desc_sufficient(desc):
+        link = article.get("link", "")
+        if link:
+            print(f"   📰 描述不足（{len(desc)}字），抓取文章全文...")
+            full_text = fetch_article_text(link)
+            if full_text and len(full_text) > len(desc):
+                desc = full_text[:800]  # 用全文取代截斷描述
+                print(f"   ✅ 取得文章全文 {len(desc)} 字")
+            else:
+                print(f"   ⚠️ 全文抓取無效，使用原始描述")
+
+    # 組合多來源參考素材
+    ref_block = ""
+    if related_articles:
+        ref_lines = []
+        for i, ra in enumerate(related_articles[:4], 1):
+            ra_src = ra.get("_source", f"來源{i}")
+            ra_title = ra.get("title", "")[:60]
+            ra_desc = ra.get("description", "")[:200]
+            ref_lines.append(f"【{ra_src}】{ra_title}\n{ra_desc}")
+        ref_block = "\n\n同主題其他媒體報導（務必交叉引用不同觀點）：\n" + "\n\n".join(ref_lines)
+
+    prompt = f"""你是台灣頂級{ch_zh}媒體 IG 社群編輯，專門寫 Carousel 10頁深度內容。
+你的內容要像記者專題報導一樣紮實有深度，每一頁都要塞滿有價值的資訊，絕對不能有空洞感。
+請把以下新聞改寫成繁體中文，台灣年輕人喜歡的口語風格，有衝擊力、接地氣、但有專業深度。
+如果原文是英文，請翻譯成中文再改寫，務必補充足夠背景說明讓台灣讀者完全看得懂。
+⚠️ 重要：每個欄位都必須寫滿要求字數下限！字數不夠的會被退回重寫。內容要紮實有料，有數據有觀點有分析。
+⚠️ 如果有多來源報導，務必整合不同媒體的觀點和數據，讓分析更全面。
+
+主要新聞（{source_name}）：
+標題：{title}
+摘要：{desc}{ref_block}
+
+請直接輸出以下格式（每行一個欄位，冒號後面直接接內容，不要多餘說明）：
+
+HOOK: 抓眼球標題（15字以內，引發好奇或震驚感，像新聞頭條一樣吸睛）
+WHAT: 完整說明發生了什麼事（350-500字！要有完整來龍去脈：事件背景、觸發原因、具體經過、關鍵數據（金額/百分比/時間點）、當事人表態、各方反應，口語化但資訊密度要極高，讀者看完這頁就能完全掌握事件全貌）
+EVIDENCE: 用一句話描述最能佐證這則新聞的畫面（30字以內，例如「比特幣價格暴跌走勢圖」「川普在白宮記者會發言」）
+POINT1: 短標題（8字以內）|深度分析（200-300字！要有：1.具體數據佐證 2.背後原因分析 3.影響範圍評估 4.專家或業內觀點引用，像一篇迷你專欄文章）
+POINT2: 短標題（8字以內）|深度分析（200-300字！從不同角度切入，補充第一點沒提到的面向，引用不同來源的數據或觀點）
+POINT3: 短標題（8字以內）|深度分析（200-300字！聚焦對一般投資人/讀者的實際影響，給出具體情境和數字，讓讀者有切身感）
+POINT4: 短標題（8字以內）|深度分析（200-300字！提出反方觀點或不同立場的論述，平衡報導，引述持不同意見者的看法和理由）
+POINT5: 短標題（8字以內）|深度分析（200-300字！展望未來走向，分析接下來可能的劇情發展、潛在風險和機會，給出時間軸預測）
+IMPACT: 為什麼這件事很重要（350-500字！全面深度分析：1.對整個產業/市場的長期影響 2.對台灣投資人的具體建議 3.歷史上類似事件的結果對比 4.後市展望與風險提醒 5.需要關注的後續指標或時間節點）
+CONTEXT: 歷史脈絡（250-350字！列出 2-3 個過去的類似事件做對比，說明當時發生了什麼、結果如何、這次有何不同，讓讀者建立時間軸概念）
+CHART_NOTE: 用一句話解釋近期走勢（例如「因 ETF 獲批推動，ETH 本週上漲 5%」，30字以內）
+CTA: 互動問題（20字以內，引導留言討論，讓粉絲有話說）"""
+
+    def _parse_ai_output(output: str, data: dict) -> dict:
+        """解析 AI 輸出，合併到 data dict。
+        支援多種格式：
+        - HOOK: 內容          (標準半形冒號)
+        - HOOK：內容          (全形冒號)
+        - **HOOK:** 內容      (Markdown 粗體)
+        - **HOOK**：內容      (Markdown + 全形冒號)
+        """
+        for line in output.splitlines():
+            # 統一處理：全形冒號→半形、移除 markdown bold markers
+            normalized = line.replace("：", ":").replace("**", "").strip()
+            if ":" not in normalized:
+                continue
+            key, _, val = normalized.partition(":")
+            key = key.strip().upper()
+            val = val.strip()
+            if not val:
+                continue
+            if key == "HOOK":       data["hook"] = val
+            elif key == "WHAT":     data["what"] = val
+            elif key == "EVIDENCE": data["evidence"] = val
+            elif key == "PERSON":   data["person"] = val
+            elif key in ("POINT1", "POINT2", "POINT3", "POINT4", "POINT5"):
+                data.setdefault("points", []).append(val)
+            elif key in ("POINT1_PHOTO", "POINT2_PHOTO", "POINT3_PHOTO",
+                         "POINT4_PHOTO", "POINT5_PHOTO"):
+                data.setdefault("point_photos", []).append(val)
+            elif key == "IMPACT":     data["impact"] = val
+            elif key == "CONTEXT":    data["context"] = val
+            elif key == "CHART_NOTE": data["chart_note"] = val
+            elif key == "CTA":        data["cta"] = val
+        return data
+
+    # ── 拆成兩次 AI 呼叫（避免輸出截斷）──
+    # 第一輪：HOOK + WHAT + EVIDENCE + POINT1-3
+    prompt_part1 = f"""你是台灣頂級{ch_zh}媒體 IG 社群編輯，專門寫 Carousel 10頁深度內容。
+你的內容要像記者專題報導一樣紮實有深度，每一頁都要塞滿有價值的資訊，絕對不能有空洞感。
+請把以下新聞改寫成繁體中文，台灣年輕人喜歡的口語風格，有衝擊力、接地氣、但有專業深度。
+如果原文是英文，請翻譯成中文再改寫，務必補充足夠背景說明讓台灣讀者完全看得懂。
+⚠️ 重要：每個欄位都必須寫滿要求字數下限！字數不夠的會被退回重寫。內容要紮實有料，有數據有觀點有分析。
+⚠️ 如果有多來源報導，務必整合不同媒體的觀點和數據，讓分析更全面。
+⚠️ 嚴禁出現任何簡體字！全部使用台灣正體繁體中文！
+⚠️ 語句務必通順自然！用台灣人日常說話的方式寫，避免翻譯腔和機器感。
+  - 不要用「進行」「予以」「針對」「根據」等公文用語，改用白話
+
+主要新聞（{source_name}）：{title}
+摘要：{desc}{ref_block}
+
+請直接輸出以下格式（每行一個欄位，冒號後面直接接內容，不要多餘說明）：
+
+HOOK: 抓眼球標題（15字以內，引發好奇或震驚感，像新聞頭條一樣吸睛）
+WHAT: 完整說明發生了什麼事（350-500字！要有完整來龍去脈：事件背景、觸發原因、具體經過、關鍵數據（金額/百分比/時間點）、當事人表態、各方反應，口語化但資訊密度要極高，讀者看完這頁就能完全掌握事件全貌）
+EVIDENCE: 用一句話描述最能佐證這則新聞的畫面（30字以內）
+POINT1: 短標題（8字以內）|深度分析（200-300字！要有：1.具體數據佐證 2.背後原因分析 3.影響範圍評估 4.專家或業內觀點引用，像一篇迷你專欄文章）|📊 關鍵數據（一句話，必須包含具體數字）
+POINT2: 短標題（8字以內）|深度分析（200-300字！從不同角度切入，補充第一點沒提到的面向，引用不同來源的數據或觀點）|📊 關鍵數據（一句話）
+POINT3: 短標題（8字以內）|深度分析（200-300字！聚焦對一般投資人/讀者的實際影響，給出具體情境和數字，讓讀者有切身感）|📊 關鍵數據（一句話）"""
+
+    # 重試機制：最多嘗試 3 次（每次加不同提示避免重複失敗）
+    retry_hints_p1 = [
+        "",  # 第一次：不加額外提示
+        "\n⚠️ 上一次生成失敗了。這次請特別注意：只輸出 HOOK/WHAT/EVIDENCE/POINT1-3 格式，每行一個欄位，冒號後直接寫內容。",
+        "\n⚠️ 第三次嘗試。請嚴格遵守格式：HOOK: 內容\nWHAT: 內容\n...。不要輸出任何多餘文字。語言必須是繁體中文。",
+    ]
+    output1 = None
+    for attempt in range(3):
+        label = f"[1/2] 嘗試{attempt+1}" if attempt > 0 else "[1/2]"
+        print(f"   🤖 AI 改寫中 {label} HOOK+WHAT+POINT1-3...")
+        current_prompt = prompt_part1 + retry_hints_p1[attempt]
+        output1 = call_ai(current_prompt, timeout=120)
+        if output1 and any(k in output1.upper().replace("：", ":") for k in ["HOOK:", "WHAT:"]):
+            print(f"   📝 Part1 回傳 {len(output1)} 字")
+            break
+        if output1:
+            print(f"   ⚠️ Part1 回傳 {len(output1)} 字但無 HOOK/WHAT 格式，前 100 字：{output1[:100]}")
+        else:
+            print(f"   ⚠️ Part1 無回傳")
+        output1 = None
+
+    # 第二輪：POINT4-5 + IMPACT + CONTEXT + CTA
+    prompt_part2 = f"""你是台灣頂級{ch_zh}媒體 IG 社群編輯，續寫深度分析。
+以下新聞你已經分析了前三個重點，現在繼續寫後半部分。
+⚠️ 每個欄位都必須寫滿要求字數下限！
+⚠️ 嚴禁出現任何簡體字！全部使用台灣正體繁體中文！
+⚠️ 語句務必通順自然！用台灣人日常說話的方式寫，避免翻譯腔。
+  - 不要用「進行」「予以」「針對」等公文用語，改用白話
+
+新聞標題：{title}
+摘要：{desc}
+
+輸出格式（冒號後直接接內容）：
+
+POINT4: 短標題（8字以內）|深度分析（200-300字！提出反方觀點或不同立場的論述，平衡報導，引述持不同意見者的看法和理由）|📊 關鍵數據（一句話）
+POINT5: 短標題（8字以內）|深度分析（200-300字！展望未來走向，分析接下來可能的劇情發展、潛在風險和機會，給出時間軸預測）|📊 關鍵數據（一句話）
+IMPACT: 為什麼這件事很重要（350-500字！全面深度分析：1.對整個產業/市場的長期影響 2.對台灣投資人的具體建議 3.歷史上類似事件的結果對比 4.後市展望與風險提醒 5.需要關注的後續指標或時間節點）
+CONTEXT: 歷史脈絡（250-350字！列出 2-3 個過去的類似事件做對比，說明當時發生了什麼、結果如何、這次有何不同，讓讀者建立時間軸概念）
+CHART_NOTE: 用一句話解釋近期走勢（例如「因 ETF 獲批推動，ETH 本週上漲 5%」，30字以內）
+CTA: 互動問題（20字以內，引導留言討論，讓粉絲有話說）"""
+
+    retry_hints_p2 = [
+        "",
+        "\n⚠️ 上一次生成失敗了。這次請特別注意：只輸出 POINT4/POINT5/IMPACT/CONTEXT/CTA 格式，每行一個欄位。",
+        "\n⚠️ 第三次嘗試。請嚴格遵守格式，語言必須是繁體中文，不要輸出任何多餘文字。",
+    ]
+    output2 = None
+    for attempt in range(3):
+        label = f"[2/2] 嘗試{attempt+1}" if attempt > 0 else "[2/2]"
+        print(f"   🤖 AI 改寫中 {label} POINT4-5+IMPACT+CONTEXT+CTA...")
+        current_prompt2 = prompt_part2 + retry_hints_p2[attempt]
+        output2 = call_ai(current_prompt2, timeout=120)
+        if output2 and any(k in output2.upper().replace("：", ":") for k in ["POINT4:", "IMPACT:"]):
+            print(f"   📝 Part2 回傳 {len(output2)} 字")
+            break
+        if output2:
+            print(f"   ⚠️ Part2 回傳 {len(output2)} 字但無 POINT4/IMPACT 格式，前 100 字：{output2[:100]}")
+        else:
+            print(f"   ⚠️ Part2 無回傳")
+        output2 = None
+
+    data = {}
+    if output1:
+        # 顯示前幾行幫助除錯
+        first_lines = [ln.strip() for ln in output1[:300].splitlines() if ln.strip()][:3]
+        print(f"   🔍 Part1 前幾行：{' / '.join(l[:50] for l in first_lines)}")
+        _parse_ai_output(output1, data)
+        print(f"   🔍 Part1 解析結果：HOOK={bool(data.get('hook'))}, WHAT={len(data.get('what',''))}字, points={len(data.get('points',[]))}個")
+    if output2:
+        prev_pts = len(data.get("points", []))
+        _parse_ai_output(output2, data)
+        new_pts = len(data.get("points", [])) - prev_pts
+        print(f"   🔍 Part2 解析結果：新增 points={new_pts}, IMPACT={len(data.get('impact',''))}字, CONTEXT={len(data.get('context',''))}字")
+
+    # ── 簡體→繁體轉換（所有文字欄位）──
+    def _convert_data(d: dict) -> dict:
+        for key in ("hook", "what", "impact", "context", "cta", "evidence"):
+            if key in d and isinstance(d[key], str):
+                d[key] = to_traditional(d[key])
+        if "points" in d:
+            d["points"] = [to_traditional(p) for p in d["points"]]
+        return d
+
+    def _has_zh(text: str) -> bool:
+        """檢查文字是否包含中文"""
+        return any('\u4e00' <= c <= '\u9fff' for c in (text or ""))
+
+    def _is_quality_ok(d: dict) -> bool:
+        """檢查 AI 回傳品質是否合格"""
+        hook = d.get("hook", "")
+        if not _has_zh(hook):
+            print(f"   ❌ 品質檢查：HOOK 無中文 → '{hook[:30]}'")
+            return False
+        points = d.get("points", [])
+        if len(points) < 3:
+            print(f"   ❌ 品質檢查：points 不足 3 個（只有 {len(points)}）")
+            return False
+        # 檢查至少 3 個 point 有實質中文內容（非 fallback 佔位文字）
+        real_points = [p for p in points if _has_zh(p) and "持續關注後續" not in p and len(p) > 20]
+        if len(real_points) < 3:
+            print(f"   ❌ 品質檢查：有效 points 不足 3 個（{len(real_points)}/{len(points)}）")
+            for i, p in enumerate(points):
+                has_zh = _has_zh(p)
+                ok_len = len(p) > 20
+                print(f"      PT{i+1}: zh={has_zh} len={len(p)} → '{p[:40]}'")
+            return False
+        return True
+
+    if _is_quality_ok(data):
+        pt_count = len(data.get("points", []))
+        print(f"   ✅ MiniMax AI 改寫成功（{pt_count} 個重點）")
+        # 嘗試用 Claude 補充 PERSON 和 POINT_PHOTO（非必要，失敗不影響）
+        _enrich_with_claude(data, title, desc, ch_zh, source_name)
+        return _convert_data(data)
+
+    # ── MiniMax 失敗 → 用 Claude API 作為 fallback ──────────────
+    print("   ⚠️ MiniMax 回傳品質不足，嘗試 Claude API fallback...")
+    claude_data = _claude_fallback(title, desc, ref_block, ch_zh, source_name, channel)
+    if claude_data and _is_quality_ok(claude_data):
+        print(f"   ✅ Claude fallback 成功！")
+        return _convert_data(claude_data)
+
+    # ── 最終 fallback：手動拆解（至少有中文內容）──────────────────
+    print("   ⚠️ 兩個 AI 都失敗，使用後備文案")
+    # 合併已解析的部分結果
+    if data.get("hook") and _has_zh(data["hook"]):
+        pass  # 保留已有 hook
+    else:
+        data["hook"] = title[:15] if _has_zh(title) else f"幣圈快訊"
+    if not data.get("what") or not _has_zh(data.get("what", "")):
+        data["what"] = desc[:200] if _has_zh(desc) else f"最新消息：{title}"
+    if not data.get("cta"):
+        data["cta"] = "你怎麼看？留言告訴我！"
+    if not data.get("impact"):
+        data["impact"] = ""
+    if not data.get("context"):
+        data["context"] = ""
+    # 確保至少 5 個 points
+    points = data.get("points", [])
+    # 保留有實質中文內容的 points
+    good_points = [p for p in points if _has_zh(p) and len(p) > 20]
+    if desc:
+        sentences = [s.strip() for s in re.split(r'[。？！\n]', desc) if len(s.strip()) > 8 and _has_zh(s)]
+        for s in sentences:
+            if len(good_points) >= 5:
+                break
+            good_points.append(f"延伸分析|{s[:80]}")
+    while len(good_points) < 5:
+        good_points.append("延伸分析|此新聞值得持續關注後續發展")
+    data["points"] = good_points[:5]
+
+    return _convert_data(data)
+
+
+# ── 主 Pipeline ───────────────────────────────────────────────
+
+def run_pipeline(channel: str, dry_run: bool = False) -> bool:
+    print(f"\n{'='*52}")
+    print(f"📡  [{channel.upper()}] 頻道 Pipeline 開始")
+    print(f"{'='*52}")
+
+    # ── Step 1：抓新聞（RSS + Twitter）──────────────────────────
+    print("\n[1/4] 抓取新聞來源...")
+    sources = RSS_SOURCES.get(channel, [])
+    all_articles = []
+
+    for source in sources:
+        print(f"   → {source['name']}: {source['url'][:60]}")
+        articles = fetch_rss(source["url"])
+        if articles:
+            print(f"   ✅ 取得 {len(articles)} 篇")
+            for a in articles:
+                a["_source"] = source["name"]
+            all_articles.extend(articles)
+
+    # Twitter 補充（可選，工具不在不影響流程）
+    print(f"\n   嘗試 Twitter 補充...")
+    twitter_arts = fetch_bird_trending(channel)
+    for a in twitter_arts:
+        a["_source"] = "Twitter/X"
+    all_articles.extend(twitter_arts)
+
+    if not all_articles:
+        print("❌ 所有來源都失敗，放棄本次執行")
+        return False
+
+    print(f"\n   📚 共收集 {len(all_articles)} 篇文章，開始評分篩選...")
+    article = pick_best_article(all_articles, channel)
+    if not article:
+        print("❌ 沒有適合發文的新文章（全部已發過或分數太低）")
+        return False
+    best_source = article.get("_source", "")
+
+    print(f"\n   📰 選定：{article['title'][:65]}")
+    if article.get("link"):
+        print(f"   🔗 連結：{article['link'][:80]}")
+
+    # 找同主題其他來源的文章（交叉引用用）
+    related = find_related_articles(article, all_articles)
+    if related:
+        print(f"\n   🔗 找到 {len(related)} 篇相關報導：")
+        for ra in related:
+            print(f"      [{ra.get('_source','')}] {ra['title'][:50]}")
+
+    # ── Step 2：AI 改寫 ──────────────────────────────────────
+    print("\n[2/4] AI 改寫文案...")
+    ai_data = ai_rewrite(article, channel, related_articles=related)
+    print(f"   HOOK：{ai_data.get('hook', '')}")
+    print(f"   WHAT：{ai_data.get('what', '')[:80]}...")
+    print(f"   EVIDENCE：{ai_data.get('evidence', '(無)')}")
+    for i, pt in enumerate(ai_data.get("points", []), 1):
+        print(f"   PT{i}：{pt}")
+    print(f"   IMPACT：{ai_data.get('impact', '')[:80]}...")
+    print(f"   CONTEXT：{ai_data.get('context', '')[:60]}...")
+    print(f"   CTA：{ai_data.get('cta', '')}")
+
+    # ── Step 3：生成 Carousel ─────────────────────────────────
+    print("\n[3/4] 生成 Carousel 圖片...")
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    out_dir = Path.home() / f".openclaw/workspace/agents/assistant-work/cards/{channel}_{ts}"
+
+    try:
+        from make_card import generate_carousel
+        card_paths = generate_carousel(
+            channel,
+            ai_data,
+            article.get("link", ""),
+            best_source,
+            str(out_dir),
+            article_title=article.get("title", ""),
+        )
+    except Exception as e:
+        print(f"❌ 圖片生成失敗：{e}")
+        import traceback; traceback.print_exc()
+        return False
+
+    if not card_paths:
+        print("❌ 沒有生成任何圖片")
+        return False
+    print(f"   ✅ 共 {len(card_paths)} 張圖片")
+
+    # ── 品質檢查：用 PIL 分析圖片基本品質 ──
+    def _visual_quality_check(paths: list[str]) -> tuple[bool, list[str]]:
+        issues = []
+        try:
+            from PIL import Image as _Img
+            for idx, p in enumerate(paths):
+                img = _Img.open(p)
+                pixels = list(img.convert("RGB").getdata()) if not hasattr(img, 'get_flattened_data') else list(img.convert("RGB").get_flattened_data())
+                # 檢查是否幾乎全黑（平均亮度 < 10）
+                avg_brightness = sum(sum(px[:3]) / 3 for px in pixels[:5000]) / min(len(pixels), 5000)
+                if avg_brightness < 10:
+                    issues.append(f"Slide {idx+1} 幾乎全黑（亮度={avg_brightness:.0f}）")
+                # 檢查是否全白（平均亮度 > 245）
+                if avg_brightness > 245:
+                    issues.append(f"Slide {idx+1} 幾乎全白（亮度={avg_brightness:.0f}）")
+                # 檢查解析度
+                if img.size[0] < 800 or img.size[1] < 800:
+                    issues.append(f"Slide {idx+1} 解析度太低 ({img.size})")
+        except Exception as e:
+            print(f"   ⚠️ 品質檢查失敗：{e}")
+        return (len(issues) == 0, issues)
+
+    qc_pass, qc_issues = _visual_quality_check(card_paths)
+    if not qc_pass:
+        print(f"\n   ⚠️ 圖片品質問題：")
+        for iss in qc_issues:
+            print(f"      ⚠️ {iss}")
+    else:
+        print(f"   ✅ 圖片品質檢查通過")
+
+    # ── Step 4：組合文案 + 發文 ───────────────────────────────
+    date_str = datetime.now().strftime("%Y/%m/%d")
+    hashtags = HASHTAGS.get(channel, "")
+    hook = ai_data.get("hook", article["title"][:20])
+    what = ai_data.get("what", "")
+    cta  = ai_data.get("cta", "你怎麼看？")
+
+    context = ai_data.get("context", "")
+    context_block = f"\n\n📜 歷史脈絡：\n{context}" if context else ""
+
+    ig_caption = f"""{hook}
+
+{what}{context_block}
+
+{cta}
+
+來源：{best_source} | {date_str}
+
+{hashtags}"""
+
+    # ── 品質閘門：確保文案品質足以發文 ──
+    def _has_chinese(text: str, min_ratio: float = 0.3) -> bool:
+        if not text:
+            return False
+        zh_count = sum(1 for c in text if '\u4e00' <= c <= '\u9fff')
+        return zh_count / max(len(text), 1) >= min_ratio
+
+    def _check_quality_gate() -> bool:
+        """檢查整體文案品質，不合格就不發文"""
+        issues = []
+        if not _has_chinese(hook, 0.05):  # HOOK 只要有中文就好（英文人名多）
+            issues.append("HOOK 不含中文")
+        if not _has_chinese(what, 0.1):
+            issues.append("WHAT 不含中文")
+        # 檢查 points 品質
+        points = ai_data.get("points", [])
+        fallback_count = sum(1 for p in points if "持續關注後續" in p or len(p) < 15)
+        if fallback_count >= 3:
+            issues.append(f"{fallback_count}/5 個重點是佔位文字")
+        if issues:
+            print(f"\n   🚫 品質閘門未通過：")
+            for iss in issues:
+                print(f"      ❌ {iss}")
+            return False
+        return True
+
+    if not _check_quality_gate():
+        print(f"\n   ⛔ 文案品質不合格，本次不發文。")
+        print(f"   💡 建議：確認 ANTHROPIC_API_KEY 環境變數已設定，讓 Claude fallback 可用")
+        # 即使不發文，也儲存 dry-run 結果供檢查
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        fail_dir = Path.home() / f".openclaw/workspace/agents/assistant-work/cards/{channel}_FAILED_{ts}"
+        fail_dir.mkdir(parents=True, exist_ok=True)
+        caption_path = str(fail_dir / "caption_failed.txt")
+        with open(caption_path, "w") as f:
+            f.write(f"HOOK: {hook}\nWHAT: {what}\n")
+            for i, pt in enumerate(ai_data.get("points", []), 1):
+                f.write(f"POINT{i}: {pt}\n")
+        print(f"   📄 失敗文案已存至：{fail_dir}")
+        return False
+
+    print(f"\n[4/4] 發布貼文...")
+    print(f"   文案預覽：\n   {ig_caption[:160]}...")
+
+    if dry_run:
+        print("\n🔍 [Dry Run] 不實際發文，輸出供確認：")
+        for p in card_paths:
+            print(f"   圖片：{p}")
+        caption_path = str(out_dir / "caption.txt")
+        with open(caption_path, "w") as f:
+            f.write(ig_caption)
+        # 儲存文章 metadata（供 --publish-last 記錄去重用）
+        meta_path = str(out_dir / "article_meta.json")
+        with open(meta_path, "w") as f:
+            json.dump({
+                "url": article.get("link", ""),
+                "title": article.get("title", ""),
+                "channel": channel,
+                "hook": ai_data.get("hook", ""),
+                "source": article.get("_source", ""),
+                "_topics": article.get("_topics", []),
+            }, f, ensure_ascii=False, indent=2)
+        print(f"   文案：{caption_path}")
+        print(f"   metadata：{meta_path}")
+
+        # 生成 3 張封面候選供老闆挑選
+        from make_card import generate_ai_cover_candidates
+        person_name = ai_data.get("person", "")
+        candidates = generate_ai_cover_candidates(
+            hook=ai_data.get("hook", ""),
+            what=ai_data.get("what", ""),
+            person=person_name,
+            count=3,
+            out_dir=str(out_dir),
+        )
+        if candidates:
+            print(f"\n   🖼️ 封面候選（{len(candidates)} 張）：")
+            for c in candidates:
+                print(f"      {c}")
+            print("   💡 用 understand_image 看圖後選最好的一張")
+
+        print("\n✅ Dry Run 完成！")
+        return True
+
+    # 發 IG
+    ig_script = SCRIPT_DIR / "ig_post.py"
+    ig_config = IG_CONFIG_MAP.get(channel, SCRIPT_DIR / "ig_config.json")
+    if not ig_config.exists():
+        print(f"   ⚠️ {ig_config.name} 未設定，跳過 IG 發文")
+        return True
+
+    env_config = json.loads(ig_config.read_text())
+    env = os.environ.copy()
+    env["IG_USERNAME"] = env_config.get("username", "")
+    env["IG_PASSWORD"] = env_config.get("password", "")
+
+    if len(card_paths) > 1:
+        img_args = ["--images"] + card_paths
+    else:
+        img_args = ["--image", card_paths[0]]
+
+    post_result = subprocess.run(
+        [sys.executable, str(ig_script), *img_args, "--caption", ig_caption],
+        capture_output=True, text=True, env=env
+    )
+    print(post_result.stdout)
+    if post_result.returncode != 0:
+        print(f"⚠️ IG 發文失敗：{post_result.stderr}")
+        return False
+
+    # 記錄已發文歷史（防重複 + 主題多樣性追蹤）
+    history = _load_posted_history()
+    history.append({
+        "url": article.get("link", ""),
+        "title": article.get("title", ""),
+        "channel": channel,
+        "posted_at": datetime.now().isoformat(),
+        "hook": ai_data.get("hook", ""),
+        "_topics": article.get("_topics", []),   # 主題標記（用於多樣性冷卻）
+    })
+    _save_posted_history(history)
+    print(f"   📝 已記錄到發文歷史（共 {len(history)} 筆）")
+
+    print(f"\n✅ [{channel}] Pipeline 完成！")
+    return True
+
+
+# ── 發布上次 dry-run 結果 ──────────────────────────────────────
+
+def publish_last_dryrun(channel: str) -> bool:
+    """找到最近一次 dry-run 的圖片和文案，直接發文（不重跑 Pipeline）"""
+    import glob as _glob
+
+    cards_base = Path.home() / ".openclaw/workspace/agents/assistant-work/cards"
+    pattern = str(cards_base / f"{channel}_*")
+    dirs = sorted(_glob.glob(pattern), reverse=True)
+
+    # 排除 FAILED 目錄
+    dirs = [d for d in dirs if "FAILED" not in d]
+    if not dirs:
+        print(f"❌ 找不到 {channel} 的 dry-run 結果")
+        return False
+
+    out_dir = Path(dirs[0])
+    caption_path = out_dir / "caption.txt"
+    if not caption_path.exists():
+        print(f"❌ {out_dir.name} 沒有 caption.txt（可能不是 dry-run 產物）")
+        return False
+
+    # 找所有圖片（按檔名排序確保順序正確）
+    card_paths = sorted([str(p) for p in out_dir.glob(f"{channel}_*_s*.jpg")])
+    if len(card_paths) < 10:
+        print(f"⚠️ 只找到 {len(card_paths)} 張圖片（預期 10 張），目錄：{out_dir.name}")
+        if not card_paths:
+            return False
+
+    ig_caption = caption_path.read_text().strip()
+
+    print(f"\n{'='*52}")
+    print(f"📤  [{channel.upper()}] 發布上次 Dry-Run 結果")
+    print(f"{'='*52}")
+    print(f"   📁 目錄：{out_dir.name}")
+    print(f"   📸 圖片：{len(card_paths)} 張")
+    print(f"   📝 文案預覽：{ig_caption[:100]}...")
+
+    # 發 IG
+    ig_script = SCRIPT_DIR / "ig_post.py"
+    ig_config = IG_CONFIG_MAP.get(channel, SCRIPT_DIR / "ig_config.json")
+    if not ig_config.exists():
+        print(f"   ⚠️ {ig_config.name} 未設定，跳過 IG 發文")
+        return False
+
+    env_config = json.loads(ig_config.read_text())
+    env = os.environ.copy()
+    env["IG_USERNAME"] = env_config.get("username", "")
+    env["IG_PASSWORD"] = env_config.get("password", "")
+
+    if len(card_paths) > 1:
+        img_args = ["--images"] + card_paths
+    else:
+        img_args = ["--image", card_paths[0]]
+
+    post_result = subprocess.run(
+        [sys.executable, str(ig_script), *img_args, "--caption", ig_caption],
+        capture_output=True, text=True, env=env
+    )
+    print(post_result.stdout)
+    if post_result.returncode != 0:
+        print(f"⚠️ IG 發文失敗：{post_result.stderr}")
+        return False
+
+    # 記錄已發文歷史（優先從 article_meta.json 讀取，否則從文案推斷）
+    history = _load_posted_history()
+    meta_path = out_dir / "article_meta.json"
+    if meta_path.exists():
+        meta = json.loads(meta_path.read_text())
+    else:
+        hook_line = ig_caption.split("\n")[0].strip() if ig_caption else ""
+        meta = {"url": "", "title": hook_line, "hook": hook_line}
+    history.append({
+        "url": meta.get("url", ""),
+        "title": meta.get("title", ""),
+        "channel": channel,
+        "posted_at": datetime.now().isoformat(),
+        "hook": meta.get("hook", ""),
+        "source": "publish-last",
+        "_topics": meta.get("_topics", []),
+    })
+    _save_posted_history(history)
+    print(f"   📝 已記錄到發文歷史（共 {len(history)} 筆）")
+
+    print(f"\n✅ [{channel}] 發布完成！")
+    return True
+
+
+# ── 選擇封面候選 ────────────────────────────────────────────────
+
+def _apply_selected_cover(channel: str, choice: int) -> bool:
+    """將選中的候選封面替換 Slide 1 圖片（用候選圖當背景重繪封面）"""
+    import glob as _glob
+    import shutil
+
+    cards_base = Path.home() / ".openclaw/workspace/agents/assistant-work/cards"
+    pattern = str(cards_base / f"{channel}_*")
+    dirs = sorted(_glob.glob(pattern), reverse=True)
+    dirs = [d for d in dirs if "FAILED" not in d]
+    if not dirs:
+        print(f"❌ 找不到 {channel} 的 draft 結果")
+        return False
+
+    out_dir = Path(dirs[0])
+    candidate_path = out_dir / f"cover_candidate_{choice}.jpg"
+    if not candidate_path.exists():
+        print(f"❌ 封面候選 {choice} 不存在：{candidate_path}")
+        avail = list(out_dir.glob("cover_candidate_*.jpg"))
+        print(f"   可用候選：{[p.name for p in avail]}")
+        return False
+
+    # 找 Slide 1 圖片
+    s01_files = sorted(out_dir.glob(f"{channel}_*_s01.jpg"))
+    if not s01_files:
+        print(f"❌ 找不到 Slide 1 圖片")
+        return False
+
+    slide1_path = s01_files[0]
+
+    # 備份原 Slide 1
+    backup_path = out_dir / f"{slide1_path.stem}_backup.jpg"
+    if not backup_path.exists():
+        shutil.copy2(str(slide1_path), str(backup_path))
+
+    # 讀取 article_meta 取得 hook 文字
+    meta_path = out_dir / "article_meta.json"
+    hook_text = ""
+    if meta_path.exists():
+        meta = json.loads(meta_path.read_text())
+        hook_text = meta.get("hook", "")
+
+    # 用候選圖當背景，重繪 Slide 1（slide_hook 函數）
+    from make_card import (slide_hook, make_background, THEMES,
+                           Image as _Img)
+    candidate_img = _Img.open(str(candidate_path))
+    theme = THEMES.get(channel, THEMES["crypto"])
+
+    # 準備背景（封面模式：清亮、下半漸層）
+    bg = make_background(candidate_img, theme, cover=True)
+
+    slide_hook(
+        bg=bg, theme=theme, title=hook_text,
+        what_preview="", slide_info="1/10",
+        out=str(slide1_path),
+    )
+    print(f"✅ 已用候選 {choice} 替換封面：{slide1_path.name}")
+    print(f"   原始封面備份在：{backup_path.name}")
+    return True
+
+
+# ── 入口 ─────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="社群內容自動化 Pipeline v3")
+    parser.add_argument("--channel", choices=["crypto", "finance", "startup", "all"],
+                        default="crypto", help="頻道類型")
+    parser.add_argument("--dry-run", action="store_true", help="只生成圖片，不實際發文")
+    parser.add_argument("--publish-last", action="store_true",
+                        help="發布上次 dry-run 的結果（使用已有的圖片和 caption.txt）")
+    parser.add_argument("--select-cover", type=int, default=0, metavar="N",
+                        help="選擇第 N 張封面候選（1-3），0=不替換（預設）")
+    args = parser.parse_args()
+
+    channels = ["crypto", "finance", "startup"] if args.channel == "all" else [args.channel]
+    for ch in channels:
+        if args.select_cover and args.select_cover > 0:
+            _apply_selected_cover(ch, args.select_cover)
+        elif args.publish_last:
+            publish_last_dryrun(ch)
+        else:
+            run_pipeline(ch, dry_run=args.dry_run)

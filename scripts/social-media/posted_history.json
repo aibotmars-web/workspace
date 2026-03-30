@@ -176,5 +176,110 @@
     "posted_at": "2026-03-27T10:09:40.708754",
     "hook": "道瓊崩469點 臺積ADR重摔6%",
     "source": "publish-last"
+  },
+  {
+    "url": "https://blockcast.it/2026/03/27/btc-etf-outflows-hit-3-week-high-as-ark-invest-cuts-holdings-in-own-btc-fund/",
+    "title": "比特幣 ETF 單日失血 1.7 億美元、創 3 周新高！方舟也減持自家 ETF",
+    "channel": "crypto",
+    "posted_at": "2026-03-28T09:09:23.845542",
+    "hook": "比特幣ETF被倒貨！機構老大哥集體跑了？",
+    "source": "publish-last"
+  },
+  {
+    "url": "https://news.google.com/rss/articles/CBMiuwJBVV95cUxPMGRnY2o5aUsxU040eFl2ZjFwcEM4WmdGTDcxMFNsUTFGNHFNMjdLOHl3U2VfcC1pUHVwc3NaeFpNUTdiektELTNSZFh3d2pGdG5KdElIUUhYMURuanFkY1dacjVtZTVmbUVoYVp3WjR6blZGbTJ6THBYeUxNRmF2S2pRN3piTHBENmxKT0c2SUtLYkFGUkVKNENGRk9UMHcwalJ4dm1Kd3ZvV3YtY2NONWgyNVJUU0FuMzJpSlVJeUwwNnlhbFpVNmo3cnIweE10R2hqYjB6dE9QUzJwVVJEUkZ5Q1pQTFc4MmVsbWl4RXdYRlN1ZXRGMXlZa3lYZ21oMmk1MnRpOTJ5ck8ySG80M3dBVk1zcUhGWVNIZFZKTzZNWVR1S3ctQ2tnOWpPMnlENmZ2NS15bXdZMTg?oc=5",
+    "title": "以色列襲擊伊朗！ 美股道瓊暴跌793點、台積電ADR漲0.19% - Yahoo新聞",
+    "channel": "finance",
+    "posted_at": "2026-03-28T10:09:09.475427",
+    "hook": "中東開戰！道瓊崩793點、但臺積電逆勢漲",
+    "source": "publish-last"
+  },
+  {
+    "url": "https://blockcast.it/2026/03/27/tether-hires-kpmg-for-usdt-audit/",
+    "title": "USDT 是否有足額儲備？Tether 傳聘請 KPMG 全面審計",
+    "channel": "crypto",
+    "posted_at": "2026-03-29T09:05:10.639475",
+    "hook": "全球最大穩定幣被查帳！USDT風暴來襲？",
+    "source": "publish-last",
+    "_topics": [
+      "ETH",
+      "穩定幣"
+    ]
+  },
+  {
+    "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxNRUN1X0FxUFIwMnFTQ1FWZHRTZ1RoMGx3djhmUHF3NzJheENISDVpYl9FMmhveUlJcXNsU1FHdjBfSXZIcDNGR0dQU2hKcVdfX3BVeXpoazFPR0Utem9jWW1sYUJRWXY3UU4yNEozbWNQUUlQbnN3NFplN3NKbUFFQzhVZ0JWQmh5TjdBLVk5ZjBFSXpsLWZhZ0tfZ29DLUprXzU0NDBva0FzUVBRd3o5ZGEzNFNYci1RMGdmZ1daOXN3VEdhZWEzSjJuWUVPMnRNV0haRUhHaE9aOUJWZDF1emlWSHdVUmJWbHRYTm9veVlUbnU3WmNxd3MtbEhJcjZyUWk5UXBqWHVZdjFYemx4bUFibVlNLVMwak01S2xHOXh5ZWUxSklCdUpsdVQ5WUlqZklFOEJDODNDU1hPMXZXOUlhSzFZZnM?oc=5",
+    "title": "放羊的孩子？川普一句話油價大起大落 效果在減弱 - Yahoo新聞",
+    "channel": "finance",
+    "posted_at": "2026-03-29T10:08:40.962320",
+    "hook": "川普嘴砲失靈？油價被嚇大！",
+    "source": "publish-last",
+    "_topics": [
+      "黃金/大宗",
+      "地緣政治",
+      "美股/科技"
+    ]
+  },
+  {
+    "url": "https://www.blocktempo.com/openclaw-steinberger-bloomberg-us-china-ai-agent-adoption-divide-report/",
+    "title": "OpenClaw 創辦人接受彭博專訪：美國可以借鑒中國對小龍蝦 AI 的採用",
+    "channel": "crypto",
+    "posted_at": "2026-03-29T12:06:39.518709",
+    "hook": "老外驚呆！中國AI普及狠甩美國？",
+    "_topics": []
+  },
+  {
+    "url": "https://blockcast.it/2026/03/29/fannie-mae-to-accept-crypto-backed-mortgages/",
+    "title": "買房不用賣幣了！美國房貸巨頭打破傳統，比特幣可當「頭期款抵押品」",
+    "channel": "crypto",
+    "posted_at": "2026-03-30T12:38:13.547019",
+    "hook": "買房不用賣幣了！美國房貸巨頭打",
+    "_topics": [
+      "交易所",
+      "BTC/ETF"
+    ]
+  },
+  {
+    "url": "",
+    "title": "買房不用賣幣了！",
+    "channel": "crypto",
+    "posted_at": "2026-03-30T12:48:51.683388",
+    "hook": "買房不用賣幣了！",
+    "source": "publish-last",
+    "_topics": []
+  },
+  {
+    "url": "",
+    "title": "買房不用賣幣了！",
+    "channel": "crypto",
+    "posted_at": "2026-03-30T12:56:03.675969",
+    "hook": "買房不用賣幣了！",
+    "source": "publish-last",
+    "_topics": []
+  },
+  {
+    "url": "",
+    "title": "買房不用賣幣了！",
+    "channel": "crypto",
+    "posted_at": "2026-03-30T15:21:47.755399",
+    "hook": "買房不用賣幣了！",
+    "source": "publish-last",
+    "_topics": []
+  },
+  {
+    "url": "",
+    "title": "買房不用賣幣了！",
+    "channel": "crypto",
+    "posted_at": "2026-03-30T15:38:15.005184",
+    "hook": "買房不用賣幣了！",
+    "source": "publish-last",
+    "_topics": []
+  },
+  {
+    "url": "",
+    "title": "買房不用賣幣了！",
+    "channel": "crypto",
+    "posted_at": "2026-03-30T17:11:14.321670",
+    "hook": "買房不用賣幣了！",
+    "source": "publish-last",
+    "_topics": []
   }
 ]

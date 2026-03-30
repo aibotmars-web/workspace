@@ -544,6 +544,24 @@ def find_related_articles(best: dict, all_articles: list[dict],
     return related
 
 
+def _is_topic_duplicate(article: dict, channel: str, last_n: int = 2) -> bool:
+    """True if the article's topics ALL appeared in the last N posts of this channel.
+    Prevents back-to-back posts on the same topic cluster."""
+    history = _load_posted_history()
+    channel_history = [e for e in history if e.get("channel") == channel]
+    recent = channel_history[-last_n:]
+
+    recent_topic_set: set[str] = set()
+    for entry in recent:
+        for t in (entry.get("_topics") or []):
+            recent_topic_set.add(t)
+
+    article_topics = set(article.get("_topics") or [])
+    if not article_topics:
+        return False  # 無法識別主題 → 不強制跳過
+    return article_topics.issubset(recent_topic_set)
+
+
 def pick_best_article(articles: list[dict], channel: str = "crypto") -> dict | None:
     """從文章池選出熱門分數最高、且尚未發過的那篇（經主題多樣性調整）"""
     if not articles:
@@ -568,10 +586,14 @@ def pick_best_article(articles: list[dict], channel: str = "crypto") -> dict | N
         bonus_str = f"(冷卻{bonus})" if bonus else ""
         print(f"      {i+1}. [{s}{bonus_str}] {a['title'][:40]}... [{topics_str}]")
 
-    # 跳過已發過的文章，選下一篇
+    # 跳過已發過的文章，或主題與最近 2 篇完全重疊的文章
     for best_score, best in scored:
         if _is_already_posted(best, channel):
             print(f"   ⏭️ 跳過已發文：{best['title'][:45]}...")
+            continue
+        if _is_topic_duplicate(best, channel, last_n=2):
+            topics_str = ",".join(best.get("_topics", []))
+            print(f"   ⏭️ 跳過重複主題 [{topics_str}]：{best['title'][:40]}...")
             continue
 
         source = best.get("_source", "")
@@ -582,7 +604,7 @@ def pick_best_article(articles: list[dict], channel: str = "crypto") -> dict | N
 
         return best
 
-    print("   ⚠️ 所有候選文章都已發過！")
+    print("   ⚠️ 所有候選文章都已發過或主題重複！")
     return None
 
 
@@ -1246,9 +1268,15 @@ def run_pipeline(channel: str, dry_run: bool = False) -> bool:
                 "channel": channel,
                 "hook": ai_data.get("hook", ""),
                 "source": article.get("_source", ""),
+                "_topics": article.get("_topics", []),
             }, f, ensure_ascii=False, indent=2)
+        # 儲存完整 ai_data 供 --publish-last 重新生成圖片（確保最新驗證和 AI 封面）
+        ai_data_path = str(out_dir / "ai_data.json")
+        with open(ai_data_path, "w") as f:
+            json.dump(ai_data, f, ensure_ascii=False, indent=2)
         print(f"   文案：{caption_path}")
         print(f"   metadata：{meta_path}")
+        print(f"   ai_data：{ai_data_path}")
 
         # 生成 3 張封面候選供老闆挑選
         from make_card import generate_ai_cover_candidates
@@ -1334,8 +1362,36 @@ def publish_last_dryrun(channel: str) -> bool:
         print(f"❌ {out_dir.name} 沒有 caption.txt（可能不是 dry-run 產物）")
         return False
 
-    # 找所有圖片（按檔名排序確保順序正確）
-    card_paths = sorted([str(p) for p in out_dir.glob(f"{channel}_*_s*.jpg")])
+    # 嘗試從 ai_data.json 重新生成圖片（確保最新 AI 封面和空白驗證）
+    ai_data_path = out_dir / "ai_data.json"
+    meta_path_obj = out_dir / "article_meta.json"
+    card_paths: list[str] = []
+    if ai_data_path.exists():
+        print(f"   🔄 重新生成圖片（最新 AI 封面 + 空白驗證）...")
+        try:
+            ai_data_saved = json.loads(ai_data_path.read_text())
+            meta_saved = json.loads(meta_path_obj.read_text()) if meta_path_obj.exists() else {}
+            from make_card import generate_carousel as _gen_carousel
+            new_paths = _gen_carousel(
+                channel,
+                ai_data_saved,
+                meta_saved.get("url", ""),
+                meta_saved.get("source", ""),
+                str(out_dir),
+                article_title=meta_saved.get("title", ""),
+            )
+            if new_paths:
+                card_paths = sorted(new_paths)
+                print(f"   ✅ 圖片重新生成完成（{len(card_paths)} 張）")
+            else:
+                raise ValueError("generate_carousel 回傳空清單")
+        except Exception as e:
+            print(f"   ⚠️ 圖片重新生成失敗（{e}），使用已有圖片")
+
+    # Fallback：使用已有圖片（沒有 ai_data.json 或重新生成失敗）
+    if not card_paths:
+        card_paths = sorted([str(p) for p in out_dir.glob(f"{channel}_*_s*.jpg")])
+
     if len(card_paths) < 10:
         print(f"⚠️ 只找到 {len(card_paths)} 張圖片（預期 10 張），目錄：{out_dir.name}")
         if not card_paths:
@@ -1391,6 +1447,7 @@ def publish_last_dryrun(channel: str) -> bool:
         "posted_at": datetime.now().isoformat(),
         "hook": meta.get("hook", ""),
         "source": "publish-last",
+        "_topics": meta.get("_topics", []),
     })
     _save_posted_history(history)
     print(f"   📝 已記錄到發文歷史（共 {len(history)} 筆）")

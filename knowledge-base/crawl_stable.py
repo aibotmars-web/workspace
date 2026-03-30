@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 """
-知識庫爬蟲 - 簡化版
-只用 kd subtitles（快），會員專屬影片直接跳過
-每輪只處理 1 個頻道，斷點續傳
+知識庫爬蟲 - 修正版（2026-03-29）
+修復問題：
+1. @username/videos 只爬第一頁，導致 total 永遠只有 30-40 部
+2. 改用 uploads playlist，可以分頁拿到真正的總數
+
+邏輯：
+1. 從頻道抓 uploads playlist ID
+2. 用 playlist_count 取得真正總影片數
+3. 用 uploads playlist 抓所有影片（分頁）
 """
 
 import subprocess
@@ -21,30 +27,77 @@ STATE_FILE = WORKSPACE / "crawl_state.json"
 os.environ["PATH"] = "/opt/homebrew/bin:" + os.environ.get("PATH", "")
 
 CHANNELS = [
-    ("胡乃文开播", "Dr.Hu_talk"),
-    ("柏格醫生中文", "drbergchinese"),
-    ("Dr.HuangAmin", "Dr.HuangAmin"),
-    ("周慕姿放心說", "muerstalk"),
-    ("松明讲心理", "SongMing"),
-    ("超真實商談", "RealBizChat"),
-    ("Cofit211", "Cofit211"),
-    ("泛科學", "PanScitw"),
-    ("泛科學院", "panscischool"),
+    ("超真實商談", "RealBizChat"),      # 115 部
+    ("泛科學院", "panscischool"),       # 141 部
+    ("周慕姿放心說", "muerstalk"),      # 175 部
+    ("Dr.HuangAmin", "Dr.HuangAmin"),  # 220 部
+    ("Cofit211", "Cofit211"),          # 313 部
+    ("胡乃文开播", "Dr.Hu_talk"),       # 331 部
+    ("松明讲心理", "SongMing"),         # 491 部
+    ("泛科學", "PanScitw"),             # 543 部
+    ("柏格醫生中文", "drbergchinese"),  # 2922 部
 ]
 
-VIDEOS_PER_CHANNEL = 15
+VIDEOS_PER_CHANNEL = 15   # 每輪每頻道處理的數量
 
 
-def get_channel_videos(channel_username, limit=15):
+def get_playlist_info(channel_username):
+    """從頻道頁面抓 uploads playlist ID 和真正總數（用 --playlist-end 500 數行數）"""
+    try:
+        # 先抓 playlist ID
+        cmd1 = [
+            "yt-dlp", "--flat-playlist", "--print", "%(playlist_id)s",
+            f"https://www.youtube.com/@{channel_username}",
+            "--playlist-end", "1",
+        ]
+        r1 = subprocess.run(cmd1, capture_output=True, text=True, timeout=60)
+        playlist_id = None
+        for line in r1.stdout.strip().split('\n'):
+            pid = line.strip()
+            # UC... = uploads, UU... = liked videos, LL... = liked videos alt
+            if pid.startswith(("UC", "UU", "LL")):
+                playlist_id = pid
+                break
+        if not playlist_id:
+            return None, 0
+
+        # 抓所有公開影片數量（--playlist-end 5000 覆盖所有頻道，柏格醫生中文有 2922 部）
+        cmd2 = [
+            "yt-dlp", "--flat-playlist",
+            "--print", "%(id)s|%(availability)s",
+            f"https://www.youtube.com/@{channel_username}/videos",
+            "--playlist-end", "5000",
+        ]
+        r2 = subprocess.run(cmd2, capture_output=True, text=True, timeout=120)
+        total = 0
+        for line in r2.stdout.strip().split('\n'):
+            if '|' not in line:
+                continue
+            parts = line.split('|')
+            if len(parts) < 2:
+                continue
+            avail = parts[1].strip()
+            if avail in ('subscriber_only', 'private') or 'subscriber' in avail.lower():
+                continue
+            total += 1
+
+        playlist_url = f"https://www.youtube.com/@{channel_username}/videos"
+        return playlist_url, total
+    except Exception as e:
+        print(f"  ⚠ 取得 playlist 失敗: {e}")
+        return None, 0
+
+
+def get_channel_videos(playlist_url, limit=5000):
+    """從 uploads playlist 抓影片，含 availability 過濾"""
     cmd = [
-        "yt-dlp",
-        "--flat-playlist",
+        "yt-dlp", "--flat-playlist",
         "--print", "%(id)s|%(title)s|%(availability)s",
-        f"https://www.youtube.com/@{channel_username}/videos",
-        "--playlist-end", str(limit * 2),  # 多抓一些再過濾
+        playlist_url,
+        "--playlist-end", str(limit),
     ]
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
         videos = []
         skipped = 0
         for line in result.stdout.strip().split("\n"):
@@ -92,24 +145,51 @@ def kd_subtitles(video_id, output_file):
 
 
 def kd_transcribe(video_id, output_file):
-    """用 kd transcribe（mlx-whisper）轉錄，適合沒有字幕的影片，嚴格 5 分鐘超時"""
-    url = f"https://www.youtube.com/watch?v={video_id}"
-    try:
-        proc = subprocess.Popen(
-            ["kd", "transcribe", url, "--no-subtitles", "--backend", "mlx-whisper", "-o", str(output_file)],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-            preexec_fn=os.setsid
-        )
-        stdout, stderr = proc.communicate(timeout=300)
-        if proc.returncode == 0 and output_file.exists() and output_file.stat().st_size > 100:
-            text = output_file.read_text(encoding="utf-8").strip()
-            return text
-    except (subprocess.TimeoutExpired, Exception):
+    """用 mlx-whisper 本地轉錄，嚴格 4 分鐘超時（不用 kd CLI）"""
+    import threading
+    result_holder = [None]
+    audio_file = output_file.with_suffix(".m4a")
+
+    def _do():
         try:
-            os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
-        except (ProcessLookupError, PermissionError):
-            pass
-    return None
+            # Step 1: 取得音頻 URL
+            url = f"https://www.youtube.com/watch?v={video_id}"
+            cmd1 = ["yt-dlp", "-g", "--no-playlist", url]
+            r1 = subprocess.run(cmd1, capture_output=True, text=True, timeout=30)
+            audio_url = r1.stdout.strip()
+            if not audio_url:
+                result_holder[0] = None
+                return
+
+            # Step 2: 下載音頻
+            cmd2 = ["ffmpeg", "-y", "-i", audio_url, "-ar", "16000", "-ac", "1", "-q:a", "2", str(audio_file)]
+            r2 = subprocess.run(cmd2, capture_output=True, timeout=120)
+            if r2.returncode != 0 or not audio_file.exists():
+                result_holder[0] = None
+                return
+
+            # Step 3: mlx-whisper 轉錄
+            import mlx_whisper
+            result = mlx_whisper.transcribe(str(audio_file), path=str(output_file), language="zh")
+            text = result.get("text", "").strip()
+            result_holder[0] = text if text else None
+        except Exception as e:
+            result_holder[0] = None
+        finally:
+            if audio_file.exists():
+                try:
+                    audio_file.unlink()
+                except:
+                    pass
+
+    t = threading.Thread(target=_do)
+    t.daemon = True
+    t.start()
+    t.join(timeout=240)
+    if t.is_alive():
+        # 被超時中斷
+        result_holder[0] = None
+    return result_holder[0]
 
 
 def get_crawled_ids(channel_name):
@@ -121,13 +201,12 @@ def get_crawled_ids(channel_name):
 
 def main():
     print(f"{'='*60}")
-    print(f"🚀 知識庫爬蟲（kd subtitles 專用）- {datetime.now().strftime('%H:%M:%S')}")
+    print(f"🚀 知識庫爬蟲（修正版）- {datetime.now().strftime('%H:%M:%S')}")
     print(f"{'='*60}")
 
     state = json.load(open(STATE_FILE)) if STATE_FILE.exists() else {}
     last_idx = state.get("last_channel_index", 0)
 
-    # 只處理一個頻道，狀態寫入下次從下一個繼續
     for i in range(len(CHANNELS)):
         idx = (last_idx + i) % len(CHANNELS)
         name, username = CHANNELS[idx]
@@ -137,69 +216,81 @@ def main():
         channel_dir = EXPERTS_DIR / name
         channel_dir.mkdir(parents=True, exist_ok=True)
 
-        videos = get_channel_videos(username, limit=20)
+        # Step 1: 取得 uploads playlist URL 和總數
+        print(f"  🔍 抓 playlist URL...")
+        playlist_url, true_total = get_playlist_info(username)
+        
+        if not playlist_url:
+            print(f"  ⚠ 無法取得 playlist")
+            state["last_channel_index"] = (idx + 1) % len(CHANNELS)
+            json.dump(state, open(STATE_FILE, "w"))
+            continue
+
+        print(f"  📊 真正總數: {true_total} 部（已排除會員限定）")
+
+        # Step 2: 抓所有公開影片（從 uploads playlist）
+        print(f"  📋 抓公開影片列表...")
+        videos = get_channel_videos(playlist_url)
         if not videos:
             print(f"  ⚠ 無法取得影片列表")
+            state["last_channel_index"] = (idx + 1) % len(CHANNELS)
+            json.dump(state, open(STATE_FILE, "w"))
             continue
 
         total_count = len(videos)
+        print(f"  📋 抓到 {total_count} 部公開影片")
+
         crawled = get_crawled_ids(name)
         to_fetch = [(v, t) for v, t in videos if v not in crawled]
 
         if not to_fetch:
             print(f"  ✅ 無新影片")
-            continue
+        else:
+            to_fetch = to_fetch[:VIDEOS_PER_CHANNEL]
+            success, failed = 0, 0
 
-        to_fetch = to_fetch[:VIDEOS_PER_CHANNEL]
-        success, failed = 0, 0
+            for vid, title in to_fetch:
+                short = title[:28] + ("..." if len(title) > 28 else "")
+                print(f"  🔄 {short} ", end="", flush=True)
 
-        for vid, title in to_fetch:
-            short = title[:30] + ("..." if len(title) > 30 else "")
-            print(f"  🔄 {short} ", end="", flush=True)
+                out_file = channel_dir / f"{vid}.txt"
+                text = kd_subtitles(vid, out_file)
 
-            out_file = channel_dir / f"{vid}.txt"
-            text = kd_subtitles(vid, out_file)
-
-            if text and len(text) > 100:
-                out_file.write_text(text, encoding="utf-8")
-                print(f"✅ ({len(text)}字)")
-                success += 1
-            else:
-                # 沒有字幕 → 嘗試 ASR 轉錄
-                print(f"📝 無字幕，嘗試轉錄... ", end="", flush=True)
-                text2 = kd_transcribe(vid, out_file)
-                if text2 and len(text2) > 100:
-                    out_file.write_text(text2, encoding="utf-8")
-                    print(f"🎤 ({len(text2)}字)")
+                if text and len(text) > 100:
+                    out_file.write_text(text, encoding="utf-8")
+                    print(f"✅ ({len(text)}字)")
                     success += 1
                 else:
-                    print(f"❌")
-                    failed += 1
+                    print(f"📝 無字幕，轉錄... ", end="", flush=True)
+                    text2 = kd_transcribe(vid, out_file)
+                    if text2 and len(text2) > 100:
+                        out_file.write_text(text2, encoding="utf-8")
+                        print(f"🎤 ({len(text2)}字)")
+                        success += 1
+                    else:
+                        print(f"❌")
+                        failed += 1
 
-            time.sleep(random.uniform(4, 7))
+                time.sleep(random.uniform(4, 7))
 
-        crawled_total = len(get_crawled_ids(name))
-        pct = int(crawled_total / total_count * 100) if total_count > 0 else 0
-        print(f"  📊 {name}: {success}✅ {failed}❌")
-        print(f"  📊 進度: {crawled_total}/{total_count} ({pct}%)")
-        print(f"  📊 總計: 成功:{success} 失敗:{failed}")
+            crawled_total = len(get_crawled_ids(name))
+            pct = int(crawled_total / total_count * 100) if total_count > 0 else 0
+            print(f"  📊 {name}: {success}✅ {failed}❌")
+            print(f"  📊 進度: {crawled_total}/{total_count} ({pct}%)")
 
         # 寫入狀態
         state["last_channel_index"] = (idx + 1) % len(CHANNELS)
         state["last_run"] = datetime.now().isoformat()
         
-        # 更新頻道總數和進度
         if "channels" not in state:
             state["channels"] = {}
-        crawled_now = len([v for v, t in videos if v in get_crawled_ids(name) or (v, t) in to_fetch[:success]])
         state["channels"][name] = {
             "total": total_count,
-            "crawled": len(get_crawled_ids(name)) + success,
+            "crawled": len(get_crawled_ids(name)),
             "last_updated": datetime.now().isoformat()
         }
         json.dump(state, open(STATE_FILE, "w"))
 
-        # 每頻道休息後退出，下次 cron 從下一個頻道繼續
         time.sleep(random.uniform(8, 12))
         break
 

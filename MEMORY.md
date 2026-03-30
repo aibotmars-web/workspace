@@ -209,3 +209,32 @@
 
 ---
 *2026-03-25 知識庫建立*
+
+## 🚫 重要：永久禁止使用 TranscriptAPI (2026-03-29)
+
+Mars 已明確禁止使用 TranscriptAPI 選項。**說過很多次不要用，但我不斷失憶重複試錯。**
+
+### 永久規則
+- ❌ **絕對禁止**：TranscriptAPI、youtube-transcript-api、任何需要 API key 的 YouTube 轉字幕服務
+- ❌ 不要再嘗試 TranscriptAPI plan/upgrade/付費方案
+- ❌ 不要問可不可以試 API
+- ❌ **已刪除 `youtube-skills` skill**（會引導錯誤方法，已於 2026-03-29 移除）
+
+### ✅ 唯一正確方法
+- **kd CLI**（已安裝在 `/opt/homebrew/bin/kd`）
+- 用法：
+  ```bash
+  # 抓現有字幕（快，幾秒）
+  kd subtitles "URL" -o output.txt
+  
+  # 本地 ASR 轉錄（慢但保証成功，3-10 分鐘）
+  kd transcribe "URL" --backend mlx-whisper -o output.md
+  ```
+- 特點：本地 ASR，不需要 API key，不會被 IP 封鎖
+
+### 為什麼我會忘記
+- MEMORY.md 之前沒有清楚記錄這個禁令
+- 每次對話都是全新上下文，沒有持久化這個教訓
+
+### 防止未來再犯
+把這個事實寫入所有相關記憶位置，確保再也不會嘗試 TranscriptAPI。

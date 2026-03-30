@@ -1,0 +1,385 @@
+&lt;b&gt;你還在用『陽春版』的 Gemini 嗎&lt;/b&gt;
+
+&lt;b&gt;每次翻找對話紀錄都要翻很久&lt;/b&gt;
+
+&lt;b&gt;或者把 AI 寫好的超長文章匯出 PDF&lt;/b&gt;
+
+&lt;b&gt;卻只能傻傻的複製貼上&lt;/b&gt;
+
+&lt;b&gt;今天公開四款免費的瀏覽器插件&lt;/b&gt;
+
+&lt;b&gt;無縫結合 Gemini、ChatGPT、NotebookLM&lt;/b&gt;
+
+&lt;b&gt;大家好 我是JuJu&lt;/b&gt;
+
+&lt;b&gt;這四款免費的網頁插件你都知道嗎&lt;/b&gt;
+
+&lt;b&gt;第一款 Voyager&lt;/b&gt;
+
+&lt;b&gt;它直接在 Gemini 長出資料夾&lt;/b&gt;
+
+&lt;b&gt;對話再多也整整齊齊&lt;/b&gt;
+
+&lt;b&gt;還有隱藏按鈕&lt;/b&gt;
+
+&lt;b&gt;可以一鍵下載沒有浮水印的 AI生成圖&lt;/b&gt;
+
+&lt;b&gt;第二款 AI Exporter&lt;/b&gt;
+
+&lt;b&gt;它能把複雜的對話&lt;/b&gt;
+
+&lt;b&gt;完美轉化為精美的 PDF 或 Markdown&lt;/b&gt;
+
+&lt;b&gt;甚至一鍵同步到 Notion&lt;/b&gt;
+
+&lt;b&gt;格式絕對不跑掉&lt;/b&gt;
+
+&lt;b&gt;第三款 Kortex&lt;/b&gt;
+
+&lt;b&gt;網頁上看到任何金句&lt;/b&gt;
+
+&lt;b&gt;滑鼠一圈就進入到 NotebookLM&lt;/b&gt;
+
+&lt;b&gt;還能幫你記住來源網址&lt;/b&gt;
+
+&lt;b&gt;解決你的金魚腦焦慮&lt;/b&gt;
+
+&lt;b&gt;第四款 YouTube to NotebookLM&lt;/b&gt;
+
+&lt;b&gt;一鍵把三小時的影片精華灌進筆記本&lt;/b&gt;
+
+&lt;b&gt;而且用法超簡單&lt;/b&gt;
+
+&lt;b&gt;匯入無上限&lt;/b&gt;
+
+&lt;b&gt;這四款插件讓你的生產力大大提升&lt;/b&gt;
+
+&lt;b&gt;現在馬上給你完整的介紹&lt;/b&gt;
+
+&lt;b&gt;2026 瞬間爆紅的網頁插件&lt;/b&gt;
+
+&lt;b&gt;居然被 Google 強制下架&lt;/b&gt;
+
+&lt;b&gt;什麼原因&lt;/b&gt;
+
+&lt;b&gt;最後告訴你&lt;/b&gt;
+
+&lt;b&gt;這款專門魔改Gemini的神級插件&lt;/b&gt;
+
+&lt;b&gt;「Gemini Voyager」&lt;/b&gt;
+
+&lt;b&gt;可以瞬間讓陽春的 Gemini 變得更好用&lt;/b&gt;
+
+&lt;b&gt;如果你是Gemini的愛用者&lt;/b&gt;
+
+&lt;b&gt;你一定常常在雜亂的對話裡面&lt;/b&gt;
+
+&lt;b&gt;翻找過去的紀錄&lt;/b&gt;
+
+&lt;b&gt;裝上它之後&lt;/b&gt;
+
+&lt;b&gt;立馬解決你的問題&lt;/b&gt;
+
+&lt;b&gt;首先是對話資料夾&lt;/b&gt;
+
+&lt;b&gt;你可以把雜亂的歷史紀錄&lt;/b&gt;
+
+&lt;b&gt;像整理檔案一樣&lt;/b&gt;
+
+&lt;b&gt;分門別類放好&lt;/b&gt;
+
+&lt;b&gt;光是這個功能&lt;/b&gt;
+
+&lt;b&gt;每天就幫你省下許多無效的尋找時間&lt;/b&gt;
+
+&lt;b&gt;再來這款插件解決了超長對話的噩夢&lt;/b&gt;
+
+&lt;b&gt;當你跟Gemini聊到第50句&lt;/b&gt;
+
+&lt;b&gt;想回頭看第一句的數據時&lt;/b&gt;
+
+&lt;b&gt;只能瘋狂滑滾輪&lt;/b&gt;
+
+&lt;b&gt;Voyager在右側自動生成了一個『時間軸』&lt;/b&gt;
+
+&lt;b&gt;它會抓到你提問題的關鍵點&lt;/b&gt;
+
+&lt;b&gt;就像YouTube的章節一樣&lt;/b&gt;
+
+&lt;b&gt;你點一下&lt;/b&gt;
+
+&lt;b&gt;對話視窗瞬間就&lt;font color='#ff7e79'&gt;精準跳轉&lt;/font&gt;&lt;/b&gt;
+
+&lt;b&gt;真的是用過就回不去了&lt;/b&gt;
+
+&lt;b&gt;最神的是&lt;/b&gt;
+
+&lt;b&gt;Voyager還內建一個&lt;font color='#ff7e79'&gt;移除浮水印的開關&lt;/font&gt;&lt;/b&gt;
+
+&lt;b&gt;只要開啟專屬按鈕&lt;/b&gt;
+
+&lt;b&gt;接下來生成的圖片都變得乾乾淨淨&lt;/b&gt;
+
+&lt;b&gt;它還可以匯出對話紀錄&lt;/b&gt;
+
+&lt;b&gt;甚至把對話紀錄&lt;/b&gt;
+
+&lt;b&gt;備份在你的Google雲端硬碟裡面&lt;/b&gt;
+
+&lt;b&gt;最強的是&lt;/b&gt;
+
+&lt;b&gt;在瀏覽不同網頁&lt;/b&gt;
+
+&lt;b&gt;如果臨時有什麼問題&lt;/b&gt;
+
+&lt;b&gt;都可以瞬間召喚AI 聊天機器人&lt;/b&gt;
+
+&lt;b&gt;一鍵就可以把你看不懂的內容&lt;/b&gt;
+
+&lt;b&gt;餵給AI&lt;/b&gt;
+
+&lt;b&gt;它的功能強大到&lt;/b&gt;
+
+&lt;b&gt;我覺得值得拍一集正片來解說&lt;/b&gt;
+
+&lt;b&gt;只可惜就在我們錄影的前兩天&lt;/b&gt;
+
+&lt;b&gt;也就是3月11號&lt;/b&gt;
+
+&lt;b&gt;「Gemini Voyager」突然被&lt;/b&gt;
+
+&lt;b&gt; Google Chrome 應用程式下架&lt;/b&gt;
+
+&lt;b&gt;開發者說明&lt;/b&gt;
+
+&lt;b&gt;因為原本的插件名稱有使用到「Gemini」&lt;/b&gt;
+
+&lt;b&gt;被Google認定侵權&lt;/b&gt;
+
+&lt;b&gt;現在就改名稱「Voyager」重新送審&lt;/b&gt;
+
+&lt;b&gt;如果你使用的瀏覽器是Firefox&lt;/b&gt;
+
+&lt;b&gt;或是Microsoft Edge&lt;/b&gt;
+
+&lt;b&gt;還是可以使用&lt;/b&gt;
+
+&lt;b&gt;強烈推薦你去載來用用看&lt;/b&gt;
+
+&lt;b&gt;如果你還在傻傻的複製貼上&lt;/b&gt;
+
+&lt;b&gt;來備份你跟ChatGPT的對話&lt;/b&gt;
+
+&lt;b&gt;就太浪費時間了&lt;/b&gt;
+
+&lt;b&gt;「AI Exporter」這款超強大的網頁插件&lt;/b&gt;
+
+&lt;b&gt;讓你可以快速下載你跟 AI 的對話內容&lt;/b&gt;
+
+&lt;b&gt;過去如果你使用複製貼上的方式&lt;/b&gt;
+
+&lt;b&gt;你會發現貼進 Word 裡面的文字&lt;/b&gt;
+
+&lt;b&gt;瞬間變成一堆凌亂的文字&lt;/b&gt;
+
+&lt;b&gt;整個版型跟字型都跑掉&lt;/b&gt;
+
+&lt;b&gt;你還要花時間重新調整&lt;/b&gt;
+
+&lt;b&gt;但現在使用「AI Exporter」&lt;/b&gt;
+
+&lt;b&gt;就能完美解決你的問題&lt;/b&gt;
+
+&lt;b&gt;它支援 PDF、Markdown、Json&lt;/b&gt;
+
+&lt;b&gt;TXT 等文字檔&lt;/b&gt;
+
+&lt;b&gt;甚至可以讓你選擇深色或淺色的主題&lt;/b&gt;
+
+&lt;b&gt;還有一項強大的功能是&lt;/b&gt;
+
+&lt;b&gt;如果你在ChatGPT或Gemini的環境使用它&lt;/b&gt;
+
+&lt;b&gt;它可以準確的匯出LaTeX渲染的數學公式&lt;/b&gt;
+
+&lt;b&gt;不會下載之後變成一堆你看不懂的亂碼&lt;/b&gt;
+
+&lt;b&gt;如果你只是想要下載某一段對話內容&lt;/b&gt;
+
+&lt;b&gt;它也可以用勾選的方式&lt;/b&gt;
+
+&lt;b&gt;讓你精準的選擇你想要的段落&lt;/b&gt;
+
+&lt;b&gt;另外 如果你跟我一樣是Notion的重度使用者&lt;/b&gt;
+
+&lt;b&gt;你會愛死這款插件&lt;/b&gt;
+
+&lt;b&gt;AI Exporter支援一鍵同步到Notion&lt;/b&gt;
+
+&lt;b&gt;這不是簡單的複製貼上&lt;/b&gt;
+
+&lt;b&gt;它會自動在你的Notion資料庫裡&lt;/b&gt;
+
+&lt;b&gt;&lt;font color='#ff7e79'&gt;建立一個精美的頁面&lt;/font&gt;&lt;/b&gt;
+
+&lt;b&gt;標題、日期、標籤&lt;/b&gt;
+
+&lt;b&gt;甚至對話中提到的所有連結&lt;/b&gt;
+
+&lt;b&gt;都完美幫你搬到Notion上面&lt;/b&gt;
+
+&lt;b&gt;最誇張的是&lt;/b&gt;
+
+&lt;b&gt;它還有一個隱藏功能叫做「跨頁面聚合」&lt;/b&gt;
+
+&lt;b&gt;可以讓你一秒橫跨ChatGPT與Gemini&lt;/b&gt;
+
+&lt;b&gt;把兩個對話融合成一個檔案&lt;/b&gt;
+
+&lt;b&gt;幫你同步下載&lt;/b&gt;
+
+&lt;b&gt;這麼強大的軟體&lt;/b&gt;
+
+&lt;b&gt;重點是它還&lt;font color='#ff7e79'&gt;完全免費&lt;/font&gt;&lt;/b&gt;
+
+&lt;b&gt;&lt;font color='#ff7e79'&gt;趕快去下載&lt;/font&gt;&lt;/b&gt;
+
+&lt;b&gt;如果你是Notebook LM的重度使用者&lt;/b&gt;
+
+&lt;b&gt;一定會遇到資料一旦很多&lt;/b&gt;
+
+&lt;b&gt;就會變得很亂的問題&lt;/b&gt;
+
+&lt;b&gt;每次開新專案都要重新貼網址&lt;/b&gt;
+
+&lt;b&gt;重新輸入Prompt&lt;/b&gt;
+
+&lt;b&gt;別再手動搬運了&lt;/b&gt;
+
+&lt;b&gt;今天分享這款專門為Notebook LM設計的&lt;/b&gt;
+
+&lt;b&gt;免費Chrome插件「Kortex」&lt;/b&gt;
+
+&lt;b&gt;讓你在任何網頁都可以瞬間移動到Notebook LM&lt;/b&gt;
+
+&lt;b&gt;以前要把網頁塞進Notebook LM&lt;/b&gt;
+
+&lt;b&gt;你要複製網址切換分頁再貼上&lt;/b&gt;
+
+&lt;b&gt;現在用Kortex看到好文章&lt;/b&gt;
+
+&lt;b&gt;點擊右上角直接一鍵存入&lt;/b&gt;
+
+&lt;b&gt;更厲害的是精華選取的功能&lt;/b&gt;
+
+&lt;b&gt;看到重點文字直接反白&lt;/b&gt;
+
+&lt;b&gt;按右鍵就能精準的把這段對話&lt;/b&gt;
+
+&lt;b&gt;連同來源網址&lt;/b&gt;
+
+&lt;b&gt;直接傳送到指定的筆記本&lt;/b&gt;
+
+&lt;b&gt;同樣的&lt;/b&gt;
+
+&lt;b&gt;如果你的工作可能會同時使用到&lt;/b&gt;
+
+&lt;b&gt;ChatGPT、Claude 或 Perplexity等多個 AI 工具&lt;/b&gt;
+
+&lt;b&gt;安裝Kortex之後&lt;/b&gt;
+
+&lt;b&gt;這些 AI 對話框旁邊會多出一顆按鈕&lt;/b&gt;
+
+&lt;b&gt;點一下&lt;/b&gt;
+
+&lt;b&gt;這段對話會直接收編成Notebook LM的資料來源&lt;/b&gt;
+
+&lt;b&gt;當你回到Notebook LM&lt;/b&gt;
+
+&lt;b&gt;你會發現你的介面升級了&lt;/b&gt;
+
+&lt;b&gt;可以批次管理所有匯入的檔案&lt;/b&gt;
+
+&lt;b&gt;終於可以「一次選取」刪除多個來源&lt;/b&gt;
+
+&lt;b&gt;不用一個一個慢慢刪除&lt;/b&gt;
+
+&lt;b&gt;還有針對格式做分類的快速按鈕&lt;/b&gt;
+
+&lt;b&gt;輸入大量資料的時候&lt;/b&gt;
+
+&lt;b&gt;終於可以快速查找&lt;/b&gt;
+
+&lt;b&gt;而且它還可以讓你勾選想要下載的回覆內容&lt;/b&gt;
+
+&lt;b&gt;打包成Markdown或PDF匯出&lt;/b&gt;
+
+&lt;b&gt;甚至&lt;/b&gt;
+
+&lt;b&gt;還有儲存Prompt的功能&lt;/b&gt;
+
+&lt;b&gt;讓你一鍵複製就可以快速下指令&lt;/b&gt;
+
+&lt;b&gt;雖然每天匯入的數量有限制&lt;/b&gt;
+
+&lt;b&gt;但一般研究已經非常夠用&lt;/b&gt;
+
+&lt;b&gt;Notebook LM相關的超有用免費插件&lt;/b&gt;
+
+&lt;b&gt;它是「YouTube to NotebookLM」&lt;/b&gt;
+
+&lt;b&gt;如果你每天都在YouTube上看學習影片&lt;/b&gt;
+
+&lt;b&gt;但看完之後大腦什麼都沒記住&lt;/b&gt;
+
+&lt;b&gt;那我必須告訴你一個殘酷的真相&lt;/b&gt;
+
+&lt;b&gt;你那不叫學習&lt;/b&gt;
+
+&lt;b&gt;那叫『看電影』&lt;/b&gt;
+
+&lt;b&gt;但如果你裝了YouTube to Notebook LM&lt;/b&gt;
+
+&lt;b&gt;你的學習效率會直接變成『開掛模式』&lt;/b&gt;
+
+&lt;b&gt;相較於另一款「Kortex-NotebookLM」的插件&lt;/b&gt;
+
+&lt;b&gt;每天快速匯入Notebook LM有次數的上限&lt;/b&gt;
+
+&lt;b&gt;&lt;font color='#ffd479'&gt;這款插件使用無上限&lt;/font&gt;&lt;/b&gt;
+
+&lt;b&gt;而且它操作的方式簡單到不可思議&lt;/b&gt;
+
+&lt;b&gt;當你安裝之後&lt;/b&gt;
+
+&lt;b&gt;你會在YouTube影片下面&lt;/b&gt;
+
+&lt;b&gt;發現居然出現一個Notebook LM的按鈕&lt;/b&gt;
+
+&lt;b&gt;點下去 直接導入你指定的筆記本&lt;/b&gt;
+
+&lt;b&gt;或是馬上新開一個筆記本&lt;/b&gt;
+
+&lt;b&gt;接下來頁面就會直接跳轉到Notebook LM裡面&lt;/b&gt;
+
+&lt;b&gt;你可以針對這些影片內容進行提問&lt;/b&gt;
+
+&lt;b&gt;大大加快你的學習速度&lt;/b&gt;
+
+&lt;b&gt;好的 以上就是本集的內容&lt;/b&gt;
+
+&lt;b&gt;希望這幾款工具都對你有幫助&lt;/b&gt;
+
+&lt;b&gt;泛科學院不定期會挖出一些&lt;/b&gt;
+
+&lt;b&gt;&lt;font color='#ff7e79'&gt;免費又好用的工具&lt;/font&gt;&lt;/b&gt;
+
+&lt;b&gt;如果你喜歡這些內容&lt;/b&gt;
+
+&lt;b&gt;歡迎按讚 訂閱 加分享&lt;/b&gt;
+
+&lt;b&gt;也歡迎加入我們的頻道會員&lt;/b&gt;
+
+&lt;b&gt;支持我們產出更多好內容&lt;/b&gt;
+
+&lt;b&gt;我們下次見&lt;/b&gt;

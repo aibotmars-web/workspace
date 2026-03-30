@@ -1,0 +1,7 @@
+{"level":30,"time":"2026-03-30T01:03:38.054Z","pid":86692,"hostname":"marsdeMac-mini.local","msg":"[MCP] Server started: http://localhost:3000"}
+{"level":20,"time":"2026-03-30T01:03:38.056Z","pid":86692,"hostname":"marsdeMac-mini.local","msg":"Using default Claude Code adapter"}
+{"level":20,"time":"2026-03-30T01:03:38.057Z","pid":86692,"hostname":"marsdeMac-mini.local","msg":"No .clawd/plugins directory found, skipping plugin loading"}
+{"level":30,"time":"2026-03-30T01:03:38.057Z","pid":86692,"hostname":"marsdeMac-mini.local","msg":"Generating new project plan..."}
+{"level":20,"time":"2026-03-30T01:03:38.059Z","pid":86692,"hostname":"marsdeMac-mini.local","msg":"Using built-in prompt: plan-init.md"}
+{"level":20,"time":"2026-03-30T01:03:38.061Z","pid":86692,"hostname":"marsdeMac-mini.local","msg":"LLM Input (execute):"}
+{"level":50,"time":"2026-03-30T01:03:55.307Z","pid":86692,"hostname":"marsdeMac-mini.local","msg":"Claude process failed with exit code 1"}
