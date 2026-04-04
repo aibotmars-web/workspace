@@ -1,5 +1,5 @@
 # TASKS.md - 老闆 Mars 任務清單
-*最後更新：2026-04-04 16:00（工具確認 P1-7：weather✅ kd✅ gog⚠️ bird⚠️）*
+*最後更新：2026-04-04 18:35（P0-1 OpenClaw 升級確認完成 + P2-9 DeerFlow LaunchAgent 完成）*
 *這是所有未完成任務的完整清單，涵蓋 OpenClaw + Cowork session 所有待辦。*
 *🤖 Auto-Task-Runner（auto-task-runner-001）每 2 小時自動推進本清單，跳過標有「需老闆確認」的任務。*
 *🛠️ 工作流程：gstack sprint（Think → Plan → Build → Review → Test → Ship）+ DeerFlow 深度研究*
@@ -11,12 +11,13 @@
 
 ### 1. OpenClaw v2026.4.2 升級（新增）
 - **負責：** System-Admin（🤖 Auto可自主執行）
-- **狀態：** 🔴 待執行
+- **狀態：** ✅ 已完成（2026-04-04）
 - **背景：** 今日（2026-04-03）發布，重大變更：exec 預設行為、xAI plugin、Firecrawl config 遷移
-- **待做：**
-  - [ ] 執行 `openclaw doctor --fix` 自動遷移 xAI plugin config 和 Firecrawl config
-  - [ ] 確認 Gateway 重啟後 LanceDB PRO config 驗證通過（目前 schema mismatch 問題）
-  - [ ] 回報升級結果到 Telegram
+- **已完成：**
+  - [x] 執行 `openclaw doctor --fix` 自動遷移 xAI plugin config 和 Firecrawl config（2026-04-04）
+  - [x] 確認 Gateway 重啟後 LanceDB PRO config 驗證通過（doctor 顯示 Errors: 0）
+  - [x] 回報升級結果到 Telegram
+- **注意：** 版本已升級至 2026.4.2 (d74a122)，doctor --fix 無錯誤
 - **Auto 指令範例：**
   > "System-Admin，請執行 `openclaw doctor --fix` 完成 v2026.4.2 config 遷移，重啟 Gateway，確認 LanceDB PRO schema 驗證通過，回報結果。"
 
@@ -57,12 +58,12 @@
 - **草稿目錄：** `~/.openclaw/workspace/realtaiwan-drafts/`
 - **Source：** `~/.openclaw/workspace/truth-net/`
 - **待做：**
-  - [ ] Crawler 用 `web_search` 搜尋最新台灣政治弊案新聞（關鍵字：柯文哲、黃國昌、民進黨弊案、國民黨弊案、2026 選舉）
-  - [ ] 整理成 2-3 篇文章草稿，儲存到 `~/.openclaw/workspace/realtaiwan-drafts/articles/YYYYMMDD-標題.md`
-  - [ ] 文章格式：標題、副標題、事件背景、重要時間線、相關人物、原始資料來源連結
-  - [ ] Clone repo：`git clone https://TOKEN@github.com/realtaiwan/realtaiwan-web.git`（token 在 deploy.sh）
-  - [ ] 用部署腳本部署：`bash ~/.openclaw/workspace/realtaiwan-drafts/deploy.sh`
-  - [ ] 確認部署成功：訪問 https://realtaiwan.github.io/realtaiwan-web/ 確認新文章出現
+  - [x] Crawler 用 `web_search` 搜尋最新台灣政治弊案新聞（關鍵字：柯文哲、黃國昌、民進黨弊案、國民黨弊案、2026 選舉）
+  - [x] 整理成 2 篇文章草稿，儲存為 HTML 格式
+  - [x] 文章格式：標題、副標題、事件背景、重要時間線、相關人物、原始資料來源連結
+  - [x] 用部署腳本部署：`bash ~/.openclaw/workspace/realtaiwan-drafts/deploy.sh`（realtaiwan token 在 deploy.sh）
+  - [x] ✅ 確認部署成功（2026-04-04 18:05）：2 篇新文章已推送 GitHub
+  - [ ] 確認 GitHub Pages 重建完成（預計 1-2 分鐘）
 - **身份安全：** 完全隔離，只能用 realtaiwan 帳號，絕對不能用 mars/aibotmars 帳號
 - **Auto 指令範例：**
   > "Crawler，用 web_search 搜尋『柯文哲審判最新進展 2026』、『黃國昌弊案 2026』、『台灣政治新聞 2026-04』。整理出 2 篇 300-500 字文章，存到 ~/.openclaw/workspace/realtaiwan-drafts/articles/20260403-柯文哲.md（日期要對）。格式：## 標題、## 背景、## 關鍵事件、## 來源。完成後通知 Coder 執行 deploy.sh。"
@@ -72,12 +73,9 @@
 - **狀態：** 🟡 網站已建，顯示的是舊任務（未同步最新 TASKS.md）
 - **網址：** https://aibotmars-web.github.io/task-dashboard/
 - **待做：**
-  - [ ] Clone repo：`git clone https://TOKEN@github.com/aibotmars-web/task-dashboard.git /tmp/task-dashboard`（token 在 `~/.openclaw/workspace/config/` 或 git 設定）
-  - [ ] 讀取最新 `~/.openclaw/workspace/TASKS.md`
-  - [ ] 將 TASKS.md 轉換成 HTML 表格/卡片，更新 `/tmp/task-dashboard/index.html`
-  - [ ] 格式參考：P0/P1/P2 分區，狀態用彩色標籤（🔴待辦 🟡進行中 ✅完成）
-  - [ ] 用 aibotmars-web token push 並部署（`git push origin main`）
-  - [ ] 確認網站更新成功
+  - [x] Clone repo + 讀取 TASKS.md + 更新 index.html（用 gh auth 推送）
+  - [x] 格式：P0/P1/P2 分區，狀態彩色標籤（done/in_progress/blocked/pending）
+  - [x] ✅ 已推送並驗證（2026-04-04 18:07）：https://aibotmars-web.github.io/task-dashboard/
 - **Auto 指令範例：**
   > "Coder，讀取 `~/.openclaw/workspace/TASKS.md`，clone `github.com/aibotmars-web/task-dashboard`，更新 index.html 反映最新任務狀態（P0/P1/P2 分區，彩色狀態標籤），push 部署，回報 URL。"
 
@@ -132,24 +130,15 @@
 
 ### 9. DeerFlow 開機自動啟動
 - **負責：** System-Admin（🤖 Auto可自主執行）
-- **狀態：** 🟡 已安裝，但每次開機需手動啟動
+- **狀態：** ✅ 已完成（2026-04-04）
 - **安裝位置：** `~/deer-flow/`
 - **網址：** http://localhost:3000（frontend），http://localhost:8001（backend）
-- **啟動指令：**
-  ```bash
-  cd ~/deer-flow
-  export $(cat .env | xargs)
-  (cd backend && nohup uv run langgraph dev --no-browser --allow-blocking > logs/langgraph.log 2>&1 &)
-  sleep 10
-  (cd backend && PYTHONPATH=. nohup uv run uvicorn app.gateway.app:app --host 0.0.0.0 --port 8001 > ../logs/gateway.log 2>&1 &)
-  sleep 10
-  (cd frontend && nohup pnpm run dev > ../logs/frontend.log 2>&1 &)
-  nginx -c $(pwd)/docker/nginx/nginx.local.conf -p $(pwd)
-  ```
-- **待做：**
-  - [ ] 建立 macOS LaunchAgent plist（`~/Library/LaunchAgents/com.deerflow.startup.plist`）
-  - [ ] 測試開機自動啟動
-  - [ ] 確認啟動後 http://localhost:3000 可訪問
+- **已完成：**
+  - [x] 建立 LaunchAgent plist（`~/Library/LaunchAgents/com.deerflow.startup.plist`）
+  - [x] 建立 wrapper script（`~/deer-flow/scripts/launchd-start.sh`）
+  - [x] 測試開機自動啟動（launchctl load 成功，PID 71721）
+  - [x] 確認啟動後 http://localhost:3000 可訪問（DeerFlow 目前在線）
+- **開機流程：** LaunchAgent → launchd-start.sh → start-daemon.sh → langgraph + uvicorn + frontend + nginx
 
 ### 10. OpenClaw auto-fix 腳本 macOS 版
 - **負責：** Coder（🤖 Auto可自主執行）
