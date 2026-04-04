@@ -1,114 +1,211 @@
 # TASKS.md - 老闆 Mars 任務清單
-*最後更新：2026-03-01*
-*這是所有未完成任務的完整清單，由記憶檔整理而來。Planner 每次啟動時請讀這個檔案。*
+*最後更新：2026-04-04 14:20（YouTube LLM 摘要修復 + 自動化腳本部署）*
+*這是所有未完成任務的完整清單，涵蓋 OpenClaw + Cowork session 所有待辦。*
+*🤖 Auto-Task-Runner（auto-task-runner-001）每 2 小時自動推進本清單，跳過標有「需老闆確認」的任務。*
+*🛠️ 工作流程：gstack sprint（Think → Plan → Build → Review → Test → Ship）+ DeerFlow 深度研究*
+*📦 工具：/office-hours（規劃）、/review（程式碼審查）、/qa（品質確認）、/ship（部署）、DeerFlow（深度研究，http://localhost:8001）*
 
 ---
 
 ## 🔴 P0 - 最緊急（本週要解決）
 
-### 1. Polymarket 自動交易系統啟動
-- **負責：** Trader + Coder
-- **狀態：** 🔴 未啟動
+### 1. OpenClaw v2026.4.2 升級（新增）
+- **負責：** System-Admin（🤖 Auto可自主執行）
+- **狀態：** 🔴 待執行
+- **背景：** 今日（2026-04-03）發布，重大變更：exec 預設行為、xAI plugin、Firecrawl config 遷移
 - **待做：**
-  - [ ] 老闆確認要追蹤哪些市場 ID
-  - [ ] 老闆確認資金上限和風險設定
-  - [ ] Coder 實作自動下注邏輯
-  - [ ] Trader 開始執行（目前只做監控）
-- **備註：** 系統架構已有，只差市場設定
+  - [ ] 執行 `openclaw doctor --fix` 自動遷移 xAI plugin config 和 Firecrawl config
+  - [ ] 確認 Gateway 重啟後 LanceDB PRO config 驗證通過（目前 schema mismatch 問題）
+  - [ ] 回報升級結果到 Telegram
+- **Auto 指令範例：**
+  > "System-Admin，請執行 `openclaw doctor --fix` 完成 v2026.4.2 config 遷移，重啟 Gateway，確認 LanceDB PRO schema 驗證通過，回報結果。"
 
-### 2. 所有 Sub-Agent 工具確認可用
-- **負責：** System-Admin
-- **狀態：** 🟡 部分完成
+### 2. YouTube 知識庫 LLM 總結超時修復
+- **負責：** Coder（🤖 Auto可自主執行）
+- **狀態：** ✅ 已修復（2026-04-04）
+- **根本原因：** `crawl_stable.py` 只下載字幕，沒有內建 LLM 摘要流程
+- **修復方案：** 
+  - 新建 `summarize_transcripts.py`：使用 `openclaw agent --session-id` 叫用 MiniMax LLM 生成結構化 JSON 摘要
+  - 每輪處理 1 個頻道、2 部新影片，控制 LLM 呼叫時間
+  - 加入 retry 邏輯（最多 2 次）
+  - 更新 `crawler-knowledge-001` cron job 加入摘要步驟
+- **已驗證：** 成功生成 6 個摘要（Dr.HuangAmin x2, Dr.Hu_talk x2, drbergchinese x2）
 - **待做：**
-  - [ ] 確認 youtube-skills 可正常呼叫
-  - [ ] 確認 gog (Google Workspace) 可正常呼叫
-  - [ ] 確認 bird (X/Twitter) 可正常呼叫
-  - [ ] 確認 weather 可正常呼叫
-  - [ ] 回報哪些工具有問題
+  - [x] 建立 `summarize_transcripts.py`（2026-04-04）
+  - [x] 更新 `crawler-knowledge-001` cron job（2026-04-04）
+  - [x] 測試驗證（2026-04-04，已生成首批摘要）
+  - [ ] ⚠️ 持續積累：cron job 每週期會自動生成 2+ 個新摘要
+
+### 3. Polymarket 自動交易系統啟動
+- **負責：** Trader + Coder
+- **狀態：** 🔴 等待老闆確認
+- **待做：**
+  - [ ] ⚠️ 需老闆確認：要追蹤哪些市場 ID（目前 polymarket-bot.py 裡是佔位符 `0x1234...`）
+  - [ ] ⚠️ 需老闆確認：每次下注上限（目前設定 $10/次）、止損設定（-0.3%）
+  - [ ] 確認後：Coder 填入實際市場 ID 到 `~/.openclaw/workspace/projects/polymarket-bot.py`
+  - [ ] Trader 開始執行（目前只做監控）
+- **🤖 Auto跳過：** 前兩項需老闆輸入
 
 ---
 
 ## 🟡 P1 - 重要（本月完成）
 
-### 3. 9 位 YouTube 專家知識庫建立
-- **負責：** Crawler
-- **狀態：** 🟡 Cron 已設定，但不確定是否有在跑
-- **專家：** 阿銘師、胡乃文、柏格醫生、周慕姿、松明、Dr. Harvey、初日醫學、泛科學、泛科學院
-- **待做：**
-  - [ ] Cron 每天 05:00 自動抓字幕（jobs.json 已設定）
-  - [ ] 確認 ~/knowledge-base/ 目錄存在
-  - [ ] 確認字幕已開始累積
-- **備註：** 只抓字幕，不下載影片（硬碟限制）
-
-### 4. Google Sheets 自動更新腳本
-- **負責：** Coder
-- **狀態：** 🟡 OAuth 完成，腳本未寫
-- **待做：**
-  - [ ] 寫腳本把 Crawler 的知識庫結果自動填入 Google Sheets
-  - [ ] 試算表：https://docs.google.com/spreadsheets/d/10PE52Fmv97I9WSmTzdrjimr_A3Q9X8qCsTAGw8MyuAU
-  - [ ] 規則：新資料往上插入
-  - [ ] 帳號：aibotmars@gmail.com
-
-### 5. 真相網內容更新
-- **負責：** Coder + Crawler
-- **狀態：** 🟡 網站已建，內容停滯
+### 4. 真相網（RealTaiwan）內容更新
+- **負責：** Crawler + Coder（🤖 Auto可自主執行）
+- **狀態：** 🟡 網站已建，內容停滯在 2026-03-01（超過 1 個月未更新）
 - **網址：** https://realtaiwan.github.io/realtaiwan-web/
+- **草稿目錄：** `~/.openclaw/workspace/realtaiwan-drafts/`
+- **Source：** `~/.openclaw/workspace/truth-net/`
 - **待做：**
-  - [ ] Crawler 搜尋最新政治弊案新聞
-  - [ ] 整理成文章草稿
-  - [ ] Coder 用 realtaiwan token 部署到 GitHub Pages
-- **重要：** 身份完全隔離，用 realtaiwan 帳號
+  - [ ] Crawler 用 `web_search` 搜尋最新台灣政治弊案新聞（關鍵字：柯文哲、黃國昌、民進黨弊案、國民黨弊案、2026 選舉）
+  - [ ] 整理成 2-3 篇文章草稿，儲存到 `~/.openclaw/workspace/realtaiwan-drafts/articles/YYYYMMDD-標題.md`
+  - [ ] 文章格式：標題、副標題、事件背景、重要時間線、相關人物、原始資料來源連結
+  - [ ] Clone repo：`git clone https://TOKEN@github.com/realtaiwan/realtaiwan-web.git`（token 在 deploy.sh）
+  - [ ] 用部署腳本部署：`bash ~/.openclaw/workspace/realtaiwan-drafts/deploy.sh`
+  - [ ] 確認部署成功：訪問 https://realtaiwan.github.io/realtaiwan-web/ 確認新文章出現
+- **身份安全：** 完全隔離，只能用 realtaiwan 帳號，絕對不能用 mars/aibotmars 帳號
+- **Auto 指令範例：**
+  > "Crawler，用 web_search 搜尋『柯文哲審判最新進展 2026』、『黃國昌弊案 2026』、『台灣政治新聞 2026-04』。整理出 2 篇 300-500 字文章，存到 ~/.openclaw/workspace/realtaiwan-drafts/articles/20260403-柯文哲.md（日期要對）。格式：## 標題、## 背景、## 關鍵事件、## 來源。完成後通知 Coder 執行 deploy.sh。"
 
-### 6. 任務儀表板更新
-- **負責：** Coder
-- **狀態：** 🟡 網站已建，內容舊了
+### 5. 任務儀表板更新（Task Dashboard Sync）
+- **負責：** Coder（🤖 Auto可自主執行）
+- **狀態：** 🟡 網站已建，顯示的是舊任務（未同步最新 TASKS.md）
 - **網址：** https://aibotmars-web.github.io/task-dashboard/
 - **待做：**
-  - [ ] 把這份 TASKS.md 的內容同步到儀表板
-  - [ ] 用 aibotmars-web token 部署
+  - [ ] Clone repo：`git clone https://TOKEN@github.com/aibotmars-web/task-dashboard.git /tmp/task-dashboard`（token 在 `~/.openclaw/workspace/config/` 或 git 設定）
+  - [ ] 讀取最新 `~/.openclaw/workspace/TASKS.md`
+  - [ ] 將 TASKS.md 轉換成 HTML 表格/卡片，更新 `/tmp/task-dashboard/index.html`
+  - [ ] 格式參考：P0/P1/P2 分區，狀態用彩色標籤（🔴待辦 🟡進行中 ✅完成）
+  - [ ] 用 aibotmars-web token push 並部署（`git push origin main`）
+  - [ ] 確認網站更新成功
+- **Auto 指令範例：**
+  > "Coder，讀取 `~/.openclaw/workspace/TASKS.md`，clone `github.com/aibotmars-web/task-dashboard`，更新 index.html 反映最新任務狀態（P0/P1/P2 分區，彩色狀態標籤），push 部署，回報 URL。"
+
+### 6. Google Sheets 自動更新腳本
+- **負責：** Coder（🤖 Auto可自主執行，但 credentials 需老闆設定）
+- **狀態：** 🟡 腳本已就緒，缺少 Google credentials
+- **試算表：** https://docs.google.com/spreadsheets/d/10PE52Fmv97I9WSmTzdrjimr_A3Q9X8qCsTAGw8MyuAU
+- **腳本位置：** `~/.openclaw/workspace/projects/google-sheets-updater.py` 和 `~/.openclaw/workspace/scripts/sheets-updater.py`
+- **待做：**
+  - [ ] ⚠️ 需老闆確認：用 gog 設定 Google service account credentials 到 `~/.openclaw/google-sheets/credentials.json`
+  - [ ] 確認 credentials 後：`python3 ~/.openclaw/workspace/scripts/sheets-updater.py`（移除 --dry-run）
+  - [ ] 設定每日 cron 自動執行（建議 09:30，早晨報告之後）
+- **🤖 Auto跳過：** credentials 設定需老闆操作 gog
+
+### 7. 所有 Sub-Agent 工具確認可用
+- **負責：** System-Admin（🤖 Auto可自主執行）
+- **狀態：** 🟡 部分完成，需重新驗證（升級 v2026.4.2 後）
+- **待做：**
+  - [ ] 確認 gog (Google Workspace) 可正常呼叫
+  - [ ] 確認 bird (X/Twitter) 可正常呼叫
+  - [ ] 確認 weather 可正常呼叫
+  - [ ] 確認 `kd` CLI 可正常執行（`kd subtitles` 和 `kd transcribe`）
+  - [ ] 回報哪些工具有問題
+
+---
+
+## 🔵 P1.5 - IG Carousel 維護（持續進行）
+
+### 8. IG Carousel 每日發文流程
+- **負責：** Assistant-Work（cron 自動，12:00 每日）
+- **狀態：** 🟢 基本正常，2026-04-01 成功發布
+- **已修復（Cowork session 完成）：**
+  - ✅ `--reuse-existing` 防止 publish 重新生成圖片
+  - ✅ 防重複鎖（30分鐘 `.lock` 檔）
+  - ✅ 內容品質閘門（<150 字不發文）
+  - ✅ AI 封面（fal-ai FLUX schnell，3 種風格候選）
+  - ✅ autoRecallLimit 修復（3→10 條記憶注入）
+  - ✅ JSON 解析修復（跳過 `[plugins]...` 前綴）
+- **目前流程：**
+  1. 12:00 cron → 生成草稿 → 圖片傳送 Telegram → 通知老闆
+  2. 老闆回覆「可以」→ `ig-carousel publish`（--reuse-existing）
+  3. 發布成功 → 回報結果
+- **待觀察：**
+  - [ ] MiniMax API 是否還有超時問題（3/31 事件後）
+  - [ ] 確認 @money.showtime 和 @bossmaker.lab 兩個帳號都正常
 
 ---
 
 ## 🟢 P2 - 一般（有空做）
 
-### 7. 兒童 AI 繪圖書
+### 9. DeerFlow 開機自動啟動
+- **負責：** System-Admin（🤖 Auto可自主執行）
+- **狀態：** 🟡 已安裝，但每次開機需手動啟動
+- **安裝位置：** `~/deer-flow/`
+- **網址：** http://localhost:3000（frontend），http://localhost:8001（backend）
+- **啟動指令：**
+  ```bash
+  cd ~/deer-flow
+  export $(cat .env | xargs)
+  (cd backend && nohup uv run langgraph dev --no-browser --allow-blocking > logs/langgraph.log 2>&1 &)
+  sleep 10
+  (cd backend && PYTHONPATH=. nohup uv run uvicorn app.gateway.app:app --host 0.0.0.0 --port 8001 > ../logs/gateway.log 2>&1 &)
+  sleep 10
+  (cd frontend && nohup pnpm run dev > ../logs/frontend.log 2>&1 &)
+  nginx -c $(pwd)/docker/nginx/nginx.local.conf -p $(pwd)
+  ```
+- **待做：**
+  - [ ] 建立 macOS LaunchAgent plist（`~/Library/LaunchAgents/com.deerflow.startup.plist`）
+  - [ ] 測試開機自動啟動
+  - [ ] 確認啟動後 http://localhost:3000 可訪問
+
+### 10. OpenClaw auto-fix 腳本 macOS 版
+- **負責：** Coder（🤖 Auto可自主執行）
+- **狀態：** 🟡 原版是 Linux systemd，需改造
+- **待做：**
+  - [ ] 讀取 `~/.openclaw/exec-fix-v6.sh` 了解現有邏輯
+  - [ ] 改造為 macOS LaunchAgent 版本（`~/Library/LaunchAgents/`）
+  - [ ] 測試 plist 設定
+
+### 11. 兒童 AI 繪圖書
 - **負責：** Image + Coder
 - **狀態：** ⬜ 尚未開始
 - **待做：**
-  - [ ] 老闆確認主題和風格
-  - [ ] Image 用 MiniMax 生成插圖（10-15 張）
-  - [ ] Coder 整合成 PDF 或網頁
+  - [ ] ⚠️ 需老闆確認：主題和風格
+  - [ ] Image 用 MiniMax 生成插圖（10-15 張）（等老闆確認後）
+  - [ ] Coder 整合成 PDF 或網頁（等老闆確認後）
 
-### 8. 跨境電商（淘寶→蝦皮/亞馬遜）
+### 12. 跨境電商（淘寶→蝦皮/亞馬遜）
 - **負責：** 待確認
 - **狀態：** ⬜ 尚未開始
 - **待做：**
-  - [ ] 老闆確認具體需求和預算
+  - [ ] ⚠️ 需老闆確認：具體需求和預算
 
-### 9. App 開發
+### 13. App 開發
 - **負責：** Coder
 - **狀態：** ⬜ 尚未開始
 - **待做：**
-  - [ ] 老闆確認 App 的功能需求
+  - [ ] ⚠️ 需老闆確認：App 的功能需求
 
-### 10. SSH 互連救援（Mac ↔ Windows）
+### 14. SSH 互連救援（Mac ↔ Windows）
 - **負責：** System-Admin
 - **狀態：** ⬜ 等 Windows 安裝完成
 - **待做：**
-  - [ ] 老闆在 Windows 安裝 OpenClaw
-  - [ ] 設定 Tailscale 互連
+  - [ ] ⚠️ 需老闆確認：在 Windows 安裝 OpenClaw
+  - [ ] 設定 Tailscale 互連（等老闆完成 Windows 安裝）
   - [ ] 設定 SSH 金鑰
-
-### 11. OpenClaw auto-fix 腳本 macOS 版
-- **負責：** Coder
-- **狀態：** 🟡 原版是 Linux systemd，需改造
-- **待做：**
-  - [ ] 改造 exec-fix-v6.sh 為 macOS LaunchAgent 版本
 
 ---
 
 ## ✅ 已完成（歸檔）
 
+### Cowork Sessions 完成項目（2026-03 ~ 04）
+- ✅ **LanceDB PRO autoRecallLimit 修復**（3→10 條記憶，2026-03-31）
+- ✅ **memory-lancedb-pro embedding config 修復**（voyage → openai-compatible，2026-03-31）
+- ✅ **33 個 workspace/skills symlink**（建立到 ~/.openclaw/skills/，2026-03-31）
+- ✅ **IG Carousel --reuse-existing**（publish 不再重新生成圖片，2026-04-01）
+- ✅ **IG Pipeline 防重複鎖**（30分鐘 lock 檔，2026-03-31）
+- ✅ **IG 內容品質閘門**（<150 字不發文，2026-03-31）
+- ✅ **IG AI 封面**（fal-ai FLUX schnell，漫畫/普普/賽博龐克 3 選 1，2026-03-19）
+- ✅ **content_pipeline.py JSON 解析修復**（跳過 [plugins] 前綴，2026-03-18）
+- ✅ **Pillow deprecation 修復**（getdata() 相容寫法，2026-03-18）
+- ✅ **exec-approvals.json 修正**（security=full ask=off，2026-04-03）
+- ✅ **DeerFlow 安裝**（~/deer-flow，MiniMax-M2.1，2026-03-31）
+- ✅ **OpenClaw 升級** 2026.3.13 → 2026.3.23-2（2026-03-25）
+- ✅ **model 升級** M2.5 → M2.7（2026-03-25）
+- ✅ **SKILL.md 路徑 symlink 修復**（ig-carousel、agent-browser，2026-04-01）
+
+### 更早完成項目
 - ✅ Beads (BD) 任務追蹤系統安裝
 - ✅ 8 個 Sub-Agent 設定
 - ✅ Telegram 群組對應設定
@@ -121,19 +218,40 @@
 - ✅ 早晨/晚間 cron job 設定
 - ✅ Telegram 連線修復（retry 設定）
 - ✅ 所有 AGENTS.md 完整重寫（2026-03-01）
+- ✅ TranscriptAPI 永久停用（改用 kd CLI，2026-03-29）
+- ✅ kd CLI 安裝（/opt/homebrew/bin/kd，本地 ASR）
+- ✅ 8 個 TOOLS.md 建立（解決幻覺問題，2026-03-05）
+- ✅ Agent-to-Agent 協作啟用（openclaw.json，2026-03-05）
 
 ---
 
-## 📋 Planner 工作指引
+## 📋 Auto-Task-Runner 工作指引
 
-每次啟動時：
+### auto-task-runner-001 執行規則
+每 2 小時自動執行，依照以下優先順序：
+
+**可自主執行（不需確認）：**
+1. P0 任務 1（OpenClaw 升級）→ 執行 `openclaw doctor --fix`
+2. P0 任務 2（YouTube LLM 修復）→ 診斷並修復超時問題
+3. P1 任務 4（真相網更新）→ 搜尋新聞 → 寫草稿 → 部署
+4. P1 任務 5（Task Dashboard 同步）→ 把 TASKS.md 轉成 HTML → push
+5. P1 任務 7（工具確認）→ 逐一測試並回報
+6. P2 任務 9（DeerFlow 開機啟動）→ 建立 LaunchAgent plist
+
+**需老闆確認，跳過：**
+- 任務 3（Polymarket 市場 ID 和資金設定）
+- 任務 6（Google Sheets credentials）
+- 任務 11/12/13（兒童繪本、電商、App）
+- 任務 14（Windows 安裝）
+
+### Planner 每次啟動時
 1. 讀這個 TASKS.md
-2. 選 P0 任務開始推進
-3. 分配具體工作給 sub-agent（要說清楚做什麼、怎麼做）
-4. 追蹤進度，遇到卡住就記錄原因並標記
+2. 優先處理 P0 可自主執行的任務
+3. 分配具體工作給 sub-agent（說清楚做什麼、怎麼做、用哪個工具）
+4. 追蹤進度，卡住就記錄原因並標記
 
-給 sub-agent 的指令範例（好的）：
-> "Coder，請寫一個 Python 腳本，讀取 ~/knowledge-base/ 下所有今天的 .md 檔，提取標題和重點，用 gog sheets 插入到試算表 [URL] 的第一行。完成後回報結果。"
+### 給 sub-agent 的指令範例（好的）
+> "Coder，請讀取 `~/.openclaw/workspace/projects/yt-expert-crawler.py`，找出 summarize 函數，把 timeout 從當前值改為 120 秒，加入 3 次 retry（每次等 10 秒），測試阿銘師頻道最新字幕能否生成摘要，回報結果。"
 
-給 sub-agent 的指令範例（不好的）：
-> "幫我做 Google Sheets 整合"
+### 給 sub-agent 的指令範例（不好的）
+> "幫我修 YouTube 爬蟲"
