@@ -1,5 +1,5 @@
 # TASKS.md - 老闆 Mars 任務清單
-*最後更新：2026-04-04 14:20（YouTube LLM 摘要修復 + 自動化腳本部署）*
+*最後更新：2026-04-04 16:00（工具確認 P1-7：weather✅ kd✅ gog⚠️ bird⚠️）*
 *這是所有未完成任務的完整清單，涵蓋 OpenClaw + Cowork session 所有待辦。*
 *🤖 Auto-Task-Runner（auto-task-runner-001）每 2 小時自動推進本清單，跳過標有「需老闆確認」的任務。*
 *🛠️ 工作流程：gstack sprint（Think → Plan → Build → Review → Test → Ship）+ DeerFlow 深度研究*
@@ -94,13 +94,15 @@
 
 ### 7. 所有 Sub-Agent 工具確認可用
 - **負責：** System-Admin（🤖 Auto可自主執行）
-- **狀態：** 🟡 部分完成，需重新驗證（升級 v2026.4.2 後）
+- **狀態:** 🟡 檢測完成（2026-04-04）
+- **工具確認結果：**
+  - [x] **weather** ✅ 完全正常（wttr.in 回應 +21°C Taipei）
+  - [x] **kd CLI** ✅ 完全正常（成功下載字幕，Rick Roll 測試通過）
+  - [x] **gog** ⚠️ 已安裝 v0.9.0，但 OAuth token 過期（`invalid_grant`），需老闆執行 `gog auth login` 重新認證
+  - [x] **bird** ⚠️ 已安裝 v0.8.0，但 Twitter cookies 未設定（Safari/Chrome/Firefox 皆無登入 cookies），需老闆在瀏覽器登入 X 並設定 cookie source
 - **待做：**
-  - [ ] 確認 gog (Google Workspace) 可正常呼叫
-  - [ ] 確認 bird (X/Twitter) 可正常呼叫
-  - [ ] 確認 weather 可正常呼叫
-  - [ ] 確認 `kd` CLI 可正常執行（`kd subtitles` 和 `kd transcribe`）
-  - [ ] 回報哪些工具有問題
+  - [ ] 老闆重新認證 gog：`gog auth login`
+  - [ ] 老闆設定 bird Twitter cookies：在 Safari/Chrome 登入 X，並確認 cookie 路徑
 
 ---
 
