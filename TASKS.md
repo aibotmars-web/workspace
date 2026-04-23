@@ -1,5 +1,5 @@
 # TASKS.md - 老闆 Mars 任務清單
-*最後更新：2026-04-04 18:35（P0-1 OpenClaw 升級確認完成 + P2-9 DeerFlow LaunchAgent 完成）*
+*最後更新：2026-04-23 08:05（P1-5 任務儀表板同步 + top3pct 新增12部影片 + 知識庫爬蟲正常運行）*
 *這是所有未完成任務的完整清單，涵蓋 OpenClaw + Cowork session 所有待辦。*
 *🤖 Auto-Task-Runner（auto-task-runner-001）每 2 小時自動推進本清單，跳過標有「需老闆確認」的任務。*
 *🛠️ 工作流程：gstack sprint（Think → Plan → Build → Review → Test → Ship）+ DeerFlow 深度研究*
@@ -53,17 +53,15 @@
 
 ### 4. 真相網（RealTaiwan）內容更新
 - **負責：** Crawler + Coder（🤖 Auto可自主執行）
-- **狀態：** 🟡 網站已建，內容停滯在 2026-03-01（超過 1 個月未更新）
+- **狀態：** ✅ 已完成（2026-04-07）
 - **網址：** https://realtaiwan.github.io/realtaiwan-web/
 - **草稿目錄：** `~/.openclaw/workspace/realtaiwan-drafts/`
 - **Source：** `~/.openclaw/workspace/truth-net/`
-- **待做：**
-  - [x] Crawler 用 `web_search` 搜尋最新台灣政治弊案新聞（關鍵字：柯文哲、黃國昌、民進黨弊案、國民黨弊案、2026 選舉）
-  - [x] 整理成 2 篇文章草稿，儲存為 HTML 格式
-  - [x] 文章格式：標題、副標題、事件背景、重要時間線、相關人物、原始資料來源連結
-  - [x] 用部署腳本部署：`bash ~/.openclaw/workspace/realtaiwan-drafts/deploy.sh`（realtaiwan token 在 deploy.sh）
-  - [x] ✅ 確認部署成功（2026-04-04 18:05）：2 篇新文章已推送 GitHub
-  - [ ] 確認 GitHub Pages 重建完成（預計 1-2 分鐘）
+- **已完成：**
+  - [x] ✅ 新增 3 篇 HTML 文章（2026-04-07）：柯文哲與沈慶京17次密會、黃國昌選擇性失憶、柯文哲一審判決
+  - [x] ✅ deploy.sh 執行成功（2026-04-07 18:10）：已推送 GitHub
+  - [x] ✅ 新文章草稿 markdown 已提交 drafts repo
+  - [ ] GitHub Pages 重建預計 1-2 分鐘
 - **身份安全：** 完全隔離，只能用 realtaiwan 帳號，絕對不能用 mars/aibotmars 帳號
 - **Auto 指令範例：**
   > "Crawler，用 web_search 搜尋『柯文哲審判最新進展 2026』、『黃國昌弊案 2026』、『台灣政治新聞 2026-04』。整理出 2 篇 300-500 字文章，存到 ~/.openclaw/workspace/realtaiwan-drafts/articles/20260403-柯文哲.md（日期要對）。格式：## 標題、## 背景、## 關鍵事件、## 來源。完成後通知 Coder 執行 deploy.sh。"
@@ -142,11 +140,13 @@
 
 ### 10. OpenClaw auto-fix 腳本 macOS 版
 - **負責：** Coder（🤖 Auto可自主執行）
-- **狀態：** 🟡 原版是 Linux systemd，需改造
-- **待做：**
-  - [ ] 讀取 `~/.openclaw/exec-fix-v6.sh` 了解現有邏輯
-  - [ ] 改造為 macOS LaunchAgent 版本（`~/Library/LaunchAgents/`）
-  - [ ] 測試 plist 設定
+- **狀態:** ✅ 已完成（2026-04-07）
+- **問題：** 舊版 script 依賴 `timeout` 命令（macOS 不存在），導致每 5 分鐘 false positive 並觸發錯誤的重啟迴圈
+- **修復：**
+  - 重寫 `exec-fix-v6.sh`：移除 `timeout` 依賴，改用 `curl --connect-timeout` 和直接命令執行
+  - 更新 `ai.openclaw.exec-monitor.plist`：PATH 加入 `/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin`
+  - 清空錯誤日誌，重新載入 LaunchAgent
+  - 驗證：✅ Shell / Node.js / Gateway HTTP 全部正常
 
 ### 11. 兒童 AI 繪圖書
 - **負責：** Image + Coder
