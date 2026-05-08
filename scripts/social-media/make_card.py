@@ -28,6 +28,7 @@ from pathlib import Path
 from datetime import datetime
 from urllib.request import urlopen, Request
 from html.parser import HTMLParser
+from typing import Optional
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 
 
@@ -152,6 +153,56 @@ def smart_wrap(text: str, width: int) -> list[str]:
         merged.append(line)
 
     return merged
+
+
+def _wrap_to_pixels(draw, text: str, font, max_width_px: int) -> list[str]:
+    """Wrap text so each line's ACTUAL rendered width fits within max_width_px.
+
+    Uses draw.textlength (Pillow) for real pixel measurements — avoids the
+    weighted-unit mismatch in smart_wrap that can cause 880px text to be
+    claimed as "fitting" in a 779px box.
+    """
+    if not text:
+        return []
+
+    def _measure(s: str) -> float:
+        try:
+            return draw.textlength(s, font=font)
+        except AttributeError:
+            bbox = draw.textbbox((0, 0), s, font=font)
+            return bbox[2] - bbox[0]
+
+    tokens = _re.findall(
+        r'[a-zA-Z0-9][a-zA-Z0-9.,\':\-/_%]*'
+        r'|[，。！？、；：…—「」『』（）《》\)\(\[\]]'
+        r'|[\u4e00-\u9fff\u3400-\u4dbf]'
+        r'|\s+'
+        r'|.',
+        text
+    )
+
+    lines: list[str] = []
+    cur = ""
+    for tok in tokens:
+        if tok.isspace() and not cur:
+            continue
+        candidate = cur + tok
+        if _measure(candidate) <= max_width_px:
+            cur = candidate
+            continue
+        # Overflow: break punctuation-aware
+        if tok in '，。！？、；：…—）」》' and cur:
+            # keep punctuation with current line even if slight overflow
+            lines.append(cur + tok)
+            cur = ""
+            continue
+        if cur:
+            lines.append(cur)
+        cur = "" if tok.isspace() else tok
+    if cur:
+        lines.append(cur)
+    return lines
+
 
 # ── 字體 ─────────────────────────────────────────────────────
 FONT_PATHS = [
@@ -327,7 +378,7 @@ def _render_candlestick_mplfinance(ohlcv: dict, label: str,
 
 
 def fetch_price_chart(coin: str = "bitcoin", days: int = 7,
-                      size: tuple = (960, 500)) -> tuple[Image.Image | None, dict]:
+                      size: tuple = (960, 500)) -> tuple[Optional[Image.Image], dict]:
     """用 Pillow 直接繪製極簡漸層面積走勢圖（不依賴 matplotlib）。
     風格：CoinMarketCap app — 粗線 + 漸層填色，無座標軸，只標高低現價。"""
     try:
@@ -473,7 +524,7 @@ def fetch_price_chart(coin: str = "bitcoin", days: int = 7,
 
 def fetch_commodity_chart(symbol: str = "GC=F", label: str = "黃金",
                           days: int = 7,
-                          size: tuple = (960, 500)) -> tuple[Image.Image | None, dict]:
+                          size: tuple = (960, 500)) -> tuple[Optional[Image.Image], dict]:
     """用 Yahoo Finance API 取得商品/個股走勢。
     優先嘗試 mplfinance K 線蠟燭圖（需安裝 mplfinance + pandas），
     否則 fallback 到 Pillow 極簡漸層面積圖。
@@ -827,89 +878,78 @@ THEMES = {
     "crypto": {
         "name": "幣圈大小事",
         "name_en": "CRYPTO NEWS",
-        "accent": (247, 183, 49),
+        "ig": "money.showtime",
+        "accent": (247, 183, 49),     # Bitcoin gold — brand signature color
         "overlay": (0, 0, 0),
         "overlay_min_alpha": 100,
         "overlay_max_alpha": 220,
         "keyword": "bitcoin cryptocurrency blockchain trading",
         "emoji": "₿",
-        "cta_emoji": "🪙",
-        "style": "editorial",
+        "style": "abmedia",
+        "bg_color": (13, 13, 13),
+        "card_bg": (255, 255, 255, 15),
     },
     "finance": {
         "name": "金融大小事",
         "name_en": "FINANCE NEWS",
+        "ig": "money.showtime",
         "accent": (247, 183, 49),
         "overlay": (0, 5, 15),
         "overlay_min_alpha": 100,
         "overlay_max_alpha": 220,
         "keyword": "stock market finance wall street trading",
         "emoji": "📈",
-        "cta_emoji": "💰",
-        "style": "editorial",
+        "style": "abmedia",
+        "bg_color": (13, 13, 13),
+        "card_bg": (255, 255, 255, 15),
     },
     "startup": {
         "name": "創業大小事",
         "name_en": "STARTUP STORIES",
+        "ig": "bossmaker.lab",
         "accent": (220, 175, 105),
         "overlay": (5, 5, 8),
         "overlay_min_alpha": 130,
         "overlay_max_alpha": 240,
         "keyword": "entrepreneur startup business office success",
         "emoji": "💡",
-        "cta_emoji": "🔮",
-        "style": "minimal",
+        "style": "abmedia",
+        "bg_color": (13, 13, 13),
+        "card_bg": (255, 255, 255, 15),
     },
 }
 
-# 每張 Slide 各自獨立的圖片搜尋關鍵字（10 頁版）
-SLIDE_COUNT = 10
+# 每張 Slide 各自獨立的圖片搜尋關鍵字（4-6 頁版：Cover + KeyPoints + FAQ/Analysis + Ending）
+SLIDE_COUNT = 4  # Default: Cover + KeyPoints + FAQ/Analysis + Ending (can grow to 6)
 SLIDE_PHOTO_KEYWORDS = {
     "crypto": [
-        None,                                   #  1: 封面（文章 OG 圖）
-        "cryptocurrency,market,chart",          #  2: 發生了什麼
-        None,                                   #  3: 佐證照片（用 OG 圖或 evidence 關鍵字）
-        "blockchain,technology,digital",        #  4: 重點 1
-        "bitcoin,ethereum,trading",             #  5: 重點 2
-        "finance,global,economy",               #  6: 重點 3
-        "crypto,analysis,data",                 #  7: 重點 4
-        "investment,future,technology",         #  8: 重點 5
-        "finance,wall-street,history",          #  9: 為什麼重要 + 歷史脈絡
-        "success,growth,community",             # 10: CTA
+        None,                                   # 1: Cover (AI/photo)
+        "cryptocurrency,market,blockchain",     # 2: Key Points
+        "bitcoin,finance,analysis",             # 3: FAQ/Analysis
+        None,                                   # 4: Ending (solid bg)
     ],
     "finance": [
         None,
-        "stock,market,chart",
+        "stock,market,finance",
+        "economy,global,business",
         None,
-        "finance,economy,trading",
-        "bank,money,currency",
-        "global,economy,business",
-        "data,statistics,graph",
-        "investment,portfolio,growth",
-        "wall-street,history,market",
-        "success,growth,future",
     ],
     "startup": [
         None,
-        "startup,office,team",
+        "startup,innovation,technology",
+        "entrepreneur,business,venture",
         None,
-        "entrepreneur,innovation,idea",
-        "technology,business,code",
-        "venture,capital,funding",
-        "data,analytics,dashboard",
-        "product,launch,growth",
-        "silicon-valley,history,tech",
-        "success,ambition,future",
     ],
 }
 
-# 裁切偏移保留
+# 裁切偏移（每張 slide 不同偏移，確保背景多樣性，最多 6 張）
 SLIDE_CROPS = [
     (0,    0),
-    (0,    0),
-    (0,    0),
-    (0,    0),
-    (0,    0),
+    (80,   40),
+    (-80,  40),
+    (40,  -60),
+    (-40,  80),
+    (60,   -80),
 ]
 
 
@@ -953,7 +993,7 @@ def draw_shadow_text(draw, pos, text, font, fill, shadow=(0, 0, 0), offset=3):
     draw.text(pos, text, fill=fill, font=font)
 
 
-def load_logo(channel: str, target_w: int = 360) -> Image.Image | None:
+def load_logo(channel: str, target_w: int = 360) -> Optional[Image.Image]:
     """載入頻道 Logo 圖片（透明背景），自動縮放到指定寬度"""
     logo_path = CHANNEL_LOGOS.get(channel)
     if not logo_path or not logo_path.exists():
@@ -969,45 +1009,50 @@ def load_logo(channel: str, target_w: int = 360) -> Image.Image | None:
 
 
 def fit_text_params(text: str, available_h: int,
-                    max_width_px: int = 880) -> tuple[int, int, int]:
+                    max_width_px: int = 880,
+                    max_lines: int = 0) -> tuple[int, int, int]:
     """
     自適應文字排版：根據文字量和可用高度，計算最佳 font_size / line_h / wrap_w
-    目標：填滿可用空間的 75-95%，不超出
+    目標：填滿可用空間的 70-95%，不超出
+    max_lines: 額外限制最多行數（0=不限制）
     回傳 (font_size, line_h, wrap_w)
     """
-    char_count = len(text)
-    # 候選字體設定：可讀性優先，最大只到 34px（不再為了塞滿空間放大到 42px）
+    # 候選字體設定：可讀性優先，最大只到 34px
     candidates = [
         (34, 50),
         (32, 48),
         (30, 44),
         (28, 42),
         (26, 38),
+        (24, 36),
+        (22, 34),
     ]
-    best = (30, 44, 22)  # fallback
+    best = (28, 42, 22)  # fallback
 
     for font_size, line_h in candidates:
-        # 估算每行可容納的中文字數（中文字寬 ≈ font_size，加一點間距）
         char_w = font_size * 0.95
         wrap_w = max(14, int(max_width_px / char_w))
-        # 計算總行數
         lines = smart_wrap(text, width=wrap_w)
+        # 如果有 max_lines 限制，先截斷
+        if max_lines > 0:
+            lines = lines[:max_lines]
         total_h = len(lines) * line_h
         fill_ratio = total_h / available_h if available_h > 0 else 1
 
         if 0.70 <= fill_ratio <= 0.95:
             return (font_size, line_h, wrap_w)
         elif total_h <= available_h:
-            # 不超出但可能不夠滿，記為候選（最大字體優先）
             best = (font_size, line_h, wrap_w)
             if fill_ratio >= 0.55:
-                return best  # 55% 以上可接受
+                return best
 
     return best
 
 
 def smart_title_lines(title: str, max_per_line: int = 11) -> list[str]:
     """標題斷行：優先在 ！？。… 等標點處自然斷行，避免單字孤立"""
+    # 修復：先將字面的 \n 替換為真正的換行符
+    title = title.replace("\\n", "\n")
     for punct in ['！', '？', '。', '…']:
         idx = title.find(punct)
         if 0 < idx < len(title) - 1:
@@ -1063,7 +1108,7 @@ class OGParser(HTMLParser):
             self._done = True
 
 
-def fetch_og_image(url: str) -> str | None:
+def fetch_og_image(url: str) -> Optional[str]:
     try:
         req = Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; IGBot/4.0)"})
         with urlopen(req, timeout=8) as r:
@@ -1076,7 +1121,7 @@ def fetch_og_image(url: str) -> str | None:
         return None
 
 
-def download_image(url: str) -> Image.Image | None:
+def download_image(url: str) -> Optional[Image.Image]:
     try:
         req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urlopen(req, timeout=15) as r:
@@ -1090,161 +1135,223 @@ def download_image(url: str) -> Image.Image | None:
 _og_cache: dict = {}
 
 
-# ── AI 封面生成（fal-ai FLUX schnell）──────────────────────────
+# ── AI 封面生成（fal-ai FLUX Pro）──────────────────────────
+# 風格參考：abmedia_io (@abmedia_io) Instagram
+# 核心美學：電影感 editorial photography，暗色調，人物故事感
+# ★ 不用 3D CGI/黃金球/公牛——用真實攝影場景 + 戲劇性打光
 
 # 文章情緒 → prompt 模板映射（每個情緒有多個場景變體，隨機選取避免重複）
 _COVER_PROMPTS = {
+    # ── 崩盤 / 暴跌 ──────────────────────────────────────────────
     "crash": [
-        (   "Marvel comic book style dramatic illustration of crypto price crash, "
-            "a stressed trader with hands on head surrounded by falling red charts and broken screens, "
-            "bold ink outlines, action lines, halftone shading, intense red and orange colors, "
-            "crypto symbols shattering, square format"
+        (   "Cinematic editorial photograph: extreme close-up of a trader's face, "
+            "anxious expression, red LED ticker numbers reflected in his glasses, "
+            "chaotic trading floor blurred in background, "
+            "harsh side lighting, deep shadows, desaturated with red tint, "
+            "film noir atmosphere, photorealistic, 85mm portrait lens look, "
+            "bottom 30% fades to solid black, square 1:1"
         ),
-        (   "Empty trading floor bathed in red emergency lighting, massive digital screens "
-            "showing crashing charts, papers scattered on the floor, "
-            "dramatic shadows, cinematic composition, square format"
+        (   "Cinematic wide shot: empty luxury trading office at night, "
+            "overturned coffee cup, single laptop screen glowing red with falling charts, "
+            "venetian blind shadows across the room, rain on floor-to-ceiling windows, "
+            "dark moody thriller atmosphere, teal and red color grade, "
+            "bottom 30% fades to black, square 1:1, movie poster composition"
         ),
-        (   "Abstract crumbling financial charts disintegrating into fragments, "
-            "deep red and black color palette, geometric shards falling downward, "
-            "dark dramatic atmosphere, square format"
+        (   "Editorial photography: crowd of people watching a massive red LED display board "
+            "in a financial district plaza, faces illuminated by red glow, "
+            "some covering mouths in shock, dramatic downward pointing arrows on screen, "
+            "dark overcast sky, available light documentary style, "
+            "bottom 30% gradually darkens to black, square format"
         ),
-        (   "Dark storm clouds rolling over a city skyline, glowing red numbers and "
-            "crypto symbols falling like rain from the sky, "
-            "moody cinematic lighting, ominous atmosphere, square format"
-        ),
-        (   "Shattered glass explosion with crypto coin symbols fragmenting outward, "
-            "intense red and orange backlighting, dark void background, "
-            "dynamic energy, bold graphic style, square format"
+        (   "Cinematic close-up: single wilted red rose lying on a cracked marble floor, "
+            "sharp dramatic spotlight from above, surrounding darkness, "
+            "scattered banknotes and coins out of focus in background, "
+            "fine art photography, melancholy atmosphere, "
+            "lower 30% fades to solid black, square 1:1"
         ),
     ],
+    # ── 牛市 / 看漲 ──────────────────────────────────────────────
     "bullish": [
-        (   "Andy Warhol pop art style illustration of Bitcoin price surge, "
-            "golden Bitcoin coins stacked high, green upward arrows, "
-            "bold flat color blocks in gold blue and white, halftone dots, "
-            "celebratory financial theme, square format"
+        (   "Cinematic editorial: confident CEO or fund manager standing at floor-to-ceiling "
+            "window, arms crossed, overlooking illuminated city skyline at night, "
+            "green trading screens glowing behind him, rim lighting outlining his silhouette, "
+            "power and authority atmosphere, deep navy and green palette, "
+            "bottom 30% fades to black, square 1:1, editorial magazine cover style"
         ),
-        (   "A rocket launching through dramatic clouds into a green aurora sky, "
-            "golden sparks and upward-pointing arrows trailing behind, "
-            "vibrant green and gold color palette, epic composition, square format"
+        (   "Aerial cinematic photograph: golden sunrise breaking over a major financial district, "
+            "god rays piercing through skyscrapers, low morning fog in the streets, "
+            "warm amber and gold color grade, expansive and triumphant mood, "
+            "shot from helicopter perspective, ultra wide angle, "
+            "bottom 30% fades to solid black, square format"
         ),
-        (   "Golden sunrise over a mountain landscape with luminous upward arrows "
-            "rising from the peaks, warm gold and emerald green tones, "
-            "inspirational atmosphere, majestic scenery, square format"
+        (   "Editorial photography: celebration scene in dim upscale restaurant, "
+            "champagne glasses raised mid-clink, bokeh city lights through large windows, "
+            "warm candlelight on faces showing joy and relief, "
+            "shallow depth of field, 35mm film look with slight grain, "
+            "lower third darkens to black, square 1:1"
         ),
-        (   "Abstract geometric pattern of interlocking triangles pointing upward, "
-            "gradient from deep green to brilliant gold, "
-            "modern minimalist design, clean lines, glowing highlights, square format"
-        ),
-        (   "Futuristic city skyline glowing with green neon light at night, "
-            "holographic charts rising above the buildings, "
-            "optimistic cyberpunk aesthetic, vibrant green and gold, square format"
+        (   "Cinematic wide shot: lone figure standing at the peak of a mountain or rooftop, "
+            "arms raised in triumph, city lights sprawling below into horizon, "
+            "dramatic clouds catching last light of sunset, orange and purple sky, "
+            "silhouette composition, epic scale contrast, "
+            "bottom 30% fades to black, square format, movie poster quality"
         ),
     ],
+    # ── 監管 / 法規 ──────────────────────────────────────────────
     "regulation": [
-        (   "Cyberpunk digital illustration of cryptocurrency regulation, "
-            "a futuristic government building with neon Bitcoin and Ethereum hologram symbols "
-            "being scanned by laser beams, dramatic purple and cyan lighting, "
-            "dark tech atmosphere, bold outlines, square format"
+        (   "Cinematic editorial: row of suited government officials or lawyers "
+            "walking out of a grand institutional building, press cameras flashing, "
+            "harsh strobe light effect, imposing neoclassical architecture columns, "
+            "cold blue-grey color grade, authoritative and tense atmosphere, "
+            "bottom 30% fades to black, square 1:1, documentary news photography"
         ),
-        (   "A massive gavel made of circuit boards striking down on a digital landscape, "
-            "purple and blue lighting, holographic legal documents floating, "
-            "authoritative and tech-forward atmosphere, square format"
+        (   "Dramatic editorial photograph: heavy metal handcuffs resting on white marble desk, "
+            "official documents and government seal visible, single overhead spotlight, "
+            "deep surrounding shadows, cold institutional lighting, "
+            "minimalist noir composition, high contrast black and white with cold tones, "
+            "lower third darkens to solid black, square format"
         ),
-        (   "Balanced scales of justice with crypto coins on one side and government seals on the other, "
-            "set against a dark marble courthouse backdrop with neon accents, "
-            "dramatic lighting, serious tone, square format"
+        (   "Cinematic interior: massive empty courtroom bathed in dramatic shafts of light "
+            "streaming through tall windows, judge's bench prominent and imposing, "
+            "lone figure standing in vast space emphasizing scale of law, "
+            "cold marble surfaces, cathedral-like grandeur, "
+            "bottom 30% fades to black, square 1:1"
         ),
-        (   "A digital fortress with shield icons and lock symbols, "
-            "government-style architecture fused with futuristic tech, "
-            "deep purple and steel blue color palette, imposing atmosphere, square format"
-        ),
-        (   "An intricate network of glowing compliance pathways and checkpoints, "
-            "abstract overhead view of a regulatory maze in neon blue and purple, "
-            "dark background, clean geometric lines, square format"
+        (   "Editorial photography: extreme close-up of a gavel mid-strike on sound block, "
+            "motion blur on impact, particles and dust in the air, "
+            "dark wood textures, dramatic single-source side lighting, "
+            "decisive moment capture, tense and authoritative mood, "
+            "lower 30% fades to solid black, square format, cinematic crop"
         ),
     ],
+    # ── ETF / 機構採用 ──────────────────────────────────────────
     "etf": [
-        (   "Andy Warhol pop art style illustration of Bitcoin ETF institutional investment, "
-            "golden Bitcoin coins flowing into a vault, green charts rising, "
-            "bold flat colors in gold navy and white, halftone dots, "
-            "wealth and institutional finance theme, square format"
+        (   "Cinematic editorial: Bloomberg terminal in sharp focus in foreground, "
+            "gold price chart showing dramatic upward movement, "
+            "blurred Wall Street trading floor filled with analysts in background, "
+            "professional shallow depth of field, warm office lighting, "
+            "aspirational financial journalism aesthetic, "
+            "bottom 30% fades to black, square 1:1"
         ),
-        (   "A grand Wall Street style vault door opening to reveal golden crypto light streaming out, "
-            "suited figures in silhouette, charts projected on marble walls, "
-            "luxurious gold and navy color palette, square format"
+        (   "Dramatic editorial photography: two silhouetted figures shaking hands "
+            "at massive floor-to-ceiling window, city financial district at night behind them, "
+            "backlit composition with warm ambient city glow, "
+            "power meeting atmosphere, deep shadows inside room contrasting bright city, "
+            "lower 30% darkens to solid black, square format"
         ),
-        (   "Golden ticker tape parade with ETF fund symbols and rising chart confetti, "
-            "bold celebratory scene, institutional finance aesthetics, "
-            "warm gold and deep blue tones, square format"
+        (   "Cinematic night shot: Wall Street or financial district street level, "
+            "wet pavement reflections of building lights, long exposure light trails from taxis, "
+            "iconic financial institution facade in background, "
+            "teal and orange cinematic color grade, urban epic atmosphere, "
+            "bottom 30% fades to black, square 1:1, movie poster quality"
         ),
-        (   "A bridge connecting a classic bank building to a futuristic crypto tower, "
-            "golden light flowing across the bridge, symbolizing institutional adoption, "
-            "dramatic sunset backdrop, warm tones, square format"
-        ),
-        (   "Abstract flowing streams of gold converging into a central glowing node, "
-            "representing capital inflows, dark navy background, "
-            "elegant data visualization aesthetic, luminous particles, square format"
+        (   "Editorial close-up: well-dressed executive hand pressing button on trading terminal, "
+            "multiple monitors with charts reflected in polished desk surface, "
+            "dramatic rim lighting from screens, dark background, "
+            "decisive moment, institutional confidence, professional editorial style, "
+            "lower third fades to black, square format"
         ),
     ],
+    # ── 駭客 / 資安事件 ──────────────────────────────────────────
     "hack": [
-        (   "Cyberpunk digital illustration of crypto hack, dark hacker environment "
-            "with multiple screens showing code and cryptocurrency wallets, "
-            "green matrix-like text, neon purple and cyan lighting, "
-            "bold outlines, digital theft atmosphere, square format"
+        (   "Cinematic thriller: lone figure in dark room, face partially illuminated "
+            "by single glowing monitor, green code reflecting off their face, "
+            "multiple dark screens surrounding them, heavy shadows, "
+            "cyber noir atmosphere, green-tinted low-key lighting, "
+            "bottom 30% fades to solid black, square 1:1, thriller movie poster style"
         ),
-        (   "A cracked digital vault with crypto coins spilling out into a dark void, "
-            "red warning symbols flashing, binary code cascading, "
-            "tense atmosphere, neon red and black, square format"
+        (   "Editorial photography: close-up of multiple computer monitors displaying "
+            "red alert warnings and error messages in dark room, "
+            "panicked analyst out of focus in background, "
+            "ominous red and cyan glow, tense cybersecurity incident atmosphere, "
+            "documentary editorial style, high drama, "
+            "lower third darkens to black, square format"
         ),
-        (   "Digital spider web of interconnected blockchain nodes with several nodes "
-            "turning red and breaking apart, dark background, "
-            "ominous green and red lighting, cyber threat visualization, square format"
-        ),
-        (   "A hooded figure silhouetted against walls of scrolling green code, "
-            "crypto wallet icons cracking and draining, "
-            "dark noir atmosphere, dramatic backlighting, square format"
-        ),
-        (   "Abstract digital lock being shattered into pixel fragments, "
-            "red and cyan sparks exploding outward, dark cybersecurity theme, "
-            "high-tech aesthetic, intense atmosphere, square format"
+        (   "Cinematic close-up: cracked phone or laptop screen, "
+            "caution warning messages glowing through the fractures, "
+            "dark surrounding environment, fingers visible at edge of frame, "
+            "dramatic high-contrast lighting, cool blue and red tones, "
+            "fine art editorial photography, vulnerability theme, "
+            "bottom 30% fades to black, square 1:1"
         ),
     ],
+    # ── 空投 / 獎勵 ──────────────────────────────────────────────
+    "airdrop": [
+        (   "Cinematic editorial: crowd of people in urban plaza, "
+            "all looking upward with expressions of surprise and delight, "
+            "dramatic overhead spotlight from above, confetti or paper raining down, "
+            "warm festive lighting against dark sky, candid documentary moment, "
+            "bottom 30% fades to black, square 1:1"
+        ),
+        (   "Editorial photography: person opening mysterious envelope or box, "
+            "interior golden glow reflecting on excited face, "
+            "dark background, shallow depth of field, "
+            "gift and reward theme, warm intimate lighting, "
+            "lower third darkens to solid black, square format"
+        ),
+    ],
+    # ── NFT / 數位藝術 ───────────────────────────────────────────
+    "nft": [
+        (   "Cinematic editorial: artist in dark studio, illuminated canvas or screen "
+            "showing vibrant digital artwork, dramatic spotlight from above, "
+            "creative chaos of tools and devices around, "
+            "warm vs cool light contrast, NFT creator culture aesthetic, "
+            "bottom 30% fades to black, square 1:1"
+        ),
+        (   "Editorial photography: luxury art auction in dim gallery, "
+            "auctioneer under spotlight, bidders in shadow with numbered paddles raised, "
+            "single dramatic artwork on illuminated wall, "
+            "high society atmosphere, tense decisive moment, "
+            "lower third darkens to solid black, square format"
+        ),
+    ],
+    # ── 預設（綜合加密新聞）──────────────────────────────────────
     "default": [
-        (   "Andy Warhol pop art style illustration of cryptocurrency, "
-            "golden Bitcoin coin as centerpiece with colorful trading chart background, "
-            "bold flat color blocks, halftone dots, vibrant colors, square format"
+        (   "Cinematic editorial photograph: lone business figure standing at massive "
+            "floor-to-ceiling window overlooking glittering city skyline at blue hour, "
+            "deep navy sky, amber city glow from below, "
+            "strong rim light outlining the silhouette, pensive reflective mood, "
+            "professional financial journalism aesthetic, "
+            "bottom 30% fades to solid black, square 1:1, editorial magazine style"
         ),
-        (   "Abstract blockchain network visualization with glowing interconnected nodes, "
-            "gradient of blue purple and gold, dark background, "
-            "modern tech aesthetic, clean design, square format"
+        (   "Dramatic editorial photography: empty iconic financial district street at dawn, "
+            "long shadows cast by early sun through skyscraper canyons, "
+            "single figure walking in distance suggesting scale, "
+            "teal and warm gold cinematic color grade, atmospheric morning mist, "
+            "bottom third gradually darkens to black, square format"
         ),
-        (   "A futuristic digital landscape with floating crypto symbols and holographic charts, "
-            "vibrant blue and purple atmosphere, "
-            "clean modern design, optimistic tone, square format"
+        (   "Cinematic wide shot: dramatic storm clouds rolling over a major Asian city skyline "
+            "at dusk, last golden light illuminating towers, dark brooding sky above, "
+            "weather contrast symbolizing market uncertainty, "
+            "epic landscape editorial photography, "
+            "bottom 30% fades to black, square 1:1"
         ),
-        (   "Minimalist golden crypto coin on a gradient background with subtle geometric patterns, "
-            "elegant and clean design, blue and gold color palette, "
-            "professional financial aesthetic, square format"
+        (   "Editorial close-up: hands typing on keyboard in dark room, "
+            "multiple monitor glow reflecting on focused analyst's face, "
+            "charts and data streams visible on screens, "
+            "late-night work atmosphere, teal screen glow against warm skin tones, "
+            "journalistic documentary style, high concentration mood, "
+            "lower 30% fades to solid black, square format, cinematic crop"
         ),
-        (   "Dynamic swirl of colorful data streams and crypto symbols converging, "
-            "abstract digital art, vibrant rainbow highlights on dark background, "
-            "energetic modern composition, square format"
+        (   "Cinematic overhead shot: circular conference table with executives in heated discussion, "
+            "papers and devices spread across table, dramatic overhead lighting, "
+            "Tokyo or Taipei skyline visible through glass wall behind them, "
+            "power and strategy atmosphere, cool blue interior vs warm city exterior, "
+            "bottom 30% fades to black, square 1:1"
         ),
     ],
 }
 
-# 隨機風格修飾語，附加到 prompt 增加視覺多樣性
+# 隨機風格修飾語——abmedia_io editorial photography 風格
 _STYLE_MODIFIERS = [
-    "in watercolor style",
-    "in minimalist flat design",
-    "in 3D rendered style",
-    "in neon cyberpunk aesthetic",
-    "in oil painting style",
-    "in geometric abstract style",
-    "in photorealistic style",
-    "in vaporwave aesthetic",
-    "in retro poster style",
-    "in isometric illustration style",
+    "cinematic color grading, teal and orange LUT, film grain",
+    "dramatic chiaroscuro single-source lighting, deep shadows",
+    "anamorphic lens bokeh, shallow depth of field, 35mm film look",
+    "desaturated editorial photography, high contrast monochrome accent",
+    "moody atmospheric available light, photojournalism style",
+    "blue hour ambient glow, long exposure, urban cinematic",
+    "backlit rim lighting, silhouette against bright background",
+    "editorial magazine cover composition, professional photojournalism",
 ]
 
 # 關鍵字 → 情緒分類
@@ -1304,19 +1411,57 @@ def _extract_topic_keywords(hook: str, what: str = "") -> str:
             found.append(english_name)
     if found:
         return "featuring " + " and ".join(found[:3]) + " imagery"
+
+    # 擴展：偵測更多主題關鍵詞
+    _TOPIC_MAP = {
+        "ai": "artificial intelligence", "人工智慧": "artificial intelligence",
+        "apple": "Apple technology", "蘋果": "Apple technology",
+        "google": "Google technology", "tesla": "Tesla electric vehicles",
+        "特斯拉": "Tesla", "fed": "Federal Reserve monetary policy",
+        "聯準會": "Federal Reserve", "央行": "central bank monetary policy",
+        "降息": "interest rate cut", "升息": "interest rate hike",
+        "通膨": "inflation", "gdp": "economic growth GDP",
+        "股市": "stock market trading", "台股": "Taiwan stock market",
+        "美股": "US stock market Wall Street", "房地產": "real estate",
+        "銀行": "banking finance", "保險": "insurance",
+        "半導體": "semiconductor chip", "晶片": "semiconductor chip",
+        "台積電": "TSMC semiconductor", "tsmc": "TSMC semiconductor",
+        "nvidia": "NVIDIA GPU", "輝達": "NVIDIA GPU",
+    }
+    for kw, en in _TOPIC_MAP.items():
+        if kw in text and en not in found:
+            found.append(en)
+    if found:
+        return "featuring " + " and ".join(found[:2]) + " imagery"
     return ""
 
 
 def _pick_cover_prompt(mood: str, hook: str = "", what: str = "",
                        style_modifier: bool = True) -> str:
-    """從 _COVER_PROMPTS 隨機選取一個場景變體，並注入文章主題 + 隨機風格修飾。"""
+    """從 _COVER_PROMPTS 隨機選取一個場景變體，並注入文章主題 + 隨機風格修飾。
+    優先生成與文章主題直接相關的封面圖。"""
+    topic_hint = _extract_topic_keywords(hook, what)
+
+    # 若有明確主題，直接以主題為核心生成 prompt（不用預設場景）
+    if topic_hint and hook:
+        # 用文章標題的英文翻譯構建更貼合主題的 prompt
+        hook_clean = hook.replace("\n", " ").strip()[:60]
+        topic_prompt = (
+            f"Cinematic editorial illustration about {topic_hint.replace('featuring ', '').replace(' imagery', '')}, "
+            f"dramatic lighting, professional news media cover art, "
+            f"dark moody background with accent lighting, "
+            f"high-quality digital art, square format"
+        )
+        if style_modifier:
+            style = random.choice(_STYLE_MODIFIERS)
+            topic_prompt = topic_prompt.rstrip().rstrip(",") + f", {style}"
+        return topic_prompt
+
+    # 無明確主題時才 fallback 到預設場景
     variants = _COVER_PROMPTS.get(mood, _COVER_PROMPTS["default"])
     prompt = random.choice(variants)
 
-    # 注入文章主題關鍵詞
-    topic_hint = _extract_topic_keywords(hook, what)
     if topic_hint:
-        # 在 "square format" 前插入主題提示
         prompt = prompt.replace("square format", f"{topic_hint}, square format")
 
     # 附加隨機風格修飾語
@@ -1428,9 +1573,8 @@ def _build_person_prompt(person: str, mood: str) -> str:
             "intense red and orange colors"
         ),
         "bullish": (
-            "Andy Warhol pop art style vibrant illustration",
-            "giving a confident speech at a finance summit with green charts rising behind, "
-            "bold flat color blocks in gold blue and white, halftone dots, celebratory mood"
+            "Andy Warhol pop art style portrait, mature man with short gray silver hair, clean shaven face, wearing dark suit, Bitcoin gold coin halo above his head, Bitcoin symbols surrounding him, bold flat color blocks in gold yellow orange and white, halftone dots, pop art, square format",
+            "confident smile, radiant divine golden light rays behind, epic cryptocurrency evangelist, vibrant comic book style colors, ultra detailed face"
         ),
         "regulation": (
             "Cyberpunk digital illustration",
@@ -1460,15 +1604,17 @@ def _build_person_prompt(person: str, mood: str) -> str:
 
 
 def generate_ai_cover(hook: str, what: str = "",
-                      person: str = "") -> Image.Image | None:
+                      person: str = "",
+                      forced_mood: str = None) -> Optional[Image.Image]:
     """用 fal-ai FLUX schnell 根據文章情緒生成 AI 封面圖。
-    如果有人物名稱，生成該人物的場景照片。"""
+    如果有人物名稱，生成該人物的場景照片。
+    forced_mood: 若有值，強制使用指定情緒（不自動偵測）。"""
     fal_key = os.environ.get("FAL_KEY", "").strip()
     if not fal_key:
         return None
     try:
         import subprocess as _sp
-        mood = _detect_article_mood(hook, what)
+        mood = forced_mood or _detect_article_mood(hook, what)
         if person:
             prompt = _build_person_prompt(person, mood)
             print(f"   🎨 AI 封面生成中... (人物: {person}, 情緒: {mood})")
@@ -1477,16 +1623,16 @@ def generate_ai_cover(hook: str, what: str = "",
             print(f"   🎨 AI 封面生成中... (情緒: {mood})")
 
         result = _sp.run(
-            ["curl", "-s", "-X", "POST", "https://fal.run/fal-ai/flux/schnell",
+            ["curl", "-s", "-X", "POST", "https://fal.run/fal-ai/flux-pro/v1.1",
              "-H", f"Authorization: Key {fal_key}",
              "-H", "Content-Type: application/json",
              "-d", json.dumps({
                  "prompt": prompt,
                  "image_size": "square_hd",
                  "num_images": 1,
-                 "num_inference_steps": 4,
+                 "safety_tolerance": "5",
              })],
-            capture_output=True, text=True, timeout=30
+            capture_output=True, text=True, timeout=60
         )
         if result.returncode != 0:
             print(f"   ⚠️ fal-ai 呼叫失敗：exit {result.returncode}")
@@ -1531,17 +1677,17 @@ def generate_ai_cover_candidates(
             current_prompt = prompts[idx] if idx < len(prompts) else prompts[-1]
             print(f"   📝 候選 {idx+1} prompt: {current_prompt[:80]}...")
             result = _sp.run(
-                ["curl", "-s", "-X", "POST", "https://fal.run/fal-ai/flux/schnell",
+                ["curl", "-s", "-X", "POST", "https://fal.run/fal-ai/flux-pro/v1.1",
                  "-H", f"Authorization: Key {fal_key}",
                  "-H", "Content-Type: application/json",
                  "-d", json.dumps({
                      "prompt": current_prompt,
                      "image_size": "square_hd",
                      "num_images": 1,
-                     "num_inference_steps": 4,
+                     "safety_tolerance": "5",
                      "seed": seed,
                  })],
-                capture_output=True, text=True, timeout=30
+                capture_output=True, text=True, timeout=60
             )
             if result.returncode != 0:
                 print(f"   ⚠️ 候選 {idx+1} 生成失敗：exit {result.returncode}")
@@ -1567,7 +1713,7 @@ def generate_ai_cover_candidates(
     return saved_paths
 
 
-def get_pexels_photo(keywords: str, slide_idx: int = 0) -> Image.Image | None:
+def get_pexels_photo(keywords: str, slide_idx: int = 0) -> Optional[Image.Image]:
     """Pexels API 抓高品質主題照片（用 curl 避免 Cloudflare 擋 urllib）"""
     api_key = os.environ.get("PEXELS_API_KEY", "").strip()
     if not api_key:
@@ -1597,7 +1743,7 @@ def get_pexels_photo(keywords: str, slide_idx: int = 0) -> Image.Image | None:
         return None
 
 
-def get_og_photo(article_url: str) -> Image.Image | None:
+def get_og_photo(article_url: str) -> Optional[Image.Image]:
     """取得文章 OG 封面圖（Slide 1 專用）"""
     global _og_cache
     if not article_url:
@@ -1613,7 +1759,7 @@ def get_og_photo(article_url: str) -> Image.Image | None:
     return _og_cache.get(article_url)
 
 
-def get_keyword_photo(keywords: str, seed: str = "", slide_idx: int = 0) -> Image.Image | None:
+def get_keyword_photo(keywords: str, seed: str = "", slide_idx: int = 0) -> Optional[Image.Image]:
     """用關鍵字抓主題照片
     優先序：Pexels（精準）→ Unsplash（高品質）→ loremflickr（免費）→ picsum（fallback）
     """
@@ -1644,7 +1790,7 @@ def get_keyword_photo(keywords: str, seed: str = "", slide_idx: int = 0) -> Imag
     return download_image(f"https://picsum.photos/seed/{seed_hash}/1080/1080")
 
 
-def get_photo(article_url: str, keyword: str, seed: str = "", slide_idx: int = 0) -> Image.Image | None:
+def get_photo(article_url: str, keyword: str, seed: str = "", slide_idx: int = 0) -> Optional[Image.Image]:
     """舊介面相容（CLI 單張用）"""
     if slide_idx == 0 and article_url:
         img = get_og_photo(article_url)
@@ -1657,7 +1803,7 @@ def get_photo(article_url: str, keyword: str, seed: str = "", slide_idx: int = 0
 
 # ── 背景製作（支援裁切偏移）──────────────────────────────────
 
-def make_background(photo: Image.Image | None, theme: dict,
+def make_background(photo: Optional[Image.Image], theme: dict,
                     W=1080, H=1080, crop_x: int = 0, crop_y: int = 0,
                     cover: bool = False,
                     palette: dict = None, slide_idx: int = 0,
@@ -1807,7 +1953,64 @@ def slide_hook(bg: Image.Image, theme: dict, title: str, what_preview: str,
     img = Image.alpha_composite(img.convert("RGBA"), glow_overlay).convert("RGB")
     draw = ImageDraw.Draw(img)
 
-    if style == "editorial":
+    if style == "abmedia":
+        # ── abmedia 風格：大照片 + 白色大標題 + 底部漸層 ──
+        # 頂部主題色粗線 + 頁碼
+        draw.rectangle([0, 0, W, 6], fill=accent)
+        draw.text((W - 95, 18), slide_info, fill=(130, 130, 130), font=get_font(22))
+
+        # 主標題（72-84pt 粗體，垂直居中偏下）
+        font_title = get_font(78)
+        # 限制每行最多 10 個中文字（不截斷帶 "..."）
+        lines = smart_title_lines(title, max_per_line=10)
+        line_h = 128  # 78pt 字體高約 94px，行距需 ≥128 才不重疊
+        total_title_h = len(lines[:3]) * line_h
+
+        if person_mode:
+            title_y_start = max(650, H - total_title_h - 200)
+        else:
+            title_y_start = max(320, (H - total_title_h) // 2 + 60)
+
+        # 下方漸層（底部 30% 淡出到黑）
+        for gy in range(H // 3):
+            alpha = int(200 * (gy / (H // 3)))
+            text_bg(draw, 0, H - (H // 3) + gy, W, H - (H // 3) + gy + 1, alpha=alpha)
+
+        # IG safe zone: 8%-92% X, 10%-90% Y
+        _safe_x_min = int(W * 0.08)
+        _safe_x_max = int(W * 0.92)
+        _safe_y_max = int(H * 0.90)
+
+        # Draw title lines, clamped to safe zone
+        y = title_y_start
+        for line in lines[:3]:
+            # Max width within safe zone
+            max_line_px = _safe_x_max - _safe_x_min - 40
+            # Instead of truncating with "...", reduce font size
+            if tw(draw, line, font_title) > max_line_px:
+                # Try smaller font
+                font_title_sm = get_font(64)
+                if tw(draw, line, font_title_sm) > max_line_px:
+                    font_title_sm = get_font(56)
+                lx = cx(draw, line, font_title_sm, W)
+                lx = max(_safe_x_min, lx)
+                draw_shadow_text(draw, (lx, y), line, font_title_sm,
+                               fill=(255, 255, 255), offset=4)
+            else:
+                lx = cx(draw, line, font_title, W)
+                lx = max(_safe_x_min, lx)
+                draw_shadow_text(draw, (lx, y), line, font_title,
+                               fill=(255, 255, 255), offset=4)
+            y += line_h
+            if y > _safe_y_max:
+                break
+
+        # 滑動提示（底部條上方）
+        hint = "← 滑動查看完整分析 →"
+        draw.text((cx(draw, hint, get_font(26), W), H - 80),
+                  hint, fill=(220, 220, 220), font=get_font(26))
+
+    elif style == "editorial":
         # ── 鏈新聞風格：大張照片 + 聳動標題居中 ──
         # 頂部主題色粗線 + 頁碼
         draw.rectangle([0, 0, W, 6], fill=accent)
@@ -1849,15 +2052,6 @@ def slide_hook(bg: Image.Image, theme: dict, title: str, what_preview: str,
         bar_y = y + 12
         draw.rectangle([W // 2 - 70, bar_y, W // 2 + 70, bar_y + 4], fill=accent)
 
-        # What 預覽（標題下方小字，居中）— 人物模式時空間不夠，跳過
-        if what_preview and not person_mode and bar_y + 160 < H - 120:
-            preview_y = bar_y + 24
-            font_preview = get_font(34)
-            preview_clean = clean_preview(what_preview, max_chars=70)
-            for line in smart_wrap(preview_clean, width=24)[:3]:
-                lx = cx(draw, line, font_preview, W)
-                draw.text((lx, preview_y), line, fill=(210, 210, 210), font=font_preview)
-                preview_y += 46
 
         # 底部品牌條
         draw_bottom_bar(draw, theme, W, H)
@@ -1899,7 +2093,7 @@ def slide_hook(bg: Image.Image, theme: dict, title: str, what_preview: str,
     print(f"   ✅ Slide 1 → {Path(out).name}")
 
 
-# ── SLIDE 2：發生了什麼（全頁，無底條）────────────────────────
+# ── SLIDE 2：發生了什麼（全頁，無底條）──────────────────────── # DEPRECATED
 
 def slide_what(bg: Image.Image, theme: dict, text: str, slide_info: str, out: str):
     W, H = 1080, 1080
@@ -1920,8 +2114,11 @@ def slide_what(bg: Image.Image, theme: dict, text: str, slide_info: str, out: st
         # 內文（自適應填滿全頁，垂直置中）
         header_bottom = 166
         available_h = H - header_bottom - 40
-
-        font_size, line_h, wrap_w = fit_text_params(text, available_h, max_width_px=860)
+        # 安全限制：確保不超高
+        max_allowed_lines = int(available_h / 36)
+        font_size, line_h, wrap_w = fit_text_params(text, available_h,
+                                                      max_width_px=860,
+                                                      max_lines=max_allowed_lines)
         font_body = get_font(font_size)
         max_lines = int(available_h / line_h)
         wrapped = smart_wrap(text, width=wrap_w)[:max_lines]
@@ -1946,7 +2143,9 @@ def slide_what(bg: Image.Image, theme: dict, text: str, slide_info: str, out: st
         draw.rectangle([W // 2 - 40, 196, W // 2 + 40, 199], fill=accent)
         header_bottom_m = 240
         available_h_m = H - header_bottom_m - 40
-        font_size, line_h, wrap_w = fit_text_params(text, available_h_m)
+        max_allowed_m = int(available_h_m / 36)
+        font_size, line_h, wrap_w = fit_text_params(text, available_h_m,
+                                                      max_lines=max_allowed_m)
         wrapped = smart_wrap(text, width=wrap_w)[:20]
         content_h = len(wrapped) * line_h
         y = header_bottom_m + max(0, (available_h_m - content_h) // 2)
@@ -1963,6 +2162,7 @@ def slide_what(bg: Image.Image, theme: dict, text: str, slide_info: str, out: st
 
 # ── SLIDE 3：三大重點（標題 + 說明，全頁）────────────────────
 
+# DEPRECATED
 def slide_points(bg: Image.Image, theme: dict, points: list, slide_info: str, out: str):
     """
     points 格式：["標題|詳細說明", ...]
@@ -2048,9 +2248,10 @@ def slide_points(bg: Image.Image, theme: dict, points: list, slide_info: str, ou
 
 # ── 佐證照片頁：大圖 + 說明文字 ─────────────────────────────
 
+# DEPRECATED
 def slide_evidence(bg: Image.Image, theme: dict, evidence_text: str,
                    slide_info: str, out: str, channel: str = "crypto",
-                   ai_data: dict | None = None,
+                   ai_data: Optional[dict] = None,
                    article_title: str = ""):
     """佐證頁：crypto/finance 用縮小走勢圖+註解，其他頻道用照片"""
     W, H = 1080, 1080
@@ -2250,6 +2451,7 @@ def slide_evidence(bg: Image.Image, theme: dict, evidence_text: str,
 
 # ── 單點深度分析頁 ────────────────────────────────────────────
 
+# DEPRECATED
 def slide_single_point(bg: Image.Image, theme: dict, point_num: int,
                        point_text: str, slide_info: str, out: str):
     """單一重點：上半部深色文字區 + 下半部露出背景照片"""
@@ -2273,28 +2475,35 @@ def slide_single_point(bg: Image.Image, theme: dict, point_num: int,
     title_lines = smart_wrap(pt_title, width=16)[:2]
     title_block_h = 130 + len(title_lines) * 56 + 16  # 數字+標題+裝飾線
 
-    # 說明文字字體（可讀性優先，最大 34px，不再為塞滿空間放大）
-    # ww 值縮小 2，給中英混排（如 ETF、Jay Jacobs）更多空間
-    desc_len = len(pt_desc)
-    if desc_len > 200:
-        fs, lh, ww = 30, 44, 23
-    elif desc_len > 100:
-        fs, lh, ww = 32, 48, 21
-    else:
-        fs, lh, ww = 34, 50, 19
-    desc_lines = smart_wrap(pt_desc, width=ww) if pt_desc else []
+    # 說明文字：根據可用高度動態計算字體大小+行數限制
+    # 每個 POINT 面板最大可用高度 = (H * 0.65)，留 35% 給背景照片
+    max_panel_h = int(H * 0.68)
+    # 先用最小字體估算行數，再往上試
+    _desc_candidates = [(30, 44, 23), (28, 42, 21), (26, 40, 20), (24, 36, 19), (22, 34, 18)]
+    fs, lh, ww = 26, 40, 20  # fallback
+    # 可用給說明+數據的總高度（扣掉標題區塊+間距）
+    desc_budget_h = max_panel_h - title_block_h - 100 - 50
+    for _fs, _lh, _ww in _desc_candidates:
+        est_lines = len(smart_wrap(pt_desc, width=_ww)) if pt_desc else 0
+        est_h = est_lines * _lh
+        if est_h <= desc_budget_h:
+            fs, lh, ww = _fs, _lh, _ww
+            break
+    # 強制限制 max_desc_lines（確保不溢出）
+    max_desc_lines = max(1, int(desc_budget_h / lh) - 1)
+    desc_lines = smart_wrap(pt_desc, width=ww)[:max_desc_lines] if pt_desc else []
     desc_h = len(desc_lines) * lh
 
     # 數據卡片
-    data_lh = 38
-    data_lines = smart_wrap(pt_data, width=30) if pt_data else []
-    data_box_h = (len(data_lines[:3]) * data_lh + 48) if data_lines else 0
+    data_lh = 36
+    data_lines = smart_wrap(pt_data, width=30)[:3] if pt_data else []
+    data_box_h = (len(data_lines) * data_lh + 48) if data_lines else 0
 
     # ── 計算內容總高度 → 決定深色面板高度 ──
     padding = 50  # 各區塊間距固定
     content_total = title_block_h + padding + desc_h + padding + data_box_h + 30
-    # 面板至少佔 55%，最多 85%（留底部露出照片）
-    panel_h = max(int(H * 0.55), min(content_total + 40, int(H * 0.85)))
+    # 面板至少佔 55%，最多 68%（留 32% 給背景照片）
+    panel_h = max(int(H * 0.55), min(content_total + 40, max_panel_h))
 
     # ── 繪製：上方深色面板 + 下方漸層過渡 ──
     text_bg(draw, 0, 0, W, panel_h, alpha=210)
@@ -2381,6 +2590,7 @@ def slide_single_point(bg: Image.Image, theme: dict, point_num: int,
 
 # ── 歷史脈絡 / 未來展望頁 ────────────────────────────────────
 
+# DEPRECATED
 def slide_context(bg: Image.Image, theme: dict, text: str,
                   slide_info: str, out: str):
     """歷史背景或未來展望：時間軸風格，填滿整頁"""
@@ -2400,8 +2610,10 @@ def slide_context(bg: Image.Image, theme: dict, text: str,
     # 內容（自適應填滿全頁，垂直置中）
     header_bottom = 166
     available_h = H - header_bottom - 40
-
-    font_size, line_h, wrap_w = fit_text_params(text, available_h, max_width_px=860)
+    max_allowed_lines = int(available_h / 36)
+    font_size, line_h, wrap_w = fit_text_params(text, available_h,
+                                                  max_width_px=860,
+                                                  max_lines=max_allowed_lines)
     font_body = get_font(font_size)
     max_lines = int(available_h / line_h)
     wrapped = smart_wrap(text, width=wrap_w)[:max_lines]
@@ -2422,6 +2634,7 @@ def slide_context(bg: Image.Image, theme: dict, text: str,
 
 # ── SLIDE 4：為什麼重要（引言式，全頁）───────────────────────
 
+# DEPRECATED
 def slide_impact(bg: Image.Image, theme: dict, text: str, slide_info: str, out: str):
     W, H = 1080, 1080
     img = bg.copy()
@@ -2440,8 +2653,10 @@ def slide_impact(bg: Image.Image, theme: dict, text: str, slide_info: str, out: 
         # 內容（自適應填滿全頁，垂直置中）
         header_bottom = 166
         available_h = H - header_bottom - 40
-
-        font_size, line_h, wrap_w = fit_text_params(text, available_h, max_width_px=860)
+        max_allowed_lines = int(available_h / 36)
+        font_size, line_h, wrap_w = fit_text_params(text, available_h,
+                                                      max_width_px=860,
+                                                      max_lines=max_allowed_lines)
         font_body = get_font(font_size)
         max_lines = int(available_h / line_h)
         wrapped = smart_wrap(text, width=wrap_w)[:max_lines]
@@ -2466,7 +2681,9 @@ def slide_impact(bg: Image.Image, theme: dict, text: str, slide_info: str, out: 
         draw.rectangle([W // 2 - 40, 196, W // 2 + 40, 199], fill=accent)
         header_bottom_m = 240
         available_h_m = H - header_bottom_m - 40
-        font_size, line_h, wrap_w = fit_text_params(text, available_h_m)
+        max_allowed_m = int(available_h_m / 36)
+        font_size, line_h, wrap_w = fit_text_params(text, available_h_m,
+                                                      max_lines=max_allowed_m)
         wrapped = smart_wrap(text, width=wrap_w)[:20]
         content_h = len(wrapped) * line_h
         y = header_bottom_m + max(0, (available_h_m - content_h) // 2)
@@ -2483,6 +2700,7 @@ def slide_impact(bg: Image.Image, theme: dict, text: str, slide_info: str, out: 
 
 # ── SLIDE 5：CTA（底條保留品牌感）───────────────────────────
 
+# DEPRECATED
 def slide_cta(bg: Image.Image, theme: dict, cta: str, account: str,
               slide_info: str, out: str, channel: str = "crypto"):
     W, H = 1080, 1080
@@ -2539,7 +2757,7 @@ def slide_cta(bg: Image.Image, theme: dict, cta: str, account: str,
         f1_font = get_font(38)
         draw.text((cx(draw, f1, f1_font, W), y), f1, fill=accent, font=f1_font)
         y += 56
-        f2 = "💬 留言告訴我你的看法！"
+        f2 = "留言告訴我你的看法！"
         f2_font = get_font(32)
         draw.text((cx(draw, f2, f2_font, W), y), f2,
                   fill=(180, 180, 180), font=f2_font)
@@ -2573,6 +2791,425 @@ def slide_cta(bg: Image.Image, theme: dict, cta: str, account: str,
 
     img.convert("RGB").save(out, "JPEG", quality=93)
     print(f"   ✅ Slide 5 → {Path(out).name}")
+
+
+# ── abmedia 新式 Slide 函式 ────────────────────────────────────
+
+def slide_keypoints_abmedia(bg: Image.Image, theme: dict, points: list,
+                            slide_info: str, out: str):
+    """新 abmedia 風格：Key Points 頁（3-4 個重點卡片）
+    Dark background #0D0D0D with semi-transparent cards
+    Improved styling: better padding, gradient accents, more prominent titles
+    """
+    W, H = 1080, 1080
+    # 使用傳入的背景圖（algorithmic art），加上深色半透明遮罩
+    if bg and isinstance(bg, Image.Image) and bg.size == (W, H):
+        img = bg.copy().convert("RGBA")
+        overlay = Image.new("RGBA", (W, H), (13, 13, 13, 200))
+        img = Image.alpha_composite(img, overlay).convert("RGB")
+    else:
+        img = Image.new("RGB", (W, H), theme.get("bg_color", (13, 13, 13)))
+    draw = ImageDraw.Draw(img)
+    accent = theme["accent"]
+
+    # Top bar with page number
+    draw.rectangle([0, 0, W, 6], fill=accent)
+    draw.text((W - 95, 18), slide_info, fill=(130, 130, 130), font=get_font(22))
+
+    # Section title — editorial left-aligned style (no ▶ symbol: renders as □ on STHeiti)
+    title_font = get_font(52)
+    section_title = "重點整理"
+    lm = 90  # left margin
+    # Accent vertical bar as editorial marker
+    draw.rectangle([lm, 58, lm + 7, 128], fill=accent)
+    draw.text((lm + 22, 60), section_title, fill=(255, 255, 255), font=title_font)
+    # Full-width thin separator line
+    draw.rectangle([lm, 144, W - lm, 148], fill=accent)
+
+    # Card layout: single-column full-width cards (abmedia style)
+    num_points = min(len(points), 4)
+    card_w = int(W * 0.84)  # 84% width (8% margin each side)
+    card_x = int(W * 0.08)  # left margin 8%
+    start_y = 175
+    # Calculate card height and spacing to fill available area evenly
+    available_h = H - start_y - 120  # leave room for watermark
+    card_gap = 16
+    card_h = min(200, (available_h - card_gap * (num_points - 1)) // max(num_points, 1))
+
+    for i, point in enumerate(points[:4]):
+        y = start_y + i * (card_h + card_gap)
+        _draw_abmedia_card_improved(draw, card_x, y, card_w, card_h,
+                          f"{i+1:02d}", point[:80], accent)
+
+    # Bottom watermark
+    _draw_watermark_abmedia(draw, theme, W, H)
+
+    img.save(out, "JPEG", quality=93)
+    print(f"   ✅ Key Points → {Path(out).name}")
+
+
+def slide_faq_abmedia(bg: Image.Image, theme: dict, faqs: list,
+                     slide_info: str, out: str):
+    """新 abmedia 風格：FAQ/Analysis 頁（2-3 Q&A pairs）
+    Dark background with semi-transparent answer cards
+    Improved: 💬 emoji, better visual hierarchy, divider lines
+    """
+    W, H = 1080, 1080
+    # 使用傳入的背景圖，加上深色半透明遮罩
+    if bg and isinstance(bg, Image.Image) and bg.size == (W, H):
+        img = bg.copy().convert("RGBA")
+        overlay = Image.new("RGBA", (W, H), (13, 13, 13, 200))
+        img = Image.alpha_composite(img, overlay).convert("RGB")
+    else:
+        img = Image.new("RGB", (W, H), theme.get("bg_color", (13, 13, 13)))
+    draw = ImageDraw.Draw(img)
+    accent = theme["accent"]
+
+    # Top bar
+    draw.rectangle([0, 0, W, 6], fill=accent)
+    draw.text((W - 95, 18), slide_info, fill=(130, 130, 130), font=get_font(22))
+
+    # Section title — editorial left-aligned style (no ▶ symbol: renders as □ on STHeiti)
+    title_font = get_font(52)
+    section_title = "常見問題"
+    lm = 90  # left margin
+    # Accent vertical bar as editorial marker
+    draw.rectangle([lm, 58, lm + 7, 128], fill=accent)
+    draw.text((lm + 22, 60), section_title, fill=(255, 255, 255), font=title_font)
+    # Full-width thin separator line
+    draw.rectangle([lm, 144, W - lm, 148], fill=accent)
+
+    # Draw Q&A pairs with improved layout
+    y = 220
+    num_faqs = min(len(faqs), 3)
+    for i, faq_item in enumerate(faqs[:num_faqs]):
+        # Parse faq_item — supports dict {"q":..,"a":..}, (q, a) tuple/list, or "Q|A" string
+        if isinstance(faq_item, dict):
+            q = str(faq_item.get("q", ""))[:100]
+            a = str(faq_item.get("a", "詳見相關報導"))[:250]
+        elif isinstance(faq_item, (tuple, list)) and len(faq_item) >= 2:
+            q = str(faq_item[0]).strip()[:100]
+            a = str(faq_item[1]).strip()[:250]
+        elif isinstance(faq_item, str) and "|" in faq_item:
+            q, a = faq_item.split("|", 1)
+            q = q.strip()[:100]
+            a = a.strip()[:250]
+        else:
+            q = str(faq_item)[:100]
+            a = "詳見相關報導"
+
+        # Draw Q in accent color + question in white (editorial distinction)
+        q_font = get_font(34)
+        q_prefix = "Q"
+        q_prefix_w = tw(draw, q_prefix, q_font)
+        draw.text((90, y), q_prefix, fill=accent, font=q_font)
+        draw.text((90 + q_prefix_w, y), f"：{q}", fill=(255, 255, 255), font=q_font)
+        y += 55
+
+        # Draw A in semi-transparent card
+        a_font = get_font(26)
+        a_text = f"A. {a}"
+        # Semi-transparent card background
+        card_y = y
+        # Pixel-based wrap: answer block inner width = (W - 85*2) - 2*25 padding ≈ 860
+        card_lines = _wrap_to_pixels(draw, a_text, a_font, (W - 85 * 2) - 50)[:4]
+        card_h = len(card_lines) * 40 + 32
+        _draw_card_bg(draw, 85, card_y, W - 85, card_y + card_h, accent)
+
+        # Draw answer text
+        ay = card_y + 16
+        for line in card_lines:
+            draw.text((110, ay), line, fill=(224, 224, 224), font=a_font)
+            ay += 42
+        y = card_y + card_h + 40
+
+        # Subtle divider line between Q&A groups (except last)
+        if i < num_faqs - 1:
+            draw.rectangle([100, y - 20, W - 100, y - 18], fill=(80, 80, 80))
+
+    # Bottom watermark
+    _draw_watermark_abmedia(draw, theme, W, H)
+
+    img.save(out, "JPEG", quality=93)
+    print(f"   ✅ FAQ → {Path(out).name}")
+
+
+def slide_ending(bg: Image.Image, theme: dict, question: str,
+                brand_name: str, slide_info: str, out: str):
+    """新 abmedia 風格：Ending 頁（LOGO + Question）
+    Solid dark background #0D0D0D with accent decorations
+    Improved: better logo sizing, bolder question text, accent line decoration
+    """
+    W, H = 1080, 1080
+    # 使用傳入的背景圖，加上深色半透明遮罩
+    if bg and isinstance(bg, Image.Image) and bg.size == (W, H):
+        img = bg.copy().convert("RGBA")
+        overlay = Image.new("RGBA", (W, H), (13, 13, 13, 180))
+        img = Image.alpha_composite(img, overlay).convert("RGB")
+    else:
+        img = Image.new("RGB", (W, H), theme.get("bg_color", (13, 13, 13)))
+    draw = ImageDraw.Draw(img)
+    accent = theme["accent"]
+
+    # Top bar
+    draw.rectangle([0, 0, W, 6], fill=accent)
+    draw.text((W - 95, 18), slide_info, fill=(130, 130, 130), font=get_font(22))
+
+    # Brand name/logo — centered, prominent (editorial masthead style)
+    brand_font = get_font(68)
+    brand_y = int(H * 0.30)
+    brand_w = tw(draw, brand_name, brand_font)
+    bx = (W - brand_w) // 2
+    # Thin accent rule ABOVE the brand (spans just over the brand width)
+    rule_len = brand_w + 80
+    rule_x0 = (W - rule_len) // 2
+    draw.rectangle([rule_x0, brand_y - 18, rule_x0 + rule_len, brand_y - 14], fill=accent)
+    draw.text((bx, brand_y), brand_name, fill=(255, 255, 255), font=brand_font)
+    # Thin accent rule BELOW the brand (same length, mirrored)
+    draw.rectangle([rule_x0, brand_y + 84, rule_x0 + rule_len, brand_y + 88], fill=accent)
+
+    # "留言分享你的看法" prompt above the question
+    prompt_font = get_font(26)
+    prompt = "留言分享你的看法"
+    px = (W - tw(draw, prompt, prompt_font)) // 2
+    draw.text((px, brand_y + 110), prompt, fill=(140, 140, 140), font=prompt_font)
+
+    # Question — centered, bold white, large
+    question_font = get_font(44)
+    question_y = int(H * 0.58)
+    q_lines = smart_wrap(question, width=18)[:2]
+    qy = question_y
+    for line in q_lines:
+        qx = (W - tw(draw, line, question_font)) // 2
+        draw.text((qx, qy), line, fill=(255, 255, 255), font=question_font)
+        qy += 58
+
+    # Engagement hint below question
+    hint_font = get_font(24)
+    hint = "追蹤帳號 · 開啟通知 · 不錯過財經大事"
+    hx = (W - tw(draw, hint, hint_font)) // 2
+    draw.text((hx, qy + 16), hint, fill=(110, 110, 110), font=hint_font)
+
+    # Bottom watermark
+    _draw_watermark_abmedia(draw, theme, W, H)
+
+    img.save(out, "JPEG", quality=93)
+    print(f"   ✅ Ending → {Path(out).name}")
+
+
+def _draw_abmedia_card_improved(draw, x, y, w, h, number, text, accent):
+    """Editorial journalism card: number badge on left, text block on right.
+    Matches abmedia style — clean, professional, news-magazine feel.
+    """
+    # Card background — dark charcoal with slight opacity
+    card_bg = Image.new("RGBA", (int(w), int(h)), (28, 28, 28, 200))
+    draw._image.paste(card_bg, (int(x), int(y)), card_bg)
+
+    # Left accent bar (5px, full card height)
+    draw.rectangle([int(x), int(y), int(x) + 5, int(y) + int(h)], fill=accent)
+
+    # Number badge — accent color, vertically centered in left column
+    num_font = get_font(44)
+    num_x = int(x) + 22
+    num_y = int(y) + int(h) // 2 - 28  # vertically centered
+    draw.text((num_x, num_y), number, fill=accent, font=num_font)
+
+    # Text block — to the right of the number column
+    text_x = int(x) + 108
+    text_w_px = int(w) - 128  # available width after number column + right padding
+    text_font = get_font(30)
+    # Pixel-based wrap: measure actual rendered width so text never overflows the card
+    text_lines = _wrap_to_pixels(draw, text, text_font, text_w_px)[:3]
+
+    # Vertically center the text block within the card
+    line_h = 44
+    total_text_h = len(text_lines) * line_h
+    ty = int(y) + (int(h) - total_text_h) // 2
+    ty = max(int(y) + 10, ty)
+
+    for i, line in enumerate(text_lines):
+        # First line: bold white (title); subsequent lines: lighter gray (description)
+        color = (255, 255, 255) if i == 0 else (185, 185, 185)
+        draw.text((text_x, ty), line, fill=color, font=text_font)
+        ty += line_h
+
+
+def _draw_abmedia_card(draw, x, y, w, h, number, text, accent):
+    """Draw a single abmedia-style card with number and text (legacy version)"""
+    # Semi-transparent card background
+    card_bg = Image.new("RGBA", (w, h), (255, 255, 255, 15))
+    # Round corners effect (simple version)
+    draw._image.paste(card_bg, (int(x), int(y)), card_bg)
+
+    # Number (bold, large)
+    num_font = get_font(52)
+    draw.text((int(x) + 20, int(y) + 15), number, fill=accent, font=num_font)
+
+    # Text (smaller, wrapped)
+    text_font = get_font(24)
+    text_lines = smart_wrap(text, width=14)[:2]
+    ty = int(y) + 80
+    for line in text_lines:
+        draw.text((int(x) + 20, ty), line, fill=(224, 224, 224), font=text_font)
+        ty += 35
+
+
+def _draw_card_bg(draw, x1, y1, x2, y2, accent):
+    """Draw a semi-transparent card background"""
+    overlay = Image.new("RGBA", (int(x2 - x1), int(y2 - y1)), (255, 255, 255, 15))
+    try:
+        draw._image.paste(overlay, (int(x1), int(y1)), overlay)
+    except Exception:
+        pass
+
+
+def _draw_watermark_abmedia(draw, theme, W, H):
+    """Draw bottom watermark: brand name on left, IG handle on right"""
+    watermark_font = get_font(20)
+    name_en = theme.get("name_en", "CRYPTO NEWS")
+    name_zh = theme.get("name", "幣圈大小事")
+    watermark_left = name_en
+    watermark_right = f"@{theme.get('ig', 'money.showtime')}"
+    draw.text((90, H - 50), watermark_left, fill=(90, 90, 90), font=watermark_font)
+    rw = tw(draw, watermark_right, watermark_font)
+    draw.text((W - 90 - rw, H - 50), watermark_right, fill=(90, 90, 90), font=watermark_font)
+
+
+def slide_analysis_abmedia(bg: Image.Image, theme: dict, title: str, text: str,
+                           image: Optional[Image.Image] = None,
+                           slide_info: str = "", out: str = ""):
+    """新增 abmedia 風格：長文分析頁（段落標題 + 配圖 + 正文）
+
+    用於深度分析内容：
+    - 段落標題有彩色色塊背景
+    - 可選配圖（方形）
+    - 正文最多 250 字，完整段落，不跨頁斷裂
+    - 底部品牌名
+    """
+    W, H = 1080, 1080
+    # 使用傳入的背景圖，加上深色半透明遮罩
+    if bg and isinstance(bg, Image.Image) and bg.size == (W, H):
+        img = bg.copy().convert("RGBA")
+        overlay = Image.new("RGBA", (W, H), (13, 13, 13, 200))
+        img = Image.alpha_composite(img, overlay).convert("RGB")
+    else:
+        img = Image.new("RGB", (W, H), theme.get("bg_color", (13, 13, 13)))
+    draw = ImageDraw.Draw(img)
+    accent = theme["accent"]
+
+    # Top bar
+    draw.rectangle([0, 0, W, 6], fill=accent)
+    draw.text((W - 95, 18), slide_info, fill=(130, 130, 130), font=get_font(22))
+
+    # Section title with accent background color block (no ▶: renders as □ on STHeiti)
+    title_font = get_font(44)
+    title_text = title  # e.g. "深度分析"
+    title_y = 70
+
+    # Measure title width for background block
+    title_w = tw(draw, title_text, title_font)
+    title_x = 80
+
+    # Draw accent color block behind title
+    draw.rectangle([title_x - 10, title_y - 8, title_x + title_w + 10, title_y + 50],
+                   fill=accent)
+
+    # Draw title in dark color on top of accent block
+    draw.text((title_x, title_y), title_text, fill=(13, 13, 13), font=title_font)
+
+    current_y = 145
+
+    # Optional image (square format, centered)
+    if image:
+        img_size = 320
+        img_x = (W - img_size) // 2
+        img_y = current_y
+
+        # Resize image to square
+        img_resized = image.resize((img_size, img_size), Image.Resampling.LANCZOS)
+        img.paste(img_resized, (img_x, img_y))
+
+        current_y = img_y + img_size + 40
+
+    # Text content (≤ 250 words, complete paragraph)
+    text_font = get_font(28)
+    text_lines = smart_wrap(text, width=26)
+
+    # 動態計算可用行數（留 100px watermark 空間）
+    line_h = 38
+    max_lines = max(8, int((H - current_y - 100) / line_h))
+    max_lines = min(len(text_lines), max_lines)
+    text_y = current_y
+
+    for i, line in enumerate(text_lines[:max_lines]):
+        if text_y + 38 > H - 100:  # Leave space for watermark
+            break
+        draw.text((85, text_y), line, fill=(224, 224, 224), font=text_font)
+        text_y += 38
+
+    # Bottom watermark
+    _draw_watermark_abmedia(draw, theme, W, H)
+
+    img.save(out, "JPEG", quality=93)
+    print(f"   ✅ Analysis → {Path(out).name}")
+
+
+def slide_bignumber_abmedia(bg: Image.Image, theme: dict, number: str, label: str,
+                            description: str = "", slide_info: str = "", out: str = ""):
+    """新增 abmedia 風格：大數字卡片（趨勢圖替代方案）
+
+    用於展示關鍵數據：
+    - 巨大數字居中（120pt equivalent，accent color）
+    - 標籤（32pt）
+    - 可選說明文字（28pt，灰色）
+    """
+    W, H = 1080, 1080
+    img = Image.new("RGB", (W, H), theme.get("bg_color", (13, 13, 13)))
+    draw = ImageDraw.Draw(img)
+    accent = theme["accent"]
+
+    # Top bar
+    draw.rectangle([0, 0, W, 6], fill=accent)
+    draw.text((W - 95, 18), slide_info, fill=(130, 130, 130), font=get_font(22))
+
+    # Section title — editorial left-aligned style (no ▶: renders as □ on STHeiti)
+    title_font = get_font(48)
+    lm = 90
+    draw.rectangle([lm, 58, lm + 7, 124], fill=accent)
+    draw.text((lm + 22, 60), "關鍵數據", fill=(255, 255, 255), font=title_font)
+    draw.rectangle([lm, 140, W - lm, 144], fill=accent)
+
+    # Big number centered (120pt equivalent)
+    number_font = get_font(120)
+    number_y = int(H * 0.35)
+    nx = (W - tw(draw, number, number_font)) // 2
+    draw.text((nx, number_y), number, fill=accent, font=number_font)
+
+    # Label below number (32pt)
+    label_font = get_font(40)
+    label_y = number_y + 140
+    lx = (W - tw(draw, label, label_font)) // 2
+    draw.text((lx, label_y), label, fill=(255, 255, 255), font=label_font)
+
+    # Optional description (28pt, gray)
+    if description:
+        desc_font = get_font(28)
+        desc_lines = smart_wrap(description, width=32)[:3]
+        desc_y = label_y + 60
+        for line in desc_lines:
+            dx = (W - tw(draw, line, desc_font)) // 2
+            draw.text((dx, desc_y), line, fill=(180, 180, 180), font=desc_font)
+            desc_y += 42
+
+    # Decorative lines
+    draw.rectangle([W // 2 - 100, number_y - 50, W // 2 + 100, number_y - 46], fill=accent)
+    draw.rectangle([W // 2 - 120, label_y + 50, W // 2 + 120, label_y + 54], fill=accent)
+
+    # Bottom watermark
+    _draw_watermark_abmedia(draw, theme, W, H)
+
+    img.save(out, "JPEG", quality=93)
+    print(f"   ✅ Big Number → {Path(out).name}")
 
 
 # ── Claude 動態生成 Slide 圖片關鍵字 ─────────────────────────
@@ -2613,19 +3250,23 @@ IMPACT: {impact}
         return [None] * SLIDE_COUNT
 
 
-# ── Carousel 主函式（10 頁版）────────────────────────────────
+# ── Carousel 主函式（4-6 頁版，新 abmedia 風格）────────────────────────────────
 
 def generate_carousel(channel: str, ai_data: dict, article_url: str,
                       source: str, out_dir: str,
-                      article_title: str = "") -> list[str]:
+                      article_title: str = "",
+                      cover_photo_path: str = None) -> list[str]:
+    """cover_photo_path: 若有值，強制使用指定本地圖片做封面（跳過 AI 生成）。"""
     """
-    10 頁 Carousel：
-      1. 封面（大照片 + 標題）
-      2. 發生了什麼
-      3. 佐證照片（OG 圖亮顯 + 說明）
-      4-8. 五大重點（每點一頁深度分析）
-      9. 為什麼重要 + 歷史脈絡
-     10. CTA + Logo
+    4-6 頁 Carousel (abmedia 風格)，動態調整頁數：
+      1. 封面 (slide_hook - 大照片 + 標題)
+      2. 核心要點 (slide_keypoints_abmedia - 3-4 卡片)
+      3-4. 分析/FAQ 頁 (slide_faq_abmedia 或 slide_analysis_abmedia - 可選，當內容豐富時)
+      末頁. 結尾頁 (slide_ending - LOGO + 問題)
+
+    Dynamic slide count:
+      - Base: 4 (Cover + KeyPoints + FAQ + Ending)
+      - 若有 5+ 重點 或 豐富 FAQ → 5-6 頁（加入長文分析或大數字卡片）
 
     article_title: 原始文章標題（用於走勢圖偵測幣種，最準確）
     """
@@ -2633,38 +3274,45 @@ def generate_carousel(channel: str, ai_data: dict, article_url: str,
     account = IG_ACCOUNTS.get(channel, "money.showtime")
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     seed = ai_data.get("hook", channel)[:30]
-    N = SLIDE_COUNT
+
+    # 動態決定頁數：根據內容豐富度
+    raw_points = ai_data.get("points", [])
+    faq_items = ai_data.get("faqs", ai_data.get("points", []))[:3]
+    impact_text = ai_data.get("impact", "")
+
+    # 判斷內容豐富度
+    has_rich_points = len(raw_points) >= 5
+    has_rich_faq = len(faq_items) >= 3 and any("|" in item for item in faq_items)
+    has_rich_impact = len(impact_text) > 200
+
+    # 決定最終頁數：4 基礎 + 1 如有豐富內容
+    if has_rich_impact or (has_rich_points and has_rich_faq):
+        N = 5  # Cover + KeyPoints + Analysis/FAQ + Extra + Ending
+    else:
+        N = SLIDE_COUNT  # 4: Cover + KeyPoints + FAQ + Ending
+
+    print(f"   📊 動態頁數：{N} 頁（豐富度：點數={len(raw_points)}, FAQ={len(faq_items)}, 分析={len(impact_text)} 字）")
 
     # 配色：使用頻道固定 accent，背景圖案用輪替 palette（不覆蓋 accent）
     palette = _pick_palette(seed)
-    # 注意：不再用 palette["accent"] 覆蓋 theme["accent"]
-    # 這樣每個頻道的邊框/標題色固定（crypto=金, startup=琥珀金）
-    print(f"   🎨 頻道色：{theme['accent']} | 背景風格：algorithmic-art (palette {THEME_PALETTES.index(palette)})")
-    print(f"   📸 下載背景照片（{N} 張不同主題）...")
+    print(f"   🎨 頻道色：{theme['accent']} | 風格：abmedia")
+    print(f"   📸 下載背景照片（{N} 張）...")
+
     # 優先用 Claude 動態生成關鍵字，失敗則用預設
     _claude_kws = _claude_slide_keywords(ai_data, channel)
     kw_default = SLIDE_PHOTO_KEYWORDS.get(channel, SLIDE_PHOTO_KEYWORDS["crypto"])
 
-    # 重點頁照片關鍵字：優先用 AI 生成的 point_photos
-    point_photos = ai_data.get("point_photos", [])
+    # 擴展預設關鍵字以支持 5-6 頁
+    while len(kw_default) < N:
+        kw_default.append(theme["keyword"])
 
     slide_keywords = []
     for i in range(N):
         ck = _claude_kws[i] if i < len(_claude_kws) else None
         dk = kw_default[i] if i < len(kw_default) else None
-        # Slide 1 和 3 用 OG 圖，不需要關鍵字
-        if i in (0, 2):
+        # Slide 1 和最後一頁用純 bg，不需要關鍵字
+        if i in (0, N - 1):
             slide_keywords.append(None)
-        elif 3 <= i <= 7:
-            # 重點頁 4-8：優先用 point_photos（AI 針對每個重點生成的關鍵字）
-            pt_idx = i - 3
-            if pt_idx < len(point_photos) and point_photos[pt_idx]:
-                pk = point_photos[pt_idx].strip()
-                if pk.lower() not in ("null", "none", ""):
-                    slide_keywords.append(pk)
-                    continue
-            # fallback 到 Claude 動態關鍵字或預設
-            slide_keywords.append(ck or dk or theme["keyword"])
         elif ck:
             slide_keywords.append(ck)
         elif dk:
@@ -2672,7 +3320,7 @@ def generate_carousel(channel: str, ai_data: dict, article_url: str,
         else:
             slide_keywords.append(theme["keyword"])
 
-    # 取得 OG 圖（Slide 1 封面 + Slide 3 佐證）
+    # 取得 OG 圖（Slide 1 封面用）
     og_photo = get_og_photo(article_url)
 
     # 人物照片（封面用）
@@ -2680,60 +3328,76 @@ def generate_carousel(channel: str, ai_data: dict, article_url: str,
     person = person.strip() if person else ""
     has_person = person and person.lower() not in ("null", "none", "")
 
-    # 只有封面(0)和佐證(2)需要真實照片，其餘全用程式化背景
-    # 這樣避免 loremflickr 返回不相關圖片（貓、風景等）
-    _PHOTO_SLIDES = {0, 2}
-    _slide3_used_og = False  # 追蹤 Slide 3 是否用了 OG 圖（影響 evidence 文字選擇）
+    from concurrent.futures import ThreadPoolExecutor, as_completed
 
-    bgs = []
-    for i in range(N):
-        kw = slide_keywords[i]
+    def _fetch_one_bg(i):
+        """並行：取得第 i 張 slide 的背景圖片"""
         if i == 0:
-            # Slide 1：封面（AI 生成優先 → OG 圖 → Pexels → 程式化背景）
+            # Slide 1：封面（cover_photo_path 優先 → AI 生成 → OG 圖 → Pexels → 程式化背景）
             photo = None
-            hook_text = ai_data.get("hook", "")
-            what_text = ai_data.get("what", "")
-            person_for_ai = person if has_person else ""
-            # 1. AI 封面生成（fal-ai FLUX）— 最優先，含人物場景
-            photo = generate_ai_cover(hook_text, what_text, person=person_for_ai)
-            if not photo and og_photo:
-                # 2. OG 圖 fallback
-                photo = og_photo
-                print(f"   ✅ Slide 1 背景：封面（OG 圖）")
+            if cover_photo_path:
+                try:
+                    photo = Image.open(cover_photo_path).convert("RGB")
+                    photo = photo.resize((1080, 1080), Image.LANCZOS)
+                    src = f"指定照片 ({Path(cover_photo_path).name})"
+                    print(f"   📸 使用指定封面照片：{cover_photo_path}")
+                except Exception as e:
+                    print(f"   ⚠️ 指定封面照片讀取失敗：{e}，改用 AI 生成")
+                    photo = None
+
             if not photo:
-                # 3. Pexels fallback：逐個短關鍵字嘗試
+                hook_text = ai_data.get("hook", "")
+                what_text = ai_data.get("what", "")
+                person_for_ai = person if has_person else ""
+                photo = generate_ai_cover(hook_text, what_text, person=person_for_ai, forced_mood=ai_data.get("mood"))
+                if photo:
+                    src = "AI 封面"
+            if not photo and og_photo:
+                photo = og_photo
+                src = "OG 圖"
+            if not photo:
                 for cover_kw in theme["keyword"].split():
                     photo = get_pexels_photo(cover_kw, i)
                     if photo:
-                        print(f"   ✅ Slide 1 背景：Pexels ({cover_kw})")
+                        src = f"Pexels ({cover_kw})"
                         break
             if not photo:
-                print(f"   ✅ Slide 1 背景：程式化生成（algorithmic-art）")
-            bgs.append(make_background(photo, theme, cover=True,
-                                       palette=palette, slide_idx=i, article_seed=seed))
-        elif i == 2:
-            # Slide 3：佐證照片（OG 圖優先 → Pexels → 程式化背景）
-            evidence_kw = ai_data.get("evidence", "")
-            photo = og_photo
-            _slide3_used_og = bool(photo)  # 追蹤是否用 OG 圖
-            if not photo and evidence_kw:
-                photo = get_pexels_photo(evidence_kw, i)
-            if not photo:
-                # 逐個嘗試短關鍵字（避免長複合查詢 0 結果）
-                for kw in theme["keyword"].split():
-                    photo = get_pexels_photo(kw, i)
-                    if photo:
-                        break
-            bgs.append(make_background(photo, theme, cover=True,
-                                       palette=palette, slide_idx=i, article_seed=seed))
-            src_label = "OG 圖" if _slide3_used_og else ("佐證照片" if photo else "程式化生成")
-            print(f"   ✅ Slide 3 背景：{src_label}")
+                src = "程式化生成"
+            bg = make_background(photo, theme, cover=True,
+                                 palette=palette, slide_idx=i, article_seed=seed)
+            return (i, bg, src)
         else:
-            # 其餘 slide（2,4-10）全用程式化背景 — 每張圖案不同
-            art_bg = generate_art_background(1080, 1080, palette, i, seed)
-            bgs.append(art_bg)
-            if 3 <= i <= 7:
-                print(f"   ✅ Slide {i+1} 背景：algorithmic-art (pattern {i % len(_BG_GENERATORS)})")
+            # 其餘頁面：優先 Pexels 照片，失敗則用程式化背景
+            kw = slide_keywords[i] if i < len(slide_keywords) else None
+            photo = None
+            src = "algorithmic-art"
+            if kw:
+                photo = get_pexels_photo(kw, i)
+                if photo:
+                    src = f"Pexels ({kw})"
+            if photo:
+                bg = make_background(photo, theme, cover=False,
+                                     palette=palette, slide_idx=i, article_seed=seed)
+            else:
+                bg = generate_art_background(1080, 1080, palette, i, seed)
+            return (i, bg, src)
+
+    # ── 並行背景生成 ──────────────────────────────────────────────
+    print(f"   🚀 並行生成 {N} 張背景...")
+    bgs = [None] * N
+    label_map = {}
+
+    with ThreadPoolExecutor(max_workers=min(N, 6)) as executor:
+        futures = {executor.submit(_fetch_one_bg, i): i for i in range(N)}
+        for future in as_completed(futures):
+            idx, bg, src = future.result()
+            bgs[idx] = bg
+            if src:
+                label_map[idx] = src
+
+    for i in range(N):
+        if i in label_map:
+            print(f"   ✅ Slide {i+1} 背景：{label_map[i]}")
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     paths = []
@@ -2743,64 +3407,133 @@ def generate_carousel(channel: str, ai_data: dict, article_url: str,
         paths.append(path)
         return path
 
-    what_preview = clean_preview(ai_data.get("what", ""), max_chars=80)
-    raw_points = ai_data.get("points", [])
-    # 過濾空白/過短的 point（避免出現只有數字沒有文字的空白卡片）
-    _FALLBACK_POINT = "延伸分析|此新聞值得持續關注後續發展"
-    points = []
-    for pt in raw_points:
-        # point 須有實質內容：非空、含 | 分隔且標題+內容都非空
-        pt_stripped = pt.strip() if pt else ""
-        if pt_stripped and "|" in pt_stripped:
-            title_part, _, content_part = pt_stripped.partition("|")
-            title_part = title_part.strip()
-            content_part = content_part.strip()
-            if title_part and len(title_part) >= 2 and content_part:
-                points.append(pt_stripped)
+    # 準備內容
+    what_preview = clean_preview(ai_data.get("what", ""), max_chars=200)
+
+    # 提取重點（用於 keypoints 卡片）：title + description 都顯示
+    keypoint_texts = []
+    for pt in raw_points[:4]:
+        if pt and "|" in pt:
+            parts = pt.split("|", 1)
+            title_part = parts[0].strip()
+            desc_part = parts[1].strip() if len(parts) > 1 else ""
+            # 合併：標題 + 換行 + 說明（最多 60 字）
+            if desc_part:
+                combined = f"{title_part}  {desc_part[:50]}"
             else:
-                points.append(_FALLBACK_POINT)
-        elif pt_stripped and len(pt_stripped) >= 20:
-            # 有實質內容但 AI 漏掉 | 分隔符，自動補上格式（避免空白描述欄）
-            auto_title = pt_stripped[:8].rstrip("，。！？、")
-            points.append(f"{auto_title}|{pt_stripped}")
-        else:
-            points.append(_FALLBACK_POINT)
-    # 確保有 5 個重點（不足則用 fallback）
-    while len(points) < 5:
-        points.append(_FALLBACK_POINT)
+                combined = title_part
+            keypoint_texts.append(combined[:100])
+        elif pt:
+            keypoint_texts.append(pt[:100])
+    # 不使用空洞佔位符 — 若要點不足就用較少卡片
+    if not keypoint_texts:
+        keypoint_texts = ["詳見內文完整分析"]
 
-    si = lambda n: f"{n} / {N}"  # slide info
+    brand_name = theme.get("name", "金融大小事")
+    # CTA 淨化：只取第一行，濾掉 AI 亂填的檔案路徑 / markdown / 換行符號
+    _raw_cta = ai_data.get("cta", "你怎麼看？")
+    _cta_first_line = _raw_cta.split("\n")[0].split("\\n")[0].strip()
+    # 若含有反引號（檔名標記）或太長，截短
+    if "`" in _cta_first_line or len(_cta_first_line) > 40:
+        _cta_first_line = _cta_first_line.split("`")[0].strip()
+    question = _cta_first_line if _cta_first_line else "你怎麼看？"
 
-    # 1. 封面（人物照片時文字下移避免蓋臉）
-    slide_hook(bgs[0], theme, ai_data.get("hook", "最新快訊"),
-               what_preview, si(1), p(1), person_mode=has_person)
+    slide_idx = 1  # Track actual slide numbers for s00, s01, etc.
 
-    # 2. 發生了什麼
-    slide_what(bgs[1], theme, ai_data.get("what", ""), si(2), p(2))
+    # 1. 封面
+    # 封面標題：直接用 hook，不拼接 what（避免長文截斷）
+    # smart_title_lines 會自動依 max_per_line=10 分行
+    hook_text = ai_data.get("hook", "最新快訊")
+    cover_title = hook_text
 
-    # 3. 佐證照片
-    # 如果用 OG 圖，evidence 文字用文章標題/hook（因為 AI 生成的 evidence 描述
-    # 是想像場景，跟 OG 圖內容不符）；只有用搜尋圖片時才用 AI evidence 文字
-    ai_evidence = ai_data.get("evidence", "")
-    if _slide3_used_og:
-        # OG 圖來自文章本身，用 hook 當說明文字更準確
-        evidence_text = ai_data.get("hook", "新聞現場")
+    slide_hook(bgs[0], theme, cover_title,
+               what_preview, f"{slide_idx} / {N}", p(slide_idx), person_mode=has_person)
+    slide_idx += 1
+
+    # ── HTML 渲染器（優先）+ PIL fallback ──
+    _use_html = False
+    try:
+        from html_renderer import (render_keypoints, render_faq,
+                                    render_analysis, render_ending, is_available)
+        _use_html = is_available()
+        if _use_html:
+            print("   🎨 使用 HTML+CSS 渲染引擎（高品質模式）")
+    except ImportError:
+        pass
+
+    accent = theme.get("accent", (247, 183, 49))
+    accent_hex = '#%02x%02x%02x' % accent if isinstance(accent, tuple) else str(accent)
+    watermark_name = theme.get("name_en", "CRYPTO NEWS")
+
+    # 2. 核心要點
+    kp_out = p(slide_idx)
+    if _use_html:
+        _html_ok = render_keypoints(
+            raw_points[:4], accent_hex, f"{slide_idx} / {N}", kp_out,
+            watermark=watermark_name)
+        if not _html_ok:
+            slide_keypoints_abmedia(bgs[1], theme, keypoint_texts, f"{slide_idx} / {N}", kp_out)
     else:
-        evidence_text = ai_evidence if ai_evidence else ai_data.get("hook", "新聞現場")
-    slide_evidence(bgs[2], theme, evidence_text, si(3), p(3), channel=channel,
-                   ai_data=ai_data, article_title=article_title)
+        slide_keypoints_abmedia(bgs[1], theme, keypoint_texts, f"{slide_idx} / {N}", kp_out)
+    slide_idx += 1
 
-    # 4-8. 五大重點（每點一頁）
-    for idx in range(5):
-        slide_single_point(bgs[3 + idx], theme, idx + 1,
-                           points[idx], si(4 + idx), p(4 + idx))
+    # 3-4. FAQ/分析頁（可能有多頁）
+    if N >= 5:
+        # 有額外的內容頁
+        if has_rich_impact and len(impact_text) > 100:
+            analysis_out = p(slide_idx)
+            big_num = ai_data.get("big_number", "")
+            mood_label = ai_data.get("mood", "")
+            if _use_html:
+                _html_ok = render_analysis(
+                    "深度分析", impact_text[:400], accent_hex, f"{slide_idx} / {N}",
+                    analysis_out, big_number=big_num, big_label=mood_label,
+                    watermark=watermark_name)
+                if not _html_ok:
+                    slide_analysis_abmedia(bgs[2], theme, "深度分析", impact_text[:300],
+                                          image=None, slide_info=f"{slide_idx} / {N}", out=analysis_out)
+            else:
+                slide_analysis_abmedia(bgs[2], theme, "深度分析", impact_text[:300],
+                                      image=None, slide_info=f"{slide_idx} / {N}", out=analysis_out)
+            slide_idx += 1
 
-    # 9. 為什麼重要（獨立滿頁）
-    slide_impact(bgs[8], theme, ai_data.get("impact", ""), si(9), p(9))
+        # FAQ 頁
+        if slide_idx < N:
+            faq_out = p(slide_idx)
+            if _use_html:
+                _html_ok = render_faq(
+                    faq_items, accent_hex, f"{slide_idx} / {N}", faq_out,
+                    watermark=watermark_name)
+                if not _html_ok:
+                    slide_faq_abmedia(bgs[slide_idx - 1], theme, faq_items, f"{slide_idx} / {N}", faq_out)
+            else:
+                slide_faq_abmedia(bgs[slide_idx - 1], theme, faq_items, f"{slide_idx} / {N}", faq_out)
+            slide_idx += 1
+    else:
+        # 4 頁版本：直接放 FAQ
+        if bgs[2]:
+            faq_out = p(slide_idx)
+            if _use_html:
+                _html_ok = render_faq(
+                    faq_items, accent_hex, f"{slide_idx} / {N}", faq_out,
+                    watermark=watermark_name)
+                if not _html_ok:
+                    slide_faq_abmedia(bgs[2], theme, faq_items, f"{slide_idx} / {N}", faq_out)
+            else:
+                slide_faq_abmedia(bgs[2], theme, faq_items, f"{slide_idx} / {N}", faq_out)
+            slide_idx += 1
 
-    # 10. CTA + Logo
-    slide_cta(bgs[9], theme, ai_data.get("cta", "你怎麼看？"),
-              account, si(10), p(10), channel=channel)
+    # 最後：結尾頁
+    last_idx = N - 1
+    if last_idx >= 0 and bgs[last_idx]:
+        ending_out = p(N)
+        if _use_html:
+            _html_ok = render_ending(
+                question, brand_name, accent_hex, f"{N} / {N}", ending_out)
+            if not _html_ok:
+                slide_ending(bgs[last_idx], theme, question, brand_name, f"{N} / {N}", ending_out)
+        else:
+            slide_ending(bgs[last_idx], theme, question, brand_name, f"{N} / {N}", ending_out)
 
     return paths
 

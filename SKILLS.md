@@ -194,6 +194,54 @@ curl -s 'https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID'
 | `humanizer` | `humanizer score "文字"` | 偵測 AI 痕跡、改寫成自然人話 |
 | `content-watcher` | `content-watcher add "RSS url"` | 監控 RSS + AI 摘要 |
 
+## 🧠 gstack Skills（工程協作套件）
+
+gstack 位於 `~/.openclaw/skills/gstack/`，提供完整工程流程：
+
+| Skill | 指令 | 說明 |
+|-------|------|------|
+| `gstack/office-hours` | `openclaw skill run office-hours '任務說明'` | Think & Plan：任務前確認方向 |
+| `gstack/review` | `openclaw skill run review '程式碼'` | Code Review：找 CRITICAL/HIGH 問題 |
+| `gstack/qa` | `openclaw skill run qa '專案說明'` | 品質確認：UI/API 測試 |
+| `gstack/ship` | `openclaw skill run ship '說明'` | 部署：通過 review+qa 後執行 |
+| `gstack/cso` | `openclaw skill run cso '問題'` | 安全審查（auth/secrets 場景） |
+| `gstack/design-shotgun` | `openclaw skill run design-shotgun '需求'` | 快速生成多版設計方案 |
+| `gstack/canary` | `openclaw skill run canary '功能'` | 小範圍驗證後再全量上線 |
+
+**流程**：office-hours → Build → review → qa → ship
+
+---
+
+## 🦌 DeerFlow 深度研究
+
+| Skill | 路徑 | 說明 |
+|-------|------|------|
+| `claude-to-deerflow` | `~/.openclaw/skills/claude-to-deerflow/` | 本地多步驟 AI 研究框架 |
+
+```bash
+curl -s http://localhost:8001/health   # 確認是否在線（回傳 {"status":"healthy"}）
+bash ~/.openclaw/skills/claude-to-deerflow/scripts/chat.sh '研究問題'
+```
+
+**用途**：競品分析、技術調查、多步驟深度研究報告
+
+---
+
+## 🔬 AutoResearch（ML 實驗）
+
+| Skill | 路徑 | 說明 |
+|-------|------|------|
+| `autoresearch` | `~/.openclaw/skills/autoresearch/` | 自動化 ML 訓練優化（val_bpb 越低越好） |
+
+```bash
+~/.openclaw/workspace/skills/autoresearch/scripts/ar-prepare.sh   # 準備資料
+~/.openclaw/workspace/skills/autoresearch/scripts/ar-start.sh <tag>  # 啟動
+cd ~/.openclaw/workspace/autoresearch && ~/.local/bin/uv run train.py  # 訓練
+~/.openclaw/workspace/skills/autoresearch/scripts/ar-results.sh   # 查看結果
+```
+
+---
+
 ## 🔬 研究 & 分析
 
 | Skill | 用法 | 說明 |

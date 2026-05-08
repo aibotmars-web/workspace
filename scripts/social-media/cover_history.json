@@ -1,14 +1,62 @@
 [
   {
-    "mood": "crash",
-    "style": "in 3D rendered style",
+    "mood": "default",
+    "style": "dramatic chiaroscuro lighting",
     "variant_idx": 0,
-    "ts": 1774746207
+    "ts": 1776786016
   },
   {
-    "mood": "crash",
-    "style": "in watercolor style",
+    "mood": "default",
+    "style": "editorial magazine cover composition, professional photojournalism",
     "variant_idx": 0,
-    "ts": 1774750019
+    "ts": 1776819914
+  },
+  {
+    "mood": "bullish",
+    "style": "backlit rim lighting, silhouette against bright background",
+    "variant_idx": 0,
+    "ts": 1776848477
+  },
+  {
+    "mood": "etf",
+    "style": "desaturated editorial photography, high contrast monochrome accent",
+    "variant_idx": 0,
+    "ts": 1776916982
+  },
+  {
+    "mood": "default",
+    "style": "moody atmospheric available light, photojournalism style",
+    "variant_idx": 0,
+    "ts": 1777003365
+  },
+  {
+    "mood": "hack",
+    "style": "cinematic color grading, teal and orange LUT, film grain",
+    "variant_idx": 0,
+    "ts": 1777089766
+  },
+  {
+    "mood": "hack",
+    "style": "blue hour ambient glow, long exposure, urban cinematic",
+    "variant_idx": 0,
+    "ts": 1777262539
+  },
+  {
+    "mood": "etf",
+    "style": "editorial magazine cover composition, professional photojournalism",
+    "variant_idx": 0,
+    "ts": 1777338199
+  },
+  {
+    "mood": "hack",
+    "style": "backlit rim lighting, silhouette against bright background",
+    "variant_idx": 0,
+    "ts": 1777511045
+  },
+  {
+    "mood": "etf",
+    "style": "anamorphic lens bokeh, shallow depth of field, 35mm film look",
+    "variant_idx": 0,
+    "ts": 1777683760
   }
 ]

@@ -238,3 +238,29 @@ Mars 已明確禁止使用 TranscriptAPI 選項。**說過很多次不要用，�
 
 ### 防止未來再犯
 把這個事實寫入所有相關記憶位置，確保再也不會嘗試 TranscriptAPI。
+
+## Deer Flow 安裝（2026-03-31）
+
+### 狀態
+- ✅ 已啟動（手動啟動，關機後需重啟）
+- 🌐 http://localhost:3000
+
+### 啟動方式
+```bash
+cd ~/deer-flow
+export $(cat .env | xargs)  # MINIMAX_API_KEY
+(cd backend && nohup uv run langgraph dev --no-browser --allow-blocking > logs/langgraph.log 2>&1 &)
+sleep 10
+(cd backend && PYTHONPATH=. nohup uv run uvicorn app.gateway.app:app --host 0.0.0.0 --port 8001 > ../logs/gateway.log 2>&1 &)
+sleep 10
+(cd frontend && nohup pnpm run dev > ../logs/frontend.log 2>&1 &)
+nginx -c $(pwd)/docker/nginx/nginx.local.conf -p $(pwd)
+```
+
+### MiniMax API Key
+- 位置：`~/.zshrc` + `~/deer-flow/.env`
+- 模型：MiniMax-M2.1（config.yaml 已設定為預設）
+- endpoint: https://api.minimaxi.com/v1
+
+### 開機自動啟動
+尚未設定（需要 macOS launchd 或 systemd）

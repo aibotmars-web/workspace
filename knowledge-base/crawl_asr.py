@@ -21,7 +21,7 @@ CHANNELS = [
     ("Dr.HuangAmin", "Dr.HuangAmin"),
 ]
 
-VIDEOS_PER_ROUND = 4  # 每次只轉錄 4 部（每部 1-2 分鐘）
+VIDEOS_PER_ROUND = 20  # 每次轉錄 20 部（狀態會保存，cron 多次觸發會持續累積）
 
 
 def get_channel_videos(channel_username, limit=15):

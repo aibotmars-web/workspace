@@ -1,7 +1,139 @@
 [
   {
+    "title": "SpaceX 給馬斯克開出「夢幻對賭薪酬包」：建火星百萬人殖民地、太空 AI 算力中心..不達標就白忙",
+    "link": "https://www.blocktempo.com/elon-musk-spacex-insane-compensation-plan-mars-colony-space-ai/",
+    "channel": "crypto",
+    "posted_at": "2026-05-01T09:04:24.794685"
+  },
+  {
+    "title": "Aave 救援行動「DeFi United」募得 3 億美元，Consensys 帶頭捐 3 萬枚以太幣",
+    "link": "https://blockcast.it/2026/04/28/defi-industry-leaders-are-pouring-300m-into-a-rescue-plan-for-aave-after-massive-crypto-hack/",
+    "channel": "crypto",
+    "posted_at": "2026-04-29T09:03:49.994362"
+  },
+  {
+    "title": "Pornhub 宣布棄用 USDT 轉向 USDC，創作者需於 6/1 前完成付款資訊更新",
+    "link": "https://abmedia.io/pornhub-drops-usdt-for-usdc",
+    "channel": "crypto",
+    "posted_at": "2026-04-24T12:08:09.692093"
+  },
+  {
+    "title": "AAVE 中槍後，逆勢吸金 13 億美元的 Spark 做對了什麼？",
+    "link": "https://blockcast.it/2026/04/23/how-makers-spark-winning-the-10-billion-aave-breakup/",
+    "channel": "crypto",
+    "posted_at": "2026-04-24T12:08:04.978794"
+  },
+  {
+    "title": "紐約州起訴 Coinbase 、 Gemini ：指控預測市場產品涉「非法經營賭博」",
+    "link": "https://blockcast.it/2026/04/22/new-york-sues-coinbase-gemini-for-illegal-gambling-on-prediction-market-platforms/",
+    "channel": "crypto",
+    "posted_at": "2026-04-22T14:00:45.633966"
+  },
+  {
+    "title": "又有 DeFi 遇駭》Sui 生態 Volo 遭竊 350 萬美元加密資產，團隊宣布自吞損失",
+    "link": "https://www.blocktempo.com/sui-volo-protocol-hacked-3-5-million-three-vaults-stolen/",
+    "channel": "crypto",
+    "posted_at": "2026-04-22T12:07:56.964991"
+  },
+  {
+    "title": "Tether 領投阿聯 KAIO 800 萬：把 USDT 注入貝萊德代幣化基金",
+    "link": "https://abmedia.io/tether-kaio-uae-tokenization-8m-round-usdt",
+    "channel": "crypto",
+    "posted_at": "2026-04-21T12:08:34.046780"
+  },
+  {
+    "title": "美國 Clarity Act 清晰度法案恐延期至 5 月！銀行業不滿「穩定幣收益」，Kelp DAO 又爆 2.9 億鎂駭案",
+    "link": "https://www.blocktempo.com/bank-lobbying-delays-clarity-act-kelp-dao-290m-hack/",
+    "channel": "crypto",
+    "posted_at": "2026-04-21T09:07:45.275017"
+  },
+  {
+    "title": "美政府錢包又現異動！60 萬美元 Bitfinex 竊案比特幣被轉入 Coinbase",
+    "link": "https://blockcast.it/2026/04/17/u-s-government-moves-606000-in-bitcoin-linked-to-bitfinex-hack-to-coinbase/",
+    "channel": "crypto",
+    "posted_at": "2026-04-18T14:59:01.822598"
+  },
+  {
+    "title": "Drift 遭駭 2.8 億美元：受災戶怒告 Circle「見死不救」未凍結被盜資產",
+    "link": "https://blockcast.it/2026/04/17/circle-hit-with-class-action-lawsuit-over-alleged-inaction-in-drift-exploit/",
+    "channel": "crypto",
+    "posted_at": "2026-04-18T12:03:41.665155"
+  },
+  {
+    "title": "比特小鹿自營挖礦算力狂飆至 70 EH/s，奪下「算力王」封號",
+    "link": "https://blockcast.it/2026/04/16/bitdeer-hits-70-eh-s-in-self-mining-bitcoin-operations-claims-top-spot/",
+    "channel": "crypto",
+    "posted_at": "2026-04-17T09:20:21.132202"
+  },
+  {
+    "title": "割韭菜不演了？$WLFI 爆治理爭議：投資人代幣鎖 4 年、不同意就「永久鎖死」",
+    "link": "https://blockcast.it/2026/04/16/world-liberty-financials-new-proposal-prompts-harsh-criticism-from-investors/",
+    "channel": "crypto",
+    "posted_at": "2026-04-17T09:15:40.689800"
+  },
+  {
+    "title": "快訊》NEAR 生態 Rhea Finance 遭駭 760 萬美元！駭客造假代幣「操縱預言機」",
+    "link": "https://www.blocktempo.com/rhea-finance-hacked-7-6-million-oracle-manipulation-certik/",
+    "channel": "crypto",
+    "posted_at": "2026-04-17T09:09:12.121323"
+  },
+  {
+    "title": "美國政府又賣比特幣？8.2 枚「Bitfinex 駭客案」BTC 轉入 Coinbase",
+    "link": "https://www.blocktempo.com/us-government-transfers-bitfinex-hack-btc-to-coinbase-prime/",
+    "channel": "crypto",
+    "posted_at": "2026-04-17T08:10:17.406065"
+  },
+  {
+    "title": "美國參議員華倫轟馬斯克 X Money 威脅金融穩定！質疑 6% 高息與穩定幣法案漏洞",
+    "link": "https://www.blocktempo.com/elizabeth-warren-warns-elon-musk-x-money-threatens-financial-stability/",
+    "channel": "crypto",
+    "posted_at": "2026-04-16T09:05:13.566899"
+  },
+  {
+    "title": "加密交易所搶灘 Pre-IPO 資產：SpaceX 的股權，現在可以用穩定幣買了",
+    "link": "https://blockcast.it/2026/04/14/buy-spacex-with-stablecoins-crypto-exchanges-target-pre-ipo-assets/",
+    "channel": "crypto",
+    "posted_at": "2026-04-15T09:04:46.741111"
+  },
+  {
+    "title": "快訊》CoW Swap 遭「前端攻擊」！Blockaid 警告：cow.fi 淪惡意網站，請立即撤銷授權",
+    "link": "https://www.blocktempo.com/cow-swap-front-end-attack-blockaid-warning-revoke-approvals/",
+    "channel": "crypto",
+    "posted_at": "2026-04-15T08:05:53.628077"
+  },
+  {
+    "title": "最瞎劫案？駭客鑄造 10 億美元 $DOT，因「這理由」只偷到 23 萬美元",
+    "link": "https://blockcast.it/2026/04/13/attacker-mints-1-billion-dot-tokens-on-ethereum-ends-up-stealing-just-250000/",
+    "channel": "crypto",
+    "posted_at": "2026-04-14T09:10:22.102988"
+  },
+  {
+    "title": "貝萊德上調美股預期，戰爭影響消退已重新加碼美國與新興市場",
+    "link": "https://abmedia.io/blackrock-raises-us-stocks-view",
+    "channel": "crypto",
+    "posted_at": "2026-04-14T09:06:25.467308"
+  },
+  {
+    "title": "以太坊版 MicroStrategy：Bitmine 持有近 490 萬枚 ETH，佔總供給 4%，加密資產達 118 億美元",
+    "link": "https://abmedia.io/bitmine-eth-holdings-4-percent-supply-118-billion-mavan-staking",
+    "channel": "crypto",
+    "posted_at": "2026-04-14T08:04:12.777185"
+  },
+  {
+    "title": "Strategy 砸 10 億鎂掃 13,927 枚 BTC，總持倉踏破 78 萬枚大關",
+    "link": "https://www.blocktempo.com/strategy-buys-13927-bitcoin-billion-saylor-holdings-780897-yield-2026/",
+    "channel": "crypto",
+    "posted_at": "2026-04-13T22:16:26.265431"
+  },
+  {
+    "title": "蘋果 App Store 驚現假冒 Ledger App！他「輸入助記詞」秒被盜 5.9 枚比特幣",
+    "link": "https://blockcast.it/2026/04/13/musician-lost-nearly-6-btc-after-downloading-a-fake-ledger-app-from-apples-mac-app-store/",
+    "channel": "crypto",
+    "posted_at": "2026-04-13T20:25:02.604628"
+  },
+  {
     "url": "https://www.theblock.co/post/394044/bitcoin-etfs-inflow-seven-day-streak?utm_source=rss&utm_medium=rss",
-    "title": "‘Institutional conviction is back’: Bitcoin ETFs post longest inflow streak in five months",
+    "title": "'Institutional conviction is back': Bitcoin ETFs post longest inflow streak in five months",
     "channel": "crypto",
     "posted_at": "2026-03-18T21:25:16.598291",
     "hook": "比特幣閃崩！從76K跌到72K",
@@ -107,7 +239,10 @@
     "posted_at": "2026-03-22T10:09:19.414201",
     "hook": "黃仁勳怒了！不用AI的員工GG？",
     "source": "publish-last",
-    "_topics": []
+    "_topics": [
+      "AI/科技",
+      "美股/科技"
+    ]
   },
   {
     "url": "https://www.coindesk.com/markets/2026/03/22/bitcoin-miners-are-losing-usd19-000-on-every-btc-produced-as-difficulty-drops-7-8",
@@ -151,7 +286,11 @@
     "channel": "crypto",
     "posted_at": "2026-03-26T09:06:10.914025",
     "hook": "油價飆到150美元？華爾街巨頭發重大警告",
-    "source": "publish-last"
+    "source": "publish-last",
+    "_topics": [
+      "黃金/大宗",
+      "宏觀/政策"
+    ]
   },
   {
     "url": "https://news.google.com/rss/articles/CBMi5wJBVV95cUxPLV8zSk9xU2xUOEJNN3JWU20zQ1ZZSV9KbmctZ0VpT1hWM1ZYVkZsdGlwY3FpSmVubUxJd2U2cHdjejZDYVNqaDFGWGs3UGlRbzRVN2l5S05NT3E3RVRWeDBTQ0RFUXJLR3NkV25WMVZ4XzFFVzQ4ZlItWUItbmlwcXgyRUlWVWJCUmJjTzZuV3ZLV1J2OUhYeUxhLXF3UUM2eERoaEF3eS1hMjhNRks0MmpSTFI3cnhYamxYRi0xTXZtZG1SUlVydVF5cmVNU2JjSkphaU9vMGh6aFFBeVFFV2pPQlBYWnlER2dYcnBGT3drQ3RSbFplTGd5S3pEd2dXZmJWeVZta1RWdjFzYmM3WlpXMFlGWFUzVFFxSEtOVjRKTFBjbjNSZmt2ZDB4WDJxY0tLZURRZVo4NmRmeDVGb2VDS1NHcFdtU1E5MmJpUWhPbjdhLTEzeHQtUFB1dFhLbFNhU0dPMA?oc=5",
@@ -159,7 +298,12 @@
     "channel": "finance",
     "posted_at": "2026-03-26T10:11:14.111541",
     "hook": "中東停火露曙光！全球股市嗨翻",
-    "source": "publish-last"
+    "source": "publish-last",
+    "_topics": [
+      "地緣政治",
+      "黃金/大宗",
+      "美股/科技"
+    ]
   },
   {
     "url": "https://www.blocktempo.com/bitcoin-miners-breakeven-pressure-ai-pivot-coinshares/",
@@ -167,15 +311,23 @@
     "channel": "crypto",
     "posted_at": "2026-03-27T09:08:03.676067",
     "hook": "比特幣挖礦成本逼近8萬鎂",
-    "source": "publish-last"
+    "source": "publish-last",
+    "_topics": [
+      "BTC/ETF",
+      "礦工/技術"
+    ]
   },
   {
-    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9fRG4zd3RDT2lNWVhPRlA5TjJSN29VTzdYRXJUcEZRd253MzNNQllGcXNwQXVKZmtja21fQ29COWdnZGFkS0dlTGk4cktKWTVPeE1SVFpoWE9rMXk5Y3l30gFkQVVfeXFMTS03Q0U2Z09iRUdGb3BZa182NDRwaHo2SC1FYmVucngzMmUzWHBQTHNHZ2txZHdfU2VFYk8wbVBwTGozZ05idVM1d1lwaUhra2w3ZzJaMkpXYS1VUjJOTmJPQ2dlSw?oc=5",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9fRG4zd3RDT2lNWVhPRlA5TjJSN29VTzdYRXJUcEZRd253MzNNQllGcXNwQXVKZmtja21fQ29COWdnZGFkS0dlTGk4cktKWTVPeE1SVFpoWE9rMXk1Y3l30gFkQVVfeXFMTS03Q0U2Z09iRUdGb3BZa182NDRwaHo2SC1FYmVucngzMmUzWHBQTHNHZ2txZHdfU2VFYk8wbVBwTGozZ05idVM1d1lwaUhra2w3ZzJaMkpXYS1VUjJOTmJPQ2dlSw?oc=5",
     "title": "美股收盤》油價大漲！道瓊大跌469點 台積電ADR重摔逾6％ - 自由財經",
     "channel": "finance",
     "posted_at": "2026-03-27T10:09:40.708754",
     "hook": "道瓊崩469點 臺積ADR重摔6%",
-    "source": "publish-last"
+    "source": "publish-last",
+    "_topics": [
+      "美股/科技",
+      "黃金/大宗"
+    ]
   },
   {
     "url": "https://blockcast.it/2026/03/27/btc-etf-outflows-hit-3-week-high-as-ark-invest-cuts-holdings-in-own-btc-fund/",
@@ -183,7 +335,10 @@
     "channel": "crypto",
     "posted_at": "2026-03-28T09:09:23.845542",
     "hook": "比特幣ETF被倒貨！機構老大哥集體跑了？",
-    "source": "publish-last"
+    "source": "publish-last",
+    "_topics": [
+      "BTC/ETF"
+    ]
   },
   {
     "url": "https://news.google.com/rss/articles/CBMiuwJBVV95cUxPMGRnY2o5aUsxU040eFl2ZjFwcEM4WmdGTDcxMFNsUTFGNHFNMjdLOHl3U2VfcC1pUHVwc3NaeFpNUTdiektELTNSZFh3d2pGdG5KdElIUUhYMURuanFkY1dacjVtZTVmbUVoYVp3WjR6blZGbTJ6THBYeUxNRmF2S2pRN3piTHBENmxKT0c2SUtLYkFGUkVKNENGRk9UMHcwalJ4dm1Kd3ZvV3YtY2NONWgyNVJUU0FuMzJpSlVJeUwwNnlhbFpVNmo3cnIweE10R2hqYjB6dE9QUzJwVVJEUkZ5Q1pQTFc4MmVsbWl4RXdYRlN1ZXRGMXlZa3lYZ21oMmk1MnRpOTJ5ck8ySG80M3dBVk1zcUhGWVNIZFZKTzZNWVR1S3ctQ2tnOWpPMnlENmZ2NS15bXdZMTg?oc=5",
@@ -191,7 +346,11 @@
     "channel": "finance",
     "posted_at": "2026-03-28T10:09:09.475427",
     "hook": "中東開戰！道瓊崩793點、但臺積電逆勢漲",
-    "source": "publish-last"
+    "source": "publish-last",
+    "_topics": [
+      "地緣政治",
+      "美股/科技"
+    ]
   },
   {
     "url": "https://blockcast.it/2026/03/27/tether-hires-kpmg-for-usdt-audit/",
@@ -224,7 +383,9 @@
     "channel": "crypto",
     "posted_at": "2026-03-29T12:06:39.518709",
     "hook": "老外驚呆！中國AI普及狠甩美國？",
-    "_topics": []
+    "_topics": [
+      "AI/科技"
+    ]
   },
   {
     "url": "https://blockcast.it/2026/03/29/fannie-mae-to-accept-crypto-backed-mortgages/",
@@ -244,42 +405,35 @@
     "posted_at": "2026-03-30T12:48:51.683388",
     "hook": "買房不用賣幣了！",
     "source": "publish-last",
+    "_topics": [
+      "BTC/ETF"
+    ]
+  },
+  {
+    "url": "https://www.blocktempo.com/cardano-midnight-mainnet-zk-privacy-chain-hoskinson-ada-price-crash/",
+    "title": "Cardano 創辦人宣布隱私合作鏈 Midnight 主網上線，雙代幣系統：NIGHT 與 DUST",
+    "channel": "crypto",
+    "posted_at": "2026-03-31T12:11:03.389562",
+    "hook": "Cardano 創辦人宣佈隱私",
     "_topics": []
   },
   {
-    "url": "",
-    "title": "買房不用賣幣了！",
+    "url": "https://www.blocktempo.com/nasa-artemis-ii-launches-first-crewed-lunar-flyby-half-century/",
+    "title": "睽違半世紀人類再度飛向月球！NASA「阿提米絲二號」載人繞月 4/2 升空，免費直播看發射",
     "channel": "crypto",
-    "posted_at": "2026-03-30T12:56:03.675969",
-    "hook": "買房不用賣幣了！",
-    "source": "publish-last",
+    "posted_at": "2026-03-31T12:25:26.076499",
+    "hook": "睽違半世紀人類再度飛向月球！N",
     "_topics": []
   },
   {
-    "url": "",
-    "title": "買房不用賣幣了！",
+    "url": "https://blockcast.it/2026/03/31/us-labor-department-proposes-opening-401k-plans-to-crypto/",
+    "title": "10 兆美元資金活水！美國勞工部提議：開放「401(k) 退休金」投資加密幣",
     "channel": "crypto",
-    "posted_at": "2026-03-30T15:21:47.755399",
-    "hook": "買房不用賣幣了！",
+    "posted_at": "2026-04-01T15:21:17.998949",
+    "hook": "10兆美元！退休金要進幣圈了",
     "source": "publish-last",
-    "_topics": []
-  },
-  {
-    "url": "",
-    "title": "買房不用賣幣了！",
-    "channel": "crypto",
-    "posted_at": "2026-03-30T15:38:15.005184",
-    "hook": "買房不用賣幣了！",
-    "source": "publish-last",
-    "_topics": []
-  },
-  {
-    "url": "",
-    "title": "買房不用賣幣了！",
-    "channel": "crypto",
-    "posted_at": "2026-03-30T17:11:14.321670",
-    "hook": "買房不用賣幣了！",
-    "source": "publish-last",
-    "_topics": []
+    "_topics": [
+      "宏觀/政策"
+    ]
   }
 ]

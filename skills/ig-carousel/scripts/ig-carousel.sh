@@ -29,7 +29,7 @@ case "$COMMAND" in
   publish)
     echo "📤 [ig-carousel] 發布上次草稿：$CHANNEL"
     cd "$HOME/.openclaw/workspace/scripts/social-media"
-    python3 "$PIPELINE" --channel "$CHANNEL" --publish-last
+    python3 "$PIPELINE" --channel "$CHANNEL" --publish-last --reuse-existing
     ;;
 
   select-cover)

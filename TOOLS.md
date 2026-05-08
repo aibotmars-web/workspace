@@ -22,6 +22,22 @@
 | `sessions_list` | 查看活躍 sessions |
 | `sessions_spawn` | 啟動新的 Agent session |
 
+## 🧠 gstack / DeerFlow / AutoResearch
+
+| Skill | 路徑 | 指令 | 說明 |
+|-------|------|------|------|
+| `gstack/office-hours` | `~/.openclaw/skills/gstack/office-hours` | `openclaw skill run office-hours '任務'` | Think & Plan，任務前必做 |
+| `gstack/review` | `~/.openclaw/skills/gstack/review` | `openclaw skill run review '程式碼'` | 程式碼審查 |
+| `gstack/qa` | `~/.openclaw/skills/gstack/qa` | `openclaw skill run qa '說明'` | 品質確認測試 |
+| `gstack/ship` | `~/.openclaw/skills/gstack/ship` | `openclaw skill run ship '說明'` | 部署（ship 前先跑 review + qa） |
+| `gstack/cso` | `~/.openclaw/skills/gstack/cso` | `openclaw skill run cso '問題'` | 安全審查 |
+| `gstack/design-shotgun` | `~/.openclaw/skills/gstack/design-shotgun` | `openclaw skill run design-shotgun '需求'` | 多版設計方案 |
+| `gstack/canary` | `~/.openclaw/skills/gstack/canary` | `openclaw skill run canary '功能'` | Canary 驗證 |
+| `claude-to-deerflow` | `~/.openclaw/skills/claude-to-deerflow/` | `bash ~/.openclaw/skills/claude-to-deerflow/scripts/chat.sh '問題'` | DeerFlow 深度研究（先 curl http://localhost:8001/health 確認） |
+| `autoresearch` | `~/.openclaw/skills/autoresearch/` | 見 coder/TOOLS.md | ML 實驗優化（val_bpb 越低越好） |
+
+---
+
 ## 已安裝 Skills
 
 | Skill | 功能 | 主要使用者 |

@@ -17,7 +17,7 @@ if r1.returncode != 0:
 
 # ASR版（慢速，每次只處理 2 部）
 print("\n🎤 ASR 轉錄爬蟲...")
-r2 = subprocess.run(["python3", "crawl_asr.py"], cwd=WORKSPACE, capture_output=True, text=True, timeout=600)
+r2 = subprocess.run(["python3", "crawl_asr.py"], cwd=WORKSPACE, capture_output=True, text=True)
 print(r2.stdout[-500:] if r2.stdout else "")
 if r2.returncode != 0:
     print("ASR版錯誤:", r2.stderr[-200:] if r2.stderr else "")

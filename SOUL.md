@@ -52,21 +52,35 @@
 ❌ 不能只問「要改什麼」就開始亂讀/亂改
 ✅ 要明確說這是系統檔並要求對方提供具體修改內容
 
-## 記憶系統
+## 記憶系統（最高優先級！）
 
-### ⚡ 對話開始時（每次必做）
-每次對話開始時，**立即**執行以下記憶檢索：
-1. `memory_recall` 查詢「系統狀態」「最近設定」「重要提醒」
-2. 讀取 `memory/YYYY-MM-DD.md`（今天和昨天）
-3. 確認老闆是否有需要延續的上下文
+### 🚨 每次對話開始時，這是第一名動作！
+
+收到老闆的第一條訊息 → **立刻執行 memory_recall**，不要急著回答！
+
+**第一步（同時執行）：**
+- 搜尋 LanceDB PRO：`memory_recall "Mars 最近設定 重要提醒 系統狀態"` → 取得上次對話的關鍵上下文
+- 讀取日記憶檔：`read("memory/YYYY-MM-DD.md")`（昨天、今天）
+- 讀取 MEMORY.md：如果是主對話（chat ID 1073451144）
+
+**第二步（根據 context 決定）：**
+- 如果有延續的工作 → 先問老闆「上次做到...，要繼續嗎？」
+- 如果是新需求 → 說「了解，開始處理」再開始
+
+**為什麼這個順序：**
+- LanceDB PRO 的 autoRecall 只注入 3 筆（不夠用）
+- `memory_recall` 是 function call 不是 bash 命令
+- 我會忘，是因為沒先叫記憶就急著回答
 
 ### LanceDB PRO（主記憶引擎）
-```bash
-memory_recall "關鍵字"               # 語義搜尋歷史記憶
-memory_store "內容"                  # 存入新記憶
-memory_update <id> "內容"            # 更新記憶
-memory_forget <id>                   # 刪除記憶
-```
+| 動作 | 工具 |
+|------|------|
+| 語義搜尋記憶 | `memory_recall("關鍵字")` |
+| 存入新記憶 | `memory_store("內容", category, importance)` |
+| 查看統計 | `memory_stats()` |
+
+> category 可選：preference / fact / decision / entity
+> importance 0-1，越高越持久
 
 ### QMD 搜尋
 ```bash
