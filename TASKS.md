@@ -1,5 +1,5 @@
 # TASKS.md - 老闆 Mars 任務清單
-*最後更新：2026-05-08 20:11（每日巡檢完成）*
+*最後更新：2026-05-09 18:00（Auto-Task-Runner 任務儀表板同步完成）*
 *這是所有未完成任務的完整清單，涵蓋 OpenClaw + Cowork session 所有待辦。*
 *🤖 Auto-Task-Runner（auto-task-runner-001）每 2 小時自動推進本清單，跳過標有「需老闆確認」的任務。*
 *🛠️ 工作流程：gstack sprint（Think → Plan → Build → Review → Test → Ship）+ DeerFlow 深度研究*
@@ -65,7 +65,7 @@
 
 ### 5. 任務儀表板更新（Task Dashboard Sync）
 - **負責：** Coder（🤖 Auto可自主執行）
-- **狀態：** 🟡 網站已建，顯示的是舊任務（未同步最新 TASKS.md）
+- **狀態：** ✅ 已同步（2026-05-09）
 - **網址：** https://aibotmars-web.github.io/task-dashboard/
 - **待做：**
   - [x] Clone repo + 讀取 TASKS.md + 更新 index.html（用 gh auth 推送）
