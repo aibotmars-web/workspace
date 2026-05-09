@@ -1,5 +1,5 @@
 # TASKS.md - 老闆 Mars 任務清單
-*最後更新：2026-05-08 12:00（P1-5 任務儀表板同步完成）*
+*最後更新：2026-05-08 20:11（每日巡檢完成）*
 *這是所有未完成任務的完整清單，涵蓋 OpenClaw + Cowork session 所有待辦。*
 *🤖 Auto-Task-Runner（auto-task-runner-001）每 2 小時自動推進本清單，跳過標有「需老闆確認」的任務。*
 *🛠️ 工作流程：gstack sprint（Think → Plan → Build → Review → Test → Ship）+ DeerFlow 深度研究*
@@ -9,17 +9,14 @@
 
 ## 🔴 P0 - 最緊急（本週要解決）
 
-### 1. OpenClaw v2026.4.2 升級（新增）
+### 1. OpenClaw 版本管理
 - **負責：** System-Admin（🤖 Auto可自主執行）
-- **狀態：** ✅ 已完成（2026-04-04）
-- **背景：** 今日（2026-04-03）發布，重大變更：exec 預設行為、xAI plugin、Firecrawl config 遷移
-- **已完成：**
-  - [x] 執行 `openclaw doctor --fix` 自動遷移 xAI plugin config 和 Firecrawl config（2026-04-04）
-  - [x] 確認 Gateway 重啟後 LanceDB PRO config 驗證通過（doctor 顯示 Errors: 0）
-  - [x] 回報升級結果到 Telegram
-- **注意：** 版本已升級至 2026.4.2 (d74a122)，doctor --fix 無錯誤
-- **Auto 指令範例：**
-  > "System-Admin，請執行 `openclaw doctor --fix` 完成 v2026.4.2 config 遷移，重啟 Gateway，確認 LanceDB PRO schema 驗證通過，回報結果。"
+- **狀態：** ✅ 目前版本 v2026.5.7（2026-05-09）
+- **版本歷史：**
+  - v2026.4.2 → 完成遷移（2026-04-04）
+  - v2026.5.7 → 系統自動升級（2026-05-09）
+- **說明：** 系統已從 v2026.4.2 升至 v2026.5.7，共經過 4 個 minor 版本（5.3→5.4→5.5→5.6→5.7）。v2026.5.7 重點：ClawHub publish 修復、Discord target parse 修復、cron status JSON 增強、Codex/OpenAI model 新增。
+- **已驗證：** openclaw --version 回傳 2026.5.7 (eeef486)，Gateway 正常運行
 
 ### 2. YouTube 知識庫 LLM 總結超時修復
 - **負責：** Coder（🤖 Auto可自主執行）
