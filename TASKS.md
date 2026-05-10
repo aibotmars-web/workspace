@@ -50,7 +50,7 @@
 
 ### 4. 真相網（RealTaiwan）內容更新
 - **負責：** Crawler + Coder（🤖 Auto可自主執行）
-- **狀態：** ✅ 已完成（2026-04-07）
+- **狀態：** ✅ 已完成（2026-04-07），新增文章（2026-05-10）
 - **網址：** https://realtaiwan.github.io/realtaiwan-web/
 - **草稿目錄：** `~/.openclaw/workspace/realtaiwan-drafts/`
 - **Source：** `~/.openclaw/workspace/truth-net/`
@@ -58,7 +58,8 @@
   - [x] ✅ 新增 3 篇 HTML 文章（2026-04-07）：柯文哲與沈慶京17次密會、黃國昌選擇性失憶、柯文哲一審判決
   - [x] ✅ deploy.sh 執行成功（2026-04-07 18:10）：已推送 GitHub
   - [x] ✅ 新文章草稿 markdown 已提交 drafts repo
-  - [ ] GitHub Pages 重建預計 1-2 分鐘
+  - [x] ✅ 新增文章（2026-05-10）：柯文哲條款闖關（立院司委會審查）
+- **身份安全：** 完全隔離，只能用 realtaiwan 帳號，絕對不能用 mars/aibotmars 帳號
 - **身份安全：** 完全隔離，只能用 realtaiwan 帳號，絕對不能用 mars/aibotmars 帳號
 - **Auto 指令範例：**
   > "Crawler，用 web_search 搜尋『柯文哲審判最新進展 2026』、『黃國昌弊案 2026』、『台灣政治新聞 2026-04』。整理出 2 篇 300-500 字文章，存到 ~/.openclaw/workspace/realtaiwan-drafts/articles/20260403-柯文哲.md（日期要對）。格式：## 標題、## 背景、## 關鍵事件、## 來源。完成後通知 Coder 執行 deploy.sh。"
