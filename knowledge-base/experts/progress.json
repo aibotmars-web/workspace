@@ -1,0 +1,16 @@
+{
+  "updated": "2026-05-10T20:00:40+08:00",
+  "channels": [
+    {"name":"胡乃文开播","youtube":0,"crawled":79,"progress":0},
+    {"name":"柏格醫生中文","youtube":0,"crawled":127,"progress":0},
+    {"name":"Dr.HuangAmin","youtube":0,"crawled":73,"progress":0},
+    {"name":"周慕姿放心說","youtube":0,"crawled":123,"progress":0},
+    {"name":"松明讲心理","youtube":0,"crawled":11,"progress":0},
+    {"name":"超真實商談","youtube":0,"crawled":0,"progress":0},
+    {"name":"Cofit211","youtube":0,"crawled":228,"progress":0},
+    {"name":"泛科學","youtube":0,"crawled":26,"progress":0},
+    {"name":"泛科學院","youtube":0,"crawled":98,"progress":0},
+    {"name":"top3pct","youtube":0,"crawled":0,"progress":0}
+  ],
+  "summary": {"total_youtube":0,"total_crawled":765}
+}
