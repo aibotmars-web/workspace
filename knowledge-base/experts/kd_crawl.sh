@@ -4,6 +4,9 @@
 
 set +e  # 不要因為錯誤而退出
 
+# 確保 timeout command 可用（crontab 環境 PATH 有限）
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+
 BASE_DIR="$HOME/.openclaw/workspace/knowledge-base/experts"
 LOG_FILE="$BASE_DIR/kd-crawl-$(date +%Y-%m-%d).log"
 PROGRESS_FILE="$BASE_DIR/progress.json"
@@ -30,22 +33,47 @@ CHANNELS=(
 
 get_youtube_total() {
     local username="$1"
-    
-    # 先看快取
-    local cached=$(grep "^${username}|" "$CACHE_FILE" 2>/dev/null | cut -d'|' -f2)
-    if [ -n "$cached" ] && [ "$cached" -gt 0 ] 2>/dev/null; then
-        echo "$cached"
-        return
+    # 從 crawl_state.json 讀取已知的總數
+    local channel_key="${username#@}"
+    # CHANNELS 格式: "頻道名|@username|dir_name" → channel_key = dir_name (如 Dr.Hu_talk)
+    # 但 crawl_state.json 用頻道名做 key，需 map
+    local chinese_name=""
+    for entry in "${CHANNELS[@]}"; do
+        local cname="${entry%%|*}"
+        local rest="${entry#*|}"
+        local uname="${rest%%|*}"
+        local dname="${rest##*|}"
+        if [ "$dname" = "$channel_key" ]; then
+            chinese_name="$cname"
+            break
+        fi
+    done
+    if [ -n "$chinese_name" ]; then
+        local cached=$(python3 -c "
+import json
+try:
+    with open('$HOME/.openclaw/workspace/knowledge-base/crawl_state.json') as f:
+        d=json.load(f)
+    print(d.get('channels',{}).get('$chinese_name',{}).get('total','?'))
+except: print('?')
+" 2>/dev/null)
+        if [ "$cached" != "?" ] && [ -n "$cached" ]; then
+            echo "$cached"
+            return
+        fi
     fi
-    
-    # 用 --playlist-end 500 自動翻下一頁抓正確總數
-    local count=$(timeout 25 yt-dlp --flat-playlist --print '%(id)s' "https://www.youtube.com${username}/videos" --playlist-end 500 2>/dev/null | wc -l | tr -d ' ')
-    
-    if [ -n "$count" ] && [ "$count" -gt 0 ] 2>/dev/null; then
-        echo "$count"
-    else
-        echo "0"
-    fi
+    echo "?"
+}
+
+get_video_ids() {
+    # 用 curl 取代 yt-dlp（繞過 rate limit），去重
+    local channel="$1"
+    curl -s --max-time 15 \
+        -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+        "https://www.youtube.com/@${channel}/videos" 2>/dev/null | \
+        grep -o '"videoId":"[^"]*"' | \
+        sed 's/"videoId":"//;s/"//g' | \
+        sort -u | head -20
 }
 
 get_crawled_count() {
@@ -55,7 +83,7 @@ get_crawled_count() {
     [ -d "$BASE_DIR/transcripts/$dir_name" ] && count=$((count + $(ls "$BASE_DIR/transcripts/$dir_name"/*.md 2>/dev/null | wc -l | tr -d ' ')))
     [ -d "$BASE_DIR/$dir_name" ] && count=$((count + $(ls "$BASE_DIR/$dir_name"/*.md 2>/dev/null | wc -l | tr -d ' ')))
     [ -d "$BASE_DIR/$dir_name" ] && count=$((count + $(ls "$BASE_DIR/$dir_name"/*.txt 2>/dev/null | wc -l | tr -d ' ')))
-    echo "$count"
+    echo "${count:-0}"
 }
 
 generate_json() {
@@ -83,7 +111,8 @@ generate_json() {
         rest="${entry#*|}"
         channel_username="${rest%%|*}"
         dir_name="${rest##*|}"
-        total_yt=$((total_yt + $(get_youtube_total "$channel_username")))
+        yt=$(get_youtube_total "$channel_username")
+        [ "$yt" != "?" ] && total_yt=$((total_yt + yt))
         total_cr=$((total_cr + $(get_crawled_count "$dir_name")))
     done
     echo '  "summary": {"total_youtube":'$total_yt',"total_crawled":'$total_cr'}' >> "$PROGRESS_FILE"
@@ -180,7 +209,7 @@ case "${1:-crawl}" in
             
             # 獲取影片 ID（最多 5 個）
             channel="${channel_username#@}"
-            video_ids=$(timeout 25 yt-dlp --flat-playlist --print "%(id)s" "https://www.youtube.com/@$channel/videos" --playlist-end 5 2>/dev/null)
+            video_ids=$(get_video_ids "$channel")
             
             [ -z "$video_ids" ] && echo "  ❌ 無法獲取影片列表，跳過" | tee -a "$LOG_FILE" && continue
             
@@ -228,4 +257,5 @@ case "${1:-crawl}" in
     *)
         echo "用法: $0 [crawl|progress]"
         ;;
+
 esac
