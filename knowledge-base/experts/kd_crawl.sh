@@ -164,7 +164,7 @@ crawl_video() {
         timeout 90 kd subtitles "https://www.youtube.com/watch?v=$vid" -o "$output_file" 2>&1 | tee -a "$LOG_FILE"
     else
         # 無字幕，用 ASR
-        timeout 300 kd process "https://www.youtube.com/watch?v=$vid" --no-summary --no-subtitles --transcriber mlx-whisper -o "$output_file" 2>&1 | tee -a "$LOG_FILE"
+        timeout 600 kd process "https://www.youtube.com/watch?v=$vid" --no-summary --no-subtitles --transcriber mlx-whisper -o "$output_file" 2>&1 | tee -a "$LOG_FILE"
     fi
     
     # 檢查結果
