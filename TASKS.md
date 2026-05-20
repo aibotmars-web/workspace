@@ -1,5 +1,5 @@
 # TASKS.md - 老闆 Mars 任務清單
-*最後更新：2026-05-16 14:00（Auto-Task-Runner 例行檢查）*
+*最後更新：2026-05-20 14:00（Auto-Task-Runner 例行檢查）*
 *這是所有未完成任務的完整清單，涵蓋 OpenClaw + Cowork session 所有待辦。*
 *🤖 Auto-Task-Runner（auto-task-runner-001）每 2 小時自動推進本清單，跳過標有「需老闆確認」的任務。*
 *🛠️ 工作流程：gstack sprint（Think → Plan → Build → Review → Test → Ship）+ DeerFlow 深度研究*
@@ -16,6 +16,7 @@
   - v2026.4.2 → 完成遷移（2026-04-04）
   - v2026.5.7 → 系統自動升級（2026-05-09）
 - **說明：** 系統已從 v2026.4.2 升至 v2026.5.7，共經過 4 個 minor 版本（5.3→5.4→5.5→5.6→5.7）。v2026.5.7 重點：ClawHub publish 修復、Discord target parse 修復、cron status JSON 增強、Codex/OpenAI model 新增。
+- **⚠️ 可升級：v2026.5.18 已發布（2026-05-18），建議更新。Homebrew 安裝 v2026.5.7，npm 全局 v2026.4.22，最新為 2026.5.18。**
 - **已驗證：** openclaw --version 回傳 2026.5.7 (eeef486)，Gateway 正常運行
 
 ### 2. YouTube 知識庫 LLM 總結超時修復
@@ -268,6 +269,14 @@
 - 今日執行：DeerFlow 離線 → 自動重啟 → 健康檢查通過 ✅
 - 回報：無需自主行動，系統正常運行
 
+
+### 2026-05-20 14:00（Auto-Task-Runner 例行檢查）
+- **系統狀態：** OpenClaw v2026.5.7 ✅ / DeerFlow 🔄 已重新啟動 ✅ / 爬蟲 Daemon 正在處理（kd process PID 1856）✅
+- **⚠️ OpenClaw 可升級：** v2026.5.18 已發布，Homebrew 安裝 v2026.5.7，npm 全局 v2026.4.22
+- **所有可自主執行任務均已完成（P0/P1/P2 ✅）**
+- **僅存等待老闆確認項目**（Polymarket、Google credentials、兒童繪本、電商、App）
+- **DeerFlow 離線** → 自動重啟成功（`launchd-start.sh`）→ 健康檢查通過 ✅
+- **回報：** 無需自主行動，系統正常運行
 
 ### 2026-05-18 16:00（Auto-Task-Runner 例行檢查）
 - **系統狀態：** OpenClaw v2026.5.7 ✅ / DeerFlow healthy ✅ / 爬蟲 Daemon 正常運行 ✅
