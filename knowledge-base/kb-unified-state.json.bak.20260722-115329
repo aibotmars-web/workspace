@@ -1,0 +1,194 @@
+{
+  "_comment": "知識庫統一追蹤檔案 - 這是唯一真相來源 (Single Source of Truth)",
+  "_version": "1.0",
+  "_updated": "2026-06-09",
+  "last_run": "2026-06-06T04:04:46",
+  "last_summary_run": null,
+  "channels": {
+    "Dr.Hu_talk": {
+      "display_name": "胡乃文再開",
+      "youtube_handle": "Dr.Hu_talk",
+      "playlist_url": "https://www.youtube.com/@Dr.Hu_talk/videos",
+      "total_videos": 377,
+      "crawled_ids": [],
+      "crawled_count": 47,
+      "summary_count": 4,
+      "last_crawled": "2026-05-25",
+      "last_summary": null,
+      "status": "active",
+      "note": "中醫養生專家"
+    },
+    "drbergchinese": {
+      "display_name": "柏格醫生中文",
+      "youtube_handle": "drbergchinese",
+      "playlist_url": "https://www.youtube.com/@drbergchinese/videos",
+      "total_videos": 3124,
+      "crawled_ids": [],
+      "crawled_count": 176,
+      "summary_count": 4,
+      "last_crawled": "2026-05-31",
+      "last_summary": null,
+      "status": "active",
+      "note": "生酮飲食專家"
+    },
+    "muerstalk": {
+      "display_name": "周慕姿放心說",
+      "youtube_handle": "muerstalk",
+      "playlist_url": "https://www.youtube.com/@muerstalk/videos",
+      "total_videos": 190,
+      "crawled_ids": [],
+      "crawled_count": 70,
+      "summary_count": 4,
+      "last_crawled": "2026-05-19",
+      "last_summary": null,
+      "status": "active",
+      "note": "心理諮商師"
+    },
+    "panscischool": {
+      "display_name": "泛科學院",
+      "youtube_handle": "panscischool",
+      "playlist_url": "https://www.youtube.com/@panscischool/videos",
+      "total_videos": 155,
+      "crawled_ids": [],
+      "crawled_count": 53,
+      "summary_count": 2,
+      "last_crawled": "2026-05-18",
+      "last_summary": null,
+      "status": "active",
+      "note": "科學教育"
+    },
+    "Cofit211": {
+      "display_name": "Cofit211",
+      "youtube_handle": "Cofit211",
+      "playlist_url": "https://www.youtube.com/@Cofit211/videos",
+      "total_videos": 341,
+      "crawled_ids": [],
+      "crawled_count": 320,
+      "summary_count": 2,
+      "last_crawled": "2026-07-20T22:19:55.326663",
+      "last_summary": null,
+      "status": "active",
+      "note": "營養醫學"
+    },
+    "PanScitw": {
+      "display_name": "泛科學",
+      "youtube_handle": "PanScitw",
+      "playlist_url": "https://www.youtube.com/@PanScitw/videos",
+      "total_videos": 560,
+      "crawled_ids": [],
+      "crawled_count": 46,
+      "summary_count": 2,
+      "last_crawled": "2026-05-30",
+      "last_summary": null,
+      "status": "active",
+      "note": "科普頻道"
+    },
+    "SongMing": {
+      "display_name": "松明讲心理",
+      "youtube_handle": "SongMing",
+      "playlist_url": "https://www.youtube.com/@SongMing/videos",
+      "total_videos": 1032,
+      "crawled_ids": [],
+      "crawled_count": 11,
+      "summary_count": 2,
+      "last_crawled": "2026-05-26",
+      "last_summary": null,
+      "status": "active",
+      "note": "心理學家"
+    },
+    "Dr.HuangAmin": {
+      "display_name": "Dr.HuangAmin",
+      "youtube_handle": "Dr.HuangAmin",
+      "playlist_url": "https://www.youtube.com/@Dr.HuangAmin/videos",
+      "total_videos": 229,
+      "crawled_ids": [],
+      "crawled_count": 197,
+      "summary_count": 4,
+      "last_crawled": "2026-07-20T16:22:46.973917",
+      "last_summary": null,
+      "status": "active",
+      "note": "中醫針灸"
+    },
+    "RealBizChat": {
+      "display_name": "商談・不廢話",
+      "youtube_handle": "RealBizChat",
+      "playlist_url": "https://www.youtube.com/@RealBizChat/videos",
+      "total_videos": 124,
+      "crawled_ids": [],
+      "crawled_count": 104,
+      "summary_count": 0,
+      "last_crawled": "2026-06-06",
+      "last_summary": null,
+      "status": "active",
+      "note": "商業談判（已合併超真實商談）"
+    },
+    "泛科學院": {
+      "total_videos": 160,
+      "crawled_count": 158,
+      "last_crawled": "2026-07-20T16:03:49.600073",
+      "display_name": "泛科學院",
+      "status": "active"
+    },
+    "胡乃文开播": {
+      "total_videos": 346,
+      "crawled_count": 347,
+      "last_crawled": "2026-07-20T22:20:18.107050",
+      "display_name": "胡乃文开播",
+      "status": "active"
+    },
+    "柏格醫生中文": {
+      "total_videos": 3165,
+      "crawled_count": 279,
+      "last_crawled": "2026-07-20T10:35:23.789254",
+      "display_name": "柏格醫生中文",
+      "status": "active"
+    },
+    "周慕姿放心說": {
+      "total_videos": 208,
+      "crawled_count": 208,
+      "last_crawled": "2026-07-20T16:04:14.916694",
+      "display_name": "周慕姿放心說",
+      "status": "active"
+    },
+    "松明讲心理": {
+      "total_videos": 579,
+      "crawled_count": 394,
+      "last_crawled": "2026-07-20T04:10:19.280448",
+      "display_name": "松明讲心理",
+      "status": "active"
+    },
+    "超真實商談": {
+      "total_videos": 129,
+      "crawled_count": 129,
+      "last_crawled": "2026-07-20T16:03:33.360570",
+      "display_name": "超真實商談",
+      "status": "active"
+    },
+    "泛科學": {
+      "total_videos": 573,
+      "crawled_count": 466,
+      "last_crawled": "2026-07-20T04:24:38.937387",
+      "display_name": "泛科學",
+      "status": "active"
+    },
+    "top3pct": {
+      "total_videos": 217,
+      "crawled_count": 217,
+      "last_crawled": "2026-07-20T16:03:20.473340",
+      "display_name": "top3pct",
+      "status": "active"
+    }
+  },
+  "superseded_channels": {
+    "超真實商談": {
+      "note": "已合併至 RealBizChat，2026-04-27 後不再爬取"
+    },
+    "top3pct": {
+      "note": "已停止，2026-04-13 併入知識庫爬蟲"
+    }
+  },
+  "_meta": {
+    "last_modified": "2026-07-22T10:03:04.938226",
+    "last_modified_by": "marsbot"
+  }
+}

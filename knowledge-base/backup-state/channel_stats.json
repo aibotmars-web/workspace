@@ -1,0 +1,85 @@
+{
+  "last_updated": "2026-03-25T02:19:21.178322",
+  "channels": {
+    "Dr.Hu_talk": {
+      "display_name": "胡乃文开播",
+      "url": "https://www.youtube.com/@Dr.Hu_talk",
+      "total": 702,
+      "crawled": 149,
+      "locked": [],
+      "note": "主要健康養生頻道",
+      "last_checked": "2026-03-25"
+    },
+    "drbergchinese": {
+      "display_name": "柏格醫生中文",
+      "url": "https://www.youtube.com/@drbergchinese",
+      "total": 3361,
+      "crawled": 110,
+      "locked": [],
+      "note": "生酮飲食專家",
+      "last_checked": "2026-03-25"
+    },
+    "muerstalk": {
+      "display_name": "周慕姿放心說",
+      "url": "https://www.youtube.com/@muerstalk",
+      "total": 409,
+      "crawled": 107,
+      "locked": [],
+      "note": "心理諮商師",
+      "last_checked": "2026-03-25"
+    },
+    "panscischool": {
+      "display_name": "泛科學院",
+      "url": "https://www.youtube.com/@panscischool",
+      "total": 344,
+      "crawled": 87,
+      "locked": [],
+      "note": "科學教育",
+      "last_checked": "2026-03-25"
+    },
+    "Cofit211": {
+      "display_name": "Cofit211",
+      "url": "https://www.youtube.com/@Cofit211",
+      "total": 862,
+      "crawled": 83,
+      "locked": [],
+      "note": "營養健身",
+      "last_checked": "2026-03-25"
+    },
+    "PanScitw": {
+      "display_name": "泛科學",
+      "url": "https://www.youtube.com/@PanScitw",
+      "total": 1371,
+      "crawled": 16,
+      "locked": [],
+      "note": "科普頻道",
+      "last_checked": "2026-03-25"
+    },
+    "Dr.HuangAmin": {
+      "display_name": "Dr.HuangAmin",
+      "url": "https://www.youtube.com/@Dr.HuangAmin",
+      "total": 219,
+      "crawled": 6,
+      "locked": [],
+      "note": "黃醫師",
+      "last_checked": "2026-03-25"
+    },
+    "DrHarveyTalk": {
+      "display_name": "DrHarveyTalk",
+      "url": "https://www.youtube.com/@DrHarveyTalk",
+      "total": 30,
+      "crawled": 1,
+      "locked": [],
+      "note": "哈維博士"
+    },
+    "SongMing": {
+      "display_name": "松明讲心理",
+      "url": "https://www.youtube.com/@SongMing",
+      "total": 1499,
+      "crawled": 1,
+      "locked": [],
+      "note": "心理學家",
+      "last_checked": "2026-03-25"
+    }
+  }
+}

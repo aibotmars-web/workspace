@@ -1,0 +1,21 @@
+# 知識庫爬蟲產物（逐字稿/翻譯/日誌）— 體積大且可重新生成，不進版控
+knowledge-base/experts/
+knowledge-base/summaries/
+knowledge-base/*.log
+knowledge-base/*.err
+knowledge-base/*.bak-*
+knowledge-base/*.disabled-*
+knowledge-base/__pycache__/
+__pycache__/
+*.pyc
+
+# 暫存與本機狀態
+.openclaw/workspace-state.json
+.beads/.jsonl.lock
+
+# 巢狀 git repo（各自獨立版控，無法作為 submodule 加入）
+coder/
+autoresearch/
+
+# 異常檔名
+category=case

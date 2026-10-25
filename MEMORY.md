@@ -51,6 +51,22 @@
 - 只抓字幕，不要下载影片
 - 记忆要自动保存（每10句话）
 
+## 📈 每日市場日報格式（2026-08-04 更新，老闆明確指示）
+
+- ❌ **不再回報 BTC HTH**（舊設定，已取消）
+- ✅ **改報黃金美元 + 白銀美元**
+  - **黃金美元** = XAU/USD（國際金價，每盎司美元）
+  - **白銀美元** = XAG/USD（國際銀價，每盎司美元）
+  - 統一格式：兩條都是「每盎司美元」報價
+  - 不報黃金台幣、白銀新台幣、每克版本 — 國際慣用 USD/oz
+
+## 🔧 技術困難處理原則（2026-08-04，老闆教訓）
+
+- **遇到技術困難，先上網找成熟的開源項目或大神做法，不一定要自己猜**
+- 自己悶著寫 / 自己想解法 → 容易卡在已知坑（例如 macOS cron PATH）
+- 應該優先：web_search → 找 GitHub 開源項目 → 參考 Stack Overflow / 技術部落格 → 確認 macOS/Linux 差異 → 最後才自己寫
+- 應用場景：cron 排程、macOS 系統行為、第三方 API、爬蟲/資料管線、模型/工具整合
+
 ## 常发生的问题
 - tool id not found 当机问题
 - 记忆会归零
@@ -239,6 +255,25 @@ Mars 已明確禁止使用 TranscriptAPI 選項。**說過很多次不要用，�
 ### 防止未來再犯
 把這個事實寫入所有相關記憶位置，確保再也不會嘗試 TranscriptAPI。
 
+## ✅ ASR 流程事實確認（2026-07-01）
+
+**事實**：知識庫 ASR 是「免下載影片」的，不要再說「抓字幕要抓影片」。
+
+- `knowledge-base/crawl_asr.py` 第 60-67 行：`kd_transcribe()` 用：
+  ```bash
+  yt-dlp -x --audio-format mp3 --audio-quality 5 -o /tmp/asr_{video_id}.mp3 URL
+  ```
+  **只抽音軌**（不是整支影片）
+- 轉完 `os.remove(audio_path)` 清乾淨，`/tmp/asr_*.mp3` 不殘留
+- 影片 100-200 MiB → 音軌 5-10 MiB，省 90%+ 空間
+- 2008 個字幕檔總共才 307 MB
+
+**預防規則**：回答「ASR / 字幕 / 爬蟲 / kd / crawl」相關問題前，**必須先讀 `crawl_asr.py`** 確認實際流程，不要憑印象回答。
+
+**為什麼我之前會說錯**：MEMORY.md 只有「用 kd CLI」結論，沒寫「kd 內部是抽音軌」的事實細節，回答時憑印象 → 幻覺 → 被老闆抓到。
+
+---
+
 ## Deer Flow 安裝（2026-03-31）
 
 ### 狀態
@@ -264,3 +299,56 @@ nginx -c $(pwd)/docker/nginx/nginx.local.conf -p $(pwd)
 
 ### 開機自動啟動
 尚未設定（需要 macOS launchd 或 systemd）
+
+---
+*2026-05-16 更新*
+
+## 系統穩定性記錄（2026-05-16）
+
+### ⚠️ 持續監控問題
+1. **晚間總結超時** - 連續第二天超時（M2.7 模型，125+ 秒）
+2. **Skills 路徑問題** - 25 個 workspace skills 被安全機制阻止載入（尚未解決）
+3. **磁碟空間警訊** - 24GB 可用，89% 使用率（逐漸緊張）
+
+### ✅ 正常組件
+- Gateway/DeerFlow 正常運行
+- 記憶定時注入正常（全天 7 次）
+- Delivery recovery 成功
+- 健康檢查通過
+
+### 修復方向
+- 晚間總結超時：可能需要簡化 prompt 或改用更快的模型
+- Skills 阻擋：檢查 symlink 安全設定
+- 磁碟：考慮清理舊日誌或 media 檔案
+
+
+## ⚠️ 重要：OpenClaw 環境無法程式化修改 cron（2026-08-12 教訓）
+
+**症狀**：`crontab file`、`crontab -l | grep -v | crontab -`、`crontab -e`、`subprocess.run(['crontab'])` 全部都會卡住（無回應、無錯誤）。
+
+**原因**：macOS 的 cron daemon 在這環境可能跟某個 sandbox 衝突。
+
+**解決方案**：
+1. **不要用程式碼改 cron** → 直接放棄，請老闆手動跑一行指令
+2. **優先用 LaunchAgent**（macOS 原生排程，可程式化管理）→ 寫 plist 檔 + `launchctl load`
+3. **砍掉壞腳本**比砍 cron 容易：`mv bad-script.sh bad-script.sh.disabled-YYYYMMDD` → cron 跑了會 fail silently（不影響系統）
+4. **檢查實質影響**而非表面：壞 cron 那行還在 ≠ 系統壞了，腳本本身沒被執行就不會有事
+
+**老闆需要手動跑**（一行）：
+```
+crontab -l | grep -v crawl-daily.sh | crontab -
+```
+
+
+## 🛑 暫停爬取：柏格醫生中文（drbergchinese）（2026-08-30）
+
+老闆指示「影片太重複了，先不要抓」。
+
+**已做**：
+- `crawl_stable.py` CHANNELS list 移除該頻道（剩 9 個）
+- `kb-unified-state.json` 標記 `status: paused` + note 寫原因
+- 既有 199 個檔案保留在 `experts/drbergchinese/`
+
+**未來恢復**（一句話）：
+1. `crawl_stable.py` 加回 `("柏格醫生中文", "drbergchinese"),  # 2922 部`
+2. `kb-unified-state.json` 把 `status` 改回 `active`
